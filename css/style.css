@@ -1,0 +1,261 @@
+:root {
+    --sage: #7D8E7E;
+    --cream: #F9F7F2;
+    --walnut: #3D2B1F;
+    --charcoal: #1A1A1A;
+    --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { 
+    scroll-behavior: smooth; 
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    /* This creates the scroll snap effect */
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+/* Typography */
+h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+.italic { font-style: italic; }
+
+/* Navigation */
+.nav-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+    pointer-events: none; /* Lets you click through nav */
+}
+
+.logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    font-weight: 500;
+}
+
+.status-indicator {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pulse {
+    width: 6px;
+    height: 6px;
+    background-color: var(--sage);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Sections */
+section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    scroll-snap-align: start;
+    padding: 20px;
+    overflow: hidden;
+}
+
+/* Background Typography */
+.bg-text {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18vw;
+    color: rgba(0,0,0,0.04);
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 0;
+    pointer-events: none;
+    line-height: 0.8;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 2vh;
+    z-index: 2;
+}
+
+.headline-reveal {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    text-align: center;
+    line-height: 1.1;
+    z-index: 2;
+}
+
+/* Philosophy Section */
+.cream-bg { background-color: #F2EFE9; }
+
+.body-text {
+    max-width: 500px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    font-weight: 300;
+}
+
+/* Collection Tiles */
+.kit-container {
+    display: flex;
+    gap: 2px;
+    height: 60vh;
+    width: 100%;
+    max-width: 1400px;
+    z-index: 2;
+}
+
+.tile {
+    flex: 1;
+    position: relative;
+    transition: var(--transition);
+    cursor: default;
+    overflow: hidden;
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.tile:last-child { border-right: none; }
+
+.tile:hover { flex: 2; }
+
+.tile-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    transition: var(--transition);
+}
+
+.tile-content {
+    position: absolute;
+    bottom: 0; left: 0;
+    padding: 40px;
+    width: 100%;
+}
+
+.tile-number {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--sage);
+    margin-bottom: 10px;
+}
+
+.tile-title {
+    font-size: 2rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+.tile-desc {
+    font-size: 0.9rem;
+    color: #666;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.tile:hover .tile-desc { opacity: 1; transform: translateY(0); }
+
+/* Access Section */
+.dark-bg { background-color: var(--walnut); color: var(--cream); }
+
+.input-group {
+    position: relative;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 400px;
+}
+
+input[type="email"] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(249, 247, 242, 0.3);
+    color: var(--cream);
+    padding: 15px 0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    outline: none;
+    transition: 0.3s;
+    border-radius: 0; /* Removes iOS rounded corners */
+}
+
+input[type="email"]:focus { border-bottom-color: var(--cream); }
+
+button {
+    margin-top: 30px;
+    background: transparent;
+    border: 1px solid var(--cream);
+    color: var(--cream);
+    padding: 15px 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+button:hover { background: var(--cream); color: var(--walnut); }
+
+/* Utility Classes */
+.hidden { display: none; opacity: 0; }
+
+/* Progress Dots */
+.progress-wrap {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.dark-bg .dot { background: rgba(255,255,255,0.2); }
+.dot.active { background: var(--sage); transform: scale(1.2); }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .kit-container { flex-direction: column; height: 70vh; }
+    .tile:hover { flex: 1; }
+    .tile-desc { opacity: 1; transform: translateY(0); }
+    .headline-reveal { font-size: 2.5rem; }
+}
