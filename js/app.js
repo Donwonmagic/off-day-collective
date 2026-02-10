@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. FORM HANDLING
+// 5. FORM HANDLING (REAL EMAIL SENDING)
     const form = document.getElementById('signup-form');
     const formContainer = document.getElementById('form-container');
     const successMsg = document.getElementById('success-message');
@@ -69,23 +69,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('submit-btn');
 
     if(form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            btnText.textContent = "Processing...";
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Stop standard redirect
+            
+            // Visual Feedback: "Thinking" state
+            btnText.textContent = "Verifying...";
             btn.style.opacity = "0.7";
             btn.disabled = true;
 
-            setTimeout(() => {
-                formContainer.style.transform = "rotateX(90deg)";
-                formContainer.style.opacity = '0';
-                
-                setTimeout(() => {
-                    formContainer.style.display = 'none';
-                    successMsg.classList.remove('hidden');
-                    void successMsg.offsetWidth; 
-                    successMsg.style.opacity = '1';
-                }, 500);
-            }, 1500);
+            // Gather the data
+            const data = new FormData(form);
+
+            // Send to Formspree using AJAX
+            fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    // SUCCESS: Play the luxury animation
+                    setTimeout(() => {
+                        formContainer.style.transform = "rotateX(90deg)"; // Card flip
+                        formContainer.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            formContainer.style.display = 'none';
+                            successMsg.classList.remove('hidden');
+                            void successMsg.offsetWidth; // Trigger reflow
+                            successMsg.style.opacity = '1';
+                        }, 500);
+                    }, 1000); // Small artificial delay for effect
+                } else {
+                    // ERROR: Formspree rejected it
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            alert(data["errors"].map(error => error["message"]).join(", "));
+                        } else {
+                            alert("The application system is currently busy. Please try again.");
+                        }
+                        // Reset button
+                        btnText.textContent = "Apply for Access";
+                        btn.disabled = false;
+                        btn.style.opacity = "1";
+                    });
+                }
+            }).catch(error => {
+                // NETWORK ERROR
+                alert("Connection error. Please check your network.");
+                btnText.textContent = "Apply for Access";
+                btn.disabled = false;
+                btn.style.opacity = "1";
+            });
         });
     }
-});
