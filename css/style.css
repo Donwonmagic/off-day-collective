@@ -212,17 +212,56 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
     margin-bottom: 20px;
 }
 
-/* --- LAYER 1.5: TRUST TICKER --- */
-.trust-ticker {
-    background: var(--charcoal); color: var(--cream);
-    padding: 15px 0; overflow: hidden; white-space: nowrap;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    font-family: 'Inter', sans-serif; font-size: 0.75rem;
-    letter-spacing: 3px; text-transform: uppercase;
+/* -------------------
+   INFINITE TICKER (Seamless Loop)
+---------------------- */
+.trust-ticker { 
+    background: var(--charcoal); 
+    color: var(--cream); 
+    padding: 15px 0; 
+    overflow: hidden; 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+    font-family: 'Inter', sans-serif; 
+    font-size: 0.75rem; 
+    letter-spacing: 3px; 
+    text-transform: uppercase; 
+    /* Mask edges for a fade effect (Optional, looks premium) */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-.ticker-track { display: inline-block; animation: scrollTicker 30s linear infinite; }
-.trust-ticker .dot { color: var(--gold); margin: 0 30px; }
-@keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.ticker-track { 
+    display: flex; 
+    width: max-content; /* Ensures the track is exactly as wide as the text */
+    animation: scrollTicker 30s linear infinite; 
+}
+
+/* This groups the items so we don't have to manage spans individually */
+.ticker-group {
+    display: flex;
+    align-items: center;
+}
+
+.trust-ticker span {
+    white-space: nowrap;
+}
+
+.trust-ticker .dot { 
+    color: var(--gold); 
+    padding: 0 30px; /* Use padding instead of margin for smoother math */
+}
+
+/* Move exactly 50% (the width of one set) */
+@keyframes scrollTicker { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+}
+
+/* Mobile: Speed it up slightly so it doesn't feel too slow on small screens */
+@media (max-width: 768px) {
+    .ticker-track { animation-duration: 20s; }
+}
+
 
 /* --- LAYER 2: MANIFESTO --- */
 .manifesto-section {
