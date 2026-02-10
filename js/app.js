@@ -1,11 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. CUSTOM CURSOR
+    // --- 0. SAFETY NET (PREVENTS FOREVER LOADING) ---
+    // If something breaks, force the site to load after 3 seconds
+    setTimeout(() => {
+        if (!document.body.classList.contains('loaded')) {
+            console.log("Safety net triggered: Forcing load.");
+            document.body.classList.add('loaded');
+        }
+    }, 3000);
+
+    // --- 1. PRELOADER ---
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.body.classList.add('loaded');
+        }, 1500);
+    });
+
+    // --- 2. CUSTOM CURSOR (DESKTOP ONLY) ---
     const cursor = document.getElementById('cursor');
     const cursorBlur = document.getElementById('cursor-blur');
     const hoverTriggers = document.querySelectorAll('.hover-trigger');
 
-    if (window.matchMedia("(min-width: 768px)").matches) {
+    if (window.matchMedia("(min-width: 768px)").matches && cursor && cursorBlur) {
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
@@ -24,14 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. PRELOADER
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 1500);
-    });
-
-    // 3. SCROLL SPY
+    // --- 3. SCROLL SPY ---
     const sections = document.querySelectorAll('section, footer');
     const dots = document.querySelectorAll('.dot');
     const observerOptions = { threshold: 0.5 };
@@ -46,22 +55,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
     sections.forEach(section => observer.observe(section));
 
-    // 4. PARALLAX
+    // --- 4. PARALLAX ---
     const parallaxText = document.querySelectorAll('.parallax-text');
     const parallaxImgs = document.querySelectorAll('.parallax-img');
     window.addEventListener('scroll', () => {
         let scrollY = window.scrollY;
-        parallaxText.forEach(text => {
-            let speed = text.getAttribute('data-speed');
-            text.style.transform = `translateY(${scrollY * speed}px)`;
-        });
-        parallaxImgs.forEach(img => {
-            let speed = img.getAttribute('data-speed');
-            img.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
-        });
+        // Check if elements exist before moving them
+        if(parallaxText.length > 0) {
+            parallaxText.forEach(text => {
+                let speed = text.getAttribute('data-speed');
+                text.style.transform = `translateY(${scrollY * speed}px)`;
+            });
+        }
+        if(parallaxImgs.length > 0) {
+            parallaxImgs.forEach(img => {
+                let speed = img.getAttribute('data-speed');
+                img.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+            });
+        }
     });
 
-// 5. FORM HANDLING (REAL EMAIL SENDING)
+    // --- 5. FORM HANDLING (SAFE MODE) ---
     const form = document.getElementById('signup-form');
     const formContainer = document.getElementById('form-container');
     const successMsg = document.getElementById('success-message');
@@ -69,58 +83,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.getElementById('submit-btn');
 
     if(form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Stop standard redirect
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
             
-            // Visual Feedback: "Thinking" state
-            btnText.textContent = "Verifying...";
-            btn.style.opacity = "0.7";
-            btn.disabled = true;
+            // Visual Feedback
+            if(btnText) btnText.textContent = "Verifying...";
+            if(btn) {
+                btn.style.opacity = "0.7";
+                btn.disabled = true;
+            }
 
-            // Gather the data
             const data = new FormData(form);
 
-            // Send to Formspree using AJAX
             fetch(form.action, {
                 method: form.method,
                 body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    // SUCCESS: Play the luxury animation
+                    // Success
                     setTimeout(() => {
-                        formContainer.style.transform = "rotateX(90deg)"; // Card flip
-                        formContainer.style.opacity = '0';
-                        
-                        setTimeout(() => {
-                            formContainer.style.display = 'none';
-                            successMsg.classList.remove('hidden');
-                            void successMsg.offsetWidth; // Trigger reflow
-                            successMsg.style.opacity = '1';
-                        }, 500);
-                    }, 1000); // Small artificial delay for effect
-                } else {
-                    // ERROR: Formspree rejected it
-                    response.json().then(data => {
-                        if (Object.hasOwn(data, 'errors')) {
-                            alert(data["errors"].map(error => error["message"]).join(", "));
-                        } else {
-                            alert("The application system is currently busy. Please try again.");
+                        if(formContainer) {
+                            formContainer.style.transform = "rotateX(90deg)";
+                            formContainer.style.opacity = '0';
                         }
-                        // Reset button
-                        btnText.textContent = "Apply for Access";
-                        btn.disabled = false;
-                        btn.style.opacity = "1";
-                    });
+                        setTimeout(() => {
+                            if(formContainer) formContainer.style.display = 'none';
+                            if(successMsg) {
+                                successMsg.classList.remove('hidden');
+                                void successMsg.offsetWidth; 
+                                successMsg.style.opacity = '1';
+                            }
+                        }, 500);
+                    }, 1000);
+                } else {
+                    // Error from Formspree
+                    alert("System busy. Please try again.");
+                    if(btnText) btnText.textContent = "Apply for Access";
+                    if(btn) { btn.disabled = false; btn.style.opacity = "1"; }
                 }
             }).catch(error => {
-                // NETWORK ERROR
+                // Network Error
                 alert("Connection error. Please check your network.");
-                btnText.textContent = "Apply for Access";
-                btn.disabled = false;
-                btn.style.opacity = "1";
+                if(btnText) btnText.textContent = "Apply for Access";
+                if(btn) { btn.disabled = false; btn.style.opacity = "1"; }
             });
         });
     }
+
+});
