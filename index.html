@@ -48,7 +48,7 @@
         </div>
 
         <div class="content-layer">
-            <p class="section-label" style="color: rgba(255,255,255,0.8);"></p>
+            <p class="section-label" style="color: rgba(255,255,255,0.8);">Volume 01</p>
             <h1 class="headline-reveal">Silence is a luxury.</h1>
             <p class="hero-subhead" style="max-width: 400px; margin: 20px auto 0; color: rgba(255,255,255,0.7); font-weight: 300;">
                 In an age of constant noise, the ultimate status symbol is the ability to disconnect.
@@ -73,29 +73,38 @@
 
     <section id="philosophy" class="manifesto-section">
         
+        <div class="chapter-marker parallax-text" data-speed="0.1">
+            <span class="gold-text">FIG. 02</span>
+            <span class="line"></span>
+            THE CODE
+        </div>
+
         <div class="manifesto-visual hover-trigger">
             <div class="img-mask">
                 <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2670&auto=format&fit=crop" alt="Timeless Texture" class="parallax-img" data-speed="0.05">
             </div>
             
             <div class="visual-stamp hover-trigger">
-                
                 <div class="stamp-ring">
                     <svg viewBox="-10 -10 120 120" width="100%" height="100%">
-                        <path id="curve" d="M 50 50 m -45 0 a 45 45 0 1 1 90 0 a 45 45 0 1 1 -90 0" fill="transparent"/>
+                        <path id="top-curve" d="M 10,50 A 40,40 0 1,1 90,50" fill="transparent" />
+                        <path id="bottom-curve" d="M 90,50 A 40,40 0 1,1 10,50" fill="transparent" />
                         <text width="100%">
-                            <textPath xlink:href="#curve" class="circle-text">
+                            <textPath xlink:href="#top-curve" startOffset="50%" text-anchor="middle" class="circle-text">
                                 OFF DAY COLLECTIVE
+                            </textPath>
+                        </text>
+                        <text width="100%">
+                            <textPath xlink:href="#bottom-curve" startOffset="50%" text-anchor="middle" class="circle-text" style="letter-spacing: 4px;">
+                                • EST. MMXXVI •
                             </textPath>
                         </text>
                     </svg>
                 </div>
-
                 <div class="stamp-center">
                     <span class="stamp-label">VOL</span>
                     <span class="stamp-number">01</span>
                 </div>
-
             </div>
         </div>
 
@@ -117,22 +126,21 @@
         </div>
     </section>
 
-  <section id="collection" class="bento-section">
-        
+    <section id="collection" class="bento-section">
         <div class="bento-header fade-in-up">
             <span class="gold-text sm-caps">The Arc of the Day</span>
         </div>
 
         <div class="bento-grid">
-            
             <div class="bento-item large hover-trigger">
                 <div class="bento-img">
                     <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=2670&auto=format&fit=crop" alt="Morning Light">
                 </div>
                 <div class="bento-overlay"></div>
-                
                 <div class="bento-content">
                     <div class="bento-top">
+                        <span class="time-stamp">07:00</span>
+                        <span class="phase-label">Phase I</span>
                     </div>
                     <div class="bento-text">
                         <h3>Clarity</h3>
@@ -146,9 +154,10 @@
                     <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?q=80&w=2674&auto=format&fit=crop" alt="Forest Motion">
                 </div>
                 <div class="bento-overlay"></div>
-
                 <div class="bento-content">
                     <div class="bento-top">
+                        <span class="time-stamp">13:00</span>
+                        <span class="phase-label">Phase II</span>
                     </div>
                     <div class="bento-text">
                         <h3>Momentum</h3>
@@ -162,9 +171,10 @@
                     <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?q=80&w=2672&auto=format&fit=crop" alt="Evening Shadow">
                 </div>
                 <div class="bento-overlay"></div>
-
                 <div class="bento-content">
                     <div class="bento-top">
+                        <span class="time-stamp">21:00</span>
+                        <span class="phase-label">Phase III</span>
                     </div>
                     <div class="bento-text">
                         <h3>Reflection</h3>
@@ -180,7 +190,6 @@
                     <p class="system-label">Curated<br>States of Mind</p>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -189,14 +198,15 @@
             <div class="access-card" id="form-container">
                 <div class="card-header">
                     <span class="gold-text sm-caps">Membership Application</span>
-                    <span class="gold-text sm-caps">No. 0913</span>
+                    <span class="gold-text sm-caps">No. 001</span>
                 </div>
                 <div class="card-body">
                     <h2 class="card-title">The door is opening.</h2>
                     <p class="card-text">We admit members in small cohorts to ensure the stillness remains. Sign below to secure your place in line.</p>
+                    
                     <form action="https://formspree.io/f/mjgeggpo" method="POST" id="signup-form" class="signature-form">
                         <div class="input-wrapper hover-trigger">
-                            <input type="email" id="email" placeholder=" " required autocomplete="off">
+                            <input type="email" id="email" name="email" placeholder=" " required autocomplete="off">
                             <label for="email">Enter your email signature</label>
                             <div class="underline-gold"></div>
                         </div>
@@ -231,7 +241,7 @@
                 </div>
                 <div class="col">
                     <h4>Contact</h4>
-                    <p>contact@offdaycollective.com<br>@offdaycollective</p>
+                    <p>hello@offdaycollective.com<br>@offdaycollective</p>
                 </div>
                 <div class="col right-align">
                     <h4>System</h4>
