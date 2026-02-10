@@ -1,16 +1,39 @@
+/* -----------------------------------------------------------
+   OFF DAY COLLECTIVE | MASTER STYLESHEET (V2.0 GOLD)
+----------------------------------------------------------- */
+
 :root {
     --sage: #7D8E7E;
     --cream: #F9F7F2;
     --walnut: #3D2B1F;
     --charcoal: #1A1A1A;
-    --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --gold: #D4AF37;
+    --gold-dim: #8a701f;
+    --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none; /* We use a custom cursor */
+}
 
-html { 
-    scroll-behavior: smooth; 
+::selection {
+    background: var(--gold);
+    color: #000;
+}
+
+html {
+    scroll-behavior: smooth;
     font-size: 16px;
+}
+
+/* Hide default scrollbar for a "floating" app feel */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 body {
@@ -18,244 +41,683 @@ body {
     color: var(--charcoal);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    /* This creates the scroll snap effect */
     height: 100vh;
+    overflow-y: hidden; /* Locked until loader finishes */
+}
+
+body.loaded {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
 }
 
-/* Typography */
+/* -------------------
+   CUSTOM CURSOR
+---------------------- */
+#cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 12px; height: 12px;
+    border: 1px solid var(--charcoal);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    mix-blend-mode: difference;
+}
+
+#cursor-blur {
+    position: fixed;
+    top: 0; left: 0;
+    width: 40px; height: 40px;
+    background: rgba(212, 175, 55, 0.2);
+    filter: blur(20px);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+}
+
+body.hovering #cursor {
+    width: 60px; height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: transparent;
+}
+
+/* -------------------
+   LOADER & OVERLAYS 
+---------------------- */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #0a0a0a; color: var(--gold);
+    z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+body.loaded #loader {
+    transform: translateY(-100%);
+}
+
+.logo-loader {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+}
+
+.loader-line-mask {
+    width: 150px; height: 1px;
+    background: rgba(255,255,255,0.1);
+    overflow: hidden; position: relative;
+}
+
+.loader-line {
+    width: 100%; height: 100%;
+    background: var(--gold);
+    transform: translateX(-100%);
+    animation: loadLine 1.5s ease-in-out forwards;
+}
+
+@keyframes loadLine { to { transform: translateX(0); } }
+
+.noise-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 9000; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* -------------------
+   TYPOGRAPHY & NAV 
+---------------------- */
 h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
 .italic { font-style: italic; }
 
-/* Navigation */
 .nav-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    padding: 40px;
-    display: flex;
-    justify-content: space-between;
-    z-index: 100;
-    pointer-events: none; /* Lets you click through nav */
+    position: fixed; top: 0; left: 0; width: 100%; padding: 40px;
+    display: flex; justify-content: space-between; z-index: 100;
+    pointer-events: none; color: white; mix-blend-mode: difference;
 }
 
 .logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--charcoal);
-    font-weight: 500;
+    font-size: 1.25rem; letter-spacing: 2px; text-transform: uppercase;
 }
 
 .status-indicator {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-size: 0.75rem; letter-spacing: 2px;
+    display: flex; align-items: center; gap: 10px;
 }
 
 .pulse {
-    width: 6px;
-    height: 6px;
-    background-color: var(--sage);
-    border-radius: 50%;
+    width: 6px; height: 6px;
+    background-color: white; border-radius: 50%;
     animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
-    0% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.2); }
-    100% { opacity: 1; transform: scale(1); }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* -------------------
+   SECTIONS & LAYOUT
+---------------------- */
+section {
+    height: 100vh; width: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    position: relative;
+    scroll-snap-align: start;
+    overflow: hidden;
 }
 
-/* Sections */
-section {
-    height: 100vh;
-    width: 100%;
+/* --- LAYER 1: HERO --- */
+#intro { color: var(--cream); }
+
+.hero-image-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; overflow: hidden;
+}
+
+.hero-img {
+    width: 100%; height: 120%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+
+.content-layer { z-index: 2; text-align: center; }
+
+.headline-reveal {
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 1s ease 1.2s, transform 1s ease 1.2s;
+}
+body.loaded .headline-reveal { opacity: 1; transform: translateY(0); }
+
+.hero-subhead {
+    font-size: 1.1rem; line-height: 1.6;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 1s ease 1.5s, transform 1s ease 1.5s;
+}
+body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
+
+.section-label {
+    font-size: 0.75rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+}
+
+/* --- LAYER 1.5: TRUST TICKER --- */
+.trust-ticker {
+    background: var(--charcoal); color: var(--cream);
+    padding: 15px 0; overflow: hidden; white-space: nowrap;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Inter', sans-serif; font-size: 0.75rem;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+.ticker-track { display: inline-block; animation: scrollTicker 30s linear infinite; }
+.trust-ticker .dot { color: var(--gold); margin: 0 30px; }
+@keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* --- LAYER 2: MANIFESTO --- */
+.manifesto-section {
+    background-color: #F2EFE9;
+    display: flex; flex-direction: row;
+    align-items: center; justify-content: center;
+    gap: 80px; padding: 0 10%;
+}
+
+.manifesto-visual {
+    width: 35%; height: 60vh;
+    position: relative; z-index: 2;
+}
+
+.img-mask {
+    width: 100%; height: 100%; overflow: hidden;
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+}
+
+.manifesto-visual img {
+    width: 100%; height: 120%;
+    object-fit: cover; filter: sepia(10%) contrast(90%);
+}
+
+.manifesto-content { width: 45%; position: relative; z-index: 3; }
+.manifesto-content h2 { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.1; margin-bottom: 30px; }
+.divider-line { width: 60px; height: 1px; background-color: var(--gold); margin-bottom: 30px; }
+
+.bg-text {
+    position: absolute; font-family: 'Cormorant Garamond', serif;
+    font-size: 18vw; color: rgba(0,0,0,0.04);
+    text-transform: uppercase; white-space: nowrap;
+    z-index: 0; pointer-events: none;
+}
+
+.highlight {
+    color: var(--charcoal); font-weight: 500;
+    letter-spacing: 1px; display: inline-block; margin-top: 5px;
+}
+
+/* THE LUXURY STAMP (Compass Design) */
+.visual-stamp {
+    position: absolute;
+    bottom: -50px; right: -50px;
+    width: 140px; height: 140px;
+    /* Glassmorphism */
+    background: rgba(249, 247, 242, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 4;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+.stamp-ring {
+    position: absolute; width: 100%; height: 100%;
+    animation: spin 20s linear infinite;
+}
+
+.circle-text {
+    font-family: 'Inter', sans-serif; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 600; fill: var(--charcoal);
+}
+
+.stamp-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    z-index: 5;
+    width: 60%; height: 60%;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.stamp-label {
+    font-family: 'Inter', sans-serif; font-size: 0.5rem;
+    letter-spacing: 1px; color: #999; margin-bottom: 2px;
+}
+
+.stamp-number {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
+    font-style: italic; color: var(--gold); line-height: 1;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* Chapter Marker */
+.chapter-marker {
+    position: absolute; top: 15%; left: 5%;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    font-size: 0.7rem; letter-spacing: 3px; color: #999;
+    display: flex; align-items: center; gap: 20px; z-index: 10;
+}
+.chapter-marker .line { width: 1px; height: 40px; background-color: var(--gold); }
+
+/* Bridge Link */
+.text-link {
+    display: inline-block; margin-top: 40px;
+    font-family: 'Inter', sans-serif; font-size: 0.8rem;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border-bottom: 1px solid transparent; transition: 0.3s;
+}
+.text-link:hover { border-bottom: 1px solid var(--gold); padding-bottom: 5px; }
+.arrow { display: inline-block; transition: transform 0.3s; }
+.text-link:hover .arrow { transform: translateY(5px); }
+
+
+/* -------------------
+   LAYER 3: THE CHRONOLOGY (BENTO)
+---------------------- */
+
+.bento-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 5%;
+    background: var(--cream);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    scroll-snap-align: start;
-    padding: 20px;
-    overflow: hidden;
 }
 
-/* Background Typography */
-.bg-text {
-    position: absolute;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18vw;
-    color: rgba(0,0,0,0.04);
-    text-transform: uppercase;
-    white-space: nowrap;
-    z-index: 0;
-    pointer-events: none;
-    line-height: 0.8;
+.bento-header {
+    margin-bottom: 40px;
+    padding-left: 5px;
+    opacity: 0.6;
 }
 
-.section-label {
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 2vh;
-    z-index: 2;
-}
-
-.headline-reveal {
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    text-align: center;
-    line-height: 1.1;
-    z-index: 2;
-}
-
-/* Philosophy Section */
-.cream-bg { background-color: #F2EFE9; }
-
-.body-text {
-    max-width: 500px;
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #4a4a4a;
-    font-weight: 300;
-}
-
-/* Collection Tiles */
-.kit-container {
-    display: flex;
-    gap: 2px;
-    height: 60vh;
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 450px); /* Taller boxes for drama */
+    gap: 20px;
     width: 100%;
     max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bento-item {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    /* Soft edges for luxury feel */
+    border-radius: 2px;
+}
+
+/* The Image Engine */
+.bento-img {
+    width: 100%; height: 100%;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    filter: grayscale(20%); /* Subtle desaturation */
+    transition: opacity 0.5s, filter 0.5s;
+}
+
+/* The "Curtain" Overlay */
+.bento-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    opacity: 0.6;
+    transition: opacity 0.5s;
+}
+
+/* Typography & Layout */
+.bento-content {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    color: var(--cream);
+}
+
+.bento-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.bento-text h3 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    transform: translateY(20px);
+    transition: transform 0.6s ease;
+}
+
+.philosophy-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.7);
+    max-width: 300px;
+    
+    /* Reveal Animation Setup */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease 0.1s;
+}
+
+/* HOVER STATES: The Magic */
+.bento-item:hover .bento-img { transform: scale(1.05); }
+.bento-item:hover img { filter: grayscale(0%); opacity: 0.6; }
+.bento-item:hover .bento-overlay { opacity: 0.9; }
+
+.bento-item:hover h3 { transform: translateY(0); }
+.bento-item:hover .philosophy-text { opacity: 1; transform: translateY(0); }
+
+/* The System Box (Bottom Right) */
+.system-box {
+    background: var(--walnut);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.bento-border-inner {
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.system-content {
     z-index: 2;
 }
 
-.tile {
-    flex: 1;
-    position: relative;
-    transition: var(--transition);
-    cursor: default;
-    overflow: hidden;
-    border-right: 1px solid rgba(0,0,0,0.05);
-}
-
-.tile:last-child { border-right: none; }
-
-.tile:hover { flex: 2; }
-
-.tile-bg {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    transition: var(--transition);
-}
-
-.tile-content {
-    position: absolute;
-    bottom: 0; left: 0;
-    padding: 40px;
-    width: 100%;
-}
-
-.tile-number {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--sage);
-    margin-bottom: 10px;
-}
-
-.tile-title {
-    font-size: 2rem;
-    margin-bottom: 5px;
-    white-space: nowrap;
-}
-
-.tile-desc {
-    font-size: 0.9rem;
-    color: #666;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: var(--transition);
-}
-
-.tile:hover .tile-desc { opacity: 1; transform: translateY(0); }
-
-/* Access Section */
-.dark-bg { background-color: var(--walnut); color: var(--cream); }
-
-.input-group {
-    position: relative;
-    margin-top: 40px;
-    width: 100%;
-    max-width: 400px;
-}
-
-input[type="email"] {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(249, 247, 242, 0.3);
-    color: var(--cream);
-    padding: 15px 0;
-    width: 100%;
+.system-label {
     font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
-    outline: none;
-    transition: 0.3s;
-    border-radius: 0; /* Removes iOS rounded corners */
-}
-
-input[type="email"]:focus { border-bottom-color: var(--cream); }
-
-button {
-    margin-top: 30px;
-    background: transparent;
-    border: 1px solid var(--cream);
-    color: var(--cream);
-    padding: 15px 40px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100%;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    color: rgba(255,255,255,0.6);
 }
 
-button:hover { background: var(--cream); color: var(--walnut); }
+/* Grid Logic */
+.large { grid-column: span 2; grid-row: span 2; }
+.tall { grid-column: span 1; grid-row: span 2; }
+.wide { grid-column: span 1; grid-row: span 1; }
+.small { grid-column: span 1; grid-row: span 1; }
 
-/* Utility Classes */
-.hidden { display: none; opacity: 0; }
+/* Mobile Stack */
+@media (max-width: 768px) {
+    .bento-grid { 
+        display: flex; 
+        flex-direction: column; 
+        height: auto; 
+        gap: 10px; 
+    }
+    
+    .bento-item { 
+        height: 400px; 
+        min-height: 400px; 
+    }
+    
+    /* On mobile, show text always, don't wait for hover */
+    .philosophy-text { opacity: 0.8; transform: translateY(0); }
+    .bento-text h3 { transform: translateY(0); }
+}
+/* -------------------
+   TABLET / LAPTOP OPTIMIZATION (The "Middle Child" Fix)
+   Triggers when screen is smaller than 1200px but bigger than mobile
+---------------------- */
+@media (max-width: 1200px) {
+    .bento-grid {
+        /* Switch from 4 columns to 2 columns */
+        grid-template-columns: repeat(2, 1fr);
+        /* Remove fixed height so rows can adapt */
+        grid-template-rows: auto;
+        gap: 15px;
+    }
+
+    /* Re-map the grid items for a nice 2x2 layout */
+    
+    /* Clarity: Full width across top */
+    .large { 
+        grid-column: span 2; 
+        height: 400px; 
+    }
+
+    /* Momentum: Left side */
+    .tall { 
+        grid-column: span 1; 
+        grid-row: span 1; 
+        height: 400px; 
+    }
+
+    /* Reflection: Right side */
+    .wide { 
+        grid-column: span 1; 
+        grid-row: span 1; 
+        height: 400px; 
+    }
+
+    /* System Box: Full width at bottom */
+    .small { 
+        grid-column: span 2; 
+        grid-row: span 1; 
+        height: 150px; 
+    }
+    
+    /* Safety: Ensure text shrinks slightly if it's still tight */
+    .bento-text h3 {
+        font-size: 2rem; /* Down from 2.5rem */
+    }
+}
+
+/* --- LAYER 4: ACCESS CARD --- */
+.dark-bg { background-color: #050505; color: var(--cream); perspective: 1000px; }
+
+.access-card {
+    background: linear-gradient(145deg, #111, #161616);
+    width: 100%; max-width: 500px; padding: 60px 40px;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(212, 175, 55, 0.1);
+    position: relative; text-align: center; transition: transform 0.5s ease;
+}
+
+.access-card:hover { transform: translateY(-5px) rotateX(2deg); }
+
+.gold-text { color: var(--gold); }
+.sm-caps {
+    font-size: 0.6rem; letter-spacing: 3px;
+    text-transform: uppercase; opacity: 0.8;
+}
+
+.card-header {
+    display: flex; justify-content: space-between; margin-bottom: 40px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 15px;
+}
+
+.card-title { font-size: 2.5rem; color: var(--cream); margin-bottom: 15px; }
+.card-text { font-size: 0.95rem; color: #888; margin-bottom: 50px; font-weight: 300; }
+
+.input-wrapper { position: relative; margin-bottom: 40px; text-align: left; }
+
+.signature-form input {
+    width: 100%; background: transparent; border: none;
+    border-bottom: 1px solid #444; padding: 15px 0;
+    color: var(--gold); font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-style: italic; outline: none; transition: 0.3s;
+}
+
+.signature-form label {
+    position: absolute; top: 15px; left: 0; color: #555;
+    font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+    pointer-events: none; transition: 0.3s ease;
+}
+
+.signature-form input:focus ~ label, .signature-form input:not(:placeholder-shown) ~ label {
+    top: -10px; font-size: 0.7rem; color: var(--gold);
+}
+
+.underline-gold {
+    position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+    background-color: var(--gold); transition: width 0.5s ease;
+}
+.signature-form input:focus ~ .underline-gold { width: 100%; }
+
+.gold-btn {
+    background: var(--gold); color: #000; border: none;
+    padding: 18px 0; width: 100%; font-family: 'Inter', sans-serif;
+    font-weight: 600; font-size: 0.8rem; letter-spacing: 2px;
+    text-transform: uppercase; position: relative; overflow: hidden; transition: 0.3s;
+}
+.gold-btn:hover { background: #e5c155; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+
+.btn-shimmer {
+    position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 3s infinite;
+}
+@keyframes shimmer { 100% { left: 100%; } }
+
+.card-footer { margin-top: 40px; font-size: 0.7rem; color: #444; letter-spacing: 2px; }
+
+/* Success */
+.hidden { display: none; }
+.success-content { text-align: center; animation: fadeIn 1s ease; }
+.gold-circle {
+    width: 60px; height: 60px; border: 1px solid var(--gold);
+    border-radius: 50%; display: flex; justify-content: center;
+    align-items: center; margin: 0 auto 20px; color: var(--gold); font-size: 1.5rem;
+}
+
+/* --- LAYER 5: MEGA FOOTER --- */
+.mega-footer {
+    height: 60vh; background-color: #080808; color: #333;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; scroll-snap-align: start; position: relative;
+}
+
+.footer-content { width: 100%; max-width: 1200px; padding: 0 40px; }
+.footer-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 8rem);
+    color: #222; text-align: center; margin-bottom: 60px; line-height: 1;
+}
+
+.footer-grid {
+    display: flex; justify-content: space-between;
+    border-top: 1px solid #222; padding-top: 40px;
+}
+
+.col h4 {
+    font-family: 'Inter', sans-serif; font-size: 0.7rem;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: #555; margin-bottom: 20px;
+}
+.col p { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: #888; line-height: 1.6; }
+.right-align { text-align: right; }
 
 /* Progress Dots */
 .progress-wrap {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-    z-index: 100;
+    position: fixed; bottom: 40px; left: 50%;
+    transform: translateX(-50%); display: flex; gap: 12px;
+    z-index: 100; mix-blend-mode: difference;
 }
-
 .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.1);
-    transition: 0.3s;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.3); transition: 0.3s;
 }
+.dot.active { background: white; transform: scale(1.2); }
 
-.dark-bg .dot { background: rgba(255,255,255,0.2); }
-.dot.active { background: var(--sage); transform: scale(1.2); }
-
-/* Mobile Adjustments */
+/* -------------------
+   MOBILE OPTIMIZATION (UPDATED)
+---------------------- */
 @media (max-width: 768px) {
-    .kit-container { flex-direction: column; height: 70vh; }
-    .tile:hover { flex: 1; }
-    .tile-desc { opacity: 1; transform: translateY(0); }
-    .headline-reveal { font-size: 2.5rem; }
+    /* 1. Disable Custom Cursor (It breaks touch UX) */
+    #cursor, #cursor-blur { display: none; }
+    * { cursor: auto; }
+
+    /* 2. Hero Section */
+    .headline-reveal { font-size: 3.5rem; } /* Shrink huge text */
+    .hero-subhead { font-size: 1rem; padding: 0 20px; }
+    .bg-text { display: none; } /* Remove heavy background text on mobile */
+
+    /* 3. Manifesto & Stamp Layout */
+    .manifesto-section { 
+        flex-direction: column; 
+        padding: 80px 20px; 
+        gap: 60px; /* More space between image and text */
+        text-align: center;
+    }
+    
+    .manifesto-visual { 
+        width: 100%; 
+        height: 50vh; /* Taller image on mobile for impact */
+        order: 1; /* Ensure image comes first */
+    }
+    
+    .manifesto-content { 
+        width: 100%; 
+        order: 2; 
+    }
+
+    /* 4. Stamp Adjustment */
+    .visual-stamp {
+        width: 100px; 
+        height: 100px; 
+        bottom: -50px; /* Push it lower so it overlaps the white section */
+        right: 50%; /* Center it horizontally */
+        transform: translateX(50%); /* Center alignment fix */
+        background: rgba(249, 247, 242, 0.9); /* More opaque for readability */
+    }
+    
+    /* Adjust internal stamp font sizes for the smaller circle */
+    .circle-text { font-size: 11px; letter-spacing: 1px; } 
+    .stamp-number { font-size: 1.4rem; }
+    .stamp-label { font-size: 0.5rem; }
+
+    /* 5. Bento Grid (Stacking) */
+    .bento-grid { display: flex; flex-direction: column; height: auto; gap: 10px; }
+    .bento-item { height: 350px; min-height: 350px; }
+    
+    /* 6. Footer & Ticker */
+    .trust-ticker { font-size: 0.6rem; }
+    .footer-grid { flex-direction: column; gap: 40px; text-align: center; }
+    .right-align { text-align: center; }
+    .footer-logo { font-size: 3.5rem; }
 }
