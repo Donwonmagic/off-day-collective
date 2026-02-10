@@ -213,55 +213,63 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
 }
 
 /* -------------------
-   INFINITE TICKER (Seamless Loop)
+   INFINITE TICKER (FIXED)
 ---------------------- */
-.trust-ticker { 
-    background: var(--charcoal); 
-    color: var(--cream); 
-    padding: 15px 0; 
-    overflow: hidden; 
-    border-bottom: 1px solid rgba(255,255,255,0.1); 
-    font-family: 'Inter', sans-serif; 
-    font-size: 0.75rem; 
-    letter-spacing: 3px; 
-    text-transform: uppercase; 
-    /* Mask edges for a fade effect (Optional, looks premium) */
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+.trust-ticker {
+    background: var(--charcoal);
+    color: var(--cream);
+    padding: 15px 0;
+    overflow: hidden; /* Hides the scrollbar */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
 }
 
-.ticker-track { 
-    display: flex; 
-    width: max-content; /* Ensures the track is exactly as wide as the text */
-    animation: scrollTicker 30s linear infinite; 
+.ticker-track {
+    display: flex;
+    width: fit-content; /* Force track to be as wide as the content */
+    /* No animation here on the container itself in this method */
 }
 
-/* This groups the items so we don't have to manage spans individually */
 .ticker-group {
     display: flex;
     align-items: center;
+    /* CRITICAL: Prevents squishing/stretching */
+    flex-shrink: 0; 
+    white-space: nowrap;
+    /* The Animation moves the GROUP */
+    animation: scrollTicker 40s linear infinite;
 }
 
 .trust-ticker span {
     white-space: nowrap;
 }
 
-.trust-ticker .dot { 
-    color: var(--gold); 
-    padding: 0 30px; /* Use padding instead of margin for smoother math */
+.trust-ticker .dot {
+    color: var(--gold);
+    display: inline-block;
+    /* Use padding to create space, not margin, for smoother math */
+    padding: 0 30px; 
 }
 
-/* Move exactly 50% (the width of one set) */
-@keyframes scrollTicker { 
-    0% { transform: translateX(0); } 
-    100% { transform: translateX(-50%); } 
+/* The Logic: Move the group to the left by -100% of its own width.
+   Since Group 2 is identical and follows immediately, it replaces Group 1 perfectly.
+*/
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
-/* Mobile: Speed it up slightly so it doesn't feel too slow on small screens */
+/* Mobile Adjustment */
 @media (max-width: 768px) {
-    .ticker-track { animation-duration: 20s; }
+    .ticker-group { animation-duration: 25s; } /* Faster on mobile */
+    .trust-ticker { font-size: 0.6rem; }
+    .trust-ticker .dot { padding: 0 15px; }
 }
-
 
 /* --- LAYER 2: MANIFESTO --- */
 .manifesto-section {
@@ -373,7 +381,6 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
 .text-link:hover { border-bottom: 1px solid var(--gold); padding-bottom: 5px; }
 .arrow { display: inline-block; transition: transform 0.3s; }
 .text-link:hover .arrow { transform: translateY(5px); }
-
 
 /* -------------------
    LAYER 3: THE CHRONOLOGY (BENTO)
