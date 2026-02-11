@@ -39,6 +39,46 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    
+        // --- 2.5 MOBILE GHOST CURSOR ---
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    
+    if (isMobile && cursor && cursorBlur) {
+        
+        // Function to move the cursor to touch coordinates
+        const moveCursor = (e) => {
+            const touch = e.touches[0];
+            const x = touch.clientX;
+            const y = touch.clientY;
+
+            // Instant movement for the main dot
+            cursor.style.left = x + 'px';
+            cursor.style.top = y + 'px';
+
+            // Slight delay/lag for the blur (Creating the "Ghost" trail)
+            setTimeout(() => {
+                cursorBlur.style.left = x + 'px';
+                cursorBlur.style.top = y + 'px';
+            }, 50);
+        };
+
+        // 1. TOUCH START: Show cursor and jump to position
+        document.addEventListener('touchstart', (e) => {
+            document.body.classList.add('touching');
+            moveCursor(e);
+        });
+
+        // 2. TOUCH MOVE: Follow the finger
+        document.addEventListener('touchmove', (e) => {
+            moveCursor(e);
+        });
+
+        // 3. TOUCH END: Fade out
+        document.addEventListener('touchend', () => {
+            document.body.classList.remove('touching');
+        });
+    }
+
 
     // --- 3. SCROLL SPY ---
     const sections = document.querySelectorAll('section, footer');
