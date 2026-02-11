@@ -710,9 +710,25 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
    MOBILE OPTIMIZATION (UPDATED)
 ---------------------- */
 @media (max-width: 768px) {
-    /* 1. Disable Custom Cursor (It breaks touch UX) */
-    #cursor, #cursor-blur { display: none; }
-    * { cursor: auto; }
+    /* 1. ENABLE GHOST CURSOR (Touch Follower) */
+    #cursor, #cursor-blur { 
+        display: block !important; 
+        opacity: 0; /* Hidden by default */
+        transition: opacity 0.2s ease;
+    }
+
+    /* Class added by JS on touch */
+    body.touching #cursor, 
+    body.touching #cursor-blur {
+        opacity: 1;
+    }
+
+    /* Keep standard cursor but remove blue tap highlight */
+    * { 
+        cursor: auto; 
+        -webkit-tap-highlight-color: transparent;
+    }
+
 
     /* 2. Hero Section */
     .headline-reveal { font-size: 3.5rem; } /* Shrink huge text */
