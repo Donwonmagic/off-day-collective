@@ -2,17 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
+    <title>Off Day Collective | Silence is a Luxury</title>
+    <meta name="description" content="Intentional downtime shouldn't be an afterthought. We design physical kits and digital tools for the pause. Join Cohort 001.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Off Day Collective. Curated rituals for intentional downtime.">
-    
-    <meta property="og:title" content="Off Day Collective">
-    <meta property="og:description" content="Silence is a luxury.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=2670&auto=format&fit=crop">
-    
-    <title>Off Day Collective | Volume 01</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#1A1A1A"> <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.offdaycollective.com/">
+    <meta property="og:title" content="Off Day Collective | Volume 01">
+    <meta property="og:description" content="Tools for the pause. The Volume 01 Waitlist is currently open.">
+    <meta property="og:image" content="https://www.offdaycollective.com/images/social-share.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.offdaycollective.com/">
+    <meta name="twitter:title" content="Off Day Collective | Volume 01">
+    <meta name="twitter:description" content="Tools for the pause. The Volume 01 Waitlist is currently open.">
+    <meta name="twitter:image" content="https://www.offdaycollective.com/images/social-share.jpg">
+
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LDBPMXWD51"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+         gtag('config', 'G-LDBPMXWD51');
+    </script>
 </head>
 <body class="loading">
 
@@ -30,11 +47,22 @@
     <div id="cursor"></div>
     <div id="cursor-blur"></div>
 
-    <nav class="nav-overlay">
+<nav class="nav-overlay">
         <div class="logo">Off Day Collective</div>
-        <div class="status-indicator">
-            <span class="pulse"></span> SPRING 2026
+        
+        <div class="nav-right">
+            <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+                <span class="toggle-label">ATMOSPHERE</span>
+            </button>
+            
+            <div class="status-indicator">
+                <span class="pulse"></span> SPRING 2026
+            </div>
         </div>
+        <div id="page-transition"></div>
     </nav>
 
     <section id="intro">
@@ -49,7 +77,7 @@
 
         <div class="content-layer">
             <p class="section-label" style="color: rgba(255,255,255,0.8);"></p>
-            <h1 class="headline-reveal">Silence is a luxury.</h1>
+            <h1 class="headline-reveal" id="cipher-text">Silence is a luxury.</h1>
             <p class="hero-subhead" style="max-width: 400px; margin: 20px auto 0; color: rgba(255,255,255,0.7); font-weight: 300;">
                 In an age of constant noise, the ultimate status symbol is the ability to disconnect.
             </p>
@@ -203,21 +231,32 @@
                     <span class="gold-text sm-caps">No. 0913</span>
                 </div>
                 <div class="card-body">
-                    <h2 class="card-title">The door is opening.</h2>
-                    <p class="card-text">We admit members in small cohorts to ensure the stillness remains. Sign below to secure your place in line.</p>
-                    
-                    <form action="https://formspree.io/f/mjgeggpo" method="POST" id="signup-form" class="signature-form">
-                        <div class="input-wrapper hover-trigger">
-                            <input type="email" id="email" name="email" placeholder=" " required autocomplete="off">
-                            <label for="email">Enter your email signature</label>
-                            <div class="underline-gold"></div>
-                        </div>
-                        <button type="submit" id="submit-btn" class="gold-btn hover-trigger">
-                            <span class="btn-text">Apply for Access</span>
-                            <div class="btn-shimmer"></div>
-                        </button>
-                    </form>
-                </div>
+    
+    <div class="cohort-container">
+        <div class="cohort-info">
+            <span class="cohort-label">Current Cohort Status</span>
+            <span class="cohort-percent gold-text">84% Full</span>
+        </div>
+        <div class="cohort-bar">
+            <div class="cohort-fill" data-width="84%"></div>
+        </div>
+    </div>
+
+    <h2 class="card-title">The door is opening.</h2>
+    <p class="card-text">We admit members in small cohorts to ensure the stillness remains. Sign below to secure your place in line.</p>
+    
+    <form action="https://formspree.io/f/mjgeggpo" method="POST" id="signup-form" class="signature-form">
+        <div class="input-wrapper hover-trigger">
+            <input type="email" id="email" name="email" placeholder=" " required autocomplete="off">
+            <label for="email">Enter your email signature</label>
+            <div class="underline-gold"></div>
+        </div>
+        <button type="submit" id="submit-btn" class="gold-btn hover-trigger">
+            <span class="btn-text">Apply for Access</span>
+            <div class="btn-shimmer"></div>
+        </button>
+    </form>
+</div>
                 <div class="card-footer">
                     <span class="watermark">ODC &mdash; 2026</span>
                 </div>
@@ -236,25 +275,45 @@
         </div>
     </section>
 
-    <footer class="mega-footer">
-        <div class="footer-content">
-            <h2 class="footer-logo">OFF DAY COLLECTIVE</h2>
-            <div class="footer-grid">
-                <div class="col">
-                    <h4>Studio</h4>
-                    <p>Designed for Silence<br>Est. 2026</p>
-                </div>
-                <div class="col">
-                    <h4>Contact</h4>
-                    <p>contact@offdaycollective.com<br>@offdaycollective</p>
-                </div>
-                <div class="col right-align">
-                    <h4>System</h4>
-                    <p>All Rights Reserved.<br>Rest is productive.</p>
-                </div>
-            </div>
+    <footer class="mega-footer system-grid">
+    
+    <div class="footer-module branding">
+        <h2 class="footer-logo">OFF DAY<br>COLLECTIVE</h2>
+        <span class="status-badge">● System Online</span>
+    </div>
+
+    <div class="footer-module info">
+        <h4>Studio Directory</h4>
+        <ul class="link-stack">
+            <li><a href="mailto:contact@offdaycollective.com">Email Studio ↗</a></li>
+            <li><a href="#">Instagram ↗</a></li>
+            <li><a href="#">Newsletter</a></li>
+        </ul>
+        <p class="est">Est. 2026 &mdash; Designed for Silence.</p>
+    </div>
+
+    <div class="footer-module access">
+        <h4>Digital Inclusion</h4>
+        <p class="access-text">We believe clarity and peace of mind should be accessible to everyone, regardless of technology or ability.</p>
+        
+        <a href="accessibility.html" class="access-cta">
+            <span>Read Our Commitment</span>
+            <span class="arrow">→</span>
+        </a>
+        
+        <div class="compliance-tag">Target: WCAG 2.1 AA</div>
+    </div>
+
+    <div class="footer-module meta">
+        <h4>System Metadata</h4>
+        <div class="meta-stack">
+            <span>&copy; 2026 Off Day Collective.</span>
+            <span>All Rights Reserved.</span>
+            <span class="tagline">"Rest is Productive."</span>
         </div>
-    </footer>
+    </div>
+
+</footer>
 
     <div class="progress-wrap">
         <div class="dot active"></div>
@@ -264,6 +323,12 @@
         <div class="dot"></div>
     </div>
 
+    <div id="atmosphere-visual"></div>
+
+    <audio id="ambient-audio" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/11/22/audio_d0bf2eb18f.mp3" type="audio/mpeg">
+    </audio>
+    
     <script src="js/app.js"></script>
 </body>
 </html>
