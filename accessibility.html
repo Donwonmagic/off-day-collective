@@ -3,81 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility | OFF DAY COLLECTIVE</title>
-    <link rel="stylesheet" href="styles.css"> 
-    <style>
-        /* INLINE STYLES FOR THIS PAGE ONLY (Minimalist/Brutalist) */
-        :root {
-            --bg-color: #f4f4f4; /* Assuming a light grey/off-white base */
-            --text-color: #1a1a1a;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Or your brand font */
-            line-height: 1.4;
-            padding: 0; margin: 0;
-        }
-        .policy-container {
-            max-width: 800px;
-            margin: 10vh auto;
-            padding: 2rem;
-        }
-        h1 {
-            font-size: 4rem;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 4rem;
-            line-height: 0.9;
-        }
-        h3 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid var(--text-color);
-            padding-bottom: 10px;
-            margin-top: 4rem;
-            margin-bottom: 1rem;
-        }
-        p, li {
-            font-size: 1.1rem;
-            max-width: 60ch; /* Optimal reading length */
-            margin-bottom: 1.5rem;
-        }
-        .contact-block {
-            margin-top: 4rem;
-            padding: 2rem;
-            border: 1px solid var(--text-color);
-        }
-        a { color: inherit; }
-    </style>
+    <title>Accessibility | Off Day Collective</title>
+    
+    <meta name="description" content="Our commitment to a frictionless, inclusive digital experience for all members of the Collective.">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-bg">
 
-    <nav style="padding: 2rem;">
-        <a href="index.html" style="text-decoration: none; font-weight: bold;">OFF DAY</a>
+    <div id="loader">
+        <div class="loader-content">
+            <div class="logo-loader">ODC</div>
+            <div class="loader-line-mask"><div class="loader-line"></div></div>
+        </div>
+    </div>
+    
+    <div id="page-transition"></div>
+    <div class="noise-overlay"></div>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <nav class="nav-overlay">
+        <div class="logo">Off Day Collective</div>
+        <div class="nav-right">
+            <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                <span class="toggle-label">ATMOSPHERE</span>
+            </button>
+        </div>
     </nav>
 
-    <main class="policy-container">
-        <h1>Digital<br>Inclusion.</h1>
-
-        <p>Off Day Collective is designed for silence, clarity, and ease. We believe that peace of mind should be accessible to everyone.</p>
+    <main id="main-content">
         
-        <p>We are committed to ensuring our digital platforms are usable by all people, regardless of ability or technology. Design is not just about how things look; it is about how they function for the user.</p>
+        <section class="accessibility-hero" style="padding: 180px 10% 100px; min-height: 80vh;">
+            <div style="max-width: 800px;">
+                <span class="gold-text sm-caps" style="display:block; margin-bottom: 20px;">The Standard of Silence</span>
+                <h1 style="font-size: clamp(3rem, 8vw, 6rem); color: var(--cream); line-height: 1; margin-bottom: 40px;">
+                    Inclusion is <span class="italic">intentional.</span>
+                </h1>
+                
+                <div class="divider-line" style="width: 100px; height: 1px; background: var(--gold); margin-bottom: 60px;"></div>
+                
+                <div style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #aaa; line-height: 1.8; font-weight: 300;">
+                    <p style="margin-bottom: 30px;">
+                        At Off Day Collective, we believe that the luxury of stillness and clarity should be available to everyone. A digital "Off Day" is not restorative if the technology itself creates a barrier.
+                    </p>
+                    <p style="margin-bottom: 30px;">
+                        We are committed to ensuring our digital experiences are accessible to individuals of all abilities. Our current goal is to meet and exceed <strong>WCAG 2.1 Level AA</strong> standards, focusing on high-contrast readability, screen-reader optimization, and keyboard-only navigation.
+                    </p>
+                </div>
+            </div>
+        </section>
 
-        <h3>01 // Standards</h3>
-        <p>We strive to adhere to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. These guidelines explain how to make web content more accessible for people with disabilities and more user-friendly for everyone.</p>
+        <section style="background: #0a0a0a; padding: 100px 10%; border-top: 1px solid #1a1a1a;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px;">
+                
+                <div class="acc-module">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">I. Sensory Control</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                        Our "Atmosphere" layer is entirely optional. We provide a prominent physical toggle to ensure users can choose a silent experience, preventing unexpected audio triggers.
+                    </p>
+                </div>
 
-        <h3>02 // The System</h3>
-        <p>Our site utilizes semantic HTML5, high-contrast text ratios, and keyboard navigation support to ensure a seamless experience. We regularly review our "System" to eliminate barriers.</p>
+                <div class="acc-module">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">II. Visual Clarity</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                        We utilize a "High-Contrast Charcoal" palette. All text elements are measured against contrast ratios to ensure legibility for users with low vision.
+                    </p>
+                </div>
 
-        <h3>03 // Feedback</h3>
-        <div class="contact-block">
-            <p>If you encounter any friction while navigating our site, or if a specific feature is not accessible to you, please contact the studio.</p>
-            <p><strong>Email:</strong> contact@offdaycollective.com</p>
-            <p><strong>Subject:</strong> Accessibility</p>
-        </div>
+                <div class="acc-module">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">III. Assistive Tech</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                        The site architecture is built with semantic HTML5. Our "Deep Exhale" transitions are designed to be respectful of screen reader focus management.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section style="padding: 100px 10%; text-align: center;">
+            <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px;">Feedback is a Gift.</h3>
+            <p style="color: #666; max-width: 500px; margin: 0 auto 40px; font-size: 0.9rem;">
+                If you encounter any difficulty accessing our collective, please let us know immediately. Your perspective helps us build a better sanctuary.
+            </p>
+            <a href="mailto:contact@offdaycollective.com" class="gold-btn" style="display: inline-block; padding: 18px 40px; text-decoration: none;">Report an Issue</a>
+            
+            <div style="margin-top: 60px;">
+                <a href="index.html" class="text-link">Return to the Collective</a>
+            </div>
+        </section>
+
     </main>
 
-    </body>
+    <div id="atmosphere-visual"></div>
+    <audio id="ambient-audio" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/11/22/audio_d0bf2eb18f.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/app.js"></script>
+</body>
 </html>
