@@ -288,46 +288,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }, increment);
     }
 
-    // --- 10. SPA ROUTER (THE DEEP EXHALE) ---
+// --- 10. SPA ROUTER (THE DEEP EXHALE) ---
     document.addEventListener('click', (e) => {
-        // Find if a link was clicked
         const link = e.target.closest('a');
         
-        // If it's an internal link (same website) and not opening in a new tab
-        if (link && link.href && link.href.startsWith(window.location.origin) && link.target !== '_blank') {
-            e.preventDefault(); // Stop the hard refresh
+        // If it's a valid internal link and NOT a download
+        if (link && link.href && link.href.startsWith(window.location.origin) && link.target !== '_blank' && !link.hasAttribute('download')) {
+            
+            // Check if the link is just an anchor on the same page (like #access)
+            // If it is, let the browser handle the smooth scroll instead of the router
+            if (link.href.split('#')[0] === window.location.href.split('#')[0]) return;
+
+            e.preventDefault(); 
             const url = link.href;
             
-            // 1. Inhale (Fade to Black)
             document.body.classList.add('is-transitioning');
             
-            // Wait for the screen to go black (800ms to match CSS)
             setTimeout(() => {
-                // 2. Fetch the new page secretly
                 fetch(url)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) throw new Error('Page not found');
+                    return response.text();
+                })
                 .then(html => {
-                    // Turn text into a fake HTML document
                     const parser = new DOMParser();
                     const newDoc = parser.parseFromString(html, 'text/html');
+                    const newContent = newDoc.getElementById('main-content');
                     
-                    // Swap the old <main> content for the new <main> content
-                    const newContent = newDoc.getElementById('main-content').innerHTML;
-                    document.getElementById('main-content').innerHTML = newContent;
-                    
-                    // Update Browser Title and URL bar
-                    document.title = newDoc.title;
-                    history.pushState(null, '', url);
-                    
-                    // Snap back to the top of the new page
-                    window.scrollTo(0, 0);
-                    
-                    // 3. Exhale (Fade from Black)
-                    setTimeout(() => {
-                        document.body.classList.remove('is-transitioning');
+                    if (newContent) {
+                        document.getElementById('main-content').innerHTML = newContent.innerHTML;
+                        document.title = newDoc.title;
+                        history.pushState(null, '', url);
+                        window.scrollTo(0, 0);
                         
-                        // (Optional: If you have animations like the Spool Text that need to restart on new pages, you would re-call those functions here).
-                    }, 100); 
+                        setTimeout(() => {
+                            document.body.classList.remove('is-transitioning');
+                            // Re-run any page-specific animations here if needed
+                        }, 100); 
+                    } else {
+                        // Fail-safe: If the new page doesn't have #main-content, just go there normally
+                        window.location.href = url;
+                    }
+                })
+                .catch(err => {
+                    console.error("SPA Router Error:", err);
+                    window.location.href = url; // Hard redirect as ultimate fail-safe
                 });
             }, 800);
         }
