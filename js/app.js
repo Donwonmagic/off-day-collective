@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 9. SENSORY LAYER (AUDIO/VISUAL SYNTHESIS WITH REAL-TIME REACTIVITY) ---
+// --- 9. SENSORY LAYER (AUDIO/VISUAL SYNTHESIS) ---
     const atmosphereBtn = document.getElementById('atmosphere-toggle');
     const ambientAudio = document.getElementById('ambient-audio');
     let isPlaying = false;
@@ -243,42 +243,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Web Audio API Variables
     let audioCtx, analyser, source, dataArray;
     let animationId;
+    let visualizerActive = false;
 
     if (atmosphereBtn && ambientAudio) {
         ambientAudio.volume = 0;
 
         atmosphereBtn.addEventListener('click', () => {
             if (!isPlaying) {
-                // Initialize Web Audio API on the first click (Strict browser requirement)
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    analyser = audioCtx.createAnalyser();
-                    
-                    // Route the audio element through our analyzer
-                    source = audioCtx.createMediaElementSource(ambientAudio);
-                    source.connect(analyser);
-                    analyser.connect(audioCtx.destination);
-                    
-                    analyser.fftSize = 128; // Lower number = smoother, broader frequency bands
-                    dataArray = new Uint8Array(analyser.frequencyBinCount);
-                }
+                // Attempt to start the Web Audio API
+                try {
+                    if (!audioCtx) {
+                        const AudioContext = window.AudioContext || window.webkitAudioContext;
+                        audioCtx = new AudioContext();
+                        analyser = audioCtx.createAnalyser();
+                        
+                        source = audioCtx.createMediaElementSource(ambientAudio);
+                        source.connect(analyser);
+                        analyser.connect(audioCtx.destination);
+                        
+                        analyser.fftSize = 128; 
+                        dataArray = new Uint8Array(analyser.frequencyBinCount);
+                        visualizerActive = true;
+                    }
 
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
+                    if (audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                } catch (error) {
+                    console.warn("Visualizer blocked by browser security (likely running locally). Audio will still play.");
+                    visualizerActive = false;
                 }
 
                 document.body.classList.add('atmosphere-on');
-                ambientAudio.play();
-                fadeAudio(ambientAudio, 0.8, 2000); 
-                isPlaying = true;
                 
-                // Start the live visualizer loop
-                renderVisuals(); 
+                // CRITICAL: We must wait for the audio to load before playing
+                let playPromise = ambientAudio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        fadeAudio(ambientAudio, 0.8, 2000);
+                        isPlaying = true;
+                        if (visualizerActive) renderVisuals();
+                    }).catch(error => {
+                        console.error("Audio play failed:", error);
+                    });
+                }
+                
             } else {
+                // TURN OFF
                 document.body.classList.remove('atmosphere-on');
                 fadeAudio(ambientAudio, 0, 1500, () => {
                     ambientAudio.pause();
-                    cancelAnimationFrame(animationId); // Stop the visualizer to save CPU
+                    if (visualizerActive) cancelAnimationFrame(animationId);
                 });
                 isPlaying = false;
             }
@@ -286,30 +301,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // The Real-Time Render Engine
         function renderVisuals() {
-            if (!isPlaying) return;
+            if (!isPlaying || !visualizerActive) return;
             animationId = requestAnimationFrame(renderVisuals);
             
-            // Get the current frequency data from the singing bowl
             analyser.getByteFrequencyData(dataArray);
             
-            // Calculate the average of the lower/mid frequencies
             let sum = 0;
-            const frequencyRange = 30; // Focus on the deep resonance
+            const frequencyRange = 30; 
             for(let i = 0; i < frequencyRange; i++) {
                 sum += dataArray[i];
             }
-            let average = sum / frequencyRange; // Output is a number between 0 and 255
+            let average = sum / frequencyRange; 
             
-            // Math: Map the audio volume (0-255) to a physical scale (1.0 to 1.15)
+            // Map the audio volume to physical CSS scale and glow
             const visualScale = 1 + (average / 255) * 0.15; 
-            
-            // Math: Map the audio volume to a glow intensity (0.0 to 1.0)
             const visualGlow = (average / 255) * 1.2;
 
-            // Inject these numbers directly into the CSS in real-time
             document.body.style.setProperty('--audio-scale', visualScale);
             document.body.style.setProperty('--audio-glow', visualGlow);
         }
+    }
+
+    // Custom Fade Function for Premium Audio Transitions
+    function fadeAudio(audio, targetVolume, duration, callback) {
+        const startVolume = audio.volume;
+        const change = targetVolume - startVolume;
+        const increment = 20; 
+        const steps = duration / increment;
+        let currentStep = 0;
+
+        const fadeInterval = setInterval(() => {
+            currentStep++;
+            let newVolume = startVolume + (change * (currentStep / steps));
+            
+            if (newVolume > 1) newVolume = 1;
+            if (newVolume < 0) newVolume = 0;
+            
+            audio.volume = newVolume;
+
+            if (currentStep >= steps) {
+                clearInterval(fadeInterval);
+                audio.volume = targetVolume;
+                if (callback) callback();
+            }
+        }, increment);
     }
 
 // --- 10. SPA ROUTER (THE DEEP EXHALE) ---
