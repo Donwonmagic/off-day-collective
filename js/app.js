@@ -235,57 +235,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- 9. SENSORY LAYER (AUDIO/VISUAL SYNTHESIS) ---
+// --- 9. SENSORY LAYER (AUDIO/VISUAL SYNTHESIS WITH REAL-TIME REACTIVITY) ---
     const atmosphereBtn = document.getElementById('atmosphere-toggle');
     const ambientAudio = document.getElementById('ambient-audio');
     let isPlaying = false;
+    
+    // Web Audio API Variables
+    let audioCtx, analyser, source, dataArray;
+    let animationId;
 
     if (atmosphereBtn && ambientAudio) {
-        ambientAudio.volume = 0; // Always start silent
+        ambientAudio.volume = 0;
 
         atmosphereBtn.addEventListener('click', () => {
             if (!isPlaying) {
-                // TURN ON
+                // Initialize Web Audio API on the first click (Strict browser requirement)
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioCtx.createAnalyser();
+                    
+                    // Route the audio element through our analyzer
+                    source = audioCtx.createMediaElementSource(ambientAudio);
+                    source.connect(analyser);
+                    analyser.connect(audioCtx.destination);
+                    
+                    analyser.fftSize = 128; // Lower number = smoother, broader frequency bands
+                    dataArray = new Uint8Array(analyser.frequencyBinCount);
+                }
+
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
                 document.body.classList.add('atmosphere-on');
                 ambientAudio.play();
-                fadeAudio(ambientAudio, 0.6, 2000); // Fade to 60% volume over 2 seconds
+                fadeAudio(ambientAudio, 0.8, 2000); 
                 isPlaying = true;
+                
+                // Start the live visualizer loop
+                renderVisuals(); 
             } else {
-                // TURN OFF
                 document.body.classList.remove('atmosphere-on');
-                // Fade out over 1.5 seconds, then pause
                 fadeAudio(ambientAudio, 0, 1500, () => {
                     ambientAudio.pause();
+                    cancelAnimationFrame(animationId); // Stop the visualizer to save CPU
                 });
                 isPlaying = false;
             }
         });
-    }
 
-    // Custom Fade Function for Premium Audio Transitions
-    function fadeAudio(audio, targetVolume, duration, callback) {
-        const startVolume = audio.volume;
-        const change = targetVolume - startVolume;
-        const increment = 20; // Update every 20ms for smooth curve
-        const steps = duration / increment;
-        let currentStep = 0;
-
-        const fadeInterval = setInterval(() => {
-            currentStep++;
-            let newVolume = startVolume + (change * (currentStep / steps));
+        // The Real-Time Render Engine
+        function renderVisuals() {
+            if (!isPlaying) return;
+            animationId = requestAnimationFrame(renderVisuals);
             
-            // Safety rails
-            if (newVolume > 1) newVolume = 1;
-            if (newVolume < 0) newVolume = 0;
+            // Get the current frequency data from the singing bowl
+            analyser.getByteFrequencyData(dataArray);
             
-            audio.volume = newVolume;
-
-            if (currentStep >= steps) {
-                clearInterval(fadeInterval);
-                audio.volume = targetVolume;
-                if (callback) callback();
+            // Calculate the average of the lower/mid frequencies
+            let sum = 0;
+            const frequencyRange = 30; // Focus on the deep resonance
+            for(let i = 0; i < frequencyRange; i++) {
+                sum += dataArray[i];
             }
-        }, increment);
+            let average = sum / frequencyRange; // Output is a number between 0 and 255
+            
+            // Math: Map the audio volume (0-255) to a physical scale (1.0 to 1.15)
+            const visualScale = 1 + (average / 255) * 0.15; 
+            
+            // Math: Map the audio volume to a glow intensity (0.0 to 1.0)
+            const visualGlow = (average / 255) * 1.2;
+
+            // Inject these numbers directly into the CSS in real-time
+            document.body.style.setProperty('--audio-scale', visualScale);
+            document.body.style.setProperty('--audio-glow', visualGlow);
+        }
     }
 
 // --- 10. SPA ROUTER (THE DEEP EXHALE) ---
