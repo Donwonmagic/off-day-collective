@@ -82,6 +82,8 @@
     }
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -348,14 +350,32 @@
             </div>
 
             <div id="success-message" class="hidden">
-                <div class="success-content">
-                    <div class="gold-circle">
-                        <span class="check-mark">✓</span>
-                    </div>
-                    <h2 class="italic gold-text">Recorded.</h2>
-                    <p class="sub-text">Welcome to the Collective.</p>
-                </div>
+    <div class="success-content">
+        <div class="gold-circle">
+            <span class="check-mark">✓</span>
+        </div>
+        <h2 class="italic gold-text">Recorded.</h2>
+        <p class="sub-text">Welcome to the Collective.</p>
+        
+        <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #666; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 15px;">
+                Know someone who needs a real weekend?
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.instagram.com/offdaycollective" target="_blank" 
+                   style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--gold); text-decoration: none; letter-spacing: 1px; opacity: 0.7; transition: opacity 0.3s;"
+                   onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                    Follow on Instagram ↗
+                </a>
+                <a href="philosophy.html" 
+                   style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--gold); text-decoration: none; letter-spacing: 1px; opacity: 0.7; transition: opacity 0.3s;"
+                   onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">
+                    Read Our Philosophy ↗
+                </a>
             </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </section>
