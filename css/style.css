@@ -1174,11 +1174,8 @@ body.atmosphere-on #atmosphere-toggle::after {
     display: none;
 }
 
-/* Make the entire pill glow slightly gold when ON */
 body.atmosphere-on #atmosphere-toggle {
-    background: rgba(20, 20, 20, 0.8);
-    border-color: rgba(212, 175, 55, 0.3);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+    box-shadow: 0 0 calc(var(--audio-glow, 0) * 15px + 5px) rgba(212, 175, 55, 0.15);
 }
 
 /* --- THE SWITCH MECHANICS --- */
