@@ -1,5 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // ============================================
+    // WCAG 2.1 SC 2.3.3 — REDUCED MOTION GATE
+    // Read the user's OS motion preference ONCE
+    // on load. All animation logic in this file
+    // checks this boolean before executing.
+    //
+    // This covers: parallax, the spool reveal,
+    // and any future JS-driven animation added.
+    //
+    // We also listen for LIVE changes so if the
+    // user toggles "Reduce Motion" in their OS
+    // settings while the page is open, the site
+    // responds immediately without a reload.
+    // ============================================
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReducedMotion = motionQuery.matches;
+
+    motionQuery.addEventListener('change', (e) => {
+        prefersReducedMotion = e.matches;
+        if (prefersReducedMotion) {
+            // Freeze any active parallax transforms instantly
+            document.querySelectorAll('[data-speed]').forEach((el) => {
+                el.style.transform = 'none';
+            });
+        }
+    });
+
     // --- 0. SAFETY NET (PREVENTS FOREVER LOADING) ---
     // If something breaks, force the site to load after 3 seconds
     setTimeout(() => {
@@ -96,24 +123,51 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => observer.observe(section));
 
     // --- 4. PARALLAX ---
+    // ============================================
+    // Gated by prefersReducedMotion (WCAG 2.3.3).
+    // If the user has "Reduce Motion" enabled in
+    // their OS, this entire block is skipped and
+    // the CSS @media rule freezes transforms.
+    //
+    // passive: true is set on the scroll listener
+    // to tell the browser this handler will never
+    // call preventDefault(), allowing it to start
+    // scrolling immediately on the compositor
+    // thread without waiting for JS. This is a
+    // significant performance win on mobile.
+    // ============================================
     const parallaxText = document.querySelectorAll('.parallax-text');
     const parallaxImgs = document.querySelectorAll('.parallax-img');
-    window.addEventListener('scroll', () => {
-        let scrollY = window.scrollY;
-        // Check if elements exist before moving them
-        if(parallaxText.length > 0) {
-            parallaxText.forEach(text => {
-                let speed = text.getAttribute('data-speed');
-                text.style.transform = `translateY(${scrollY * speed}px)`;
-            });
-        }
-        if(parallaxImgs.length > 0) {
-            parallaxImgs.forEach(img => {
-                let speed = img.getAttribute('data-speed');
-                img.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
-            });
-        }
-    });
+
+    if (!prefersReducedMotion) {
+        window.addEventListener('scroll', () => {
+
+            // Re-check on each scroll tick in case the user toggled
+            // the OS preference mid-session (the live listener above
+            // updates the variable, this check respects it immediately)
+            if (prefersReducedMotion) return;
+
+            let scrollY = window.scrollY;
+
+            // On mobile, reduce parallax depth to prevent jank
+            // on lower-powered devices
+            const mobileDampener = isMobile ? 0.3 : 1;
+
+            // Check if elements exist before moving them
+            if (parallaxText.length > 0) {
+                parallaxText.forEach(text => {
+                    let speed = text.getAttribute('data-speed') * mobileDampener;
+                    text.style.transform = `translateY(${scrollY * speed}px)`;
+                });
+            }
+            if (parallaxImgs.length > 0) {
+                parallaxImgs.forEach(img => {
+                    let speed = img.getAttribute('data-speed') * mobileDampener;
+                    img.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+                });
+            }
+        }, { passive: true }); // passive:true: critical for scroll performance
+    }
 
     // --- 5. FORM HANDLING (SAFE MODE) ---
     const form = document.getElementById('signup-form');
@@ -207,31 +261,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if (spoolText) {
         const text = spoolText.innerText;
         spoolText.innerHTML = ''; // Clear original text
-        
-        // Wait for loader to lift (2.0s)
-        setTimeout(() => {
-            
-            // Loop through each letter
-            text.split('').forEach((char, index) => {
+
+        // ============================================
+        // Gate the spool animation behind the motion
+        // preference. If reduced motion is on, just
+        // show the text immediately with no animation.
+        // ============================================
+        if (prefersReducedMotion) {
+            // Instantly show the full text, no animation
+            spoolText.innerText = text;
+            spoolText.style.opacity = '1';
+        } else {
+            // Wait for loader to lift (2.0s)
+            setTimeout(() => {
                 
-                // Create a wrapper (for spacing) and the letter (for animation)
-                const wrapper = document.createElement('span');
-                wrapper.classList.add('char-wrapper');
+                // Loop through each letter
+                text.split('').forEach((char, index) => {
+                    
+                    // Create a wrapper (for spacing) and the letter (for animation)
+                    const wrapper = document.createElement('span');
+                    wrapper.classList.add('char-wrapper');
+                    
+                    const letter = document.createElement('span');
+                    letter.classList.add('char');
+                    letter.innerText = char;
+                    
+                    // STAGGER TIMING:
+                    // Slower multiplier = slower wave. 
+                    // 0.05s (50ms) is a nice mechanical rhythm.
+                    letter.style.animationDelay = `${index * 0.05}s`;
+                    
+                    wrapper.appendChild(letter);
+                    spoolText.appendChild(wrapper);
+                });
                 
-                const letter = document.createElement('span');
-                letter.classList.add('char');
-                letter.innerText = char;
-                
-                // STAGGER TIMING:
-                // Slower multiplier = slower wave. 
-                // 0.05s (50ms) is a nice mechanical rhythm.
-                letter.style.animationDelay = `${index * 0.05}s`;
-                
-                wrapper.appendChild(letter);
-                spoolText.appendChild(wrapper);
-            });
-            
-        }, 2000);
+            }, 2000);
+        }
     }
 });
 
