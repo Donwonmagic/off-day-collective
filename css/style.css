@@ -553,8 +553,8 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
 .bento-item:hover img { filter: grayscale(0%); opacity: 0.6; }
 .bento-item:hover .bento-overlay { opacity: 0.9; }
 
-.bento-item:hover h3 { transform: translateY(0); }
-.bento-item:hover .philosophy-text { opacity: 1; transform: translateY(0); }
+.bento-item:hover h3 { transform: translateY(-5px); }
+.bento-item:hover .philosophy-text { opacity: 1; }
 
 /* The System Box (Bottom Right) */
 .system-box {
