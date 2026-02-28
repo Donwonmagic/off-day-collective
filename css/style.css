@@ -224,7 +224,7 @@ body.loaded .headline-reveal { opacity: 1; transform: translateY(0); }
 .hero-subhead {
     font-size: 1.1rem; line-height: 1.6;
     opacity: 0; transform: translateY(20px);
-    transition: opacity 1s ease 1.5s, transform 1s ease 1.5s;
+    transition: opacity 1s ease 0.5s, transform 1s ease 0.5s;
 }
 body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
 
