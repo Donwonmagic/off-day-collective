@@ -30,10 +30,23 @@ html {
     font-size: 16px;
 }
 
-/* Hide default scrollbar for a "floating" app feel */
+/* Thin luxury scrollbar */
 ::-webkit-scrollbar {
-    width: 0px;
+    width: 4px;
     background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.6);
+}
+
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 175, 55, 0.3) transparent;
 }
 
 body {
