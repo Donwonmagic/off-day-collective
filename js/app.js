@@ -101,9 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
             moveCursor(e);
         });
 
-        // 3. TOUCH END: Fade out
+        // 3. TOUCH END: Fade out with a brief delay
         document.addEventListener('touchend', () => {
-            document.body.classList.remove('touching');
+            setTimeout(() => {
+                document.body.classList.remove('touching');
+            }, 200);
         });
     }
     
