@@ -50,6 +50,28 @@ body.loaded {
     scroll-snap-type: y mandatory;
 }
 
+/* ============================================
+   SEO UTILITY: VISUALLY HIDDEN
+   Hides text from sighted users while keeping
+   it fully accessible to screen readers AND
+   search engine crawlers.
+   WCAG technique: CSS18 — using CSS to hide
+   a portion of the link text.
+   Do NOT use display:none or visibility:hidden
+   as those hide content from Google too.
+============================================ */
+.seo-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* -------------------
    CUSTOM CURSOR
 ---------------------- */
@@ -906,6 +928,20 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
     .footer-grid { flex-direction: column; gap: 40px; text-align: center; }
     .right-align { text-align: center; }
     .footer-logo { font-size: 3.5rem; }
+
+    /* ============================================
+       MOBILE SCROLL SNAP: Use proximity instead
+       of mandatory to prevent users getting
+       "stuck" between sections — especially on
+       Android where mandatory conflicts with
+       native OS scroll inertia.
+       proximity only snaps when the user stops
+       within ~30% of a snap point, so it feels
+       native and never forced.
+    ============================================ */
+    body.loaded {
+        scroll-snap-type: y proximity;
+    }
 }
 
 /* --- OFF DAY SYSTEM FOOTER --- */
@@ -1226,4 +1262,176 @@ body.is-transitioning #page-transition {
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
+}
+
+/* ============================================
+   WCAG 2.1 — REDUCED MOTION
+   SC 2.3.3 (Level AAA): Animation from
+   interactions can be disabled.
+
+   This block fires when the user has set
+   "Reduce Motion" in their OS accessibility
+   settings (macOS, iOS, Windows, Android).
+
+   It disables ALL animation, parallax,
+   scroll snapping, and spinning elements
+   to protect users with vestibular disorders,
+   epilepsy, or motion sensitivity.
+
+   Validate at: wave.webaim.org
+============================================ */
+@media (prefers-reduced-motion: reduce) {
+
+    /* ------------------------------------------
+       1. KILL SCROLL SNAPPING
+       Mandatory snapping can feel violent and
+       disorientating for motion-sensitive users.
+    ------------------------------------------ */
+    body.loaded {
+        scroll-snap-type: none !important;
+    }
+
+    section {
+        scroll-snap-align: none !important;
+    }
+
+    /* ------------------------------------------
+       2. HALT ALL CSS TRANSITIONS & ANIMATIONS
+       The !important overrides any inline or
+       component-level animation durations.
+       0.01ms is effectively instant but avoids
+       triggering JS-based animation callbacks
+       that check duration === 0.
+    ------------------------------------------ */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+    }
+
+    /* ------------------------------------------
+       3. FREEZE PARALLAX LAYERS
+       The JS parallax gate (in app.js) handles
+       the scroll listener, but this CSS rule
+       is a belt-and-suspenders fallback that
+       freezes any inline transform already
+       applied before the JS gate fires.
+    ------------------------------------------ */
+    [data-speed] {
+        transform: none !important;
+        will-change: auto !important;
+    }
+
+    /* ------------------------------------------
+       4. STOP THE SPINNING STAMP RING
+       The stamp ring rotates continuously.
+       Freeze it in place.
+    ------------------------------------------ */
+    .stamp-ring {
+        animation: none !important;
+    }
+
+    /* ------------------------------------------
+       5. STOP THE TICKER SCROLL
+       Replace the moving ticker with a static
+       fade so content is still readable.
+    ------------------------------------------ */
+    .ticker-track {
+        animation: none !important;
+        /* Fade slightly so it reads as
+           non-interactive in context */
+        opacity: 0.7;
+    }
+
+    /* ------------------------------------------
+       6. STOP THE LOADER LINE
+       The loading line animation is cosmetic.
+       Snap it to its finished state instantly.
+    ------------------------------------------ */
+    .loader-line {
+        animation: none !important;
+        transform: translateX(0) !important;
+    }
+
+    /* ------------------------------------------
+       7. STOP THE SONAR PULSE ON TOGGLE
+    ------------------------------------------ */
+    #atmosphere-toggle::after {
+        animation: none !important;
+        opacity: 0;
+    }
+
+    /* ------------------------------------------
+       8. STOP THE COHORT PERCENT PULSE
+    ------------------------------------------ */
+    .cohort-percent {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    /* ------------------------------------------
+       9. STOP THE PULSE DOT IN NAV
+    ------------------------------------------ */
+    .pulse {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    /* ------------------------------------------
+       10. STOP THE BUTTON SHIMMER
+    ------------------------------------------ */
+    .btn-shimmer {
+        animation: none !important;
+        display: none;
+    }
+
+    /* ------------------------------------------
+       11. FLATTEN ATMOSPHERE VISUAL
+       The audio-reactive vignette layer uses
+       JS-driven CSS variables to animate.
+       Freeze it.
+    ------------------------------------------ */
+    #atmosphere-visual {
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* ------------------------------------------
+       12. FREEZE CARD TILT
+       The access card has a 3D tilt on hover.
+       Remove it for motion-sensitive users.
+    ------------------------------------------ */
+    .access-card:hover {
+        transform: none !important;
+    }
+
+    /* ------------------------------------------
+       13. STOP THE SUCCESS STATE FADE-IN
+    ------------------------------------------ */
+    .success-content {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+
+    /* ------------------------------------------
+       14. REMOVE BENTO HOVER SCALE
+       The bento image scales on hover, which
+       can be jarring. Disable the scale while
+       keeping the filter and overlay changes
+       (which are perceptual, not motion).
+    ------------------------------------------ */
+    .bento-item:hover .bento-img {
+        transform: none !important;
+    }
+
+    /* ------------------------------------------
+       15. REMOVE TEXT LINK ARROW MOVEMENT
+    ------------------------------------------ */
+    .text-link:hover .arrow {
+        transform: none !important;
+    }
+
 }
