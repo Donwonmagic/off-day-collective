@@ -228,17 +228,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 // --- 6. COHORT BAR ANIMATION ---
     const cohortFill = document.querySelector('.cohort-fill');
+    const cohortPercent = document.querySelector('.cohort-percent');
     
     if(cohortFill) {
+        // Generate a believable cohort percentage per session
+        const basePercent = 84;
+        const variance = Math.floor(Math.random() * 8) - 3; // Range: -3 to +4
+        const displayPercent = Math.min(Math.max(basePercent + variance, 78), 89);
+        
+        // Update both the bar and the text
+        cohortFill.setAttribute('data-width', displayPercent + '%');
+        if (cohortPercent) cohortPercent.textContent = displayPercent + '% Full';
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Read the data-width attribute (84%) and apply it
                     const targetWidth = entry.target.getAttribute('data-width');
                     entry.target.style.width = targetWidth;
                 }
             });
-        }, { threshold: 0.5 }); // Trigger when 50% visible
+        }, { threshold: 0.5 });
         
         observer.observe(cohortFill);
     }
