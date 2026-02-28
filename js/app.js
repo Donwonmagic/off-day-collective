@@ -124,6 +124,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
     sections.forEach(section => observer.observe(section));
 
+    // --- 3.5. CLICKABLE PROGRESS DOTS ---
+    dots.forEach(dot => {
+        dot.style.cursor = 'pointer';
+        dot.style.pointerEvents = 'auto';
+        dot.addEventListener('click', () => {
+            const targetId = dot.getAttribute('data-target');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
     // --- 4. PARALLAX ---
     // ============================================
     // Gated by prefersReducedMotion (WCAG 2.3.3).
