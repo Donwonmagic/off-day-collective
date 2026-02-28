@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     spoolText.appendChild(wrapper);
                 });
                 
-            }, 2000);
+            }, 500);
         }
     }
 });
