@@ -1019,6 +1019,7 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
     line-height: 1.5;
     margin-bottom: 2rem;
     max-width: 90%;
+    color: #444;
 }
 
 .access-cta {
@@ -1056,7 +1057,8 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.85rem;
-    opacity: 0.7;
+    opacity: 1;
+    color: #555;
 }
 
 .tagline {
