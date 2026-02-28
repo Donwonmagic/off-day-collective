@@ -175,6 +175,10 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
     pointer-events: none; color: white; mix-blend-mode: difference;
 }
 
+@media (max-width: 768px) {
+    .nav-overlay { padding: 20px; }
+}
+
 .logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.25rem; letter-spacing: 2px; text-transform: uppercase;
