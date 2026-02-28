@@ -876,6 +876,15 @@ body.loaded .hero-subhead { opacity: 1; transform: translateY(0); }
 }
 .dot.active { background: white; transform: scale(1.2); }
 
+.dot {
+    cursor: pointer;
+    transition: 0.3s;
+}
+.dot:hover {
+    background: rgba(255,255,255,0.7);
+    transform: scale(1.4);
+}
+
 /* -------------------
    MOBILE OPTIMIZATION (UPDATED)
 ---------------------- */
