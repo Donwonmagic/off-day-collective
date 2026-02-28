@@ -47,7 +47,7 @@ body {
 
 body.loaded {
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
 }
 
 /* ============================================
