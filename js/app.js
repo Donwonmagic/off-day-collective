@@ -31,33 +31,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 2. CUSTOM CURSOR (DESKTOP ONLY) ---
+    // Uses position:absolute with document-relative coords.
+    // Updates on both mousemove AND scroll so the cursor
+    // always stays aligned with the physical mouse position.
     const cursor = document.getElementById('cursor');
     const cursorBlur = document.getElementById('cursor-blur');
     const hoverTriggers = document.querySelectorAll('.hover-trigger');
 
     if (window.matchMedia("(min-width: 768px)").matches && cursor && cursorBlur) {
-        let mouseX = 0, mouseY = 0;
-        let blurX = 0, blurY = 0;
+        let viewX = -100, viewY = -100; // viewport-relative (from clientX/Y)
+        let blurDocX = -100, blurDocY = -100;
 
-        // Track mouse position — no DOM writes here, just storing coordinates
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            viewX = e.clientX;
+            viewY = e.clientY;
+            if (cursor.style.opacity !== '1') {
+                cursor.style.opacity = '1';
+                cursorBlur.style.opacity = '1';
+            }
         }, { passive: true });
 
-        // Single RAF loop handles both cursor elements — GPU composited via transform
-        function updateCursor() {
-            // Main cursor: instant follow, self-centering at any size
-            cursor.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+        function applyCursorPosition() {
+            // Convert viewport coords to document coords
+            const docX = viewX + window.scrollX;
+            const docY = viewY + window.scrollY;
 
-            // Blur follower: lerp toward mouse (smooth trailing)
-            blurX += (mouseX - blurX) * 0.15;
-            blurY += (mouseY - blurY) * 0.15;
-            cursorBlur.style.transform = `translate(calc(${blurX}px - 50%), calc(${blurY}px - 50%))`;
+            cursor.style.transform = `translate(calc(${docX}px - 50%), calc(${docY}px - 50%))`;
 
-            requestAnimationFrame(updateCursor);
+            // Blur follower: lerp in document space
+            blurDocX += (docX - blurDocX) * 0.15;
+            blurDocY += (docY - blurDocY) * 0.15;
+            cursorBlur.style.transform = `translate(calc(${blurDocX}px - 50%), calc(${blurDocY}px - 50%))`;
         }
-        requestAnimationFrame(updateCursor);
+
+        // RAF loop — runs on every frame, handles both movement and scroll
+        (function loop() {
+            applyCursorPosition();
+            requestAnimationFrame(loop);
+        })();
 
         hoverTriggers.forEach(trigger => {
             trigger.addEventListener('mouseenter', () => {
@@ -68,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Gold button cursor flip: dark ring on gold backgrounds
+        // Gold button cursor flip
         document.querySelectorAll('.gold-btn, .access-cta').forEach(btn => {
             btn.addEventListener('mouseenter', () => {
                 document.body.classList.add('cursor-on-gold');
@@ -85,10 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMobile && cursor && cursorBlur) {
         const moveCursor = (e) => {
             const touch = e.touches[0];
-            const x = touch.clientX;
-            const y = touch.clientY;
-            cursor.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
-            cursorBlur.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+            const docX = touch.clientX + window.scrollX;
+            const docY = touch.clientY + window.scrollY;
+            cursor.style.transform = `translate(calc(${docX}px - 50%), calc(${docY}px - 50%))`;
+            cursorBlur.style.transform = `translate(calc(${docX}px - 50%), calc(${docY}px - 50%))`;
         };
 
         document.addEventListener('touchstart', (e) => {
@@ -731,210 +742,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-}); // end second DOMContentLoaded                document.body.classList.remove('cursor-on-gold');
-            });
-        });
-    }
-
-    // --- 2.5 MOBILE GHOST CURSOR ---
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-    if (isMobile && cursor && cursorBlur) {
-        const moveCursor = (e) => {
-            const touch = e.touches[0];
-            const x = touch.clientX;
-            const y = touch.clientY;
-            cursor.style.left = x + 'px';
-            cursor.style.top = y + 'px';
-            setTimeout(() => {
-                cursorBlur.style.left = x + 'px';
-                cursorBlur.style.top = y + 'px';
-            }, 50);
-        };
-
-        document.addEventListener('touchstart', (e) => {
-            document.body.classList.add('touching');
-            moveCursor(e);
-        });
-        document.addEventListener('touchmove', (e) => { moveCursor(e); });
-        document.addEventListener('touchend', () => {
-            setTimeout(() => { document.body.classList.remove('touching'); }, 200);
-        });
-    }
-    
-    // --- 3. SCROLL SPY (updated for new sections) ---
-    const sections = document.querySelectorAll('section, footer');
-    const dots = document.querySelectorAll('.dot');
-    const observerOptions = { threshold: 0.1 };
-    const spyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(sections).indexOf(entry.target);
-                dots.forEach(dot => dot.classList.remove('active'));
-                if(dots[index]) dots[index].classList.add('active');
-            }
-        });
-    }, observerOptions);
-    sections.forEach(section => spyObserver.observe(section));
-
-    // --- 3.5. CLICKABLE PROGRESS DOTS ---
-    dots.forEach(dot => {
-        dot.style.cursor = 'pointer';
-        dot.style.pointerEvents = 'auto';
-        dot.addEventListener('click', () => {
-            const targetId = dot.getAttribute('data-target');
-            const targetEl = document.getElementById(targetId);
-            if (targetEl) {
-                targetEl.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-    // ============================================
-    // NEW: SCROLL-DRIVEN REVEAL SYSTEM
-    // IntersectionObserver adds .is-visible to
-    // .fade-in-up elements and .phase-img-inner
-    // ============================================
-    const revealElements = document.querySelectorAll('.fade-in-up, .phase-img-inner');
-
-    if (!prefersReducedMotion && revealElements.length > 0) {
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        // rootMargin: positive bottom = detect 100px BEFORE element enters viewport
-        // threshold: 0.01 = trigger as soon as even 1% is visible
-        // This fixes mobile where elements are stacked deep inside tall sections
-        }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Safety net: on scroll, force-reveal anything above the viewport
-        // that the observer may have missed (fast scrolls, tall sections on mobile)
-        let revealCheckPending = false;
-        window.addEventListener('scroll', () => {
-            if (revealCheckPending) return;
-            revealCheckPending = true;
-            requestAnimationFrame(() => {
-                const vh = window.innerHeight;
-                revealElements.forEach(el => {
-                    if (!el.classList.contains('is-visible')) {
-                        const rect = el.getBoundingClientRect();
-                        // If the element's top is above the bottom of the viewport + 50px buffer
-                        if (rect.top < vh + 50) {
-                            el.classList.add('is-visible');
-                            revealObserver.unobserve(el);
-                        }
-                    }
-                });
-                revealCheckPending = false;
-            });
-        }, { passive: true });
-    } else {
-        // Reduced motion: show everything immediately
-        revealElements.forEach(el => el.classList.add('is-visible'));
-    }
-
-    // --- 3.7 NAV SCROLL STATE (handled inside main scroll listener below) ---
-    const nav = document.querySelector('.nav-overlay');
-
-    // --- 4. UNIFIED SCROLL HANDLER ---
-    const parallaxText = document.querySelectorAll('.parallax-text');
-    const parallaxImgs = document.querySelectorAll('.parallax-img');
-
-    window.addEventListener('scroll', () => {
-        let scrollY = window.scrollY;
-
-        // Nav compact state (always runs)
-        if (nav) {
-            if (scrollY > 100) { nav.classList.add('scrolled'); }
-            else { nav.classList.remove('scrolled'); }
-        }
-
-        // Everything below is motion-gated
-        if (prefersReducedMotion) return;
-            const mobileDampener = isMobile ? 0.3 : 1;
-
-            if (parallaxText.length > 0) {
-                parallaxText.forEach(text => {
-                    let speed = text.getAttribute('data-speed') * mobileDampener;
-                    text.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
-                });
-            }
-            if (parallaxImgs.length > 0) {
-                parallaxImgs.forEach(img => {
-                    let speed = img.getAttribute('data-speed') * mobileDampener;
-                    img.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
-                });
-            }
-
-            // Hero zoom-on-scroll effect
-            const heroImg = document.querySelector('#intro .hero-img');
-            if (heroImg && scrollY < window.innerHeight) {
-                const scale = 1 + scrollY * 0.0003;
-                heroImg.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0) scale(${scale})`;
-            }
-
-            // Hero content fade-on-scroll
-            const heroContent = document.querySelector('#intro .content-layer');
-            if (heroContent && scrollY < window.innerHeight) {
-                heroContent.style.opacity = Math.max(0, 1 - scrollY / 600);
-                heroContent.style.transform = `translateY(${scrollY * -0.08}px)`;
-            }
-
-            // Phase image scroll parallax — subtle vertical shift within each phase
-            document.querySelectorAll('.phase-image').forEach(phaseImg => {
-                const rect = phaseImg.getBoundingClientRect();
-                const vh = window.innerHeight;
-                // Only process when phase is near viewport
-                if (rect.top < vh * 1.2 && rect.bottom > -vh * 0.2) {
-                    const progress = (vh - rect.top) / (vh + rect.height);
-                    const yShift = (progress - 0.5) * 30; // ±15px shift
-                    const inner = phaseImg.querySelector('.phase-img-inner');
-                    if (inner && inner.classList.contains('is-visible')) {
-                        // Preserve the Ken Burns animation, just add a subtle Y offset
-                        inner.style.marginTop = `${yShift}px`;
-                    }
-                }
-            });
-
-        }, { passive: true });
-
-    // --- 5. FORM HANDLING ---
-    const form = document.getElementById('signup-form');
-    const formContainer = document.getElementById('form-container');
-    const successMsg = document.getElementById('success-message');
-    const btnText = document.querySelector('.btn-text');
-    const btn = document.getElementById('submit-btn');
-
-    if(form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            if(btnText) btnText.textContent = "Verifying...";
-            if(btn) {
-                btn.style.opacity = "0.7";
-                btn.disabled = true;
-            }
-
-            const data = new FormData(form);
-
-            fetch(form.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    setTimeout(() => {
-                        if(formContainer) {
-                            formContainer.style.transform = "rotateX(90deg)";
-                            formContainer.style.opacity = '0';
-                        }
-                        setTimeout(() => {
-                            if(formContainer) formContainer.style.display = 'none';
+}); // end second DOMContentLoaded                            if(formContainer) formContainer.style.display = 'none';
                             if(successMsg) {
                                 successMsg.classList.remove('hidden');
                                 void successMsg.offsetWidth; 
