@@ -54,11 +54,18 @@ body {
     overflow-x: hidden;
     height: 100vh;
     overflow-y: hidden;
+    /* CSS-only fallback: unlock scroll after 4s even without JS */
+    animation: bodyUnlock 0s 4s forwards;
+}
+
+@keyframes bodyUnlock {
+    to { overflow-y: scroll; height: auto; }
 }
 
 body.loaded {
     overflow-y: scroll;
-    /* REMOVED scroll-snap — replaced with smooth progressive reveal */
+    height: auto;
+    animation: none; /* Cancel CSS fallback — JS handled it */
 }
 
 /* --- SEO UTILITY --- */
@@ -143,9 +150,18 @@ body.hovering #cursor {
     z-index: 9999;
     display: flex; justify-content: center; align-items: center;
     transition: transform 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+    /* CSS-only fallback: auto-dismiss after 4s even without JS */
+    animation: loaderFallback 0s 4s forwards;
 }
 
-body.loaded #loader { transform: translateY(-100%); }
+@keyframes loaderFallback {
+    to { transform: translateY(-100%); pointer-events: none; }
+}
+
+body.loaded #loader {
+    transform: translateY(-100%);
+    animation: none; /* Cancel CSS fallback — JS handled it */
+}
 
 .loader-content {
     display: flex; flex-direction: column;
@@ -786,12 +802,6 @@ a.phase-hint {
 
 a.phase-hint:hover {
     border-color: rgba(212,175,55,0.4);
-}
-.sub-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    color: #888;
-    font-weight: 300;
 }
 
 a.phase-hint:hover span {
@@ -1637,6 +1647,38 @@ a.phase-hint:hover span {
 
 /* ===================================
    SENSORY LAYER: ATMOSPHERE
+==================================== */
+.nav-right {
+    display: flex; align-items: center; gap: 40px;
+}
+
+#atmosphere-toggle {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px; padding: 6px 16px 6px 8px;
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer; outline: none;
+    position: relative; pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+#atmosphere-toggle::after {
+    content: ''; position: absolute;
+    top: -1px; left: -1px;
+    width: calc(100% + 2px); height: calc(100% + 2px);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: toggle-pulse 3s infinite cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
+}
+
+@keyframes toggle-pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.15); opacity: 0; }
+}
+
+body.atmosphere-on #atmosphere-toggle::after { display: none; }
 body.atmosphere-on #atmosphere-toggle {
     box-shadow: 0 0 calc(var(--audio-glow, 0) * 15px + 5px) rgba(212, 175, 55, 0.15);
 }
@@ -1717,6 +1759,129 @@ body.is-transitioning #page-transition { opacity: 1; pointer-events: all; }
    4. Warm color temperature shift
    5. Enhanced cursor glow
    6. Phase divider pulse
+==================================== */
+
+/* Particle Canvas */
+#atmosphere-particles {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 8998;
+    opacity: 0;
+    transition: opacity 3s ease;
+}
+
+body.atmosphere-on #atmosphere-particles {
+    opacity: 1;
+}
+
+/* Focus Tunnel: A slowly-breathing vignette that narrows your visual field */
+#atmosphere-focus {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 8997;
+    opacity: 0;
+    transition: opacity 2.5s ease;
+    /* Multi-layered inward shadow — feels like looking through a tunnel */
+    box-shadow:
+        inset 0 0 80px 30px rgba(0,0,0,0.3),
+        inset 0 0 200px 80px rgba(0,0,0,0.2),
+        inset 0 0 400px 150px rgba(0,0,0,0.15);
+    /* LOW-frequency breathing: bass drives the tunnel, not treble */
+    transform: scale(calc(1 + var(--audio-low, 0) * 0.12));
+    will-change: transform;
+}
+
+body.atmosphere-on #atmosphere-focus {
+    opacity: 1;
+}
+
+/* Warm color temperature shift on body when atmosphere is active */
+body.atmosphere-on {
+    /* Subtle sepia warmth — makes the whole world feel golden-hour */
+    filter: sepia(0.04) saturate(1.08) brightness(0.98);
+    transition: filter 3s ease;
+}
+
+/* Typography breathing: Headlines subtly expand letter-spacing with audio */
+body.atmosphere-on .headline-reveal,
+body.atmosphere-on .phase-title,
+body.atmosphere-on .card-title,
+body.atmosphere-on .system-inner h2,
+body.atmosphere-on .community-section h2,
+body.atmosphere-on .library-inner h2 {
+    letter-spacing: calc(var(--audio-glow, 0) * 3px);
+    transition: letter-spacing 0.3s ease-out, text-shadow 0.1s ease-out;
+}
+
+/* Phase dividers and system step borders pulse with audio */
+body.atmosphere-on .phase-divider,
+body.atmosphere-on .divider-line,
+body.atmosphere-on .system-step {
+    box-shadow: 0 0 calc(var(--audio-glow, 0) * 12px) rgba(229, 193, 85, calc(var(--audio-glow, 0) * 0.5));
+    transition: box-shadow 0.15s ease-out;
+}
+
+/* Phase atmosphere overlays intensify under cerebral mode */
+body.atmosphere-on .phase-atmosphere {
+    opacity: 1;
+    mix-blend-mode: color;
+    transition: opacity 1s ease, mix-blend-mode 1s ease;
+}
+
+/* Phase light leaks brighten under atmosphere */
+body.atmosphere-on .phase-light-leak {
+    opacity: 1;
+    background: linear-gradient(
+        125deg,
+        rgba(229, 193, 85, 0.06) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(229, 193, 85, 0.03) 100%
+    );
+}
+
+/* Gold elements breathe */
+body.atmosphere-on .gold-text {
+    text-shadow: 0 0 calc(var(--audio-glow, 0) * 8px) rgba(229, 193, 85, calc(var(--audio-glow, 0) * 0.3));
+}
+
+/* Enhanced cursor: larger, warmer, more present */
+body.atmosphere-on #cursor {
+    border-color: var(--gold);
+    width: 16px; height: 16px;
+}
+
+body.atmosphere-on #cursor-blur {
+    width: 70px; height: 70px;
+    background: rgba(229, 193, 85, 0.12);
+    filter: blur(30px);
+    transform: translate(-50%, -50%) scale(var(--audio-scale, 1));
+}
+
+/* Noise overlay intensifies slightly for analog warmth */
+body.atmosphere-on .noise-overlay {
+    opacity: 0.07;
+    transition: opacity 2s ease;
+}
+
+/* Scroll indicator fades when atmosphere is on (reduce distraction) */
+body.atmosphere-on .scroll-indicator {
+    opacity: 0.15;
+    transition: opacity 2s ease;
+}
+
+/* Progress dots dim */
+body.atmosphere-on .progress-wrap {
+    opacity: 0.3;
+    transition: opacity 2s ease;
+}
+
+/* Subpage layout */
+.subpage-hero {
+    height: auto !important; min-height: 100vh;
+    justify-content: flex-start !important;
+    padding-top: 160px !important;
 }
 
 @media (max-width: 768px) {
@@ -1729,6 +1894,12 @@ body.is-transitioning #page-transition { opacity: 1; pointer-events: all; }
 
 /* ===================================
    WCAG 2.1 — REDUCED MOTION
+==================================== */
+@media (prefers-reduced-motion: reduce) {
+    body.loaded { scroll-snap-type: none !important; }
+    section { scroll-snap-align: none !important; }
+
+    *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
