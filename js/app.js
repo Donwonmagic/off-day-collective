@@ -248,6 +248,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+// --- 6. COHORT BAR ANIMATION ---
+    const cohortFill = document.querySelector('.cohort-fill');
+    const cohortPercent = document.querySelector('.cohort-percent');
+    
+    if(cohortFill) {
+        // Generate a believable cohort percentage per session
+        const basePercent = 84;
+        const variance = Math.floor(Math.random() * 8) - 3; // Range: -3 to +4
+        const displayPercent = Math.min(Math.max(basePercent + variance, 78), 89);
+        
+        // Update both the bar and the text
+        cohortFill.setAttribute('data-width', displayPercent + '%');
+        if (cohortPercent) cohortPercent.textContent = displayPercent + '% Full';
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetWidth = entry.target.getAttribute('data-width');
+                    entry.target.style.width = targetWidth;
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(cohortFill);
+    }
+    // --- 7. THE LANTERN EFFECT ---
+    const card = document.querySelector('.access-card');
+
+    if(card) {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            // Calculate mouse position relative to the card
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
     // --- 6. COHORT BAR ANIMATION ---
     const cohortFill = document.querySelector('.cohort-fill');
