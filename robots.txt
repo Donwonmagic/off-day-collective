@@ -1,0 +1,13 @@
+# OFF DAY COLLECTIVE | ROBOTS.TXT
+# -------------------------------
+# Designed for Silence.
+
+User-agent: *
+Allow: /
+
+# Block technical folders from being indexed
+Disallow: /css/
+Disallow: /js/
+
+# Point to your sitemap once you create one
+Sitemap: https://offdaycollective.com/sitemap.xml
