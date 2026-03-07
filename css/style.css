@@ -113,32 +113,46 @@ body.loaded .reveal-on-load[data-delay="1.6"] { transition-delay: 1.6s; }
 
 /* -------------------
    CUSTOM CURSOR
+   Dual-contrast ring: white border (visible on dark)
+   + dark shadow (visible on light). Guaranteed
+   visibility on every background color on the site.
 ---------------------- */
 #cursor {
     position: fixed; top: 0; left: 0;
-    width: 12px; height: 12px;
-    border: 1px solid var(--charcoal);
+    width: 14px; height: 14px;
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none; z-index: 10000;
-    transition: width 0.3s, height 0.3s, background-color 0.3s;
-    mix-blend-mode: difference;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    /* Dark shadow ring provides contrast on light backgrounds */
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 0, 0, 0.15);
 }
 
 #cursor-blur {
     position: fixed; top: 0; left: 0;
     width: 40px; height: 40px;
-    background: rgba(212, 175, 55, 0.2);
+    background: rgba(212, 175, 55, 0.15);
     filter: blur(20px); border-radius: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none; z-index: 9999;
-    transition: transform 0.1s;
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s, filter 0.3s;
 }
 
+/* Hover state: expanded ring, visible fill, keeps dual-contrast */
 body.hovering #cursor {
-    width: 60px; height: 60px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: transparent;
+    width: 50px; height: 50px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+/* On gold buttons: invert cursor to dark for maximum contrast */
+/* (handled via JS adding body class on button hover) */
+body.cursor-on-gold #cursor {
+    border-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 /* -------------------
@@ -1849,8 +1863,16 @@ body.atmosphere-on .gold-text {
 
 /* Enhanced cursor: larger, warmer, more present */
 body.atmosphere-on #cursor {
-    border-color: var(--gold);
+    border-color: rgba(229, 193, 85, 0.9);
     width: 16px; height: 16px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 0 10px rgba(229, 193, 85, 0.2);
+}
+
+body.atmosphere-on body.hovering #cursor,
+body.atmosphere-on.hovering #cursor {
+    border-color: rgba(229, 193, 85, 0.7);
+    background-color: rgba(229, 193, 85, 0.06);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 15px rgba(229, 193, 85, 0.15);
 }
 
 body.atmosphere-on #cursor-blur {
