@@ -3,37 +3,36 @@
 
   <url>
     <loc>https://www.offdaycollective.com/</loc>
-    <lastmod>2026-03-07</lastmod>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://www.offdaycollective.com/philosophy</loc>
-    <lastmod>2026-03-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.offdaycollective.com/accessibility</loc>
-    <lastmod>2026-03-07</lastmod>
+    <loc>https://www.offdaycollective.com/accessibility.html</loc>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.offdaycollective.com/privacy</loc>
-    <lastmod>2026-03-07</lastmod>
+    <loc>https://www.offdaycollective.com/privacy.html</loc>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.offdaycollective.com/terms</loc>
-    <lastmod>2026-03-07</lastmod>
+    <loc>https://www.offdaycollective.com/terms.html</loc>
+    <lastmod>2026-02-28</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
 
+  <url>
+    <loc>https://www.offdaycollective.com/philosophy.html</loc>
+    <lastmod>2026-02-28</lastmod>
+    <priority>0.8</priority>
+    
+</url>
 </urlset>
