@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility | Off Day Collective</title>
+    <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.offdaycollective.com/accessibility.html">
+<meta name="description" content="Off Day Collective's commitment to digital inclusion and WCAG 2.1 AA compliance.">
+<meta property="og:title" content="Accessibility | Off Day Collective">
+<meta property="og:description" content="Clarity and peace of mind should be accessible to everyone.">
+<meta property="og:image" content="https://www.offdaycollective.com/images/social-share.png">
+<meta property="og:url" content="https://www.offdaycollective.com/accessibility.html">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dark-bg">
+
+    <div id="loader">
+        <div class="loader-content">
+            <div class="logo-loader">ODC</div>
+            <div class="loader-line-mask"><div class="loader-line"></div></div>
+        </div>
+    </div>
+    
+    <div id="page-transition"></div>
+    <div class="noise-overlay"></div>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <nav class="nav-overlay">
+        <a href="/" class="logo" style="pointer-events:auto; text-decoration:none; color:inherit;">Off Day Collective</a>
+        <div class="nav-right">
+            <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                <span class="toggle-label">ATMOSPHERE</span>
+            </button>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        
+        <section class="accessibility-hero subpage-hero">
+            <div style="max-width: 800px;">
+                <span class="gold-text sm-caps" style="display:block; margin-bottom: 20px;">The Standard of Silence</span>
+                <h1 style="font-size: clamp(3rem, 8vw, 6rem); color: var(--cream); line-height: 1; margin-bottom: 40px;">
+                    Inclusion is <span class="italic">intentional.</span>
+                </h1>
+                
+                <div class="divider-line" style="width: 100px; height: 1px; background: var(--gold); margin-bottom: 60px;"></div>
+                
+                <div style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #aaa; line-height: 1.8; font-weight: 300;">
+                    <p style="margin-bottom: 30px;">
+                        At Off Day Collective, we believe that the luxury of stillness and clarity should be available to everyone. A digital "Off Day" is not restorative if the technology itself creates a barrier.
+                    </p>
+                    <p style="margin-bottom: 30px;">
+                        We are committed to ensuring our digital experiences are accessible to individuals of all abilities. Our current goal is to meet and exceed <strong>WCAG 2.1 Level AA</strong> standards, focusing on high-contrast readability, screen-reader optimization, and keyboard-only navigation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section style="background: #0a0a0a; padding: 100px 10%; border-top: 1px solid #1a1a1a;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px;">
+                
+                <div class="acc-module">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">I. Sensory Control</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                        Our "Atmosphere" layer is entirely optional. We provide a prominent physical toggle to ensure users can choose a silent experience, preventing unexpected audio triggers.
+                    </p>
+                </div>
+
+                <div class="acc-module">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">II. Visual Clarity</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                        We utilize a "High-Contrast Charcoal" palette. All text elements are measured against contrast ratios to ensure legibility for users with low vision.
+                    </p>
+                </div>
+
+                <div class="acc-module">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">III. Assistive Tech</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                        The site architecture is built with semantic HTML5. Our "Deep Exhale" transitions are designed to be respectful of screen reader focus management.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section style="padding: 100px 10%; text-align: center;">
+            <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px;">Feedback is a Gift.</h3>
+            <p style="color: #666; max-width: 500px; margin: 0 auto 40px; font-size: 0.9rem;">
+                If you encounter any difficulty accessing our collective, please let us know immediately. Your perspective helps us build a better sanctuary.
+            </p>
+           <a href="mailto:contact@offdaycollective.com?subject=Accessibility%20Inquiry%20—%20Off%20Day%20Collective" 
+   class="gold-btn" 
+   style="display: inline-block; padding: 18px 40px; text-decoration: none;">
+   Report an Issue
+</a>
+            
+            <div style="margin-top: 60px;">
+                <a href="index.html" class="text-link">Return to the Collective</a>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="atmosphere-visual"></div>
+        <audio id="ambient-audio" loop preload="auto" crossorigin="anonymous">
+        <source src="audio/atmosphere.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
