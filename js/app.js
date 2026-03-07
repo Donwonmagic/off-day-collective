@@ -2,17 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ============================================
     // WCAG 2.1 SC 2.3.3 — REDUCED MOTION GATE
-    // Read the user's OS motion preference ONCE
-    // on load. All animation logic in this file
-    // checks this boolean before executing.
-    //
-    // This covers: parallax, the spool reveal,
-    // and any future JS-driven animation added.
-    //
-    // We also listen for LIVE changes so if the
-    // user toggles "Reduce Motion" in their OS
-    // settings while the page is open, the site
-    // responds immediately without a reload.
     // ============================================
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     let prefersReducedMotion = motionQuery.matches;
@@ -20,15 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     motionQuery.addEventListener('change', (e) => {
         prefersReducedMotion = e.matches;
         if (prefersReducedMotion) {
-            // Freeze any active parallax transforms instantly
             document.querySelectorAll('[data-speed]').forEach((el) => {
                 el.style.transform = 'none';
             });
         }
     });
 
-    // --- 0. SAFETY NET (PREVENTS FOREVER LOADING) ---
-    // If something breaks, force the site to load after 3 seconds
+    // --- 0. SAFETY NET ---
     setTimeout(() => {
         if (!document.body.classList.contains('loaded')) {
             console.log("Safety net triggered: Forcing load.");
@@ -67,53 +54,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
-        // --- 2.5 MOBILE GHOST CURSOR ---
+    // --- 2.5 MOBILE GHOST CURSOR ---
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     if (isMobile && cursor && cursorBlur) {
-
-        // Function to move the cursor to touch coordinates
         const moveCursor = (e) => {
             const touch = e.touches[0];
             const x = touch.clientX;
             const y = touch.clientY;
-
-            // Instant movement for the main dot
             cursor.style.left = x + 'px';
             cursor.style.top = y + 'px';
-
-            // Slight delay/lag for the blur (Creating the "Ghost" trail)
             setTimeout(() => {
                 cursorBlur.style.left = x + 'px';
                 cursorBlur.style.top = y + 'px';
             }, 50);
         };
 
-        // 1. TOUCH START: Show cursor and jump to position
         document.addEventListener('touchstart', (e) => {
             document.body.classList.add('touching');
             moveCursor(e);
         });
-
-        // 2. TOUCH MOVE: Follow the finger
-        document.addEventListener('touchmove', (e) => {
-            moveCursor(e);
-        });
-
-        // 3. TOUCH END: Fade out with a brief delay
+        document.addEventListener('touchmove', (e) => { moveCursor(e); });
         document.addEventListener('touchend', () => {
-            setTimeout(() => {
-                document.body.classList.remove('touching');
-            }, 200);
+            setTimeout(() => { document.body.classList.remove('touching'); }, 200);
         });
     }
     
-    // --- 3. SCROLL SPY ---
+    // --- 3. SCROLL SPY (updated for new sections) ---
     const sections = document.querySelectorAll('section, footer');
     const dots = document.querySelectorAll('.dot');
-    const observerOptions = { threshold: 0.5 };
-    const observer = new IntersectionObserver((entries) => {
+    const observerOptions = { threshold: 0.1 };
+    const spyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const index = Array.from(sections).indexOf(entry.target);
@@ -122,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, observerOptions);
-    sections.forEach(section => observer.observe(section));
+    sections.forEach(section => spyObserver.observe(section));
 
     // --- 3.5. CLICKABLE PROGRESS DOTS ---
     dots.forEach(dot => {
@@ -137,42 +108,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. PARALLAX ---
     // ============================================
-    // Gated by prefersReducedMotion (WCAG 2.3.3).
-    // If the user has "Reduce Motion" enabled in
-    // their OS, this entire block is skipped and
-    // the CSS @media rule freezes transforms.
-    //
-    // passive: true is set on the scroll listener
-    // to tell the browser this handler will never
-    // call preventDefault(), allowing it to start
-    // scrolling immediately on the compositor
-    // thread without waiting for JS. This is a
-    // significant performance win on mobile.
+    // NEW: SCROLL-DRIVEN REVEAL SYSTEM
+    // IntersectionObserver adds .is-visible to
+    // .fade-in-up elements and .phase-img-inner
     // ============================================
+    const revealElements = document.querySelectorAll('.fade-in-up, .phase-img-inner');
+
+    if (!prefersReducedMotion && revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Once revealed, stop observing to save resources
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Reduced motion: show everything immediately
+        revealElements.forEach(el => el.classList.add('is-visible'));
+    }
+
+    // --- 3.7 NAV SCROLL STATE (handled inside main scroll listener below) ---
+    const nav = document.querySelector('.nav-overlay');
+
+    // --- 4. UNIFIED SCROLL HANDLER ---
     const parallaxText = document.querySelectorAll('.parallax-text');
     const parallaxImgs = document.querySelectorAll('.parallax-img');
 
-    if (!prefersReducedMotion) {
-        window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
+        let scrollY = window.scrollY;
 
-            // Re-check on each scroll tick in case the user toggled
-            // the OS preference mid-session (the live listener above
-            // updates the variable, this check respects it immediately)
-            if (prefersReducedMotion) return;
+        // Nav compact state (always runs)
+        if (nav) {
+            if (scrollY > 100) { nav.classList.add('scrolled'); }
+            else { nav.classList.remove('scrolled'); }
+        }
 
-            let scrollY = window.scrollY;
-
-            // On mobile, reduce parallax depth to prevent jank
-            // on lower-powered devices
+        // Everything below is motion-gated
+        if (prefersReducedMotion) return;
             const mobileDampener = isMobile ? 0.3 : 1;
 
-            // Check if elements exist before moving them
             if (parallaxText.length > 0) {
                 parallaxText.forEach(text => {
                     let speed = text.getAttribute('data-speed') * mobileDampener;
-                    text.style.transform = `translateY(${scrollY * speed}px)`;
+                    text.style.transform = `translateX(-50%) translateY(${scrollY * speed}px)`;
                 });
             }
             if (parallaxImgs.length > 0) {
@@ -181,10 +164,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
                 });
             }
-        }, { passive: true }); // passive:true: critical for scroll performance
-    }
 
-    // --- 5. FORM HANDLING (SAFE MODE) ---
+            // Hero zoom-on-scroll effect
+            const heroImg = document.querySelector('#intro .hero-img');
+            if (heroImg && scrollY < window.innerHeight) {
+                const scale = 1 + scrollY * 0.0003;
+                heroImg.style.transform = `translate3d(0, ${scrollY * 0.4}px, 0) scale(${scale})`;
+            }
+
+            // Hero content fade-on-scroll
+            const heroContent = document.querySelector('#intro .content-layer');
+            if (heroContent && scrollY < window.innerHeight) {
+                heroContent.style.opacity = Math.max(0, 1 - scrollY / 600);
+                heroContent.style.transform = `translateY(${scrollY * -0.08}px)`;
+            }
+
+            // Phase image scroll parallax — subtle vertical shift within each phase
+            document.querySelectorAll('.phase-image').forEach(phaseImg => {
+                const rect = phaseImg.getBoundingClientRect();
+                const vh = window.innerHeight;
+                // Only process when phase is near viewport
+                if (rect.top < vh * 1.2 && rect.bottom > -vh * 0.2) {
+                    const progress = (vh - rect.top) / (vh + rect.height);
+                    const yShift = (progress - 0.5) * 30; // ±15px shift
+                    const inner = phaseImg.querySelector('.phase-img-inner');
+                    if (inner && inner.classList.contains('is-visible')) {
+                        // Preserve the Ken Burns animation, just add a subtle Y offset
+                        inner.style.marginTop = `${yShift}px`;
+                    }
+                }
+            });
+
+        }, { passive: true });
+
+    // --- 5. FORM HANDLING ---
     const form = document.getElementById('signup-form');
     const formContainer = document.getElementById('form-container');
     const successMsg = document.getElementById('success-message');
@@ -195,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Visual Feedback
             if(btnText) btnText.textContent = "Verifying...";
             if(btn) {
                 btn.style.opacity = "0.7";
@@ -210,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    // Success
                     setTimeout(() => {
                         if(formContainer) {
                             formContainer.style.transform = "rotateX(90deg)";
@@ -226,13 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, 500);
                     }, 1000);
                 } else {
-                    // Error from Formspree
                     alert("System busy. Please try again.");
                     if(btnText) btnText.textContent = "Apply for Access";
                     if(btn) { btn.disabled = false; btn.style.opacity = "1"; }
                 }
             }).catch(error => {
-                // Network Error
                 alert("Connection error. Please check your network.");
                 if(btnText) btnText.textContent = "Apply for Access";
                 if(btn) { btn.disabled = false; btn.style.opacity = "1"; }
@@ -274,62 +283,121 @@ document.addEventListener('DOMContentLoaded', () => {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
-            // Send these numbers to CSS
+    // --- 6. COHORT BAR ANIMATION ---
+    const cohortFill = document.querySelector('.cohort-fill');
+    const cohortPercent = document.querySelector('.cohort-percent');
+    const statCohort = document.getElementById('stat-cohort-percent');
+    
+    if(cohortFill) {
+        const basePercent = 84;
+        const variance = Math.floor(Math.random() * 8) - 3;
+        const displayPercent = Math.min(Math.max(basePercent + variance, 78), 89);
+        
+        cohortFill.setAttribute('data-width', displayPercent + '%');
+        if (cohortPercent) cohortPercent.textContent = displayPercent + '% Full';
+        if (statCohort) statCohort.textContent = displayPercent + '%';
+
+        const cohortObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetWidth = entry.target.getAttribute('data-width');
+                    entry.target.style.width = targetWidth;
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        cohortObserver.observe(cohortFill);
+    }
+
+    // --- 7. THE LANTERN EFFECT ---
+    const card = document.querySelector('.access-card');
+
+    if(card) {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             card.style.setProperty('--x', `${x}px`);
             card.style.setProperty('--y', `${y}px`);
         });
     }
-   // --- 8. THE MECHANICAL SPOOL REVEAL ---
+
+    // --- 8. THE MECHANICAL SPOOL REVEAL ---
     const spoolText = document.getElementById("cipher-text");
 
     if (spoolText) {
         const text = spoolText.innerText;
-        spoolText.innerHTML = ''; // Clear original text
+        spoolText.innerHTML = '';
 
-        // ============================================
-        // Gate the spool animation behind the motion
-        // preference. If reduced motion is on, just
-        // show the text immediately with no animation.
-        // ============================================
         if (prefersReducedMotion) {
-            // Instantly show the full text, no animation
             spoolText.innerText = text;
             spoolText.style.opacity = '1';
         } else {
-            // Wait for loader to lift (2.0s)
             setTimeout(() => {
-                
-                // Loop through each letter
                 text.split('').forEach((char, index) => {
-                    
-                    // Create a wrapper (for spacing) and the letter (for animation)
                     const wrapper = document.createElement('span');
                     wrapper.classList.add('char-wrapper');
                     
                     const letter = document.createElement('span');
                     letter.classList.add('char');
                     letter.innerText = char;
-                    
-                    // STAGGER TIMING:
-                    // Slower multiplier = slower wave. 
-                    // 0.05s (50ms) is a nice mechanical rhythm.
                     letter.style.animationDelay = `${index * 0.05}s`;
                     
                     wrapper.appendChild(letter);
                     spoolText.appendChild(wrapper);
                 });
-                
             }, 500);
         }
     }
-});
+
+    // ============================================
+    // NEW: PRODUCT TRACK DRAG-TO-SCROLL
+    // ============================================
+    const track = document.getElementById('products-track');
+    if (track) {
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            track.style.cursor = 'grabbing';
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+
+        track.addEventListener('mouseleave', () => {
+            isDown = false;
+            track.style.cursor = 'grab';
+        });
+
+        track.addEventListener('mouseup', () => {
+            isDown = false;
+            track.style.cursor = 'grab';
+        });
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            track.scrollLeft = scrollLeft - walk;
+        });
+    }
+});  // end product track
+
+// ============================================
+// EVERYTHING BELOW RUNS AFTER DOMContentLoaded
+// (moved inside scope for clean variable access)
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
 
 // --- 9. SENSORY LAYER (AUDIO/VISUAL SYNTHESIS) ---
     const atmosphereBtn = document.getElementById('atmosphere-toggle');
     const ambientAudio = document.getElementById('ambient-audio');
     let isPlaying = false;
     
-    // Web Audio API Variables
     let audioCtx, analyser, source, dataArray;
     let animationId;
     let visualizerActive = false;
@@ -339,7 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         atmosphereBtn.addEventListener('click', () => {
             if (!isPlaying) {
-                // Attempt to start the Web Audio API
                 try {
                     if (!audioCtx) {
                         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -350,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         source.connect(analyser);
                         analyser.connect(audioCtx.destination);
                         
-                        analyser.fftSize = 128; 
+                        analyser.fftSize = 256; // Higher resolution for multi-band cerebral analysis
                         dataArray = new Uint8Array(analyser.frequencyBinCount);
                         visualizerActive = true;
                     }
@@ -359,13 +426,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         audioCtx.resume();
                     }
                 } catch (error) {
-                    console.warn("Visualizer blocked by browser security (likely running locally). Audio will still play.");
+                    console.warn("Visualizer blocked by browser security. Audio will still play.");
                     visualizerActive = false;
                 }
 
                 document.body.classList.add('atmosphere-on');
                 
-                // CRITICAL: We must wait for the audio to load before playing
                 let playPromise = ambientAudio.play();
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
@@ -378,7 +444,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
             } else {
-                // TURN OFF
                 document.body.classList.remove('atmosphere-on');
                 fadeAudio(ambientAudio, 0, 1500, () => {
                     ambientAudio.pause();
@@ -388,30 +453,43 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // The Real-Time Render Engine
         function renderVisuals() {
             if (!isPlaying || !visualizerActive) return;
             animationId = requestAnimationFrame(renderVisuals);
             
             analyser.getByteFrequencyData(dataArray);
             
-            let sum = 0;
-            const frequencyRange = 30; 
-            for(let i = 0; i < frequencyRange; i++) {
-                sum += dataArray[i];
-            }
-            let average = sum / frequencyRange; 
+            // Multi-band analysis for cerebral effects
+            let lowSum = 0, midSum = 0, highSum = 0;
+            const lowEnd = 10, midEnd = 30, highEnd = 55;
             
-            // Map the audio volume to physical CSS scale and glow
+            for (let i = 0; i < highEnd; i++) {
+                if (i < lowEnd) lowSum += dataArray[i];
+                else if (i < midEnd) midSum += dataArray[i];
+                else highSum += dataArray[i];
+            }
+            
+            const lowAvg = lowSum / (lowEnd * 255);      // 0-1: sub-bass, breathing
+            const midAvg = midSum / ((midEnd - lowEnd) * 255); // 0-1: bowls, tones
+            const highAvg = highSum / ((highEnd - midEnd) * 255); // 0-1: shimmer, air
+            
+            // Combined energy for backward compat
+            let sum = 0;
+            for (let i = 0; i < 30; i++) sum += dataArray[i];
+            let average = sum / 30;
+            
             const visualScale = 1 + (average / 255) * 0.15; 
             const visualGlow = (average / 255) * 1.2;
 
             document.body.style.setProperty('--audio-scale', visualScale);
             document.body.style.setProperty('--audio-glow', visualGlow);
+            // New cerebral bands
+            document.body.style.setProperty('--audio-low', lowAvg);
+            document.body.style.setProperty('--audio-mid', midAvg);
+            document.body.style.setProperty('--audio-high', highAvg);
         }
     }
 
-    // Custom Fade Function for Premium Audio Transitions
     function fadeAudio(audio, targetVolume, duration, callback) {
         const startVolume = audio.volume;
         const change = targetVolume - startVolume;
@@ -436,15 +514,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, increment);
     }
 
-// --- 10. SPA ROUTER (THE DEEP EXHALE) ---
+// --- 10. SPA ROUTER ---
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         
-        // If it's a valid internal link and NOT a download
         if (link && link.href && link.href.startsWith(window.location.origin) && link.target !== '_blank' && !link.hasAttribute('download')) {
-            
-            // Check if the link is just an anchor on the same page (like #access)
-            // If it is, let the browser handle the smooth scroll instead of the router
             if (link.href.split('#')[0] === window.location.href.split('#')[0]) return;
 
             e.preventDefault(); 
@@ -471,22 +545,171 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         setTimeout(() => {
                             document.body.classList.remove('is-transitioning');
-                            // Re-run any page-specific animations here if needed
                         }, 100); 
                     } else {
-                        // Fail-safe: If the new page doesn't have #main-content, just go there normally
                         window.location.href = url;
                     }
                 })
                 .catch(err => {
                     console.error("SPA Router Error:", err);
-                    window.location.href = url; // Hard redirect as ultimate fail-safe
+                    window.location.href = url;
                 });
             }, 800);
         }
     });
 
-    // Handle the browser Back/Forward buttons safely
     window.addEventListener('popstate', () => {
-        location.reload(); // Hard reload on back button to ensure logic resets safely
+        location.reload();
     });
+
+// --- 11. CEREBRAL PARTICLE FIELD ---
+// Floating golden motes that respond to audio
+// frequency data. Drift slowly when atmosphere
+// is ambient, pulse outward on frequency peaks.
+// Uses raw Canvas2D for zero-dependency perf.
+
+    const particleCanvas = document.getElementById('atmosphere-particles');
+    
+    if (particleCanvas) {
+        const ctx = particleCanvas.getContext('2d');
+        let particles = [];
+        let particleAnimId;
+        let particlesActive = false;
+        const PARTICLE_COUNT = 60;
+
+        function resizeCanvas() {
+            particleCanvas.width = window.innerWidth;
+            particleCanvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                particles.push({
+                    x: Math.random() * particleCanvas.width,
+                    y: Math.random() * particleCanvas.height,
+                    radius: Math.random() * 1.5 + 0.3,
+                    baseRadius: Math.random() * 1.5 + 0.3,
+                    vx: (Math.random() - 0.5) * 0.15,
+                    vy: (Math.random() - 0.5) * 0.1 - 0.05, // gentle upward drift
+                    alpha: Math.random() * 0.4 + 0.05,
+                    baseAlpha: Math.random() * 0.4 + 0.05,
+                    // Each particle responds to a different frequency band
+                    freqBand: Math.floor(Math.random() * 40),
+                    phase: Math.random() * Math.PI * 2, // breathing offset
+                });
+            }
+        }
+
+        function renderParticles() {
+            if (!particlesActive) return;
+            particleAnimId = requestAnimationFrame(renderParticles);
+
+            ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+
+            // Get current audio data if available
+            let freqData = null;
+            let audioEnergy = 0;
+            if (analyser && dataArray && isPlaying) {
+                analyser.getByteFrequencyData(dataArray);
+                freqData = dataArray;
+                // Overall energy for global effects
+                let sum = 0;
+                for (let i = 0; i < 50; i++) sum += dataArray[i];
+                audioEnergy = sum / (50 * 255); // 0 to 1
+            }
+
+            const time = Date.now() * 0.001;
+
+            particles.forEach(p => {
+                // Audio reactivity per-particle
+                let freqInfluence = 0;
+                if (freqData && freqData[p.freqBand] !== undefined) {
+                    freqInfluence = freqData[p.freqBand] / 255;
+                }
+
+                // Breathing: slow sine oscillation + audio pulse
+                const breathe = Math.sin(time * 0.5 + p.phase) * 0.3;
+                p.radius = p.baseRadius + breathe + freqInfluence * 2.5;
+                p.alpha = p.baseAlpha + breathe * 0.15 + freqInfluence * 0.4;
+                p.alpha = Math.max(0, Math.min(1, p.alpha));
+
+                // Movement: drift + audio-driven expansion
+                const audioVx = (p.x - particleCanvas.width / 2) * audioEnergy * 0.002;
+                const audioVy = (p.y - particleCanvas.height / 2) * audioEnergy * 0.002;
+                
+                p.x += p.vx + audioVx;
+                p.y += p.vy + audioVy;
+
+                // Wrap around edges
+                if (p.x < -10) p.x = particleCanvas.width + 10;
+                if (p.x > particleCanvas.width + 10) p.x = -10;
+                if (p.y < -10) p.y = particleCanvas.height + 10;
+                if (p.y > particleCanvas.height + 10) p.y = -10;
+
+                // Draw with golden glow
+                const glowSize = p.radius * (3 + freqInfluence * 4);
+                
+                // Outer glow
+                const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize);
+                gradient.addColorStop(0, `rgba(229, 193, 85, ${p.alpha * 0.6})`);
+                gradient.addColorStop(0.4, `rgba(229, 193, 85, ${p.alpha * 0.15})`);
+                gradient.addColorStop(1, 'rgba(229, 193, 85, 0)');
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, glowSize, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                // Core point
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(245, 225, 160, ${p.alpha})`;
+                ctx.fill();
+            });
+
+            // Occasional connection lines between close particles (neural network feel)
+            if (audioEnergy > 0.15) {
+                ctx.strokeStyle = `rgba(229, 193, 85, ${audioEnergy * 0.08})`;
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+        }
+
+        // Hook into atmosphere toggle
+        const origToggle = atmosphereBtn;
+        if (origToggle) {
+            origToggle.addEventListener('click', () => {
+                // Small delay to let audio start
+                setTimeout(() => {
+                    if (document.body.classList.contains('atmosphere-on')) {
+                        if (!particlesActive) {
+                            createParticles();
+                            particlesActive = true;
+                            renderParticles();
+                        }
+                    } else {
+                        particlesActive = false;
+                        if (particleAnimId) cancelAnimationFrame(particleAnimId);
+                        ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+                    }
+                }, 200);
+            });
+        }
+    }
+
+}); // end second DOMContentLoaded
