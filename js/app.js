@@ -120,13 +120,37 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Once revealed, stop observing to save resources
                     revealObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        // rootMargin: positive bottom = detect 100px BEFORE element enters viewport
+        // threshold: 0.01 = trigger as soon as even 1% is visible
+        // This fixes mobile where elements are stacked deep inside tall sections
+        }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
 
         revealElements.forEach(el => revealObserver.observe(el));
+
+        // Safety net: on scroll, force-reveal anything above the viewport
+        // that the observer may have missed (fast scrolls, tall sections on mobile)
+        let revealCheckPending = false;
+        window.addEventListener('scroll', () => {
+            if (revealCheckPending) return;
+            revealCheckPending = true;
+            requestAnimationFrame(() => {
+                const vh = window.innerHeight;
+                revealElements.forEach(el => {
+                    if (!el.classList.contains('is-visible')) {
+                        const rect = el.getBoundingClientRect();
+                        // If the element's top is above the bottom of the viewport + 50px buffer
+                        if (rect.top < vh + 50) {
+                            el.classList.add('is-visible');
+                            revealObserver.unobserve(el);
+                        }
+                    }
+                });
+                revealCheckPending = false;
+            });
+        }, { passive: true });
     } else {
         // Reduced motion: show everything immediately
         revealElements.forEach(el => el.classList.add('is-visible'));
@@ -248,40 +272,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-// --- 6. COHORT BAR ANIMATION ---
-    const cohortFill = document.querySelector('.cohort-fill');
-    const cohortPercent = document.querySelector('.cohort-percent');
-    
-    if(cohortFill) {
-        // Generate a believable cohort percentage per session
-        const basePercent = 84;
-        const variance = Math.floor(Math.random() * 8) - 3; // Range: -3 to +4
-        const displayPercent = Math.min(Math.max(basePercent + variance, 78), 89);
-        
-        // Update both the bar and the text
-        cohortFill.setAttribute('data-width', displayPercent + '%');
-        if (cohortPercent) cohortPercent.textContent = displayPercent + '% Full';
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const targetWidth = entry.target.getAttribute('data-width');
-                    entry.target.style.width = targetWidth;
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(cohortFill);
-    }
-    // --- 7. THE LANTERN EFFECT ---
-    const card = document.querySelector('.access-card');
-
-    if(card) {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            // Calculate mouse position relative to the card
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
 
     // --- 6. COHORT BAR ANIMATION ---
     const cohortFill = document.querySelector('.cohort-fill');
