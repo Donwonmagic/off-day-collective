@@ -31,41 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 2. CUSTOM CURSOR (DESKTOP ONLY) ---
-    // position:fixed + viewport coords (clientX/clientY).
-    // No scroll compensation needed.
     const cursor = document.getElementById('cursor');
     const cursorBlur = document.getElementById('cursor-blur');
     const hoverTriggers = document.querySelectorAll('.hover-trigger');
 
     if (window.matchMedia("(min-width: 768px)").matches && cursor && cursorBlur) {
-        let mx = -100, my = -100;
-        let bx = -100, by = -100;
-
         document.addEventListener('mousemove', (e) => {
-            mx = e.clientX;
-            my = e.clientY;
-            if (cursor.style.opacity !== '1') {
-                cursor.style.opacity = '1';
-                cursorBlur.style.opacity = '1';
-            }
-        }, { passive: true });
-
-        (function loop() {
-            cursor.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-            bx += (mx - bx) * 0.15;
-            by += (my - by) * 0.15;
-            cursorBlur.style.transform = `translate(calc(${bx}px - 50%), calc(${by}px - 50%))`;
-            requestAnimationFrame(loop);
-        })();
-
-        hoverTriggers.forEach(trigger => {
-            trigger.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-            trigger.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            setTimeout(() => {
+                cursorBlur.style.left = e.clientX + 'px';
+                cursorBlur.style.top = e.clientY + 'px';
+            }, 50);
         });
-
-        document.querySelectorAll('.gold-btn, .access-cta').forEach(btn => {
-            btn.addEventListener('mouseenter', () => document.body.classList.add('cursor-on-gold'));
-            btn.addEventListener('mouseleave', () => document.body.classList.remove('cursor-on-gold'));
+        hoverTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => {
+                document.body.classList.add('hovering');
+            });
+            trigger.addEventListener('mouseleave', () => {
+                document.body.classList.remove('hovering');
+            });
         });
     }
 
@@ -75,8 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isMobile && cursor && cursorBlur) {
         const moveCursor = (e) => {
             const touch = e.touches[0];
-            cursor.style.transform = `translate(calc(${touch.clientX}px - 50%), calc(${touch.clientY}px - 50%))`;
-            cursorBlur.style.transform = `translate(calc(${touch.clientX}px - 50%), calc(${touch.clientY}px - 50%))`;
+            const x = touch.clientX;
+            const y = touch.clientY;
+            cursor.style.left = x + 'px';
+            cursor.style.top = y + 'px';
+            setTimeout(() => {
+                cursorBlur.style.left = x + 'px';
+                cursorBlur.style.top = y + 'px';
+            }, 50);
         };
 
         document.addEventListener('touchstart', (e) => {
@@ -129,45 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    // Once revealed, stop observing to save resources
                     revealObserver.unobserve(entry.target);
                 }
             });
-        // rootMargin: positive bottom = detect 100px BEFORE element enters viewport
-        // threshold: 0.01 = trigger as soon as even 1% is visible
-        // This fixes mobile where elements are stacked deep inside tall sections
-        }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
         revealElements.forEach(el => revealObserver.observe(el));
-
-        // IMMEDIATE CHECK: reveal anything already in the viewport on load
-        // This fixes mobile where the manifesto content is visible before any scroll happens
-        function forceRevealVisible() {
-            const vh = window.innerHeight;
-            revealElements.forEach(el => {
-                if (!el.classList.contains('is-visible')) {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top < vh + 50) {
-                        el.classList.add('is-visible');
-                        revealObserver.unobserve(el);
-                    }
-                }
-            });
-        }
-
-        // Run immediately
-        forceRevealVisible();
-        // Run again after loader lifts (1.8s matches the preloader timing)
-        setTimeout(forceRevealVisible, 2000);
-        // Run on first scroll too
-        let revealCheckPending = false;
-        window.addEventListener('scroll', () => {
-            if (revealCheckPending) return;
-            revealCheckPending = true;
-            requestAnimationFrame(() => {
-                forceRevealVisible();
-                revealCheckPending = false;
-            });
-        }, { passive: true });
     } else {
         // Reduced motion: show everything immediately
         revealElements.forEach(el => el.classList.add('is-visible'));
@@ -289,6 +248,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+// --- 6. COHORT BAR ANIMATION ---
+    const cohortFill = document.querySelector('.cohort-fill');
+    const cohortPercent = document.querySelector('.cohort-percent');
+    
+    if(cohortFill) {
+        // Generate a believable cohort percentage per session
+        const basePercent = 84;
+        const variance = Math.floor(Math.random() * 8) - 3; // Range: -3 to +4
+        const displayPercent = Math.min(Math.max(basePercent + variance, 78), 89);
+        
+        // Update both the bar and the text
+        cohortFill.setAttribute('data-width', displayPercent + '%');
+        if (cohortPercent) cohortPercent.textContent = displayPercent + '% Full';
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetWidth = entry.target.getAttribute('data-width');
+                    entry.target.style.width = targetWidth;
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(cohortFill);
+    }
+    // --- 7. THE LANTERN EFFECT ---
+    const card = document.querySelector('.access-card');
+
+    if(card) {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            // Calculate mouse position relative to the card
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
     // --- 6. COHORT BAR ANIMATION ---
     const cohortFill = document.querySelector('.cohort-fill');
@@ -460,26 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Floating off-switch: shows when atmosphere is on and user has scrolled past the nav
-        const atmosphereFloat = document.getElementById('atmosphere-float');
-        if (atmosphereFloat) {
-            // Show/hide based on scroll position + atmosphere state
-            window.addEventListener('scroll', () => {
-                if (document.body.classList.contains('atmosphere-on') && window.scrollY > 200) {
-                    atmosphereFloat.classList.add('visible');
-                } else {
-                    atmosphereFloat.classList.remove('visible');
-                }
-            }, { passive: true });
-
-            // Clicking floating toggle turns atmosphere off
-            atmosphereFloat.addEventListener('click', () => {
-                // Simulate clicking the main toggle
-                atmosphereBtn.click();
-                atmosphereFloat.classList.remove('visible');
-            });
-        }
-
         function renderVisuals() {
             if (!isPlaying || !visualizerActive) return;
             animationId = requestAnimationFrame(renderVisuals);
@@ -541,8 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, increment);
     }
 
-// --- 10. SPA ROUTER (DESKTOP ONLY — mobile uses standard navigation) ---
-    if (window.matchMedia("(min-width: 768px)").matches) {
+// --- 10. SPA ROUTER ---
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         
@@ -589,7 +561,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('popstate', () => {
         location.reload();
     });
-    } // end desktop-only SPA router
 
 // --- 11. CEREBRAL PARTICLE FIELD ---
 // Floating golden motes that respond to audio
@@ -619,12 +590,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 particles.push({
                     x: Math.random() * particleCanvas.width,
                     y: Math.random() * particleCanvas.height,
-                    radius: Math.random() * 2 + 0.5,
-                    baseRadius: Math.random() * 2 + 0.5,
+                    radius: Math.random() * 1.5 + 0.3,
+                    baseRadius: Math.random() * 1.5 + 0.3,
                     vx: (Math.random() - 0.5) * 0.15,
                     vy: (Math.random() - 0.5) * 0.1 - 0.05, // gentle upward drift
-                    alpha: Math.random() * 0.5 + 0.15,
-                    baseAlpha: Math.random() * 0.5 + 0.15,
+                    alpha: Math.random() * 0.4 + 0.05,
+                    baseAlpha: Math.random() * 0.4 + 0.05,
                     // Each particle responds to a different frequency band
                     freqBand: Math.floor(Math.random() * 40),
                     phase: Math.random() * Math.PI * 2, // breathing offset
@@ -678,13 +649,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (p.y < -10) p.y = particleCanvas.height + 10;
                 if (p.y > particleCanvas.height + 10) p.y = -10;
 
-                // Draw with golden glow — BRIGHT
-                const glowSize = p.radius * (4 + freqInfluence * 5);
+                // Draw with golden glow
+                const glowSize = p.radius * (3 + freqInfluence * 4);
                 
                 // Outer glow
                 const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowSize);
-                gradient.addColorStop(0, `rgba(245, 215, 100, ${p.alpha * 0.8})`);
-                gradient.addColorStop(0.3, `rgba(229, 193, 85, ${p.alpha * 0.3})`);
+                gradient.addColorStop(0, `rgba(229, 193, 85, ${p.alpha * 0.6})`);
+                gradient.addColorStop(0.4, `rgba(229, 193, 85, ${p.alpha * 0.15})`);
                 gradient.addColorStop(1, 'rgba(229, 193, 85, 0)');
                 
                 ctx.beginPath();
@@ -692,17 +663,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 ctx.fillStyle = gradient;
                 ctx.fill();
 
-                // Core point — bright white-gold
+                // Core point
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 240, 180, ${p.alpha * 1.2})`;
+                ctx.fillStyle = `rgba(245, 225, 160, ${p.alpha})`;
                 ctx.fill();
             });
 
             // Occasional connection lines between close particles (neural network feel)
-            if (audioEnergy > 0.12) {
-                ctx.strokeStyle = `rgba(229, 193, 85, ${audioEnergy * 0.15})`;
-                ctx.lineWidth = 0.6;
+            if (audioEnergy > 0.15) {
+                ctx.strokeStyle = `rgba(229, 193, 85, ${audioEnergy * 0.08})`;
+                ctx.lineWidth = 0.5;
                 for (let i = 0; i < particles.length; i++) {
                     for (let j = i + 1; j < particles.length; j++) {
                         const dx = particles[i].x - particles[j].x;
