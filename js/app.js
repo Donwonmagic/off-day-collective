@@ -52,6 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.remove('hovering');
             });
         });
+
+        // Gold button cursor flip: dark ring on gold backgrounds
+        document.querySelectorAll('.gold-btn, .access-cta').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-on-gold');
+            });
+            btn.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-on-gold');
+            });
+        });
     }
 
     // --- 2.5 MOBILE GHOST CURSOR ---
