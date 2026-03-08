@@ -15,10 +15,14 @@
 :root {
     --sage: #7D8E7E;
     --cream: #F9F7F2;
+    --parchment: #EDE9E0;    /* deeper cream for section alternation */
     --walnut: #3D2B1F;
     --charcoal: #1A1A1A;
-    --gold: #E5C155;
-    --gold-dim: #8a701f;
+    --ink: #0D0C0A;          /* warm near-black — replaces raw charcoal for body text */
+    --gold: #C9A84C;         /* muted, genuinely premium vs saturated #E5C155 */
+    --gold-pale: #E8D5A0;    /* for ghost/outline treatments */
+    --gold-dim: #7A6428;     /* warmer shadow tone */
+    --warm-shadow: rgba(45, 30, 15, 0.07); /* warm shadow, replaces cold blacks */
     --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -125,26 +129,39 @@ body.loaded {
 /* -------------------------------------------
    SCROLL-DRIVEN REVEAL SYSTEM
    IntersectionObserver adds .is-visible
-   when elements enter the viewport
+   when elements enter the viewport.
+   Uses clip-path wipe for a more editorial
+   feel vs the generic translateY+opacity.
 ------------------------------------------- */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(35px);
-    transition: opacity 0.9s var(--ease-out-expo),
-                transform 0.9s var(--ease-out-expo);
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(18px);
+    transition:
+        opacity    0.85s var(--ease-out-expo),
+        clip-path  0.85s var(--ease-out-expo),
+        transform  0.85s var(--ease-out-expo);
 }
 
 .fade-in-up.is-visible {
     opacity: 1;
+    clip-path: inset(0 0 0% 0);
     transform: translateY(0);
 }
 
 /* Stagger children using nth-child delays */
-.fade-in-up:nth-child(2) { transition-delay: 0.1s; }
-.fade-in-up:nth-child(3) { transition-delay: 0.2s; }
-.fade-in-up:nth-child(4) { transition-delay: 0.3s; }
-.fade-in-up:nth-child(5) { transition-delay: 0.4s; }
-.fade-in-up:nth-child(6) { transition-delay: 0.5s; }
+.fade-in-up:nth-child(2) { transition-delay: 0.12s; }
+.fade-in-up:nth-child(3) { transition-delay: 0.24s; }
+.fade-in-up:nth-child(4) { transition-delay: 0.36s; }
+.fade-in-up:nth-child(5) { transition-delay: 0.48s; }
+.fade-in-up:nth-child(6) { transition-delay: 0.60s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-up {
+        clip-path: none; opacity: 1;
+        transform: none; transition: none;
+    }
+}
 
 /* Load-specific reveals (hero elements) */
 .reveal-on-load {
@@ -276,12 +293,26 @@ body.loaded #loader {
 /* -------------------
    TYPOGRAPHY & NAV
 ---------------------- */
-h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-optical-sizing: auto;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
 .italic { font-style: italic; }
 .gold-text { color: var(--gold); }
 .sm-caps {
-    font-size: 0.7rem; letter-spacing: 3px;
-    text-transform: uppercase; opacity: 0.8;
+    font-size: 0.65rem; letter-spacing: 5px;
+    text-transform: uppercase; opacity: 0.55; font-weight: 400;
+}
+
+/* Fluid display h2 scale across sections */
+section h2 {
+    font-size: clamp(2.4rem, 5.5vw, 5rem);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
 }
 
 .nav-overlay {
@@ -401,12 +432,25 @@ section {
     line-height: 1.05;
     min-height: 1.2em;
     color: white;
-    /* Tumbler spool: container visible, chars animate individually */
-    perspective: 1000px;
-    overflow: hidden;
+    /* Cinematic blur-in — replaces char-by-char spool */
     opacity: 0;
+    filter: blur(14px);
+    transform: translateY(22px);
+    transition:
+        opacity  1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+        filter   1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+        transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
 }
-body.loaded .headline-reveal { opacity: 1; transform: translateY(0); }
+body.loaded .headline-reveal {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .headline-reveal {
+        opacity: 1; filter: none; transform: none; transition: none;
+    }
+}
 
 .hero-subhead {
     font-size: 1.05rem; line-height: 1.7;
@@ -472,21 +516,21 @@ body.loaded .headline-reveal { opacity: 1; transform: translateY(0); }
 .ticker-track {
     display: flex; align-items: center;
     width: max-content;
-    animation: scrollTicker 55s linear infinite;
+    animation: scrollTicker 72s linear infinite; /* slow — each word becomes readable content */
     will-change: transform;
 }
 
 .ticker-item {
     font-family: 'Inter', sans-serif;
-    font-size: 0.7rem; letter-spacing: 3px;
+    font-size: 0.62rem; letter-spacing: 6px; /* wider tracking = more premium */
     text-transform: uppercase; color: var(--cream);
     white-space: nowrap; flex-shrink: 0;
-    padding-right: 50px;
-    display: flex; align-items: center; gap: 50px;
+    padding-right: 60px; opacity: 0.45;
+    display: flex; align-items: center; gap: 60px;
 }
 
 .ticker-item .dot {
-    color: var(--gold); font-size: 1.2rem; line-height: 0;
+    color: var(--gold); font-size: 1rem; line-height: 0; opacity: 0.7;
 }
 
 @keyframes scrollTicker {
@@ -663,6 +707,8 @@ body.loaded .headline-reveal { opacity: 1; transform: translateY(0); }
     flex: 1 1 50%; min-width: 0;
     position: relative; overflow: hidden;
     min-height: 450px;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 /* Base image container — oversized for drift room */
@@ -847,7 +893,7 @@ body.loaded .headline-reveal { opacity: 1; transform: translateY(0); }
 .phase-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 300; color: var(--cream);
+    font-weight: 400; font-style: italic; color: var(--cream);
     line-height: 1.1; margin: 0;
 }
 
@@ -1161,23 +1207,37 @@ a.phase-hint:hover span {
 .library-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 0;
     text-align: left;
+    align-items: start; /* allow vertical stagger */
 }
 
+/* Editorial vertical stagger — each card sits at a different height */
+.library-card:nth-child(1) { margin-top: 0; }
+.library-card:nth-child(2) { margin-top: 64px; }
+.library-card:nth-child(3) { margin-top: 32px; }
+
 .library-card {
-    padding: 35px 28px;
-    border: 1px solid rgba(0,0,0,0.08);
-    border-radius: 2px;
-    background: rgba(255,255,255,0.6);
-    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    padding: 44px 36px;
+    border-top: 1px solid rgba(0,0,0,0.12); /* rule, not box */
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    background: transparent;
+    transition: padding-top 0.55s var(--ease-out-expo);
     display: flex;
     flex-direction: column;
 }
 
+/* Vertical dividers between cards */
+.library-card + .library-card {
+    border-left: 1px solid rgba(0,0,0,0.07);
+    padding-left: 44px;
+}
+
 .library-card:hover {
-    border-color: rgba(212,175,55,0.3);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.04);
+    padding-top: 36px; /* subtle rise on hover */
 }
 
 .library-card-tag {
@@ -1226,7 +1286,8 @@ a.phase-hint:hover span {
 }
 
 @media (max-width: 900px) {
-    .library-grid { grid-template-columns: 1fr; gap: 20px; }
+    .library-grid { grid-template-columns: 1fr; gap: 0; }
+    .library-card:nth-child(n) { margin-top: 0; border-left: none; border-top: 1px solid rgba(0,0,0,0.1); padding-left: 0; }
     .library-section { padding: 80px 25px; }
 }
 
@@ -1507,7 +1568,12 @@ a.phase-hint:hover span {
 .signature-form label {
     position: absolute; top: 15px; left: 0; color: #555;
     font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
-    pointer-events: none; transition: 0.3s ease;
+    pointer-events: none;
+    transition:
+        top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        font-size 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        color 0.4s ease,
+        opacity 0.4s ease;
 }
 
 .signature-form input:focus ~ label, .signature-form input:not(:placeholder-shown) ~ label {
@@ -1515,19 +1581,29 @@ a.phase-hint:hover span {
 }
 
 .underline-gold {
-    position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-    background-color: var(--gold); transition: width 0.5s ease;
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 1px;
+    background: rgba(255,255,255,0.12); /* base rule always visible */
 }
-.signature-form input:focus ~ .underline-gold { width: 100%; }
+/* Gold line draws from left on focus */
+.underline-gold::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    height: 1px; width: 0%;
+    background: var(--gold);
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.input-wrapper:focus-within .underline-gold::after { width: 100%; }
 
 .gold-btn {
     background: var(--gold); color: #000; border: none;
     padding: 18px 0; width: 100%; font-family: 'Inter', sans-serif;
     font-weight: 600; font-size: 0.8rem; letter-spacing: 2px;
     text-transform: uppercase; position: relative; overflow: hidden;
-    transition: 0.3s; border-radius: 2px;
+    transition: background 0.3s, box-shadow 0.3s; border-radius: 2px;
+    display: block; will-change: transform;
 }
-.gold-btn:hover { background: #e5c155; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+.gold-btn:hover { background: var(--gold-pale); box-shadow: 0 0 28px rgba(201, 168, 76, 0.35); }
 
 .btn-shimmer {
     position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
@@ -1667,27 +1743,7 @@ a.phase-hint:hover span {
 .dot.active { background: white; transform: scale(1.2); }
 .dot:hover { background: rgba(255,255,255,0.7); transform: scale(1.4); }
 
-/* -------------------
-   MECHANICAL TUMBLER
----------------------- */
-
-.char-wrapper {
-    display: inline-block; position: relative;
-    white-space: pre;
-}
-
-.char {
-    display: inline-block; opacity: 0;
-    transform-origin: 50% 100%;
-    transform: translateY(100%) rotateX(-90deg);
-    filter: blur(5px);
-    animation: tumbler-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-}
-
-@keyframes tumbler-up {
-    0% { opacity: 0; transform: translateY(100%) rotateX(-90deg); filter: blur(8px); }
-    100% { opacity: 1; transform: translateY(0) rotateX(0deg); filter: blur(0); }
-}
+/* Tumbler CSS removed — headline now uses cinematic blur-in via .headline-reveal transition */
 
 /* ===================================
    MOBILE OPTIMIZATION
