@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Library | Off Day Collective</title>
+    <meta name="description" content="The science behind intentional rest. Three evidence-based articles on cortisol dynamics, ultradian rhythms, and sleep architecture — the research that shapes every Off Day ritual.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.offdaycollective.com/library">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Library | Off Day Collective">
+    <meta property="og:description" content="The science of rest, cited. Three in-depth articles on why intentional downtime works — and what the research actually says.">
+    <meta property="og:image" content="https://www.offdaycollective.com/images/social-share.png">
+    <meta property="og:url" content="https://www.offdaycollective.com/library">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Library | Off Day Collective">
+    <meta name="twitter:description" content="The science of rest, cited.">
+    <meta name="twitter:image" content="https://www.offdaycollective.com/images/social-share.png">
+
+    <style>
+        .skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#C9A84C;color:#000;padding:12px 24px;z-index:99999;font-family:'Inter',sans-serif;font-size:0.8rem;letter-spacing:1px;text-decoration:none;border-radius:0 0 4px 4px;transition:top 0.3s}.skip-link:focus{top:0}
+
+        /* Offset anchor links to clear the fixed nav */
+        html { scroll-padding-top: 80px; }
+
+        /* ============================
+           LIBRARY PAGE: CORE LAYOUT
+        ============================= */
+
+        .lib-hero {
+            background: var(--ink, #0D0C0A);
+            padding: 160px 40px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .lib-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.055) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .lib-hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .lib-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold, #C9A84C);
+            opacity: 0.7;
+            display: block;
+            margin-bottom: 24px;
+        }
+        .lib-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 300;
+            color: var(--cream, #F9F7F2);
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            margin: 0 0 28px;
+        }
+        .lib-hero h1 em {
+            font-style: italic;
+            color: var(--gold, #C9A84C);
+        }
+        .lib-hero-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(249,247,242,0.45);
+            font-weight: 300;
+            max-width: 540px;
+            margin-bottom: 70px;
+        }
+
+        /* Article index nav */
+        .lib-index {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 60px;
+            background: rgba(255,255,255,0.05);
+        }
+        .lib-index-card {
+            display: block;
+            padding: 32px 28px;
+            background: var(--ink, #0D0C0A);
+            text-decoration: none;
+            transition: background 0.4s ease;
+            border-right: 1px solid rgba(255,255,255,0.06);
+        }
+        .lib-index-card:last-child { border-right: none; }
+        .lib-index-card:hover { background: rgba(255,255,255,0.025); }
+        .lib-index-phase {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold, #C9A84C);
+            opacity: 0.65;
+            display: block;
+            margin-bottom: 14px;
+        }
+        .lib-index-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--cream, #F9F7F2);
+            line-height: 1.3;
+            margin: 0 0 12px;
+        }
+        .lib-index-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.22);
+            text-transform: uppercase;
+        }
+        .lib-index-arrow {
+            display: block;
+            color: var(--gold, #C9A84C);
+            font-size: 1.1rem;
+            margin-top: 18px;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateX(-6px);
+        }
+        .lib-index-card:hover .lib-index-arrow {
+            opacity: 0.7;
+            transform: translateX(0);
+        }
+
+        /* ============================
+           ARTICLE BASE STYLES
+        ============================= */
+        .lib-article {
+            position: relative;
+        }
+        .lib-article-header {
+            padding: 100px 40px 60px;
+        }
+        .lib-article-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .lib-article-inner-wide {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .art-phase-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 28px;
+            padding: 6px 14px;
+            border: 1px solid currentColor;
+            opacity: 0.6;
+        }
+        .lib-article h2.art-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin: 0 0 18px;
+        }
+        .art-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.5;
+            opacity: 0.6;
+            margin-bottom: 36px;
+        }
+        .art-byline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.35;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .art-byline-sep {
+            width: 20px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.4;
+            display: inline-block;
+        }
+
+        /* Body prose */
+        .art-body {
+            padding: 0 40px 80px;
+        }
+        .art-body p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.02rem;
+            line-height: 1.95;
+            font-weight: 300;
+            margin-bottom: 1.6rem;
+        }
+        .art-body p:first-child {
+            font-size: 1.12rem;
+            line-height: 1.9;
+        }
+        .art-body h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin: 3rem 0 1.1rem;
+            letter-spacing: -0.01em;
+        }
+        /* Footnote superscripts */
+        .art-body sup a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            vertical-align: super;
+            color: var(--gold, #C9A84C);
+            text-decoration: none;
+            margin-left: 1px;
+            opacity: 0.8;
+        }
+        .art-body sup a:hover { opacity: 1; }
+
+        /* Pull quote */
+        .art-pullquote {
+            margin: 60px 0;
+            padding: 48px 56px;
+            border-left: 2px solid var(--gold, #C9A84C);
+            position: relative;
+        }
+        .art-pullquote p {
+            font-family: 'Cormorant Garamond', serif !important;
+            font-size: clamp(1.4rem, 2.5vw, 2rem) !important;
+            font-weight: 300 !important;
+            font-style: italic !important;
+            line-height: 1.5 !important;
+            margin: 0 !important;
+        }
+
+        /* Data visualization figure */
+        .art-figure {
+            margin: 64px auto;
+            max-width: 900px;
+            padding: 0 40px;
+        }
+        .art-figure-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.35;
+            display: block;
+            margin-bottom: 20px;
+        }
+        .art-figure svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .art-figure-caption {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            line-height: 1.7;
+            opacity: 0.4;
+            margin-top: 14px;
+            max-width: 560px;
+        }
+
+        /* Citations */
+        .art-citations {
+            padding: 40px 40px 80px;
+            border-top: 1px solid currentColor;
+            opacity: 0.25;
+        }
+        .art-citations h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .art-citations ol {
+            list-style: decimal;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .art-citations li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ============================
+           ARTICLE 1: MORNING (CREAM)
+        ============================= */
+        #art-morning {
+            background: #F2EFE8;
+            color: var(--charcoal, #1A1A1A);
+        }
+        #art-morning .art-phase-tag { color: #9A7830; border-color: #9A7830; }
+        #art-morning h2.art-title { color: #1A1A1A; }
+        #art-morning .art-subtitle { color: rgba(15,15,15,0.55); }
+        #art-morning .art-byline { color: rgba(15,15,15,0.4); }
+        #art-morning .art-body p { color: rgba(15,15,15,0.7); }
+        #art-morning .art-body h3 { color: #1A1A1A; }
+        #art-morning .art-pullquote { border-color: #9A7830; background: rgba(201,168,76,0.06); }
+        #art-morning .art-pullquote p { color: #2A1E0A !important; }
+        #art-morning .art-figure-caption { color: rgba(15,15,15,0.5); }
+        #art-morning .art-citations { border-color: rgba(0,0,0,0.2); color: #1A1A1A; }
+
+        /* ============================
+           ARTICLE 2: JOURNEY (DARK)
+        ============================= */
+        #art-journey {
+            background: var(--charcoal, #1A1A1A);
+            color: var(--cream, #F9F7F2);
+        }
+        #art-journey .art-phase-tag { color: #8FAF90; border-color: #8FAF90; }
+        #art-journey h2.art-title { color: var(--cream, #F9F7F2); }
+        #art-journey .art-subtitle { color: rgba(249,247,242,0.45); }
+        #art-journey .art-byline { color: rgba(249,247,242,0.3); }
+        #art-journey .art-body p { color: rgba(249,247,242,0.6); }
+        #art-journey .art-body h3 { color: var(--cream, #F9F7F2); }
+        #art-journey .art-pullquote { border-color: #8FAF90; background: rgba(143,175,144,0.06); }
+        #art-journey .art-pullquote p { color: var(--cream, #F9F7F2) !important; }
+        #art-journey .art-citations { border-color: rgba(255,255,255,0.15); color: var(--cream); }
+
+        /* ============================
+           ARTICLE 3: EVENING (NEAR-BLACK)
+        ============================= */
+        #art-evening {
+            background: #07060A;
+            color: var(--cream, #F9F7F2);
+        }
+        #art-evening .art-phase-tag { color: #9B8CC8; border-color: #9B8CC8; }
+        #art-evening h2.art-title { color: var(--cream, #F9F7F2); }
+        #art-evening .art-subtitle { color: rgba(249,247,242,0.4); }
+        #art-evening .art-byline { color: rgba(249,247,242,0.28); }
+        #art-evening .art-body p { color: rgba(249,247,242,0.55); }
+        #art-evening .art-body h3 { color: rgba(249,247,242,0.88); }
+        #art-evening .art-pullquote { border-color: #9B8CC8; background: rgba(155,140,200,0.06); }
+        #art-evening .art-pullquote p { color: rgba(249,247,242,0.9) !important; }
+        #art-evening .art-citations { border-color: rgba(255,255,255,0.1); color: var(--cream); }
+
+        /* ============================
+           ARTICLE SEPARATOR BREATHER
+        ============================= */
+        .art-breather {
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent);
+        }
+
+        /* ============================
+           LIBRARY CTA SECTION
+        ============================= */
+        .lib-cta {
+            background: #050505;
+            padding: 120px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .lib-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 1px; height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--gold, #C9A84C));
+            opacity: 0.3;
+        }
+        .lib-cta-inner {
+            max-width: 520px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .lib-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 300;
+            color: var(--cream, #F9F7F2);
+            margin: 20px 0;
+            line-height: 1.15;
+        }
+        .lib-cta-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(249,247,242,0.4);
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* ============================
+           RESPONSIVE
+        ============================= */
+        @media (max-width: 768px) {
+            .lib-hero { padding: 140px 24px 80px; }
+            .lib-index { grid-template-columns: 1fr; }
+            .lib-index-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+            .lib-index-card:last-child { border-bottom: none; }
+            .lib-article-header { padding: 70px 24px 40px; }
+            .art-body { padding: 0 24px 60px; }
+            .art-figure { padding: 0 24px; }
+            .art-citations { padding: 30px 24px 60px; }
+            .art-pullquote { padding: 32px 28px; margin: 40px 0; }
+            .lib-cta { padding: 80px 24px; }
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDBPMXWD51"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-LDBPMXWD51');</script>
+</head>
+<body class="dark-bg loaded">
+    <div id="page-transition"></div>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div class="noise-overlay"></div>
+
+    <nav class="nav-overlay">
+        <a href="/" class="logo" style="pointer-events:auto; text-decoration:none; color:inherit; display:flex; align-items:center; gap:12px;">
+            <svg viewBox="0 0 200 220" width="26" aria-hidden="true" class="nav-mark"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><rect x="85" y="72" width="9" height="54" rx="2" fill="#C9A84C"/><rect x="106" y="72" width="9" height="54" rx="2" fill="#C9A84C"/></svg>
+            Off Day Collective
+        </a>
+        <div class="nav-right">
+            <div class="status-indicator">
+                <span class="pulse"></span> FALL 2026
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- =========================================
+             LIBRARY HERO
+        ========================================== -->
+        <section class="lib-hero">
+            <div class="lib-hero-inner">
+                <span class="lib-eyebrow">Off Day Collective · The Library</span>
+                <h1>The science<br>of <em>rest.</em></h1>
+                <p class="lib-hero-sub">Three evidence-based articles on why intentional downtime works — and what the research actually says. No wellness jargon. Real papers, cited. Free for everyone.</p>
+
+                <nav class="lib-index" aria-label="Article navigation">
+                    <a href="#art-morning" class="lib-index-card">
+                        <span class="lib-index-phase">I · Morning Stillness</span>
+                        <h3>The 90-Minute Window</h3>
+                        <span class="lib-index-meta">8 min · Cortisol &amp; Circadian Biology</span>
+                        <span class="lib-index-arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a href="#art-journey" class="lib-index-card">
+                        <span class="lib-index-phase">II · The Day's Journey</span>
+                        <h3>Walk First, Think Later</h3>
+                        <span class="lib-index-meta">6 min · Movement &amp; Creativity</span>
+                        <span class="lib-index-arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a href="#art-evening" class="lib-index-card">
+                        <span class="lib-index-phase">III · Evening Release</span>
+                        <h3>The Two-Hour Runway</h3>
+                        <span class="lib-index-meta">10 min · Sleep Architecture</span>
+                        <span class="lib-index-arrow" aria-hidden="true">→</span>
+                    </a>
+                </nav>
+            </div>
+        </section>
+
+
+        <!-- =========================================
+             ARTICLE 1: THE MORNING WINDOW
+        ========================================== -->
+        <article id="art-morning" class="lib-article">
+            <div class="lib-article-header">
+                <div class="lib-article-inner">
+                    <span class="art-phase-tag">I · Morning Stillness</span>
+                    <h2 class="art-title">The 90-Minute Window: Why Your First Hour Determines Your Entire Day</h2>
+                    <p class="art-subtitle">Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it.</p>
+                    <div class="art-byline">
+                        <span>Research Desk, Off Day Collective</span>
+                        <span class="art-byline-sep"></span>
+                        <span>8 min read</span>
+                        <span class="art-byline-sep"></span>
+                        <span>4 sources</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="art-body">
+                <div class="lib-article-inner">
+                    <p>The cortisol awakening response is one of the most studied phenomena in psychoneuroendocrinology. It is also one of the least mentioned at breakfast tables. Within 20–30 minutes of opening your eyes, your body stages a hormonal surge: cortisol rises 50–160% above its overnight baseline, peaks, then gradually declines over the next several hours.<sup><a href="#morning-ref-1" id="morning-cite-1">[1]</a></sup> This is not a stress response misfiring. This is your body doing exactly what 200,000 years of evolution designed it to do — priming the immune system, sharpening working memory, elevating cardiovascular output, and preparing you to engage with whatever the day requires.</p>
+
+                    <p>The morning I first read the Clow et al. paper, I was on my third coffee of the day before 10am. I hadn't eaten. I'd opened my phone before my feet hit the floor. The cortisol data made something click: I wasn't supplementing my body's natural morning state — I was bulldozing it.</p>
+
+                    <h3>What the curve actually looks like</h3>
+                    <p>The Cortisol Awakening Response (CAR) is governed by the hypothalamic-pituitary-adrenal (HPA) axis — the same system that mediates the stress response, but operating here in a fundamentally different mode. Rather than a threat response, it is an anticipatory response: your brain begins orchestrating this cortisol release <em>before</em> your alarm sounds, triggered by circadian signals from the suprachiasmatic nucleus (SCN) in the hypothalamus — your internal clock.<sup><a href="#morning-ref-2" id="morning-cite-2">[2]</a></sup></p>
+
+                    <p>The arc of the natural CAR is a clean bell curve: a steep rise from wake time, a peak somewhere between 30 and 45 minutes, and a gradual decline across the morning. The slope of that decline matters. A healthy, well-sloped CAR means sustained alertness, stable mood, and an intact cognitive baseline through the late morning. A blunted or disrupted CAR — compressed by poor sleep, stress, or overridden by external inputs — truncates that window.</p>
+                </div>
+            </div>
+
+            <!-- DATA FIGURE: Cortisol Curve -->
+            <figure class="art-figure" aria-label="Cortisol awakening response chart">
+                <div class="lib-article-inner-wide">
+                    <span class="art-figure-label" style="color: rgba(15,15,15,0.4);">Fig. 1 — Cortisol Awakening Response: relative concentration across 16 hours from waking</span>
+                    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line chart showing cortisol rising sharply 30 minutes after waking then gradually declining over 16 hours">
+                        <!-- Background -->
+                        <rect width="620" height="200" fill="#EDE9DF" rx="2"/>
+
+                        <!-- Grid lines -->
+                        <line x1="60" y1="30" x2="60" y2="170" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+                        <line x1="60" y1="170" x2="580" y2="170" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+                        <line x1="60" y1="100" x2="580" y2="100" stroke="rgba(0,0,0,0.06)" stroke-width="1" stroke-dasharray="3,5"/>
+                        <line x1="60" y1="140" x2="580" y2="140" stroke="rgba(0,0,0,0.04)" stroke-width="1" stroke-dasharray="3,8"/>
+
+                        <!-- Fill area under cortisol curve -->
+                        <path d="M 60 155 C 68 155 70 43 80 43 C 95 43 108 72 125 88 C 145 105 165 115 195 120 C 235 126 285 132 340 140 C 395 148 450 154 500 160 C 535 164 565 166 580 167 L 580 170 L 60 170 Z" fill="rgba(201,168,76,0.12)"/>
+
+                        <!-- Cortisol line -->
+                        <path d="M 60 155 C 68 155 70 43 80 43 C 95 43 108 72 125 88 C 145 105 165 115 195 120 C 235 126 285 132 340 140 C 395 148 450 154 500 160 C 535 164 565 166 580 167" fill="none" stroke="#9A7830" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                        <!-- CAR peak annotation -->
+                        <circle cx="80" cy="43" r="4" fill="#9A7830"/>
+                        <line x1="80" y1="39" x2="80" y2="22" stroke="#9A7830" stroke-width="1" stroke-dasharray="2,3" opacity="0.6"/>
+                        <text x="80" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="#9A7830" opacity="0.8">CAR Peak ≈ 30 min</text>
+
+                        <!-- Optimal focus annotation -->
+                        <text x="160" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(0,0,0,0.35)" letter-spacing="0.5">Optimal focus window</text>
+
+                        <!-- Wind-down label -->
+                        <text x="500" y="152" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(0,0,0,0.3)" letter-spacing="0.5">Wind-down</text>
+
+                        <!-- X-axis labels -->
+                        <text x="60" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.35)">Wake</text>
+                        <text x="165" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.35)">+3h</text>
+                        <text x="270" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.35)">+6h</text>
+                        <text x="375" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.35)">+9h</text>
+                        <text x="480" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.35)">+12h</text>
+                        <text x="580" y="184" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.35)">+16h</text>
+
+                        <!-- Y-axis label -->
+                        <text x="22" y="103" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(0,0,0,0.3)" transform="rotate(-90, 22, 103)">Cortisol (relative)</text>
+                    </svg>
+                    <p class="art-figure-caption" style="color: rgba(15,15,15,0.45);">Stylised representation of the Cortisol Awakening Response. The CAR peak occurs approximately 30–45 minutes after waking, followed by a gradual diurnal decline. Individual variation is significant; shift workers, new parents, and people under high chronic stress typically show a flatter or delayed CAR.</p>
+                </div>
+            </figure>
+
+            <div class="art-body">
+                <div class="lib-article-inner">
+                    <h3>The phone problem, and the caffeine problem</h3>
+                    <p>Here is where most morning routines fail. The moment you reach for your phone, you trigger a cortisol spike via psychological stress — a response that overlaps chaotically with the natural CAR. You have essentially fired the cannon twice. The result is not double the energy. It is a blunted, distorted curve that never reaches its natural peak, and that does not decline cleanly — leaving elevated cortisol mid-afternoon, when it should be ebbing.<sup><a href="#morning-ref-3" id="morning-cite-3">[3]</a></sup></p>
+
+                    <p>Caffeine has the same structural problem, but with a different molecule. Adenosine is the compound that accumulates in your brain during waking hours, building sleep pressure. During sleep, it is cleared. The natural CAR activates you before adenosine has had a chance to re-accumulate — meaning the first 60–90 minutes post-waking are biologically your clearest window of the day. Caffeine works by blocking adenosine receptors, not by adding energy. Consuming it during the CAR window masks an alertness you already have, and sets up a sharper crash once it wears off and the adenosine finally arrives.<sup><a href="#morning-ref-4" id="morning-cite-4">[4]</a></sup></p>
+
+                    <h3>Light: the most underrated morning tool</h3>
+                    <p>The SCN in your hypothalamus is the master clock for your entire circadian system, and it runs on light. Morning light — the spectrum of early daylight, around 1,000–10,000 lux compared to the 100–500 lux of indoor environments — helps anchor your clock, advancing melatonin offset and extending your effective alertness window across the day. Even on an overcast day, outdoor light is significantly brighter than any indoor bulb.<sup><a href="#morning-ref-2">[2]</a></sup></p>
+
+                    <p>Ten to fifteen minutes of outdoor light within 30 minutes of waking meaningfully calibrates your cortisol curve, improves daytime mood, and anchors a more stable sleep onset in the evening. You do not need a sunrise alarm clock. You need a door.</p>
+
+                    <div class="art-pullquote">
+                        <p>"The first morning I held off on coffee until 90 minutes after waking, I felt like I'd found something I wasn't supposed to know. I was already awake. My brain had been awake since my feet hit the floor. The caffeine had just been covering that up for years."</p>
+                    </div>
+
+                    <h3>What we built around it</h3>
+                    <p>Every object in the Morning Stillness phase is chosen to protect and extend the CAR window rather than override it. A warm, unscented drink (not caffeinated) that lowers gut inflammation — the leading driver of chronic HPA dysregulation. A handwriting prompt that engages fine motor systems complementary to cortisol-driven attention, without the cortisol-spiking urgency of a task list. A skincare ritual requiring tactile attention — proprioceptive feedback that supports parasympathetic tone without blunting the natural cortisol rise.</p>
+
+                    <p>The ritual takes 20 minutes. The literature suggests the effect on your hormonal baseline lasts until evening.</p>
+                </div>
+            </div>
+
+            <div class="art-citations" id="morning-citations">
+                <div class="lib-article-inner">
+                    <h4>Sources</h4>
+                    <ol>
+                        <li id="morning-ref-1">Clow, A., Thorn, L., Evans, P., &amp; Hucklebridge, F. (2004). The awakening cortisol response: methodological issues and significance. <em>Stress</em>, 7(1), 29–37.</li>
+                        <li id="morning-ref-2">Czeisler, C.A., et al. (1999). Stability, precision, and near-24-hour period of the human circadian pacemaker. <em>Science</em>, 284(5423), 2177–2181.</li>
+                        <li id="morning-ref-3">Kudielka, B.M., &amp; Kirschbaum, C. (2005). Sex differences in HPA axis responses to stress: a review. <em>Biological Psychology</em>, 69(1), 113–132.</li>
+                        <li id="morning-ref-4">Porkka-Heiskanen, T. (1999). Adenosine in sleep and wakefulness. <em>Annals of Medicine</em>, 31(2), 125–129.</li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+        <div class="art-breather" aria-hidden="true"></div>
+
+
+        <!-- =========================================
+             ARTICLE 2: THE DAY'S JOURNEY
+        ========================================== -->
+        <article id="art-journey" class="lib-article">
+            <div class="lib-article-header">
+                <div class="lib-article-inner">
+                    <span class="art-phase-tag">II · The Day's Journey</span>
+                    <h2 class="art-title">Walk First, Think Later: How Aimless Movement Solves Problems Your Desk Can't</h2>
+                    <p class="art-subtitle">Your brain has never worked in eight-hour blocks. It never will. Here is what it is actually doing — and why going outside without a plan is a research-backed strategy.</p>
+                    <div class="art-byline">
+                        <span>Research Desk, Off Day Collective</span>
+                        <span class="art-byline-sep"></span>
+                        <span>6 min read</span>
+                        <span class="art-byline-sep"></span>
+                        <span>4 sources</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="art-body">
+                <div class="lib-article-inner">
+                    <p>In 2014, Stanford researchers Marily Oppezzo and Daniel Schwartz published findings that surprised everyone who had ever stared at a wall willing a good idea to arrive. Walking increases creative output by an average of 81%.<sup><a href="#journey-ref-1" id="journey-cite-1">[1]</a></sup> Not structured walking. Not a treadmill desk or a podcast walk. Aimless walking — no destination, no audio input, no objective beyond the movement itself.</p>
+
+                    <p>The key term in the study is <em>divergent thinking</em> — the cognitive process by which the brain generates multiple, varied responses to a single problem. It is the opposite of the linear, efficiency-minded focus state that desks are designed to promote. And it is where almost every genuinely interesting idea originates.</p>
+
+                    <p>I used to think I was bad at creative thinking. I now understand I was just always sitting down.</p>
+
+                    <h3>The 90-minute clock running under everything</h3>
+                    <p>Nathaniel Kleitman discovered REM sleep in 1953. Less celebrated is what he did next: he spent the following decades documenting that the same oscillating rhythm that governs sleep architecture — approximately 90 minutes — also runs continuously during waking hours. He called it the Basic Rest-Activity Cycle, or BRAC.<sup><a href="#journey-ref-2" id="journey-cite-2">[2]</a></sup></p>
+
+                    <p>Each cycle moves through phases of higher and lower left-hemisphere dominance, norepinephrine availability, and attentional control. As a cycle ends, brief intrusions of associative, non-linear thinking appear — what researchers describe as "dream-like" cognition entering the waking mind. This is not distraction. This is the brain shifting into its divergent mode, exactly the state where creative synthesis becomes possible.</p>
+
+                    <p>Most people treat these intrusions as something to overcome. They push through. They open another tab. They reach for something stimulating. The research suggests a different response: go outside.</p>
+                </div>
+            </div>
+
+            <!-- DATA FIGURE: Ultradian Rhythm Wave -->
+            <figure class="art-figure" aria-label="Ultradian alertness rhythm chart">
+                <div class="lib-article-inner-wide">
+                    <span class="art-figure-label" style="color: rgba(249,247,242,0.3);">Fig. 2 — Ultradian Alertness Cycles: ~90-minute oscillations across a 16-hour waking day</span>
+                    <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wave chart showing oscillating alertness over the waking day with a post-lunch dip around 1-3pm">
+                        <!-- Background -->
+                        <rect width="640" height="210" fill="#1E1E1E" rx="2"/>
+
+                        <!-- Post-lunch dip zone highlight -->
+                        <rect x="252" y="20" width="120" height="155" fill="rgba(201,168,76,0.05)" rx="1"/>
+                        <line x1="252" y1="20" x2="252" y2="175" stroke="rgba(201,168,76,0.15)" stroke-width="1" stroke-dasharray="3,5"/>
+                        <line x1="372" y1="20" x2="372" y2="175" stroke="rgba(201,168,76,0.15)" stroke-width="1" stroke-dasharray="3,5"/>
+                        <text x="312" y="16" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(201,168,76,0.5)" letter-spacing="1">POST-LUNCH DIP</text>
+
+                        <!-- Axes -->
+                        <line x1="55" y1="175" x2="595" y2="175" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="55" y1="30" x2="55" y2="175" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+                        <!-- Mid-line reference -->
+                        <line x1="55" y1="102" x2="595" y2="102" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,6"/>
+
+                        <!-- Ultradian wave — sage/green color, rises and falls -->
+                        <!-- Peaks: high alertness. Troughs: low. Post-lunch dip: very low trough around x=290-360 -->
+                        <path d="
+                            M 55 115
+                            C 70 115, 78 42, 95 42
+                            C 112 42, 120 148, 137 148
+                            C 154 148, 162 38, 179 38
+                            C 196 38, 204 135, 221 135
+                            C 238 135, 246 155, 263 165
+                            C 276 172, 302 178, 322 178
+                            C 342 178, 358 165, 375 148
+                            C 392 128, 400 55, 417 55
+                            C 434 55, 442 148, 459 148
+                            C 476 148, 484 68, 501 68
+                            C 518 68, 526 155, 543 158
+                            C 560 160, 580 168, 595 172
+                        " fill="none" stroke="#8FAF90" stroke-width="2.5" stroke-linecap="round"/>
+
+                        <!-- Shaded area under wave -->
+                        <path d="
+                            M 55 115
+                            C 70 115, 78 42, 95 42
+                            C 112 42, 120 148, 137 148
+                            C 154 148, 162 38, 179 38
+                            C 196 38, 204 135, 221 135
+                            C 238 135, 246 155, 263 165
+                            C 276 172, 302 178, 322 178
+                            C 342 178, 358 165, 375 148
+                            C 392 128, 400 55, 417 55
+                            C 434 55, 442 148, 459 148
+                            C 476 148, 484 68, 501 68
+                            C 518 68, 526 155, 543 158
+                            C 560 160, 580 168, 595 172
+                            L 595 175 L 55 175 Z
+                        " fill="rgba(143,175,144,0.07)"/>
+
+                        <!-- Dots at peaks -->
+                        <circle cx="95" cy="42" r="3" fill="#8FAF90" opacity="0.8"/>
+                        <circle cx="179" cy="38" r="3" fill="#8FAF90" opacity="0.8"/>
+                        <circle cx="417" cy="55" r="3" fill="#8FAF90" opacity="0.8"/>
+                        <circle cx="501" cy="68" r="3" fill="#8FAF90" opacity="0.7"/>
+
+                        <!-- Annotations at peaks -->
+                        <text x="95" y="34" text-anchor="middle" font-family="Inter, sans-serif" font-size="6.5" fill="#8FAF90" opacity="0.7">Peak</text>
+                        <text x="179" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="6.5" fill="#8FAF90" opacity="0.7">Peak</text>
+                        <text x="417" y="47" text-anchor="middle" font-family="Inter, sans-serif" font-size="6.5" fill="#8FAF90" opacity="0.7">Recovery</text>
+
+                        <!-- Dip label -->
+                        <circle cx="322" cy="178" r="3" fill="rgba(201,168,76,0.7)"/>
+                        <text x="322" y="196" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(201,168,76,0.55)">~2pm low</text>
+
+                        <!-- X-axis time labels -->
+                        <text x="55" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.25)">6am</text>
+                        <text x="190" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.25)">10am</text>
+                        <text x="325" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.25)">2pm</text>
+                        <text x="460" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.25)">6pm</text>
+                        <text x="595" y="190" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.25)">10pm</text>
+
+                        <!-- Y-axis labels -->
+                        <text x="42" y="44" text-anchor="end" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.2)">High</text>
+                        <text x="42" y="106" text-anchor="end" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.2)">Mid</text>
+                        <text x="42" y="175" text-anchor="end" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.2)">Low</text>
+
+                        <!-- ~90 min cycle bracket -->
+                        <line x1="55" y1="22" x2="137" y2="22" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="55" y1="19" x2="55" y2="25" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <line x1="137" y1="19" x2="137" y2="25" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                        <text x="96" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-size="6.5" fill="rgba(255,255,255,0.2)">≈ 90 min</text>
+                    </svg>
+                    <p class="art-figure-caption" style="color: rgba(249,247,242,0.3);">Stylised representation of the Basic Rest-Activity Cycle (BRAC) across a waking day. Note the amplified trough in the early afternoon — the post-lunch dip — which occurs independent of food intake and is observable across all studied cultures, including those without a siesta tradition.</p>
+                </div>
+            </figure>
+
+            <div class="art-body">
+                <div class="lib-article-inner">
+                    <h3>The post-lunch dip is not about lunch</h3>
+                    <p>Around 1–3pm, most people experience a marked drop in alertness, reaction time, and mood. The common explanation — that eating a meal diverts blood flow to digestion — is only partially true. The post-lunch dip is primarily a biphasic sleep-pressure event hardwired into human circadian biology, present in every culture studied including those with no tradition of afternoon eating or rest.<sup><a href="#journey-ref-3" id="journey-cite-3">[3]</a></sup></p>
+
+                    <p>Peretz Lavie's research at the Technion identified what he called "sleep gates" and "forbidden zones" — windows of strong and weak sleep propensity that appear throughout the day like a biological tide. The early-afternoon gate is the strongest outside of bedtime. Fighting it burns significantly more cognitive energy than the work you might accomplish during it. Working with it — a 10–20 minute walk, a brief eyes-closed rest — measurably restores prefrontal cortex function and extends the effective cognitive day by 2–3 hours.</p>
+
+                    <h3>The Default Mode Network is not idle</h3>
+                    <p>For years, the Default Mode Network (DMN) — a constellation of brain regions including the medial prefrontal cortex, posterior cingulate, and angular gyrus — was considered neural background noise. It activated during rest and deactivated during task performance, so it seemed inactive when nothing important was happening.</p>
+
+                    <p>Then researchers began looking more carefully at what the DMN was actually doing during that apparent rest. What they found was extraordinary: the DMN is engaged in some of the most computationally intensive processing the brain performs — consolidating episodic memory, simulating future scenarios, processing social and moral context, and making the kind of long-range associative connections that generate creative insight.<sup><a href="#journey-ref-4" id="journey-cite-4">[4]</a></sup></p>
+
+                    <p>The DMN activates most fully during aimless movement and eyes-open unfocused rest. It requires a specific kind of disengagement from goal-directed thinking to operate — which is precisely why the walk must be without a podcast, without a route, without a destination. The moment you give the walk a purpose, you hand control back to the task-positive network, and the DMN goes quiet.</p>
+
+                    <div class="art-pullquote">
+                        <p>"Descartes walked for three hours every morning. Darwin built a thinking path around his garden and paced it every afternoon. The desk is where ideas get written down. Not where they arrive."</p>
+                    </div>
+
+                    <h3>What we built around it</h3>
+                    <p>The Momentum phase is not "exercise." It is not about steps, pace, or calorie output. It is about creating the conditions the DMN needs: movement without a goal, sensory input without overstimulation, time outside the built environment. The objects in this phase — a journal for what surfaces, a minimal carry, a field guide for noticing — are chosen to support wandering rather than optimize it. Structure here is counterproductive. The point is genuine aimlessness, which turns out to be a skill most adults have to consciously relearn.</p>
+                </div>
+            </div>
+
+            <div class="art-citations" id="journey-citations">
+                <div class="lib-article-inner">
+                    <h4>Sources</h4>
+                    <ol>
+                        <li id="journey-ref-1">Oppezzo, M., &amp; Schwartz, D.L. (2014). Give your ideas some legs: The positive effect of walking on creative thinking. <em>Journal of Experimental Psychology: Learning, Memory, and Cognition</em>, 40(4), 1142–1152.</li>
+                        <li id="journey-ref-2">Kleitman, N. (1982). Basic rest-activity cycle — 22 years later. <em>Sleep</em>, 5(4), 311–317.</li>
+                        <li id="journey-ref-3">Lavie, P. (1986). Ultrashort sleep-waking schedule. III. 'Gates' and 'forbidden zones' for sleep. <em>Electroencephalography and Clinical Neurophysiology</em>, 63(5), 414–425.</li>
+                        <li id="journey-ref-4">Buckner, R.L., Andrews-Hanna, J.R., &amp; Schacter, D.L. (2008). The brain's default network: anatomy, function, and relevance to disease. <em>Annals of the New York Academy of Sciences</em>, 1124, 1–38.</li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+        <div class="art-breather" aria-hidden="true"></div>
+
+
+        <!-- =========================================
+             ARTICLE 3: THE EVENING RUNWAY
+        ========================================== -->
+        <article id="art-evening" class="lib-article">
+            <div class="lib-article-header">
+                <div class="lib-article-inner">
+                    <span class="art-phase-tag">III · Evening Release</span>
+                    <h2 class="art-title">The Two-Hour Runway: What Actually Happens When You Stop Scrolling Before Bed</h2>
+                    <p class="art-subtitle">Every night, your brain runs a biological cleaning cycle. Most people interrupt it before it starts.</p>
+                    <div class="art-byline">
+                        <span>Research Desk, Off Day Collective</span>
+                        <span class="art-byline-sep"></span>
+                        <span>10 min read</span>
+                        <span class="art-byline-sep"></span>
+                        <span>4 sources</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="art-body">
+                <div class="lib-article-inner">
+                    <p>In 2013, a research team at the University of Rochester made a discovery that quietly rewrote the neuroscience of sleep.<sup><a href="#evening-ref-1" id="evening-cite-1">[1]</a></sup> Using two-photon microscopy to observe living neural tissue, they found that the brain's interstitial space — the gaps between neurons — expands by approximately 60% during sleep. Into that expanded space, cerebrospinal fluid pulses in rhythmic waves, carrying away metabolic waste: amyloid-beta, tau proteins, and other compounds that accumulate during the waking day. The very same compounds whose accumulation over years is associated with Alzheimer's disease and other neurodegenerative conditions.</p>
+
+                    <p>They called this the glymphatic system. And it only operates during sleep.</p>
+
+                    <p>The implication is not subtle. Every night, your brain runs a biological dishwasher. If you consistently fail to enter or sustain the deep sleep stages where glymphatic flow is most active — by fighting the wind-down, overriding the body's signals, or fragmenting sleep — the waste accumulates. Over months and years, the effects range from the familiar (cognitive fog, emotional dysregulation, reduced creativity) to the severe.</p>
+
+                    <p>The question is not whether sleep is important. Science settled that decades ago. The question is what happens in the two hours before you close your eyes — and why that runway matters as much as the destination.</p>
+
+                    <h3>Melatonin is not a sleeping pill</h3>
+                    <p>Melatonin does not cause sleep. It is a darkness signal — a biochemical message broadcast to every cell in the body that night has arrived, that the environment is safe, that repair and consolidation can begin. Melatonin production is triggered by darkness and suppressed by light, specifically by short-wavelength blue light in the 450–490nm range, received by a specialised class of retinal cells called intrinsically photosensitive retinal ganglion cells (ipRGCs).<sup><a href="#evening-ref-2" id="evening-cite-2">[2]</a></sup></p>
+
+                    <p>These cells evolved to detect the blue component of sky light — the spectrum that disappears at dusk. They are exquisitely sensitive. Even moderate indoor light (100–200 lux) can delay melatonin onset by 90 minutes or more. The typical pre-bed scrolling session does not just distract you. It biochemically convinces your brain that it is mid-afternoon.</p>
+                </div>
+            </div>
+
+            <!-- DATA FIGURE: Melatonin Timeline -->
+            <figure class="art-figure" aria-label="Melatonin production across 24 hours">
+                <div class="lib-article-inner-wide">
+                    <span class="art-figure-label" style="color: rgba(249,247,242,0.25);">Fig. 3 — Melatonin concentration over 24 hours, with day/night context</span>
+                    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Area chart showing melatonin flat during the day, rising steeply at dusk, peaking at 2am, declining before dawn">
+                        <!-- Definitions -->
+                        <defs>
+                            <!-- Day-to-night background gradient -->
+                            <linearGradient id="dayNightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#1B1A28"/>
+                                <stop offset="30%" stop-color="#1D1920"/>
+                                <stop offset="52%" stop-color="#2A1F12"/>
+                                <stop offset="65%" stop-color="#14101E"/>
+                                <stop offset="80%" stop-color="#0A0812"/>
+                                <stop offset="100%" stop-color="#18151E"/>
+                            </linearGradient>
+                            <!-- Melatonin fill gradient -->
+                            <linearGradient id="melGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#9B8CC8" stop-opacity="0.5"/>
+                                <stop offset="100%" stop-color="#9B8CC8" stop-opacity="0.0"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Background: day/night gradient -->
+                        <rect width="640" height="220" fill="url(#dayNightGrad)" rx="2"/>
+
+                        <!-- Day marker (noon) -->
+                        <line x1="155" y1="20" x2="155" y2="185" stroke="rgba(255,220,100,0.08)" stroke-width="1" stroke-dasharray="3,6"/>
+                        <text x="155" y="15" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,220,100,0.3)" letter-spacing="1">NOON</text>
+
+                        <!-- Dusk marker (~9pm) -->
+                        <line x1="370" y1="20" x2="370" y2="185" stroke="rgba(201,140,70,0.2)" stroke-width="1" stroke-dasharray="3,6"/>
+                        <text x="370" y="15" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(201,140,70,0.45)" letter-spacing="1">DUSK</text>
+
+                        <!-- Midnight marker -->
+                        <line x1="450" y1="20" x2="450" y2="185" stroke="rgba(155,140,200,0.15)" stroke-width="1" stroke-dasharray="3,6"/>
+                        <text x="450" y="15" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(155,140,200,0.4)" letter-spacing="1">MIDNIGHT</text>
+
+                        <!-- Dawn marker (~6am) -->
+                        <line x1="575" y1="20" x2="575" y2="185" stroke="rgba(220,200,150,0.12)" stroke-width="1" stroke-dasharray="3,6"/>
+                        <text x="575" y="15" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(220,200,150,0.3)" letter-spacing="1">DAWN</text>
+
+                        <!-- Axes -->
+                        <line x1="55" y1="185" x2="605" y2="185" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+
+                        <!-- Melatonin fill area -->
+                        <!-- Flat from 8am to ~8-9pm, then rises steeply, peaks at ~2am, falls by dawn -->
+                        <path d="
+                            M 55 183
+                            L 290 183
+                            C 320 183, 340 182, 360 178
+                            C 380 170, 395 140, 415 100
+                            C 430 68, 445 42, 460 35
+                            C 470 30, 478 29, 490 32
+                            C 510 38, 530 60, 548 95
+                            C 560 118, 570 148, 580 165
+                            C 590 175, 600 180, 605 182
+                            L 605 185 L 55 185 Z
+                        " fill="url(#melGrad)"/>
+
+                        <!-- Melatonin line -->
+                        <path d="
+                            M 55 183
+                            L 290 183
+                            C 320 183, 340 182, 360 178
+                            C 380 170, 395 140, 415 100
+                            C 430 68, 445 42, 460 35
+                            C 470 30, 478 29, 490 32
+                            C 510 38, 530 60, 548 95
+                            C 560 118, 570 148, 580 165
+                            C 590 175, 600 180, 605 182
+                        " fill="none" stroke="#9B8CC8" stroke-width="2.5" stroke-linecap="round"/>
+
+                        <!-- Peak annotation -->
+                        <circle cx="487" cy="30" r="4" fill="#9B8CC8"/>
+                        <line x1="487" y1="26" x2="487" y2="14" stroke="#9B8CC8" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
+                        <text x="487" y="11" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="#9B8CC8" opacity="0.75">Peak ≈ 2am</text>
+
+                        <!-- DLMO annotation -->
+                        <text x="362" y="168" text-anchor="middle" font-family="Inter, sans-serif" font-size="7" fill="rgba(155,140,200,0.55)">DLMO</text>
+
+                        <!-- Glymphatic window -->
+                        <rect x="458" y="24" width="100" height="90" fill="rgba(155,140,200,0.04)" rx="1"/>
+                        <text x="508" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-size="6.5" fill="rgba(155,140,200,0.4)" letter-spacing="0.5">Glymphatic</text>
+                        <text x="508" y="132" text-anchor="middle" font-family="Inter, sans-serif" font-size="6.5" fill="rgba(155,140,200,0.4)" letter-spacing="0.5">peak window</text>
+
+                        <!-- X-axis labels -->
+                        <text x="55" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">8am</text>
+                        <text x="155" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">12pm</text>
+                        <text x="255" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">4pm</text>
+                        <text x="370" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">8pm</text>
+                        <text x="450" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">12am</text>
+                        <text x="530" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">4am</text>
+                        <text x="605" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="7.5" fill="rgba(255,255,255,0.2)">8am</text>
+
+                        <!-- Y-axis labels -->
+                        <text x="43" y="38" text-anchor="end" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.18)">High</text>
+                        <text x="43" y="185" text-anchor="end" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.18)">None</text>
+                    </svg>
+                    <p class="art-figure-caption" style="color: rgba(249,247,242,0.28);">Melatonin onset (DLMO — dim-light melatonin onset) typically occurs approximately 2 hours before habitual sleep time, in complete or near-complete darkness. Even moderate indoor lighting delays this curve. The peak — typically around 2–3am — coincides with the period of deepest slow-wave sleep and highest glymphatic activity.</p>
+                </div>
+            </figure>
+
+            <div class="art-body">
+                <div class="lib-article-inner">
+                    <h3>The temperature mechanism</h3>
+                    <p>Core body temperature must drop approximately 1–3°F (0.5–1.5°C) to initiate sleep onset. This is why slightly cool sleeping environments improve sleep quality — and why a warm bath 60–90 minutes before bed paradoxically accelerates sleep onset. The warm water dilates peripheral blood vessels, drawing heat toward the surface of the skin. Once you exit the bath, that heat rapidly dissipates into the cooler air, driving core temperature below the threshold faster than passive cooling would allow.<sup><a href="#evening-ref-3" id="evening-cite-3">[3]</a></sup></p>
+
+                    <p>Every object in the Evening Release phase operates on one of two mechanisms: reducing short-wavelength light exposure, or supporting the thermal drop. The candle we include in Volume 01 burns at approximately 1,800 Kelvin — far below the melatonin-suppression threshold. The magnesium bath salt facilitates peripheral vasodilation. The weighted blanket increases parasympathetic tone through deep pressure stimulation while its warmth assists the body's thermal regulation.</p>
+
+                    <h3>Staging the descent</h3>
+                    <p>Sleep does not begin when you close your eyes. It begins approximately two hours earlier, at DLMO — the moment melatonin concentration crosses the threshold that triggers the sleep architecture cascade. From there, cortisol continues its overnight decline toward its floor. Heart rate variability shifts toward parasympathetic dominance. Adenosine, which has accumulated steadily since waking, reaches peak pressure. Core temperature begins its regulated descent.</p>
+
+                    <p>Override these signals with screens, bright light, stimulating conversations, or food — and you shift DLMO later. You still carry the same adenosine load (it does not negotiate), meaning you will eventually fall asleep. But you have compressed the window of slow-wave sleep, the stage where the glymphatic system is most active, and where the consolidation of the day's learning is most efficient. You wake up having technically slept, but having done less of the important work that sleep is actually for.<sup><a href="#evening-ref-4" id="evening-cite-4">[4]</a></sup></p>
+
+                    <div class="art-pullquote">
+                        <p>"When I read the Nedergaard paper, I stopped thinking of sleep as 'not doing anything.' The brain is doing the most important maintenance work of its day during those hours. The least I can do is show up for it."</p>
+                    </div>
+
+                    <h3>What the two-hour runway actually looks like</h3>
+                    <p>Protecting the two hours before sleep is not about strict discipline or elaborate ritual. It is about removing the inputs that actively disrupt a biological process your body already knows how to perform. Dim the lights below 50 lux. End the bright screen exposure. Let the temperature drift downward. Engage in tactile, low-stimulation activity — something with your hands, something analogue, something that does not demand decisions.</p>
+
+                    <p>The Evening Release phase is built entirely around these conditions. Nothing in it requires effort. It is designed to offer the kind of engagement that does not trigger your task-positive network — candlelight, warm water, physical texture, unhurried conversation. Not because these things are luxuries. Because they are the specific inputs that allow a 200,000-year-old cleaning system to run without interruption.</p>
+                </div>
+            </div>
+
+            <div class="art-citations" id="evening-citations">
+                <div class="lib-article-inner">
+                    <h4>Sources</h4>
+                    <ol>
+                        <li id="evening-ref-1">Xie, L., Kang, H., Xu, Q., et al. (2013). Sleep drives metabolite clearance from the adult brain. <em>Science</em>, 342(6156), 373–377.</li>
+                        <li id="evening-ref-2">Brainard, G.C., Hanifin, J.P., Greeson, J.M., et al. (2001). Action spectrum for melatonin regulation in humans: evidence for a novel circadian photoreceptor. <em>Journal of Neuroscience</em>, 21(16), 6405–6412.</li>
+                        <li id="evening-ref-3">Krauchi, K., Cajochen, C., Werth, E., &amp; Wirz-Justice, A. (1999). Warm feet promote the rapid onset of sleep. <em>Nature</em>, 401, 36–37.</li>
+                        <li id="evening-ref-4">Walker, M.P. (2017). <em>Why We Sleep: Unlocking the Power of Sleep and Dreams</em>. Scribner. [Synthesis of primary literature on sleep architecture and consolidation.]</li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- =========================================
+             LIBRARY CTA
+        ========================================== -->
+        <section class="lib-cta">
+            <div class="lib-cta-inner">
+                <span class="lib-eyebrow">Volume 01 · Fall 2026</span>
+                <h2>The objects that make these rituals <em style="font-style:italic; color:var(--gold,#C9A84C);">physical.</em></h2>
+                <p class="lib-cta-sub">The library is free for everyone. Volume 01 — the ritual objects, the private community, the full education archive — is for founding members. Early access closes when the cohort fills.</p>
+                <a href="/#access" class="gold-btn hover-trigger" style="display:inline-block; padding:18px 48px; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.78rem; letter-spacing:2.5px; text-transform:uppercase; max-width:320px; text-align:center;">
+                    Join the Waitlist
+                </a>
+                <p style="font-family:'Inter',sans-serif; font-size:0.62rem; color:rgba(255,255,255,0.18); margin-top:20px; letter-spacing:1px; text-transform:uppercase;">No payment required · Cancel any time</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
