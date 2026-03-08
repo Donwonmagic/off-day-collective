@@ -27,6 +27,11 @@
         /* Offset anchor links to clear the fixed nav */
         html { scroll-padding-top: 80px; }
 
+        /* Fix: .dark-bg sets perspective:1000px which — when applied to <body> —
+           turns it into a 3D containing block, breaking position:fixed on the cursor.
+           Override it here so the cursor stays viewport-anchored. */
+        body { perspective: none; }
+
         /* ============================
            LIBRARY PAGE: CORE LAYOUT
         ============================= */
