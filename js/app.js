@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.matchMedia("(min-width: 768px)").matches && cursor && cursorBlur) {
         let mx = -100, my = -100;
         let bx = -100, by = -100;
+        let prevMx = mx, prevMy = my;
 
         document.addEventListener('mousemove', (e) => {
             mx = e.clientX;
@@ -51,10 +52,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         (function loop() {
+            // Velocity for this frame
+            const vx = mx - prevMx;
+            const vy = my - prevMy;
+            prevMx = mx;
+            prevMy = my;
+
+            const speed = Math.sqrt(vx * vx + vy * vy);
+            const angle = Math.atan2(vy, vx) * (180 / Math.PI);
+
+            // Stretch blob in direction of travel, squish perpendicular
+            const scaleX = 1 + Math.min(speed * 0.045, 0.65);
+            const scaleY = 1 - Math.min(speed * 0.016, 0.28);
+
             cursor.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-            bx += (mx - bx) * 0.15;
-            by += (my - by) * 0.15;
-            cursorBlur.style.transform = `translate(calc(${bx}px - 50%), calc(${by}px - 50%))`;
+
+            bx += (mx - bx) * 0.12;
+            by += (my - by) * 0.12;
+            cursorBlur.style.transform =
+                `translate(calc(${bx}px - 50%), calc(${by}px - 50%))
+                 rotate(${angle}deg)
+                 scaleX(${scaleX})
+                 scaleY(${scaleY})`;
+
             requestAnimationFrame(loop);
         })();
 
@@ -329,33 +349,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 8. THE MECHANICAL SPOOL REVEAL ---
-    const spoolText = document.getElementById("cipher-text");
-
-    if (spoolText) {
-        const text = spoolText.innerText;
-        spoolText.innerHTML = '';
-
-        if (prefersReducedMotion) {
-            spoolText.innerText = text;
-            spoolText.style.opacity = '1';
-        } else {
-            setTimeout(() => {
-                text.split('').forEach((char, index) => {
-                    const wrapper = document.createElement('span');
-                    wrapper.classList.add('char-wrapper');
-                    
-                    const letter = document.createElement('span');
-                    letter.classList.add('char');
-                    letter.innerText = char;
-                    letter.style.animationDelay = `${index * 0.05}s`;
-                    
-                    wrapper.appendChild(letter);
-                    spoolText.appendChild(wrapper);
-                });
-            }, 500);
-        }
-    }
+    // --- 8. HEADLINE REVEAL ---
+    // CSS handles the cinematic blur-in via .headline-reveal transition on body.loaded.
+    // No JS needed — reduced motion is also handled purely in CSS.
 
     // ============================================
     // NEW: PRODUCT TRACK DRAG-TO-SCROLL
@@ -391,6 +387,48 @@ document.addEventListener('DOMContentLoaded', () => {
             track.scrollLeft = scrollLeft - walk;
         });
     }
+    // --- MAGNETIC BUTTON EFFECT ---
+    // Pulls the button toward the cursor on hover for a tactile, premium feel.
+    const magneticBtns = document.querySelectorAll('.gold-btn, .access-cta');
+
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            if (prefersReducedMotion) return;
+            const rect = btn.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const dx = (e.clientX - cx) * 0.32;
+            const dy = (e.clientY - cy) * 0.32;
+            btn.style.transform = `translate(${dx}px, ${dy}px)`;
+            btn.style.transition = 'transform 0.12s ease';
+        });
+
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+            btn.style.transition = 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+    });
+
+    // --- PHASE IMAGE 3D TILT ON HOVER ---
+    // Gives each phase image a parallax-tilt depth response on mouse movement.
+    document.querySelectorAll('.phase-image').forEach(container => {
+        container.addEventListener('mousemove', (e) => {
+            if (prefersReducedMotion) return;
+            const rect = container.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width  - 0.5;
+            const y = (e.clientY - rect.top)  / rect.height - 0.5;
+            const tiltX =  y * -7;
+            const tiltY =  x *  7;
+            container.style.transform = `perspective(1200px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.015)`;
+            container.style.transition = 'transform 0.08s ease';
+        });
+
+        container.addEventListener('mouseleave', () => {
+            container.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale(1)';
+            container.style.transition = 'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+    });
+
 });  // end product track
 
 // ============================================
