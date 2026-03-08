@@ -68,6 +68,54 @@ body.loaded {
 }
 
 /* --- SEO UTILITY --- */
+
+/* --- MARK PLACEMENTS --- */
+
+/* Section breathing marks — visual paragraph breaks between heavy content */
+.section-breather {
+    display: flex; justify-content: center; align-items: center;
+    padding: 50px 0;
+    color: rgba(0, 0, 0, 0.08);
+}
+
+.section-breather svg {
+    transition: opacity 0.3s ease;
+}
+
+/* Dark section breathers */
+.dark-bg + .section-breather,
+.phases-section + .section-breather {
+    background: var(--charcoal);
+    color: rgba(255, 255, 255, 0.06);
+}
+
+/* Conversion section watermark — large ghosted mark behind the card */
+.access-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(500px, 70vw); height: auto;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Card header mark */
+.card-mark {
+    flex-shrink: 0;
+}
+
+/* Success state mark */
+.success-mark {
+    margin-bottom: 25px;
+}
+
+/* Community badge mark */
+.community-lock {
+    display: flex; align-items: center;
+    color: rgba(255, 255, 255, 0.4);
+}
+
 .seo-text {
     position: absolute; width: 1px; height: 1px;
     padding: 0; margin: -1px; overflow: hidden;
@@ -1411,7 +1459,8 @@ a.phase-hint:hover span {
 .access-card:hover { transform: translateY(-5px) rotateX(2deg); }
 
 .card-header {
-    display: flex; justify-content: space-between; margin-bottom: 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 40px; gap: 12px;
     border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 15px;
 }
 
