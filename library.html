@@ -86,7 +86,7 @@
         .lib-hero-lead {
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem; line-height: 2.0;
-            color: rgba(255,255,255,0.2); font-weight: 300;
+            color: rgba(255,255,255,0.45); font-weight: 300;
             max-width: 380px; margin: 56px 0 68px;
         }
 
@@ -99,7 +99,7 @@
             padding: 22px 0;
             border-bottom: 1px solid rgba(255,255,255,0.04);
             text-decoration: none;
-            transition: opacity 0.4s ease; opacity: 0.4;
+            transition: opacity 0.4s ease; opacity: 0.6;
         }
         .lib-toc-item:hover { opacity: 1; }
         .lib-toc-num {
@@ -155,7 +155,7 @@
         .art-sub-on-screen {
             font-family: 'Inter', sans-serif;
             font-size: 0.88rem; line-height: 1.85;
-            color: rgba(255,255,255,0.22); max-width: 500px;
+            color: rgba(255,255,255,0.44); max-width: 500px;
             font-weight: 300; margin-bottom: 32px;
         }
         .art-byline {
@@ -403,6 +403,21 @@
         .lib-cta-btn:hover {
             border-color: rgba(201,168,76,0.7);
             background: rgba(201,168,76,0.04);
+        }
+
+        /* ── CURSOR (ensure always on top on this page) ──── */
+        #cursor { z-index: 99999 !important; }
+        #cursor-blur { z-index: 99998 !important; }
+
+        /* ── REDUCED MOTION ──────────────────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            .lib-cursor { animation: none; opacity: 0 !important; }
+            .chart-line { transition: none; stroke-dashoffset: 0 !important; }
+            .art-hl::after { transition: none; width: 100%; }
+            .art-breather blockquote { transition: none; opacity: 0.75; transform: none; }
+            .cite-drawer { transition: none; }
+            .cite-overlay { transition: none; }
+            .lib-progress { transition: none; }
         }
 
         /* ── RESPONSIVE ──────────────────────────────── */
@@ -840,14 +855,14 @@
                 title: 'The Awakening Cortisol Response: Methodological Issues and Significance',
                 full: 'Clow, A., Thorn, L., Evans, P., & Hucklebridge, F. (2004). Stress, 7(1), 29–37.',
                 summary: 'This paper established standard methodology for measuring the cortisol awakening response and documented its role as a reliable, non-invasive biomarker of HPA axis function. Blunted CAR correlates with burnout, depression, and chronic fatigue.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/15204029/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/15204030/'
             },
             m2: {
                 num: '02',
                 title: 'Stability, Precision, and Near-24-Hour Period of the Human Circadian Pacemaker',
                 full: 'Czeisler, C. A., et al. (1999). Science, 284(5423), 2177–2181.',
                 summary: 'A landmark study demonstrating the intrinsic period of the human circadian clock and how light exposure — particularly in the morning — anchors this rhythm to the external environment.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/10381885/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/10381883/'
             },
             m3: {
                 num: '03',
@@ -861,28 +876,28 @@
                 title: 'Adenosine in Sleep and Wakefulness',
                 full: 'Porkka-Heiskanen, T. (1999). Annals of Medicine, 31(2), 125–129.',
                 summary: 'Foundational paper on adenosine\'s role in promoting sleepiness and how caffeine inhibits adenosine receptors. Provides the biological basis for the argument against early-morning coffee consumption.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/10234585/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/10344585/'
             },
             j1: {
                 num: '01',
                 title: 'Give Your Ideas Some Legs: The Positive Effect of Walking on Creative Thinking',
                 full: 'Oppezzo, M., & Schwartz, D. L. (2014). Journal of Experimental Psychology: Learning, Memory, and Cognition, 40(4), 1142–1152.',
                 summary: 'Four experiments demonstrating that walking — particularly outdoors — consistently and substantially increases divergent thinking. Creative output was 81% higher in walkers vs. seated participants. The effect persisted even when participants returned to sitting.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/24886846/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/24749966/'
             },
             j2: {
                 num: '02',
                 title: 'Basic Rest-Activity Cycle — 22 Years Later',
                 full: 'Kleitman, N. (1982). Sleep, 5(4), 311–317.',
                 summary: 'Kleitman\'s retrospective on the basic rest-activity cycle he originally proposed, reviewing evidence that 90-minute rhythms operate throughout wakefulness, not only during sleep.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/7157008/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/6819628/'
             },
             j3: {
                 num: '03',
                 title: '\'Gates\' and \'Forbidden Zones\' for Sleep',
                 full: 'Lavie, P. (1986). Electroencephalography and Clinical Neurophysiology, 63(5), 414–425.',
                 summary: 'Lavie identified specific ultrashort windows of sleep propensity distributed through the waking day — what he called sleep "gates." Fighting these gates increases recovery time; honouring them restores alertness rapidly.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/3743943/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/2420557/'
             },
             j4: {
                 num: '04',
@@ -910,7 +925,7 @@
                 title: 'Warm Feet Promote the Rapid Onset of Sleep',
                 full: 'Krauchi, K., Cajochen, C., Werth, E., & Wirz-Justice, A. (1999). Nature, 401(6748), 36–37.',
                 summary: 'A Nature paper demonstrating that vasodilation in the extremities — not warmth itself — is the mechanism by which warm baths accelerate sleep onset. Core body temperature reduction is the trigger; peripheral warming is the tool.',
-                url: 'https://pubmed.ncbi.nlm.nih.gov/10481909/'
+                url: 'https://pubmed.ncbi.nlm.nih.gov/10485703/'
             },
             e4: {
                 num: '04',
@@ -921,14 +936,23 @@
             }
         };
 
-        // ── PROGRESS BAR ───────────────────────────────────────────
+        // ── PROGRESS BAR + CURSOR SCROLL FIX ──────────────────────
         var bar = document.getElementById('lib-progress');
-        if (bar) {
-            document.addEventListener('scroll', function() {
+        var scrollCursor = document.getElementById('cursor');
+        var scrollCursorBlur = document.getElementById('cursor-blur');
+        document.addEventListener('scroll', function() {
+            if (bar) {
                 var pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
                 bar.style.width = Math.min(pct, 100) + '%';
-            }, { passive: true });
-        }
+            }
+            // Keep cursor visible during scroll on desktop
+            if (scrollCursor && scrollCursorBlur && window.matchMedia('(min-width: 768px)').matches) {
+                if (scrollCursor.style.opacity !== '1') {
+                    scrollCursor.style.opacity = '1';
+                    scrollCursorBlur.style.opacity = '1';
+                }
+            }
+        }, { passive: true });
 
         // ── TYPEWRITER ─────────────────────────────────────────────
         var tw = document.getElementById('lib-typewriter');
@@ -1014,7 +1038,7 @@
             drawer.classList.add('on');
             drawer.setAttribute('aria-hidden', 'false');
             overlay.classList.add('on');
-            document.getElementById('cite-close').focus();
+            document.getElementById('cite-close').focus({ preventScroll: true });
         }
 
         function closeCite() {
@@ -1035,7 +1059,17 @@
         overlay && overlay.addEventListener('click', closeCite);
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeCite();
+            if (e.key === 'Escape') { closeCite(); return; }
+            // Focus trap inside open drawer
+            if (e.key === 'Tab' && drawer && drawer.classList.contains('on')) {
+                var focusable = drawer.querySelectorAll('button, a[href]');
+                var first = focusable[0], last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) { e.preventDefault(); last.focus({ preventScroll: true }); }
+                } else {
+                    if (document.activeElement === last) { e.preventDefault(); first.focus({ preventScroll: true }); }
+                }
+            }
         });
 
     })();
