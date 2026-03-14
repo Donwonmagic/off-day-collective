@@ -405,6 +405,110 @@
             background: rgba(201,168,76,0.04);
         }
 
+        /* ── NAV OVERRIDE ────────────────────────────── */
+        /* Override global nav-overlay which has mix-blend-mode + pointer-events:none */
+        nav.nav-overlay {
+            mix-blend-mode: normal;
+            pointer-events: auto;
+            padding: 0;
+            display: block;
+            background: transparent;
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 28px 48px;
+        }
+        .nav-logo {
+            display: flex; align-items: center;
+            text-decoration: none;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            transition: color 0.3s;
+        }
+        .nav-logo:hover { color: rgba(255,255,255,0.9); }
+        .nav-logo svg { flex-shrink: 0; }
+
+        /* Hamburger toggle */
+        .nav-toggle {
+            background: none; border: none;
+            width: 40px; height: 40px;
+            display: flex; flex-direction: column;
+            align-items: flex-end; justify-content: center;
+            gap: 6px; padding: 8px;
+            cursor: none;
+        }
+        .nav-toggle span {
+            display: block; height: 1px;
+            background: rgba(255,255,255,0.45);
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                        opacity 0.3s ease, width 0.3s ease;
+        }
+        .nav-toggle span:first-child { width: 22px; }
+        .nav-toggle span:last-child  { width: 14px; }
+        .nav-toggle[aria-expanded="true"] span:first-child {
+            width: 20px;
+            transform: translateY(3.5px) rotate(45deg);
+        }
+        .nav-toggle[aria-expanded="true"] span:last-child {
+            width: 20px;
+            transform: translateY(-3.5px) rotate(-45deg);
+        }
+        .nav-toggle:hover span { background: rgba(255,255,255,0.8); }
+        .nav-toggle:focus-visible {
+            outline: 1px solid rgba(201,168,76,0.5);
+            outline-offset: 4px;
+        }
+
+        /* Full-screen menu overlay */
+        .nav-menu {
+            position: fixed; inset: 0;
+            background: rgba(4,4,4,0.97);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+                        visibility 0.5s;
+            z-index: 10;
+        }
+        .nav-menu.is-open {
+            opacity: 1; visibility: visible; pointer-events: auto;
+        }
+        .nav-links {
+            list-style: none; padding: 0; margin: 0;
+            text-align: center;
+        }
+        .nav-links li {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .nav-menu.is-open .nav-links li:nth-child(1) { opacity:1; transform:none; transition-delay: 0.08s; }
+        .nav-menu.is-open .nav-links li:nth-child(2) { opacity:1; transform:none; transition-delay: 0.14s; }
+        .nav-menu.is-open .nav-links li:nth-child(3) { opacity:1; transform:none; transition-delay: 0.20s; }
+        .nav-menu.is-open .nav-links li:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+        .nav-link {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 300; font-style: normal;
+            color: rgba(240,237,230,0.35);
+            text-decoration: none; letter-spacing: -0.02em;
+            display: block; padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #F0EDE6; }
+        .nav-link.active { font-style: italic; color: #C9A84C; }
+        .nav-menu-close-area {
+            position: absolute; inset: 0; z-index: -1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner { padding: 22px 28px; }
+        }
+
         /* ── CURSOR (ensure always on top on this page) ──── */
         #cursor { z-index: 99999 !important; }
         #cursor-blur { z-index: 99998 !important; }
@@ -464,7 +568,8 @@
     <nav class="nav-overlay" id="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo" aria-label="Off Day Collective home">
-                <svg width="32" height="32" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
+                <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
+                Off Day Collective
             </a>
             <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
                 <span></span><span></span>
@@ -1059,7 +1164,11 @@
         overlay && overlay.addEventListener('click', closeCite);
 
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') { closeCite(); return; }
+            if (e.key === 'Escape') {
+                closeCite();
+                closeNav();
+                return;
+            }
             // Focus trap inside open drawer
             if (e.key === 'Tab' && drawer && drawer.classList.contains('on')) {
                 var focusable = drawer.querySelectorAll('button, a[href]');
@@ -1071,6 +1180,54 @@
                 }
             }
         });
+
+        // ── NAV TOGGLE ────────────────────────────────────────────
+        var navToggle = document.getElementById('nav-toggle');
+        var navMenu   = document.getElementById('nav-menu');
+
+        function openNav() {
+            if (!navMenu || !navToggle) return;
+            navMenu.classList.add('is-open');
+            navToggle.setAttribute('aria-expanded', 'true');
+            navToggle.setAttribute('aria-label', 'Close menu');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNav() {
+            if (!navMenu || !navToggle) return;
+            navMenu.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.setAttribute('aria-label', 'Open menu');
+            document.body.style.overflow = '';
+        }
+
+        if (navToggle) {
+            navToggle.addEventListener('click', function() {
+                if (navMenu.classList.contains('is-open')) {
+                    closeNav();
+                } else {
+                    openNav();
+                }
+            });
+        }
+
+        // Clicking outside menu links closes the nav
+        if (navMenu) {
+            navMenu.addEventListener('click', function(e) {
+                if (e.target === navMenu) closeNav();
+            });
+        }
+
+        // ── CURSOR PRE-SHOW ───────────────────────────────────────
+        // Show cursor immediately so it doesn't vanish during scroll
+        (function() {
+            var libCursor     = document.getElementById('cursor');
+            var libCursorBlur = document.getElementById('cursor-blur');
+            if (libCursor && window.matchMedia('(min-width: 768px)').matches) {
+                libCursor.style.opacity     = '1';
+                libCursorBlur.style.opacity = '1';
+            }
+        })();
 
     })();
     </script>
