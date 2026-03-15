@@ -337,6 +337,13 @@
         }
 
         /* ── RESPONSIVE ──────────────────────────────── */
+        @media (max-width: 960px) {
+            .art-breadcrumb { padding-left: 48px; padding-right: 48px; }
+            .art-title-screen { padding-left: 48px; padding-right: 48px; }
+            .art-body { padding-left: 48px; padding-right: 48px; }
+            .art-citations { padding-left: 48px; padding-right: 48px; }
+            .art-pagination { padding-left: 48px; padding-right: 48px; }
+        }
         @media (max-width: 768px) {
             .nav-inner { padding: 22px 28px; }
             .art-breadcrumb { padding: 88px 28px 0; }
@@ -553,7 +560,7 @@
 
         // Citation popover
         var popover = document.getElementById('cite-popover');
-        function openCite(id, trigger) {
+        function openCite(id, trigger, evt) {
             var d = CITES[id]; if (!d || !popover) return;
             document.getElementById('cite-num').textContent = d.num;
             document.getElementById('cite-title').textContent = d.title;
@@ -561,15 +568,15 @@
             document.getElementById('cite-summary').textContent = d.summary;
             var link = document.getElementById('cite-link');
             link.href = d.url || '#'; link.style.display = d.url ? 'inline-block' : 'none';
-            var rect = trigger.getBoundingClientRect();
+            var cx = evt ? evt.clientX : trigger.getBoundingClientRect().left;
+            var cy = evt ? evt.clientY : trigger.getBoundingClientRect().bottom;
             var pw = Math.min(360, window.innerWidth * 0.9);
             var margin = 12;
-            var left = rect.left;
+            var left = cx;
             if (left + pw > window.innerWidth - margin) left = window.innerWidth - pw - margin;
             if (left < margin) left = margin;
-            var spaceBelow = window.innerHeight - rect.bottom - margin;
-            var spaceAbove = rect.top - margin;
-            var top = (spaceBelow >= 200 || spaceBelow >= spaceAbove) ? rect.bottom + 8 : Math.max(margin, rect.top - 296);
+            var spaceBelow = window.innerHeight - cy - margin;
+            var top = spaceBelow >= 200 ? cy + 8 : Math.max(margin, cy - 296);
             popover.style.left = left + 'px';
             popover.style.top = top + 'px';
             popover.style.width = pw + 'px';
@@ -585,7 +592,7 @@
                 e.preventDefault(); e.stopPropagation();
                 var cid = el.getAttribute('data-cite');
                 if (popover.classList.contains('on') && popover.dataset.open === cid) { closeCite(); }
-                else { popover.dataset.open = cid; openCite(cid, el); }
+                else { popover.dataset.open = cid; openCite(cid, el, e); }
             });
         });
         document.getElementById('cite-close') && document.getElementById('cite-close').addEventListener('click', closeCite);

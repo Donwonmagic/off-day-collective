@@ -96,6 +96,15 @@
             font-size: clamp(4rem, 10vw, 9rem);
             font-weight: 300; line-height: 0.95; letter-spacing: -0.03em; color: #F0EDE6;
         }
+        .lib-typed-cursor {
+            display: inline;
+            color: rgba(201,168,76,0.7);
+            animation: lib-cursor-blink 1.1s step-end infinite;
+        }
+        @keyframes lib-cursor-blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }
         .lib-hero-desc {
             font-family: 'Inter', sans-serif; font-size: 0.85rem; line-height: 2.0;
             color: rgba(255,255,255,0.32); font-weight: 300; max-width: 400px; margin-top: 40px;
@@ -262,6 +271,12 @@
         @media (max-width: 1024px) {
             .lib-card { grid-template-columns: 280px 1fr; }
         }
+        @media (max-width: 960px) {
+            .lib-hero { padding: 0 48px 60px; }
+            .lib-filters { padding: 0 48px; }
+            .lib-card-body { padding: 32px 32px 40px; }
+            .lib-cta { padding: 100px 48px; }
+        }
         @media (max-width: 768px) {
             .nav-inner { padding: 22px 28px; }
             .lib-hero { padding: 0 28px 60px; min-height: 70vh; }
@@ -311,7 +326,7 @@
         <section class="lib-hero" aria-label="Library introduction">
             <div class="lib-hero-inner">
                 <span class="lib-issue">Off Day Collective · The Science of Rest · Volume I</span>
-                <h1 class="lib-hero-title">The<br>Dark<br>Journal.</h1>
+                <h1 class="lib-hero-title" aria-label="The Science of Rest."><span id="lib-typed-text"></span><span class="lib-typed-cursor" aria-hidden="true">.</span></h1>
                 <p class="lib-hero-desc">Peer-reviewed research on rest, recovery, and performance. A living collection — updated as the science evolves.</p>
             </div>
         </section>
@@ -517,6 +532,37 @@
         if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
+
+        // Hero typing animation
+        (function() {
+            var el = document.getElementById('lib-typed-text');
+            if (!el) return;
+            var base = 'the science of ';
+            var words = ['rest', 'sleep', 'recovery', 'the off day'];
+            var wi = 0;
+            function type(str, i, cb) {
+                el.textContent = str.slice(0, i);
+                if (i > str.length) { cb(); return; }
+                setTimeout(function() { type(str, i + 1, cb); }, i <= base.length ? 52 : 72);
+            }
+            function erase(str, i, cb) {
+                el.textContent = str.slice(0, i);
+                if (i <= base.length) { cb(); return; }
+                setTimeout(function() { erase(str, i - 1, cb); }, 38);
+            }
+            function loop() {
+                var phrase = base + words[wi];
+                type(phrase, 0, function() {
+                    setTimeout(function() {
+                        erase(phrase, phrase.length, function() {
+                            wi = (wi + 1) % words.length;
+                            setTimeout(loop, 260);
+                        });
+                    }, 2600);
+                });
+            }
+            setTimeout(loop, 500);
+        })();
 
         // Filter logic
         var activeTime = 'all', activeLength = 'all';
