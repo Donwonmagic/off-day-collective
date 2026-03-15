@@ -336,8 +336,12 @@ section h2 {
 @media (max-width: 768px) {
     .nav-overlay { padding: 20px; }
     /* Ensure clickability on mobile */
-    .nav-right { pointer-events: auto !important; }
+    .nav-right { pointer-events: auto !important; gap: 16px; }
     #atmosphere-toggle { pointer-events: auto !important; }
+    /* Hide decorative/non-functional nav items to prevent overflow */
+    .status-indicator { display: none; }
+    [title="Coming Fall 2026"] { display: none; }
+    .toggle-label { display: none; }
 }
 
 .logo {
