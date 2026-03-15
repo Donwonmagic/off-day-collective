@@ -6,7 +6,7 @@
   xmlns:media="http://search.yahoo.com/mrss/">
 
   <channel>
-    <title>The Dark Journal — Off Day Collective</title>
+    <title>The Science of Rest — Off Day Collective</title>
     <link>https://www.offdaycollective.com/library</link>
     <description>Science-backed writing on rest, rhythm, and recovery. Peer-reviewed research on sleep, circadian biology, and cognitive performance — published periodically by Off Day Collective.</description>
     <language>en-us</language>
@@ -21,7 +21,7 @@
     <ttl>10080</ttl>
     <image>
       <url>https://www.offdaycollective.com/images/og/library.svg</url>
-      <title>The Dark Journal — Off Day Collective</title>
+      <title>The Science of Rest — Off Day Collective</title>
       <link>https://www.offdaycollective.com/library</link>
     </image>
     <atom:link href="https://www.offdaycollective.com/feed.xml" rel="self" type="application/rss+xml"/>
