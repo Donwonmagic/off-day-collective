@@ -68,9 +68,11 @@
         .nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
         .nav-links li { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
         .nav-menu.is-open .nav-links li:nth-child(1) { opacity:1; transform:none; transition-delay:0.08s; }
-        .nav-menu.is-open .nav-links li:nth-child(2) { opacity:1; transform:none; transition-delay:0.14s; }
-        .nav-menu.is-open .nav-links li:nth-child(3) { opacity:1; transform:none; transition-delay:0.20s; }
-        .nav-menu.is-open .nav-links li:nth-child(4) { opacity:1; transform:none; transition-delay:0.26s; }
+        .nav-menu.is-open .nav-links li:nth-child(2) { opacity:1; transform:none; transition-delay:0.13s; }
+        .nav-menu.is-open .nav-links li:nth-child(3) { opacity:1; transform:none; transition-delay:0.18s; }
+        .nav-menu.is-open .nav-links li:nth-child(4) { opacity:1; transform:none; transition-delay:0.23s; }
+        .nav-menu.is-open .nav-links li:nth-child(5) { opacity:1; transform:none; transition-delay:0.28s; }
+        .nav-menu.is-open .nav-links li:nth-child(6) { opacity:1; transform:none; transition-delay:0.33s; }
         .nav-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; color: rgba(240,237,230,0.35); text-decoration: none; letter-spacing: -0.02em; display: block; padding: 8px 0; transition: color 0.3s ease; }
         .nav-link:hover, .nav-link.active { color: #F0EDE6; }
         .nav-link.active { font-style: italic; color: #C9A84C; }
@@ -96,6 +98,8 @@
             font-size: clamp(4rem, 10vw, 9rem);
             font-weight: 300; line-height: 0.95; letter-spacing: -0.03em; color: #F0EDE6;
         }
+        .lib-typed-static { color: #F0EDE6; }
+        .lib-typed-word { color: #C9A84C; font-style: italic; }
         .lib-typed-cursor {
             display: inline;
             color: rgba(201,168,76,0.7);
@@ -314,6 +318,8 @@
                     <li><a href="/" class="nav-link">Home</a></li>
                     <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
                     <li><a href="library.html" class="nav-link active" aria-current="page">Library</a></li>
+                    <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+                    <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
                     <li><a href="/#access" class="nav-link">Join</a></li>
                 </ul>
             </div>
@@ -326,7 +332,7 @@
         <section class="lib-hero" aria-label="Library introduction">
             <div class="lib-hero-inner">
                 <span class="lib-issue">Off Day Collective · The Science of Rest · Volume I</span>
-                <h1 class="lib-hero-title" aria-label="The Science of Rest."><span id="lib-typed-text"></span><span class="lib-typed-cursor" aria-hidden="true">.</span></h1>
+                <h1 class="lib-hero-title" aria-label="The Science of Rest."><span class="lib-typed-static">the science of </span><span id="lib-typed-word" class="lib-typed-word">rest</span><span class="lib-typed-cursor" aria-hidden="true">.</span></h1>
                 <p class="lib-hero-desc">Peer-reviewed research on rest, recovery, and performance. A living collection — updated as the science evolves.</p>
             </div>
         </section>
@@ -533,35 +539,34 @@
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
 
-        // Hero typing animation
+        // Hero typing animation — only the word after "the science of" animates
         (function() {
-            var el = document.getElementById('lib-typed-text');
+            var el = document.getElementById('lib-typed-word');
             if (!el) return;
-            var base = 'the science of ';
             var words = ['rest', 'sleep', 'recovery', 'the off day'];
-            var wi = 0;
-            function type(str, i, cb) {
-                el.textContent = str.slice(0, i);
-                if (i > str.length) { cb(); return; }
-                setTimeout(function() { type(str, i + 1, cb); }, i <= base.length ? 52 : 72);
+            var wi = 0; // starts on "rest" (already rendered in HTML)
+            function typeWord(word, i, cb) {
+                el.textContent = word.slice(0, i);
+                if (i > word.length) { cb(); return; }
+                setTimeout(function() { typeWord(word, i + 1, cb); }, 70);
             }
-            function erase(str, i, cb) {
-                el.textContent = str.slice(0, i);
-                if (i <= base.length) { cb(); return; }
-                setTimeout(function() { erase(str, i - 1, cb); }, 38);
+            function eraseWord(cb) {
+                var t = el.textContent;
+                if (!t.length) { cb(); return; }
+                el.textContent = t.slice(0, -1);
+                setTimeout(function() { eraseWord(cb); }, 40);
             }
-            function loop() {
-                var phrase = base + words[wi];
-                type(phrase, 0, function() {
+            function cycle() {
+                wi = (wi + 1) % words.length;
+                eraseWord(function() {
                     setTimeout(function() {
-                        erase(phrase, phrase.length, function() {
-                            wi = (wi + 1) % words.length;
-                            setTimeout(loop, 260);
+                        typeWord(words[wi], 0, function() {
+                            setTimeout(cycle, 2800);
                         });
-                    }, 2600);
+                    }, 200);
                 });
             }
-            setTimeout(loop, 500);
+            setTimeout(cycle, 2800); // first word visible for 2.8 s before cycling
         })();
 
         // Filter logic
