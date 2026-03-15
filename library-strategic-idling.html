@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Strategic Idling · The Dark Journal · Off Day Collective</title>
+    <title>The Art of Strategic Idling · The Science of Rest · Off Day Collective</title>
     <meta name="description" content="Creativity does not arrive at a desk. It arrives in the shower, on a walk, in the quiet moment between two tasks. The science of the Default Mode Network.">
     <link rel="canonical" href="https://www.offdaycollective.com/library-strategic-idling">
-    <meta property="og:title" content="The Art of Strategic Idling · The Dark Journal">
+    <meta property="og:title" content="The Art of Strategic Idling · The Science of Rest">
     <meta property="og:description" content="How doing nothing produces your best work — the Default Mode Network, the 90-minute BRAC cycle, and why walking boosts creativity by 81%.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.offdaycollective.com/library-strategic-idling">
@@ -18,7 +18,7 @@
     <meta property="article:published_time" content="2025-03-01T00:00:00Z">
     <meta property="article:section" content="Midday">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The Art of Strategic Idling · The Dark Journal">
+    <meta name="twitter:title" content="The Art of Strategic Idling · The Science of Rest">
     <meta name="twitter:description" content="How doing nothing produces your best work — the Default Mode Network, the 90-minute BRAC cycle, and why walking boosts creativity by 81%.">
     <meta name="twitter:image" content="https://www.offdaycollective.com/images/og/strategic-idling.svg">
     <script type="application/ld+json">
@@ -46,7 +46,7 @@
       },
       "isPartOf": {
         "@type": "PublicationVolume",
-        "name": "The Dark Journal — Volume I",
+        "name": "The Science of Rest — Volume I",
         "volumeNumber": "1"
       }
     }
@@ -126,12 +126,10 @@
         .art-citations ol { list-style: decimal; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
         .art-citations li { font-family: 'Inter', sans-serif; font-size: 0.68rem; line-height: 1.75; color: rgba(255,255,255,0.14); font-weight: 300; }
         .art-citations li em { font-style: italic; }
-        .cite-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 8999; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
-        .cite-overlay.on { opacity: 1; pointer-events: auto; }
-        .cite-drawer { position: fixed; top: 0; right: 0; width: min(440px,92vw); height: 100vh; background: #0B0B0B; border-left: 1px solid rgba(255,255,255,0.06); z-index: 9000; transform: translateX(100%); transition: transform 0.56s cubic-bezier(0.16,1,0.3,1); overflow-y: auto; padding: 68px 44px 60px; }
-        .cite-drawer.on { transform: translateX(0); }
-        .cite-close { position: absolute; top: 28px; right: 28px; background: none; border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); font-family: 'Inter', sans-serif; font-size: 0.8rem; padding: 8px 12px; transition: color 0.2s, border-color 0.2s; }
-        .cite-close:hover { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.2); }
+        .cite-popover { position: fixed; width: min(360px,90vw); background: #0F0F0F; border: 1px solid rgba(255,255,255,0.08); z-index: 9000; padding: 28px 28px 24px; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 24px 64px rgba(0,0,0,0.8); }
+        .cite-popover.on { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .cite-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.25); font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1; padding: 4px 8px; cursor: pointer; transition: color 0.2s; }
+        .cite-close:hover { color: rgba(255,255,255,0.7); }
         .cite-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: #C9A84C; opacity: 0.28; display: block; margin-bottom: 4px; line-height: 1; }
         .cite-title { font-family: 'Cormorant Garamond', serif; font-size: 1.48rem; font-weight: 300; color: #F0EDE6; line-height: 1.3; margin-bottom: 22px; }
         .cite-full { font-family: 'Inter', sans-serif; font-size: 0.7rem; line-height: 1.8; color: rgba(255,255,255,0.24); margin-bottom: 24px; font-style: italic; }
@@ -155,7 +153,7 @@
         #cursor { z-index: 99999 !important; }
         #cursor-blur { z-index: 99998 !important; }
         @media (prefers-reduced-motion: reduce) { .chart-line { transition: none; stroke-dashoffset: 0 !important; } .art-hl::after { transition: none; width: 100%; } }
-        @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } .cite-drawer { width: 100vw; } }
+        @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
     </style>
 </head>
 <body class="dark-bg loaded">
@@ -167,15 +165,14 @@
     <div class="noise-overlay" aria-hidden="true"></div>
     <div class="lib-progress" id="lib-progress" aria-hidden="true"></div>
 
-    <div class="cite-overlay" id="cite-overlay" aria-hidden="true"></div>
-    <aside class="cite-drawer" id="cite-drawer" role="complementary" aria-label="Citation details" aria-hidden="true">
+    <div class="cite-popover" id="cite-popover" role="dialog" aria-label="Citation details" aria-hidden="true">
         <button class="cite-close" id="cite-close" aria-label="Close citation">✕</button>
         <span class="cite-num" id="cite-num">01</span>
         <div class="cite-title" id="cite-title"></div>
         <p class="cite-full" id="cite-full"></p>
         <p class="cite-summary" id="cite-summary"></p>
         <a class="cite-link" id="cite-link" href="#" target="_blank" rel="noopener noreferrer">View source →</a>
-    </aside>
+    </div>
 
     <nav class="nav-overlay" id="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
@@ -199,7 +196,7 @@
 
     <main id="main-content">
         <div class="art-breadcrumb">
-            <a href="library.html" class="art-breadcrumb-back">← The Dark Journal</a>
+            <a href="library.html" class="art-breadcrumb-back">← The Science of Rest</a>
             <span class="art-breadcrumb-sep" aria-hidden="true"></span>
             <span class="art-breadcrumb-label">II · The Midday Mind</span>
         </div>
@@ -325,18 +322,18 @@
         document.querySelectorAll('.art-body p').forEach(function(p){if(p.querySelector('.art-hl'))hlObserver.observe(p);});
         var chartObserver=makeObserver({threshold:0.4},function(e){e.target.classList.add('chart-on');chartObserver.unobserve(e.target);});
         document.querySelectorAll('.art-figure').forEach(function(el){chartObserver.observe(el);});
-        var drawer=document.getElementById('cite-drawer'),overlay=document.getElementById('cite-overlay');
-        function openCite(id){var d=CITES[id];if(!d||!drawer)return;var savedY=window.scrollY;document.getElementById('cite-num').textContent=d.num;document.getElementById('cite-title').textContent=d.title;document.getElementById('cite-full').textContent=d.full;document.getElementById('cite-summary').textContent=d.summary;var link=document.getElementById('cite-link');link.href=d.url||'#';link.style.display=d.url?'inline-block':'none';drawer.classList.add('on');drawer.setAttribute('aria-hidden','false');overlay.classList.add('on');document.body.style.top='-'+savedY+'px';document.body.style.position='fixed';document.body.style.width='100%';document.getElementById('cite-close').focus({preventScroll:true});}
-        function closeCite(){if(!drawer)return;var scrollY=parseInt(document.body.style.top||'0')*-1;drawer.classList.remove('on');drawer.setAttribute('aria-hidden','true');overlay.classList.remove('on');document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,scrollY);}
-        document.querySelectorAll('[data-cite]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();openCite(el.getAttribute('data-cite'));});});
+        var popover=document.getElementById('cite-popover');
+        function openCite(id,trigger){var d=CITES[id];if(!d||!popover)return;document.getElementById('cite-num').textContent=d.num;document.getElementById('cite-title').textContent=d.title;document.getElementById('cite-full').textContent=d.full;document.getElementById('cite-summary').textContent=d.summary;var link=document.getElementById('cite-link');link.href=d.url||'#';link.style.display=d.url?'inline-block':'none';var rect=trigger.getBoundingClientRect();var pw=Math.min(360,window.innerWidth*0.9);var margin=12;var left=rect.left;if(left+pw>window.innerWidth-margin)left=window.innerWidth-pw-margin;if(left<margin)left=margin;var spaceBelow=window.innerHeight-rect.bottom-margin;var spaceAbove=rect.top-margin;var top=(spaceBelow>=200||spaceBelow>=spaceAbove)?rect.bottom+8:Math.max(margin,rect.top-296);popover.style.left=left+'px';popover.style.top=top+'px';popover.style.width=pw+'px';popover.classList.add('on');popover.setAttribute('aria-hidden','false');document.getElementById('cite-close').focus({preventScroll:true});}
+        function closeCite(){if(!popover)return;popover.classList.remove('on');popover.setAttribute('aria-hidden','true');}
+        document.querySelectorAll('[data-cite]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var cid=el.getAttribute('data-cite');if(popover.classList.contains('on')&&popover.dataset.open===cid){closeCite();}else{popover.dataset.open=cid;openCite(cid,el);}});});
         document.getElementById('cite-close')&&document.getElementById('cite-close').addEventListener('click',closeCite);
-        overlay&&overlay.addEventListener('click',closeCite);
+        document.addEventListener('click',function(e){if(popover&&popover.classList.contains('on')&&!popover.contains(e.target)){closeCite();}});
         var navToggle=document.getElementById('nav-toggle'),navMenu=document.getElementById('nav-menu');
         function openNav(){if(!navMenu||!navToggle)return;navMenu.classList.add('is-open');navToggle.setAttribute('aria-expanded','true');navToggle.setAttribute('aria-label','Close menu');}
         function closeNav(){if(!navMenu||!navToggle)return;navMenu.classList.remove('is-open');navToggle.setAttribute('aria-expanded','false');navToggle.setAttribute('aria-label','Open menu');}
         if(navToggle)navToggle.addEventListener('click',function(){navMenu.classList.contains('is-open')?closeNav():openNav();});
         if(navMenu)navMenu.addEventListener('click',function(e){if(e.target===navMenu)closeNav();});
-        document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeCite();closeNav();return;}if(e.key==='Tab'&&drawer&&drawer.classList.contains('on')){var focusable=drawer.querySelectorAll('button, a[href]');var first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus({preventScroll:true});}}else{if(document.activeElement===last){e.preventDefault();first.focus({preventScroll:true});}}}});
+        document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeCite();closeNav();return;}if(e.key==='Tab'&&popover&&popover.classList.contains('on')){var focusable=popover.querySelectorAll('button, a[href]');var first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus({preventScroll:true});}}else{if(document.activeElement===last){e.preventDefault();first.focus({preventScroll:true});}}}});
     })();
     </script>
 </body>
