@@ -10,3 +10,4 @@ Disallow: /css/
 Disallow: /js/
 
 Sitemap: https://www.offdaycollective.com/sitemap.xml
+Sitemap: https://www.offdaycollective.com/feed.xml

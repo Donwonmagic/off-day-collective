@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:media="http://search.yahoo.com/mrss/">
+
+  <channel>
+    <title>The Dark Journal — Off Day Collective</title>
+    <link>https://www.offdaycollective.com/library</link>
+    <description>Science-backed writing on rest, rhythm, and recovery. Peer-reviewed research on sleep, circadian biology, and cognitive performance — published periodically by Off Day Collective.</description>
+    <language>en-us</language>
+    <copyright>Off Day Collective</copyright>
+    <managingEditor>hello@offdaycollective.com (Off Day Collective)</managingEditor>
+    <webMaster>hello@offdaycollective.com (Off Day Collective)</webMaster>
+    <pubDate>Sat, 01 Mar 2025 08:00:00 +0000</pubDate>
+    <lastBuildDate>Sat, 15 Mar 2026 12:00:00 +0000</lastBuildDate>
+    <category>Health &amp; Wellness</category>
+    <category>Sleep Science</category>
+    <category>Circadian Biology</category>
+    <ttl>10080</ttl>
+    <image>
+      <url>https://www.offdaycollective.com/images/og/library.svg</url>
+      <title>The Dark Journal — Off Day Collective</title>
+      <link>https://www.offdaycollective.com/library</link>
+    </image>
+    <atom:link href="https://www.offdaycollective.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>The Evening Protocol: Engineering the Conditions for Deep Sleep</title>
+      <link>https://www.offdaycollective.com/library-evening-protocol</link>
+      <guid isPermaLink="true">https://www.offdaycollective.com/library-evening-protocol</guid>
+      <pubDate>Sat, 01 Mar 2025 20:00:00 +0000</pubDate>
+      <author>hello@offdaycollective.com (Off Day Collective)</author>
+      <category>Evening</category>
+      <category>Sleep</category>
+      <dc:creator>Off Day Collective</dc:creator>
+      <description><![CDATA[Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised. The glymphatic system, melatonin action spectra, temperature regulation, and the real cost of one late drink.]]></description>
+      <content:encoded><![CDATA[
+        <p>Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised.</p>
+        <p>In this article: the glymphatic system (Xie et al., 2013), why 480nm blue light suppresses melatonin at a 10-lux threshold (Brainard et al., 2001), how a warm bath accelerates sleep onset via peripheral vasodilation (Kräuchi et al., 1999), and the mechanism by which even moderate alcohol suppresses REM sleep by up to 24%.</p>
+        <p><a href="https://www.offdaycollective.com/library-evening-protocol">Read the full article →</a></p>
+      ]]></content:encoded>
+      <media:content url="https://www.offdaycollective.com/images/og/evening-protocol.svg" medium="image" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>The Art of Strategic Idling: How Doing Nothing Produces Your Best Work</title>
+      <link>https://www.offdaycollective.com/library-strategic-idling</link>
+      <guid isPermaLink="true">https://www.offdaycollective.com/library-strategic-idling</guid>
+      <pubDate>Sat, 01 Mar 2025 12:00:00 +0000</pubDate>
+      <author>hello@offdaycollective.com (Off Day Collective)</author>
+      <category>Midday</category>
+      <category>Creativity</category>
+      <category>Neuroscience</category>
+      <dc:creator>Off Day Collective</dc:creator>
+      <description><![CDATA[Creativity does not arrive at a desk. It arrives in the shower, on a walk, in the quiet moment between two tasks. The Default Mode Network, the 90-minute BRAC rhythm, and why a Stanford study found walking boosts creative output by 81%.]]></description>
+      <content:encoded><![CDATA[
+        <p>Creativity does not arrive at a desk. It arrives in the shower, on a walk, in the quiet moment between two tasks. Your brain's most generative state is not focus — it is the absence of it.</p>
+        <p>In this article: the Default Mode Network and what it actually does during rest (Buckner et al., 2008), Kleitman's 90-minute Basic Rest-Activity Cycle, Peretz Lavie's sleep gate research, and the Oppezzo &amp; Schwartz walking study showing an 81% boost in divergent thinking.</p>
+        <p><a href="https://www.offdaycollective.com/library-strategic-idling">Read the full article →</a></p>
+      ]]></content:encoded>
+      <media:content url="https://www.offdaycollective.com/images/og/strategic-idling.svg" medium="image" width="1200" height="630"/>
+    </item>
+
+    <item>
+      <title>The 90-Minute Window: Why Your First Hour Determines Your Entire Day</title>
+      <link>https://www.offdaycollective.com/library-morning-light</link>
+      <guid isPermaLink="true">https://www.offdaycollective.com/library-morning-light</guid>
+      <pubDate>Sat, 01 Mar 2025 08:00:00 +0000</pubDate>
+      <author>hello@offdaycollective.com (Off Day Collective)</author>
+      <category>Morning</category>
+      <category>Circadian Biology</category>
+      <category>Cortisol</category>
+      <dc:creator>Off Day Collective</dc:creator>
+      <description><![CDATA[Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it. A peer-reviewed look at the cortisol awakening response, the danger of phone use in the first 30 minutes, caffeine timing, and light as a biological anchor.]]></description>
+      <content:encoded><![CDATA[
+        <p>Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it.</p>
+        <p>In this article: the Cortisol Awakening Response and why cortisol peaks 30–45 minutes after waking (Clow et al., 2004), how morning phone use triggers a threat-detection cascade, the adenosine-caffeine competition and why waiting 90 minutes produces a cleaner response (Porkka-Heiskanen, 1999), and light exposure as the master signal for your circadian clock (Czeisler et al., 1999).</p>
+        <p><a href="https://www.offdaycollective.com/library-morning-light">Read the full article →</a></p>
+      ]]></content:encoded>
+      <media:content url="https://www.offdaycollective.com/images/og/morning-light.svg" medium="image" width="1200" height="630"/>
+    </item>
+
+  </channel>
+</rss>
