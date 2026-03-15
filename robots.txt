@@ -9,5 +9,5 @@ Allow: /
 Disallow: /css/
 Disallow: /js/
 
-# Point to your sitemap once you create one
-Sitemap: https://offdaycollective.com/sitemap.xml
+Sitemap: https://www.offdaycollective.com/sitemap.xml
+Sitemap: https://www.offdaycollective.com/feed.xml
