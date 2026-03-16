@@ -102,6 +102,23 @@
       'access.emailLabel':  "Ingresa tu firma de correo",
       'access.cta':         "Solicitar Acceso",
       'access.reassurance': "Sin spam. Sin ruido. Solo la señal.",
+      'phase1.desc':        "Antes de que comience el ruido. El ritual de Claridad es una práctica matutina estructurada en torno a la lentitud — bebidas calientes hechas a mano, algo para la piel, algo para la página. La investigación muestra que los primeros 90 minutos después de despertar establecen tu curva de cortisol para todo el día. Hemos seleccionado cada objeto en esta fase para extender esa ventana: cosas que retienen el calor, requieren tus manos y recompensan tu paciencia.",
+      'phase2.desc':        "El camino arraigado. El Impulso te pone en movimiento sin destino — un paseo sin nada en los oídos, una comida preparada lentamente, algo creado con tus manos en lugar de una pantalla. Los estudios sobre resolución creativa de problemas demuestran que el movimiento físico no estructurado produce más ideas nuevas que la lluvia de ideas deliberada. Cada objeto en esta fase está elegido para sacarte afuera, mantenerte presente y dejar que tu mente vague hacia algún lugar útil.",
+      'phase3.desc':        "El profundo exhalor. La Reflexión reemplaza tu desplazamiento nocturno con un ritual de descanso que tu cuerpo realmente reconoce — calor, peso, poca luz y conversación real. Tu transición hacia el sueño comienza 2–3 horas antes de cerrar los ojos, y la mayoría lo anula con pantallas. Cada objeto en esta fase está elegido para apoyar esa transición: cosas que alivian, cosas que te arraigan y cosas que invitan al tipo de presencia que un teléfono no puede proporcionar.",
+      'manifesto.h2line1':  "El mundo moderno no tiene peso.",
+      'manifesto.h2line2':  "Curamos la gravedad.",
+      'manifesto.body1':    "Cada Volumen está organizado en torno a los tres tempos del día. En su interior encontrarás objetos cuidadosamente elegidos — cosas que te ralentizan a propósito — cada uno acompañado de un ritual guiado y una pieza educativa sobre por qué realmente funciona. No son vibras. Es ciencia que se puede sentir.",
+      'manifesto.tempo1':   "I. La Quietud Matutina.",
+      'manifesto.tempo2':   "II. La Jornada del Día.",
+      'manifesto.tempo3':   "III. La Liberación Vespertina.",
+      'manifesto.body2':    "Objetos curados. Rituales guiados. Fines de semana que devuelven.",
+      'manifesto.body3':    "Cada producto es rastreable hasta su fabricante. Publicamos el nombre, la ubicación y la historia detrás de cada artículo que obtenemos — porque los objetos en tus momentos más tranquilos deben llevar la misma intencionalidad que los momentos en sí.",
+      'manifesto.link':     "Explorar los Volúmenes",
+      'library.eyebrow':    "De la Biblioteca",
+      'library.h2part1':    "La ciencia del descanso.",
+      'library.h2part2':    "Gratis.",
+      'library.desc':       "Publicamos la investigación detrás de cada ritual que diseñamos. Aquí hay una vista previa de lo que leen los miembros — y lo que está disponible para todos ahora mismo.",
+      'library.cta':        "Leer los tres artículos en la Biblioteca",
     },
 
     /* ── FRENCH ────────────────────────────────────────────────────────── */
@@ -188,6 +205,23 @@
       'access.emailLabel':  "Entrez votre signature e-mail",
       'access.cta':         "Demander l'Accès",
       'access.reassurance': "Pas de spam. Pas de bruit. Juste le signal.",
+      'phase1.desc':        "Avant que le bruit commence. Le rituel de Clarté est une pratique matinale structurée autour de la lenteur — des boissons chaudes préparées à la main, quelque chose pour la peau, quelque chose pour la page. Les recherches montrent que les 90 premières minutes après le réveil déterminent votre courbe de cortisol pour toute la journée. Nous avons sélectionné chaque objet dans cette phase pour prolonger cette fenêtre : des choses qui retiennent la chaleur, qui exigent vos mains et qui récompensent votre patience.",
+      'phase2.desc':        "Le chemin ancré. Momentum vous met en mouvement sans destination — une promenade sans rien dans les oreilles, un repas préparé lentement, quelque chose créé avec vos mains plutôt qu'un écran. Les études sur la résolution créative de problèmes montrent régulièrement que le mouvement physique non structuré produit plus d'idées nouvelles que le brainstorming délibéré. Chaque objet dans cette phase est choisi pour vous faire sortir, vous garder présent et laisser votre esprit vagabonder quelque part d'utile.",
+      'phase3.desc':        "Le profond soupir. La Réflexion remplace votre défilement du soir par un rituel d'apaisement que votre corps reconnaît vraiment — chaleur, poids, faible lumière et vraie conversation. Votre transition vers le sommeil commence 2–3 heures avant de fermer les yeux, et la plupart des gens l'écrasent avec des écrans. Chaque objet dans cette phase est choisi pour soutenir cette transition : des choses qui apaisent, des choses qui vous ancrent et des choses qui invitent le type de présence qu'un téléphone ne peut pas offrir.",
+      'manifesto.h2line1':  "Le monde moderne est sans poids.",
+      'manifesto.h2line2':  "Nous curons la gravité.",
+      'manifesto.body1':    "Chaque Volume est organisé autour des trois tempos de la journée. À l'intérieur, vous trouverez des objets soigneusement choisis — des choses qui vous ralentissent délibérément — chacun accompagné d'un rituel guidé et d'un court texte éducatif sur la raison pour laquelle cela fonctionne réellement. Pas des vibrations. De la science que vous pouvez ressentir.",
+      'manifesto.tempo1':   "I. L'Immobilité Matinale.",
+      'manifesto.tempo2':   "II. Le Voyage du Jour.",
+      'manifesto.tempo3':   "III. La Libération du Soir.",
+      'manifesto.body2':    "Objets sélectionnés. Rituels guidés. Des week-ends qui redonnent.",
+      'manifesto.body3':    "Chaque produit est traçable jusqu'à son fabricant. Nous publions le nom, le lieu et l'histoire derrière chaque article que nous sourçons — parce que les objets dans vos moments les plus calmes doivent porter la même intentionnalité que les moments eux-mêmes.",
+      'manifesto.link':     "Explorer les Volumes",
+      'library.eyebrow':    "De la Bibliothèque",
+      'library.h2part1':    "La science du repos.",
+      'library.h2part2':    "Gratuit.",
+      'library.desc':       "Nous publions les recherches derrière chaque rituel que nous concevons. Voici un aperçu de ce que lisent les membres — et ce qui est disponible pour tout le monde en ce moment.",
+      'library.cta':        "Lire les trois articles dans la Bibliothèque",
     },
 
     /* ── GERMAN ─────────────────────────────────────────────────────────── */
@@ -274,6 +308,23 @@
       'access.emailLabel':  "Geben Sie Ihre E-Mail-Adresse ein",
       'access.cta':         "Zugang Beantragen",
       'access.reassurance': "Kein Spam. Kein Lärm. Nur das Signal.",
+      'phase1.desc':        "Bevor der Lärm beginnt. Das Clarity-Ritual ist eine strukturierte Morgenpraxis, die sich um Langsamkeit dreht — warme Getränke von Hand zubereitet, etwas für die Haut, etwas für die Seite. Studien zeigen, dass die ersten 90 Minuten nach dem Aufwachen Ihre Kortisolkurve für den gesamten Tag bestimmen. Wir haben jedes Objekt in dieser Phase ausgewählt, um dieses Fenster zu verlängern: Dinge, die Wärme halten, Ihre Hände brauchen und Ihre Geduld belohnen.",
+      'phase2.desc':        "Der geerdte Weg. Momentum bringt Sie ohne Ziel in Bewegung — ein Spaziergang ohne etwas in den Ohren, eine langsam zubereitete Mahlzeit, etwas mit den Händen statt einem Bildschirm erschaffen. Studien zur kreativen Problemlösung zeigen konsequent, dass unstrukturierte körperliche Bewegung mehr neue Ideen produziert als gezieltes Brainstorming. Jedes Objekt in dieser Phase ist ausgewählt, um Sie nach draußen zu bringen, gegenwärtig zu halten und dem Gedanken zu erlauben, irgendwo Nützliches zu wandern.",
+      'phase3.desc':        "Das tiefe Ausatmen. Reflexion ersetzt Ihr abendliches Scrollen durch ein Entspannungsritual, das Ihr Körper wirklich erkennt — Wärme, Gewicht, schwaches Licht und echtes Gespräch. Ihr Übergang zum Schlaf beginnt 2–3 Stunden bevor Sie die Augen schließen, und die meisten Menschen überschreiben ihn mit Bildschirmen. Jedes Objekt in dieser Phase ist ausgewählt, um diesen Übergang zu unterstützen: Dinge, die beruhigen, Dinge, die Sie erden, und Dinge, die zu der Art von Präsenz einladen, die ein Telefon nicht bieten kann.",
+      'manifesto.h2line1':  "Die moderne Welt ist gewichtslos.",
+      'manifesto.h2line2':  "Wir kuratieren Gravität.",
+      'manifesto.body1':    "Jedes Volume ist um die drei Tempi des Tages organisiert. Darin finden Sie sorgfältig ausgewählte Objekte — Dinge, die Sie absichtlich verlangsamen — jedes gepaart mit einem geführten Ritual und einem kurzen Bildungstext darüber, warum es tatsächlich funktioniert. Keine Stimmungen. Wissenschaft, die man spüren kann.",
+      'manifesto.tempo1':   "I. Die Morgendliche Stille.",
+      'manifesto.tempo2':   "II. Die Reise des Tages.",
+      'manifesto.tempo3':   "III. Das Abendliche Loslassen.",
+      'manifesto.body2':    "Kuratierte Objekte. Geführte Rituale. Wochenenden, die zurückgeben.",
+      'manifesto.body3':    "Jedes Produkt ist bis zu seinem Hersteller zurückverfolgbar. Wir veröffentlichen den Namen, den Standort und die Geschichte hinter jedem Artikel, den wir beziehen — denn die Objekte in Ihren stillen Momenten sollten dieselbe Intentionalität tragen wie die Momente selbst.",
+      'manifesto.link':     "Die Volumes erkunden",
+      'library.eyebrow':    "Aus der Bibliothek",
+      'library.h2part1':    "Die Wissenschaft der Ruhe.",
+      'library.h2part2':    "Kostenlos.",
+      'library.desc':       "Wir veröffentlichen die Forschung hinter jedem Ritual, das wir gestalten. Hier ist eine Vorschau dessen, was Mitglieder lesen — und was jetzt für alle verfügbar ist.",
+      'library.cta':        "Alle drei Artikel in der Bibliothek lesen",
     },
 
     /* ── PORTUGUESE ─────────────────────────────────────────────────────── */
@@ -360,6 +411,23 @@
       'access.emailLabel':  "Digite sua assinatura de e-mail",
       'access.cta':         "Solicitar Acesso",
       'access.reassurance': "Sem spam. Sem ruído. Só o sinal.",
+      'phase1.desc':        "Antes do ruído começar. O ritual de Clareza é uma prática matinal estruturada em torno da lentidão — bebidas quentes feitas à mão, algo para a pele, algo para a página. A pesquisa mostra que os primeiros 90 minutos após acordar definem sua curva de cortisol para o dia inteiro. Selecionamos cada objeto nesta fase para estender essa janela: coisas que retêm calor, requerem suas mãos e recompensam sua paciência.",
+      'phase2.desc':        "O caminho enraizado. O Impulso te coloca em movimento sem destino — uma caminhada sem nada nos ouvidos, uma refeição preparada lentamente, algo criado com as mãos em vez de uma tela. Estudos sobre resolução criativa de problemas mostram consistentemente que o movimento físico não estruturado produz mais ideias novas do que o brainstorming deliberado. Cada objeto nesta fase é escolhido para te levar para fora, manter presente e deixar sua mente vagar para algum lugar útil.",
+      'phase3.desc':        "A expiração profunda. A Reflexão substitui sua rolagem noturna por um ritual de relaxamento que seu corpo realmente reconhece — calor, peso, pouca luz e conversa real. Sua transição para o sono começa 2–3 horas antes de fechar os olhos, e a maioria das pessoas a substitui por telas. Cada objeto nesta fase é escolhido para apoiar essa transição: coisas que acalmam, coisas que enraízam você e coisas que convidam ao tipo de presença que um telefone não pode proporcionar.",
+      'manifesto.h2line1':  "O mundo moderno não tem peso.",
+      'manifesto.h2line2':  "Nós curamos a gravidade.",
+      'manifesto.body1':    "Cada Volume é organizado em torno dos três ritmos do dia. Dentro você encontrará objetos cuidadosamente escolhidos — coisas que te desaceleram de propósito — cada um acompanhado de um ritual guiado e um breve conteúdo educativo sobre por que realmente funciona. Não são vibrações. É ciência que você pode sentir.",
+      'manifesto.tempo1':   "I. A Quietude Matinal.",
+      'manifesto.tempo2':   "II. A Jornada do Dia.",
+      'manifesto.tempo3':   "III. A Libertação Noturna.",
+      'manifesto.body2':    "Objetos curados. Rituais guiados. Fins de semana que recompensam.",
+      'manifesto.body3':    "Cada produto é rastreável até seu fabricante. Publicamos o nome, localização e história por trás de cada item que sourçamos — porque os objetos nos seus momentos mais quietos devem carregar a mesma intencionalidade que os próprios momentos.",
+      'manifesto.link':     "Explorar os Volumes",
+      'library.eyebrow':    "Da Biblioteca",
+      'library.h2part1':    "A ciência do descanso.",
+      'library.h2part2':    "Grátis.",
+      'library.desc':       "Publicamos a pesquisa por trás de cada ritual que desenvolvemos. Aqui está uma prévia do que os membros leem — e o que está disponível para todos agora.",
+      'library.cta':        "Ler todos os três artigos na Biblioteca",
     },
 
     /* ── JAPANESE ───────────────────────────────────────────────────────── */
@@ -446,6 +514,23 @@
       'access.emailLabel':  "メールアドレスを入力してください",
       'access.cta':         "アクセスを申し込む",
       'access.reassurance': "スパムなし。ノイズなし。シグナルだけ。",
+      'phase1.desc':        "雑音が始まる前。明晰のリチュアルは、ゆっくりさを中心に組み立てられた構造的な朝の実践です — 手で作る温かい飲み物、肌のためのもの、ページのためのもの。研究によると、起床後最初の90分が一日全体のコルチゾール曲線を決定します。私たちはこの窓を延ばすために、この段階のすべてのオブジェクトを選びました：温もりを保ち、手を必要とし、忍耐を報いるもの。",
+      'phase2.desc':        "地に足のついた道。モメンタムは目的地なしにあなたを動かします — 耳に何もない散歩、ゆっくり作られた食事、スクリーンの代わりに手で作るもの。創造的な問題解決に関する研究は、構造化されていない身体的な動きが意図的なブレインストーミングよりも多くの新しいアイデアを生み出すことを一貫して示しています。この段階のすべてのオブジェクトは、外に出て、現在にとどまり、思考が役立つ場所へさまようことを可能にするために選ばれています。",
+      'phase3.desc':        "深い吐息。内省は夜のスクロールを、体が本当に認識するくつろぎのリチュアルに置き換えます — 温もり、重さ、弱い光、そして本物の会話。睡眠への移行は目を閉じる2〜3時間前に始まりますが、ほとんどの人がスクリーンでそれを上書きしています。この段階のすべてのオブジェクトは、その移行をサポートするために選ばれています：癒すもの、あなたを地に足つかせるもの、スマートフォンが提供できない種類の存在感へと誘うもの。",
+      'manifesto.h2line1':  "現代の世界は無重力だ。",
+      'manifesto.h2line2':  "私たちは重力をキュレートする。",
+      'manifesto.body1':    "各Volumeは一日の三つのテンポを中心に整理されています。中には慎重に選ばれたオブジェクトがあります — 意図的にあなたを遅らせるもの — それぞれがガイド付きリチュアルと、なぜ実際に効果があるかについての短い教育コンテンツと組み合わされています。感覚ではありません。感じることができる科学です。",
+      'manifesto.tempo1':   "I. 朝の静けさ。",
+      'manifesto.tempo2':   "II. 一日の旅。",
+      'manifesto.tempo3':   "III. 夕暮れの解放。",
+      'manifesto.body2':    "厳選されたオブジェクト。ガイド付きリチュアル。恩返しをする週末。",
+      'manifesto.body3':    "すべての製品はその製造者まで追跡可能です。私たちが調達するすべてのアイテムの背後にある名前、場所、ストーリーを公開しています — なぜなら、あなたの最も静かな瞬間にあるオブジェクトは、その瞬間自体と同じ意図性を持つべきだからです。",
+      'manifesto.link':     "Volumeを探索する",
+      'library.eyebrow':    "ライブラリーから",
+      'library.h2part1':    "休息の科学。",
+      'library.h2part2':    "無料。",
+      'library.desc':       "私たちが設計するすべてのリチュアルの背後にある研究を公開しています。これはメンバーが読むものと、今すぐ誰でも利用できるもののプレビューです。",
+      'library.cta':        "ライブラリーで3つの記事をすべて読む",
     },
 
     /* ── MANDARIN CHINESE ───────────────────────────────────────────────── */
@@ -532,6 +617,23 @@
       'access.emailLabel':  "输入您的电子邮件",
       'access.cta':         "申请访问",
       'access.reassurance': "无垃圾邮件。无噪音。只有信号。",
+      'phase1.desc':        "在嘈杂开始之前。清晰仪式是一种以缓慢为中心构建的结构化晨间练习——手工制作的热饮、护肤之物、书写之物。研究表明，醒来后的前90分钟决定了你全天的皮质醇曲线。我们为这一阶段选择了每一件物品，以延长这个时间窗口：那些保持温暖、需要双手、奖励耐心的东西。",
+      'phase2.desc':        "扎根的道路。动力让你在没有目的地的情况下移动——一次耳朵里什么都没有的散步、一顿慢慢准备的饭菜、用双手而非屏幕创造的东西。关于创造性问题解决的研究一致表明，非结构化的身体运动比刻意的头脑风暴产生更多新想法。这一阶段的每件物品都是为了让你走出去、保持当下，让思维漫游到有用的地方而选择的。",
+      'phase3.desc':        "深深的呼气。反思用你的身体真正能识别的放松仪式取代你的夜间滚动——温暖、重量、低光线和真实的对话。你向睡眠的过渡在你闭上眼睛前2-3小时就开始了，大多数人用屏幕覆盖它。这一阶段的每件物品都是为了支持这种过渡而选择的：舒缓的东西、让你扎根的东西，以及邀请手机无法提供的那种临在感的东西。",
+      'manifesto.h2line1':  "现代世界是无重的。",
+      'manifesto.h2line2':  "我们策展重力。",
+      'manifesto.body1':    "每个Volume都围绕一天的三个节奏组织。里面有精心挑选的物品——那些刻意让你慢下来的东西——每件都配有引导仪式和一篇关于为什么真正有效的简短教育内容。不是感觉。是可以感受到的科学。",
+      'manifesto.tempo1':   "I. 晨间静谧。",
+      'manifesto.tempo2':   "II. 日间旅程。",
+      'manifesto.tempo3':   "III. 傍晚释放。",
+      'manifesto.body2':    "精心策划的物品。引导式仪式。给予回报的周末。",
+      'manifesto.body3':    "每件产品都可以追溯到其制造者。我们公布每件采购商品背后的名称、地点和故事——因为你最安静时刻的物品应该与那些时刻本身承载同样的意图性。",
+      'manifesto.link':     "探索 Volumes",
+      'library.eyebrow':    "来自图书馆",
+      'library.h2part1':    "休息的科学。",
+      'library.h2part2':    "免费。",
+      'library.desc':       "我们发布每个我们设计的仪式背后的研究。这是会员所读内容的预览——以及目前所有人都可以获得的内容。",
+      'library.cta':        "在图书馆阅读全部三篇文章",
     },
 
   }; // end T
@@ -550,6 +652,10 @@
     });
     var h2 = document.getElementById('system-h2');
     if (h2) originals['system-h2__html'] = h2.innerHTML;
+    var mh2 = document.getElementById('manifesto-h2');
+    if (mh2) originals['manifesto-h2__html'] = mh2.innerHTML;
+    var lh2 = document.getElementById('library-h2');
+    if (lh2) originals['library-h2__html'] = lh2.innerHTML;
     var cta2 = document.getElementById('step2-cta');
     if (cta2) originals['step2-cta__html'] = cta2.innerHTML;
     var heroCta = document.querySelector('.hero-cta');
@@ -574,6 +680,10 @@
       });
       var h2 = document.getElementById('system-h2');
       if (h2 && originals['system-h2__html']) h2.innerHTML = originals['system-h2__html'];
+      var mh2 = document.getElementById('manifesto-h2');
+      if (mh2 && originals['manifesto-h2__html']) mh2.innerHTML = originals['manifesto-h2__html'];
+      var lh2 = document.getElementById('library-h2');
+      if (lh2 && originals['library-h2__html']) lh2.innerHTML = originals['library-h2__html'];
       var cta2 = document.getElementById('step2-cta');
       if (cta2 && originals['step2-cta__html']) cta2.innerHTML = originals['step2-cta__html'];
       var heroCta = document.querySelector('.hero-cta');
@@ -590,6 +700,16 @@
       var h2 = document.getElementById('system-h2');
       if (h2 && t['system.h2part1'] && t['system.h2part2']) {
         h2.innerHTML = t['system.h2part1'] + ' <br><span class="gold-text italic">' + t['system.h2part2'] + '</span>';
+      }
+      // Manifesto h2 (contains <br> + gold span + world-word span)
+      var mh2 = document.getElementById('manifesto-h2');
+      if (mh2 && t['manifesto.h2line1'] && t['manifesto.h2line2']) {
+        mh2.innerHTML = t['manifesto.h2line1'] + ' <br><span class="gold-text italic">' + t['manifesto.h2line2'] + '</span>';
+      }
+      // Library h2 (contains gold span)
+      var lh2 = document.getElementById('library-h2');
+      if (lh2 && t['library.h2part1'] && t['library.h2part2']) {
+        lh2.innerHTML = t['library.h2part1'] + ' <span class="gold-text italic">' + t['library.h2part2'] + '</span>';
       }
       // Step-2 library CTA (preserve the → arrow span)
       var cta2 = document.getElementById('step2-cta');

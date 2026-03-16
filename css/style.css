@@ -443,7 +443,7 @@ section h2 {
 
 /* Isolate .nav-right from mix-blend-mode so the toggle renders correctly */
 .nav-right {
-    display: flex; align-items: center; gap: 40px;
+    display: flex; align-items: center; gap: 28px;
     mix-blend-mode: normal;
     isolation: isolate;
     pointer-events: auto;
@@ -457,6 +457,8 @@ section h2 {
     /* Hide decorative items to prevent overflow */
     .status-indicator { display: none; }
     .toggle-label { display: none; }
+    /* Hide logo wordmark; show only the SVG mark to free up nav space */
+    .logo-wordmark { display: none; }
     /* Force nav menu to cover the full visual viewport (iOS fixed-in-fixed bug) */
     .nav-menu { position: fixed !important; top: 0 !important; left: 0 !important;
                 right: 0 !important; bottom: 0 !important; height: 100dvh !important; }
