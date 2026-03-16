@@ -172,6 +172,7 @@ body.loaded {
 body.loaded .reveal-on-load { opacity: 1; transform: translateY(0); }
 body.loaded .reveal-on-load[data-delay="0.3"] { transition-delay: 0.3s; }
 body.loaded .reveal-on-load[data-delay="0.8"] { transition-delay: 0.8s; }
+body.loaded .reveal-on-load[data-delay="1.2"] { transition-delay: 1.2s; }
 body.loaded .reveal-on-load[data-delay="1.6"] { transition-delay: 1.6s; }
 
 
@@ -1923,12 +1924,8 @@ a.phase-hint:hover span {
     .manifesto-content { width: 100%; order: 2; }
 
     .visual-stamp {
-        /* On mobile, JS positioning is skipped; CSS centers the badge
-           between the stacked image and content columns */
+        /* JS positions the badge; only override size on mobile */
         width: 100px; height: 100px;
-        left: 50% !important; top: auto !important;
-        bottom: -50px; right: auto !important;
-        transform: translateX(-50%) !important;
         background: rgba(249, 247, 242, 0.9);
     }
     .circle-text { font-size: 11px; letter-spacing: 1px; }
