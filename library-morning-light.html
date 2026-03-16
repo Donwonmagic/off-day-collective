@@ -288,7 +288,8 @@
         .art-citations li em { font-style: italic; }
 
         /* ── CITATION DRAWER ─────────────────────────── */
-        .cite-popover { position: fixed; width: min(360px,90vw); background: #0F0F0F; border: 1px solid rgba(255,255,255,0.08); z-index: 9000; padding: 28px 28px 24px; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 24px 64px rgba(0,0,0,0.8); }
+        .cite-popover { position: fixed; width: min(360px,90vw); background: #0F0F0F; border: 1px solid rgba(255,255,255,0.08); z-index: 9000; padding: 28px 28px 24px; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 24px 64px rgba(0,0,0,0.8); max-height: 80dvh; overflow-y: auto; }
+        @media (max-width: 768px) { .cite-popover { bottom: 0 !important; top: auto !important; left: 0 !important; width: 100% !important; max-width: 100%; border-radius: 16px 16px 0 0; } }
         .cite-popover.on { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .cite-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.25); font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1; padding: 4px 8px; cursor: pointer; transition: color 0.2s; }
         .cite-close:hover { color: rgba(255,255,255,0.7); }
@@ -384,7 +385,7 @@
     <nav class="nav-overlay" id="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
             <a href="/" class="nav-logo" aria-label="Off Day Collective home">
-                <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
+                <svg width="26" height="26" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polyline points="100,170 30,135 30,65 80,37" stroke="#C9A84C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/><polyline points="120,37 170,65 170,135 100,170" stroke="#C9A84C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/><rect x="85" y="75" width="11" height="54" rx="2" fill="#C9A84C"/><rect x="104" y="75" width="11" height="54" rx="2" fill="#C9A84C"/></svg>
                 Off Day Collective
             </a>
             <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
@@ -393,12 +394,13 @@
         </div>
     </nav>
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
-            <li><a href="library.html" class="nav-link active" aria-current="page">Library</a></li>
-            <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
+            <li><a href="/library" class="nav-link active" aria-current="page">Library</a></li>
+            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
             <li><a href="/#access" class="nav-link">Join</a></li>
         </ul>
     </div>
@@ -407,7 +409,7 @@
 
         <!-- Breadcrumb -->
         <div class="art-breadcrumb">
-            <a href="library.html" class="art-breadcrumb-back">← The Science of Rest</a>
+            <a href="/library" class="art-breadcrumb-back">← The Science of Rest</a>
             <span class="art-breadcrumb-sep" aria-hidden="true"></span>
             <span class="art-breadcrumb-label">I · Morning Stillness</span>
         </div>
@@ -502,11 +504,11 @@
 
         <!-- Pagination -->
         <nav class="art-pagination" aria-label="Article navigation">
-            <a href="library.html">
+            <a href="/library">
                 ← All Articles
                 <span class="art-pagination-label">The Science of Rest</span>
             </a>
-            <a href="library-strategic-idling.html" class="art-pagination-next">
+            <a href="/library-strategic-idling" class="art-pagination-next">
                 Next Article →
                 <span class="art-pagination-label">The Art of Strategic Idling</span>
             </a>
@@ -572,18 +574,22 @@
             document.getElementById('cite-summary').textContent = d.summary;
             var link = document.getElementById('cite-link');
             link.href = d.url || '#'; link.style.display = d.url ? 'inline-block' : 'none';
-            var cx = evt ? evt.clientX : trigger.getBoundingClientRect().left;
-            var cy = evt ? evt.clientY : trigger.getBoundingClientRect().bottom;
-            var pw = Math.min(360, window.innerWidth * 0.9);
-            var margin = 12;
-            var left = cx;
-            if (left + pw > window.innerWidth - margin) left = window.innerWidth - pw - margin;
-            if (left < margin) left = margin;
-            var spaceBelow = window.innerHeight - cy - margin;
-            var top = spaceBelow >= 200 ? cy + 8 : Math.max(margin, cy - 296);
-            popover.style.left = left + 'px';
-            popover.style.top = top + 'px';
-            popover.style.width = pw + 'px';
+            if (window.innerWidth <= 768) {
+                popover.style.left = ''; popover.style.top = ''; popover.style.width = '';
+            } else {
+                var cx = evt ? evt.clientX : trigger.getBoundingClientRect().left;
+                var cy = evt ? evt.clientY : trigger.getBoundingClientRect().bottom;
+                var pw = Math.min(360, window.innerWidth * 0.9);
+                var margin = 12;
+                var left = cx;
+                if (left + pw > window.innerWidth - margin) left = window.innerWidth - pw - margin;
+                if (left < margin) left = margin;
+                var spaceBelow = window.innerHeight - cy - margin;
+                var top = spaceBelow >= 200 ? cy + 8 : Math.max(margin, cy - 296);
+                popover.style.left = left + 'px';
+                popover.style.top = top + 'px';
+                popover.style.width = pw + 'px';
+            }
             popover.classList.add('on'); popover.setAttribute('aria-hidden','false');
             document.getElementById('cite-close').focus({ preventScroll: true });
         }
@@ -608,6 +614,7 @@
         function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
         if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
+        var navMenuClose = document.getElementById('nav-menu-close'); if (navMenuClose) navMenuClose.addEventListener('click', closeNav);
 
         // Keyboard
         document.addEventListener('keydown', function(e) {
