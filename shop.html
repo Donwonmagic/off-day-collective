@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shop · Off Day Collective</title>
+    <meta name="description" content="Handcrafted objects for the intentional rest. The Off Day Collective shop — curated goods for the off day ritual. Arriving Fall 2026.">
+    <link rel="canonical" href="https://www.offdaycollective.com/shop">
+    <meta property="og:title" content="The Shop · Off Day Collective">
+    <meta property="og:description" content="Objects for the intentional rest. Arriving Fall 2026.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.offdaycollective.com/shop">
+    <meta property="og:site_name" content="Off Day Collective">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Shop · Off Day Collective">
+    <meta name="twitter:description" content="Objects for the intentional rest. Arriving Fall 2026.">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="The Science of Rest — Off Day Collective" href="https://www.offdaycollective.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { perspective: none; background: #000; }
+
+        .skip-link {
+            position: absolute; top: -100%; left: 50%;
+            transform: translateX(-50%);
+            background: #C9A84C; color: #000;
+            padding: 12px 24px; z-index: 99999;
+            font-family: 'Inter', sans-serif; font-size: 0.8rem;
+            letter-spacing: 1px; text-decoration: none;
+            border-radius: 0 0 4px 4px; transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+        html { scroll-padding-top: 80px; scroll-behavior: smooth; }
+
+        /* ── NAV OVERRIDE ─────────────────────────── */
+        nav.nav-overlay {
+            mix-blend-mode: normal;
+            pointer-events: auto;
+            padding: 0; display: block;
+            background: transparent;
+        }
+        .nav-inner {
+            display: flex; align-items: center;
+            justify-content: space-between;
+            padding: 28px 48px;
+        }
+        .nav-logo {
+            display: flex; align-items: center;
+            text-decoration: none; gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+            transition: color 0.3s;
+        }
+        .nav-logo:hover { color: rgba(255,255,255,0.9); }
+        .nav-logo svg { flex-shrink: 0; }
+        .nav-toggle {
+            background: none; border: none;
+            width: 40px; height: 40px;
+            display: flex; flex-direction: column;
+            align-items: flex-end; justify-content: center;
+            gap: 6px; padding: 8px;
+            cursor: none; -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .nav-toggle span {
+            display: block; height: 1px;
+            background: rgba(255,255,255,0.45);
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                        opacity 0.3s ease, width 0.3s ease;
+        }
+        .nav-toggle span:first-child { width: 22px; }
+        .nav-toggle span:last-child  { width: 14px; }
+        .nav-toggle[aria-expanded="true"] span:first-child {
+            width: 20px; transform: translateY(3.5px) rotate(45deg);
+        }
+        .nav-toggle[aria-expanded="true"] span:last-child {
+            width: 20px; transform: translateY(-3.5px) rotate(-45deg);
+        }
+        .nav-toggle:hover span { background: rgba(255,255,255,0.8); }
+        .nav-toggle:focus-visible { outline: 1px solid rgba(201,168,76,0.5); outline-offset: 4px; }
+        .nav-menu {
+            position: fixed; inset: 0;
+            background: rgba(4,4,4,0.97);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1);
+            z-index: 9700;
+        }
+        .nav-menu.is-open { opacity: 1; pointer-events: auto; }
+        .nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
+        .nav-links li {
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .nav-menu.is-open .nav-links li:nth-child(1) { opacity:1; transform:none; transition-delay:0.08s; }
+        .nav-menu.is-open .nav-links li:nth-child(2) { opacity:1; transform:none; transition-delay:0.14s; }
+        .nav-menu.is-open .nav-links li:nth-child(3) { opacity:1; transform:none; transition-delay:0.20s; }
+        .nav-menu.is-open .nav-links li:nth-child(4) { opacity:1; transform:none; transition-delay:0.26s; }
+        .nav-menu.is-open .nav-links li:nth-child(5) { opacity:1; transform:none; transition-delay:0.32s; }
+        .nav-menu.is-open .nav-links li:nth-child(6) { opacity:1; transform:none; transition-delay:0.38s; }
+        .nav-link {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 300; color: rgba(240,237,230,0.35);
+            text-decoration: none; letter-spacing: -0.02em;
+            display: block; padding: 8px 0;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: #F0EDE6; }
+        .nav-link.active { font-style: italic; color: #C9A84C; }
+
+        /* ── HERO ─────────────────────────────────── */
+        .shop-hero {
+            min-height: 100vh;
+            display: flex; align-items: center;
+            padding: 140px 80px 100px;
+            position: relative; overflow: hidden;
+            background: #000;
+        }
+        .shop-hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(201,168,76,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .shop-hero-watermark {
+            position: absolute; right: -0.05em; top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(14rem, 28vw, 26rem);
+            font-weight: 300; color: rgba(255,255,255,0.018);
+            letter-spacing: -0.04em; line-height: 1;
+            pointer-events: none; user-select: none;
+            white-space: nowrap;
+        }
+        .shop-hero-inner { max-width: 680px; position: relative; z-index: 2; }
+        .shop-eyebrow {
+            font-family: 'Inter', sans-serif; font-size: 0.52rem;
+            letter-spacing: 7px; text-transform: uppercase;
+            color: rgba(255,255,255,0.15); display: block; margin-bottom: 40px;
+        }
+        .shop-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(4rem, 9vw, 8rem);
+            font-weight: 300; line-height: 0.92; letter-spacing: -0.03em;
+            color: #F0EDE6; margin-bottom: 48px;
+        }
+        .shop-title em { font-style: italic; color: #C9A84C; }
+        .shop-desc {
+            font-family: 'Inter', sans-serif; font-size: 0.9rem;
+            line-height: 1.95; color: rgba(255,255,255,0.3);
+            font-weight: 300; max-width: 440px; margin-bottom: 52px;
+        }
+        .shop-arrival {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-family: 'Inter', sans-serif; font-size: 0.52rem;
+            letter-spacing: 4px; text-transform: uppercase;
+            color: rgba(201,168,76,0.5);
+        }
+        .shop-arrival-line {
+            width: 40px; height: 1px;
+            background: rgba(201,168,76,0.3);
+        }
+
+        /* ── OBJECTS ──────────────────────────────── */
+        .shop-objects {
+            background: #000; padding: 0 80px 120px;
+        }
+        .shop-objects-label {
+            font-family: 'Inter', sans-serif; font-size: 0.5rem;
+            letter-spacing: 5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.1); margin-bottom: 60px;
+            padding-top: 80px; border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .shop-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+        .shop-card {
+            background: rgba(255,255,255,0.015);
+            padding: 56px 44px 60px;
+            border: 1px solid rgba(255,255,255,0.04);
+            position: relative; overflow: hidden;
+            transition: background 0.4s ease;
+        }
+        .shop-card:hover { background: rgba(255,255,255,0.03); }
+        .shop-card-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem; font-weight: 300;
+            color: #C9A84C; opacity: 0.18;
+            display: block; line-height: 1; margin-bottom: 24px;
+        }
+        .shop-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem; font-weight: 300;
+            color: #F0EDE6; line-height: 1.2;
+            margin-bottom: 20px; letter-spacing: -0.02em;
+        }
+        .shop-card-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem; line-height: 1.85;
+            color: rgba(255,255,255,0.3); font-weight: 300;
+        }
+        .shop-card-tag {
+            margin-top: 32px;
+            font-family: 'Inter', sans-serif; font-size: 0.5rem;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: rgba(201,168,76,0.4);
+        }
+
+        /* ── CTA ──────────────────────────────────── */
+        .shop-cta {
+            background: #000; padding: 140px 80px;
+            text-align: center; position: relative; overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        .shop-cta::before {
+            content: ''; position: absolute;
+            top: 0; left: 50%; transform: translateX(-50%);
+            width: 1px; height: 120px;
+            background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.22));
+        }
+        .shop-cta-inner { max-width: 520px; margin: 0 auto; position: relative; z-index: 1; }
+        .shop-cta h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 300; color: #F0EDE6;
+            line-height: 1.1; letter-spacing: -0.02em;
+            margin-bottom: 18px;
+        }
+        .shop-cta h2 em { color: #C9A84C; font-style: italic; }
+        .shop-cta-sub {
+            font-family: 'Inter', sans-serif; font-size: 0.85rem;
+            line-height: 1.85; color: rgba(255,255,255,0.25);
+            font-weight: 300; margin-bottom: 44px;
+        }
+        .shop-cta-btn {
+            display: inline-block;
+            font-family: 'Inter', sans-serif; font-size: 0.62rem;
+            letter-spacing: 3px; text-transform: uppercase;
+            color: #C9A84C; text-decoration: none;
+            border: 1px solid rgba(201,168,76,0.3); padding: 16px 36px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .shop-cta-btn:hover { border-color: rgba(201,168,76,0.7); background: rgba(201,168,76,0.04); }
+
+        /* ── RESPONSIVE ───────────────────────────── */
+        @media (max-width: 960px) {
+            .shop-hero { padding: 120px 48px 80px; }
+            .shop-objects { padding: 0 48px 100px; }
+            .shop-grid { grid-template-columns: 1fr; gap: 2px; }
+            .shop-cta { padding: 100px 48px; }
+        }
+        @media (max-width: 768px) {
+            .nav-inner { padding: 22px 28px; }
+            .shop-hero { padding: 100px 28px 60px; min-height: 90vh; }
+            .shop-objects { padding: 0 28px 80px; }
+            .shop-card { padding: 40px 28px 44px; }
+            .shop-cta { padding: 100px 28px; }
+        }
+    </style>
+</head>
+<body class="dark-bg loaded">
+
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <div id="page-transition"></div>
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Nav -->
+    <nav class="nav-overlay" id="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo" aria-label="Off Day Collective home">
+                <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
+                Off Day Collective
+            </a>
+            <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+                <span></span><span></span>
+            </button>
+            <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+                <ul class="nav-links" role="list">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
+                    <li><a href="library.html" class="nav-link">Library</a></li>
+                    <li><a href="shop.html" class="nav-link active" aria-current="page">Shop</a></li>
+                    <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+                    <li><a href="/#access" class="nav-link">Join</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+
+        <!-- Hero -->
+        <section class="shop-hero" aria-labelledby="shop-title">
+            <div class="shop-hero-watermark" aria-hidden="true">SHOP</div>
+            <div class="shop-hero-inner">
+                <span class="shop-eyebrow">Off Day Collective · Fall 2026</span>
+                <h1 class="shop-title" id="shop-title">Objects for<br>the <em>off day.</em></h1>
+                <p class="shop-desc">Every ritual needs a physical anchor. Volume I introduces a small, deliberate collection of objects designed to support intentional rest — each chosen for a specific role in the day's three windows. Handmade. Limited. Arriving Fall 2026.</p>
+                <div class="shop-arrival">
+                    <span class="shop-arrival-line"></span>
+                    Arriving Fall 2026
+                </div>
+            </div>
+        </section>
+
+        <!-- Object previews -->
+        <div class="shop-objects" aria-label="Volume I preview">
+            <p class="shop-objects-label">Volume I — Object Preview</p>
+            <div class="shop-grid">
+                <article class="shop-card">
+                    <span class="shop-card-num">01</span>
+                    <h2 class="shop-card-title">The Rest Kit</h2>
+                    <p class="shop-card-desc">A curated set of three objects for the evening ritual. Designed around the science of the 90-minute wind-down window. What you use in the hour before sleep determines the quality of what follows.</p>
+                    <p class="shop-card-tag">Evening Object · Limited Edition</p>
+                </article>
+                <article class="shop-card">
+                    <span class="shop-card-num">02</span>
+                    <h2 class="shop-card-title">The Volume I Journal</h2>
+                    <p class="shop-card-desc">Handbound. 192 pages. Structured around the BRAC rhythm — 90-minute working sections with designated rest intervals. The paper is cream. The binding lies flat. It is designed to be used, not preserved.</p>
+                    <p class="shop-card-tag">Daily Object · Handbound</p>
+                </article>
+                <article class="shop-card">
+                    <span class="shop-card-num">03</span>
+                    <h2 class="shop-card-title">The Night Object</h2>
+                    <p class="shop-card-desc">A single physical thing, different in each volume. Not a tool with a function — an object with a presence. Placed somewhere visible, it interrupts automation and invites a moment of deliberate pause before sleep.</p>
+                    <p class="shop-card-tag">Singular Object · Volume I Exclusive</p>
+                </article>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <section class="shop-cta" aria-labelledby="shop-cta-heading">
+            <div class="shop-cta-inner">
+                <span class="shop-eyebrow" style="display:block;margin-bottom:24px;">Off Day Collective</span>
+                <h2 id="shop-cta-heading">First access.<br>Members <em>only.</em></h2>
+                <p class="shop-cta-sub">Volume I objects are available exclusively to collective members before general release. Join now to receive notification the day the shop opens, along with the research that informs each object.</p>
+                <a href="/#access" class="shop-cta-btn">Join the collective →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+    (function() {
+        var navToggle = document.getElementById('nav-toggle'), navMenu = document.getElementById('nav-menu');
+        function openNav() { if (!navMenu||!navToggle) return; navMenu.classList.add('is-open'); navToggle.setAttribute('aria-expanded','true'); navToggle.setAttribute('aria-label','Close menu'); }
+        function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
+        if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
+        if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
+    })();
+    </script>
+</body>
+</html>
