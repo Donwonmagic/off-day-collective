@@ -215,29 +215,31 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavTheme();
 
     // --- 3.9 BADGE POSITIONING — attached to the right edge of the image column ---
-    // Desktop: badge center sits on the right edge of the image, 65% down.
-    // Mobile:  badge center sits on the bottom edge of the image, horizontally centred.
+    // Uses offsetLeft/offsetTop (layout-relative, not viewport-relative) so the
+    // calculation is correct regardless of scroll position at time of call.
+    // Desktop: badge center on right edge of image, 65% down.
+    // Mobile:  badge center on bottom edge of image, horizontally centred.
     function positionStampOnImage() {
         const stamp   = document.querySelector('.visual-stamp');
         const visual  = document.querySelector('.manifesto-visual');
         const section = document.getElementById('philosophy');
         if (!stamp || !visual || !section) return;
 
-        const vRect = visual.getBoundingClientRect();
-        const sRect = section.getBoundingClientRect();
-
         const stampW = stamp.offsetWidth  || (isMobile ? 100 : 140);
         const stampH = stamp.offsetHeight || (isMobile ? 100 : 140);
 
+        const visL = visual.offsetLeft;
+        const visT = visual.offsetTop;
+        const visW = visual.offsetWidth;
+        const visH = visual.offsetHeight;
+
         let left, top;
         if (isMobile) {
-            // Centre badge horizontally on the image, right at the bottom seam
-            left = (vRect.left - sRect.left) + vRect.width / 2 - stampW / 2;
-            top  = (vRect.top  - sRect.top)  + vRect.height    - stampH / 2;
+            left = visL + visW / 2 - stampW / 2;
+            top  = visT + visH     - stampH / 2;
         } else {
-            // Right edge of image, 65% down its height
-            left = vRect.right - sRect.left - stampW / 2;
-            top  = (vRect.top  - sRect.top) + vRect.height * 0.65 - stampH / 2;
+            left = visL + visW     - stampW / 2;
+            top  = visT + visH * 0.65 - stampH / 2;
         }
 
         stamp.style.left      = left + 'px';
