@@ -196,6 +196,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3.7 NAV SCROLL STATE (handled inside main scroll listener below) ---
     const nav = document.querySelector('.nav-overlay');
 
+    // --- 3.8 NAV LIGHT/DARK THEME DETECTION ---
+    // Switches nav to dark-on-cream when scrolled over light-background sections.
+    const lightThemeSections = document.querySelectorAll('[data-nav-theme="light"]');
+
+    function updateNavTheme() {
+        if (!nav || !lightThemeSections.length) return;
+        const navBottom = nav.offsetHeight || 72;
+        let overLight = false;
+        lightThemeSections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < navBottom && rect.bottom > 0) overLight = true;
+        });
+        nav.classList.toggle('nav-on-light', overLight);
+    }
+
+    // Run on initial load (handles page-load scroll position)
+    updateNavTheme();
+
+    // --- 3.9 BADGE POSITIONING — overlap the 'l' in "world" ---
+    // Move the badge's center to sit on top of the last letter of "world"
+    // in the manifesto h2. Only runs on desktop (badge is CSS-positioned on mobile).
+    function positionStampOnWorld() {
+        const stamp = document.querySelector('.visual-stamp');
+        const worldSpan = document.getElementById('world-word');
+        const section = document.getElementById('philosophy');
+        if (!stamp || !worldSpan || !section || isMobile) return;
+
+        const wRect = worldSpan.getBoundingClientRect();
+        const sRect = section.getBoundingClientRect();
+
+        // Target: stamp center aligns with the 'l' — approximately the right 20% of the word
+        const targetX = wRect.right - wRect.width * 0.18;
+        const targetY = wRect.top + wRect.height * 0.5;
+
+        const stampW = stamp.offsetWidth  || 140;
+        const stampH = stamp.offsetHeight || 140;
+
+        // Position relative to the section element (stamp's offsetParent)
+        const left = targetX - sRect.left - stampW / 2;
+        const top  = targetY - sRect.top  - stampH / 2;
+
+        stamp.style.left      = left + 'px';
+        stamp.style.top       = top  + 'px';
+        stamp.style.transform = 'none';
+    }
+
+    window.addEventListener('load',   positionStampOnWorld);
+    window.addEventListener('resize', positionStampOnWorld);
+
     // --- 4. UNIFIED SCROLL HANDLER ---
     const parallaxText = document.querySelectorAll('.parallax-text');
     const parallaxImgs = document.querySelectorAll('.parallax-img');
@@ -208,6 +257,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (scrollY > 100) { nav.classList.add('scrolled'); }
             else { nav.classList.remove('scrolled'); }
         }
+
+        // Nav theme (light/dark) — always runs
+        updateNavTheme();
 
         // Everything below is motion-gated
         if (prefersReducedMotion) return;

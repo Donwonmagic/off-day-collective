@@ -319,8 +319,39 @@ section h2 {
     position: fixed; top: 0; left: 0; width: 100%; padding: 35px 40px;
     display: flex; justify-content: space-between; align-items: center;
     z-index: 100; pointer-events: none;
-    color: white; mix-blend-mode: difference;
-    transition: padding 0.6s var(--ease-out-expo);
+    color: white;
+    transition: padding 0.6s var(--ease-out-expo), color 0.35s ease, background-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Nav over light-background sections: switch to dark palette */
+.nav-overlay.nav-on-light {
+    color: var(--charcoal);
+    background: rgba(249, 247, 242, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+.nav-overlay.nav-on-light .nav-pillars a {
+    color: rgba(15, 15, 15, 0.45) !important;
+}
+.nav-overlay.nav-on-light .nav-pillars a:hover {
+    color: rgba(15, 15, 15, 0.88) !important;
+}
+.nav-overlay.nav-on-light .nav-toggle span {
+    background: rgba(0, 0, 0, 0.55) !important;
+}
+.nav-overlay.nav-on-light .status-indicator {
+    color: rgba(15, 15, 15, 0.45);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+.nav-overlay.nav-on-light .pulse {
+    background: var(--gold);
+}
+.nav-overlay.nav-on-light #atmosphere-toggle .toggle-label {
+    color: rgba(15, 15, 15, 0.45);
+}
+.nav-overlay.nav-on-light #atmosphere-toggle .toggle-track {
+    background: rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 .nav-overlay.scrolled { padding: 20px 40px; }
@@ -334,9 +365,7 @@ section h2 {
 }
 
 @media (max-width: 768px) {
-    /* Remove mix-blend-mode on mobile — it causes iOS Safari to misplace
-       position:fixed descendants (the nav overlay menu) */
-    .nav-overlay { padding: 20px; mix-blend-mode: normal; }
+    .nav-overlay { padding: 20px; }
     /* Ensure clickability on mobile */
     .nav-right { pointer-events: auto !important; gap: 16px; }
     #atmosphere-toggle { pointer-events: auto !important; }
@@ -734,16 +763,21 @@ body.loaded .headline-reveal {
     font-weight: 400; letter-spacing: 0.5px;
 }
 
-/* Stamp (unchanged) */
+/* Stamp — positioned relative to .manifesto-section via JS; CSS sets initial/fallback placement */
 .visual-stamp {
-    position: absolute; bottom: -50px; right: -50px;
+    position: absolute;
+    /* JS will override left/top with precise placement on the 'l' in "world".
+       This fallback puts it near the visual/content boundary, upper area. */
+    left: 50%; top: 30%;
+    transform: translate(-50%, -50%);
     width: 140px; height: 140px;
-    background: rgba(249, 247, 242, 0.8);
+    background: rgba(249, 247, 242, 0.88);
     backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
     border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
-    z-index: 4; border: 1px solid rgba(212, 175, 55, 0.3);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    z-index: 20; border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+    pointer-events: none;
 }
 
 .stamp-ring {
@@ -1864,9 +1898,12 @@ a.phase-hint:hover span {
     .manifesto-content { width: 100%; order: 2; }
 
     .visual-stamp {
+        /* On mobile, JS positioning is skipped; CSS centers the badge
+           between the stacked image and content columns */
         width: 100px; height: 100px;
-        bottom: -50px; right: 50%;
-        transform: translateX(50%);
+        left: 50% !important; top: auto !important;
+        bottom: -50px; right: auto !important;
+        transform: translateX(-50%) !important;
         background: rgba(249, 247, 242, 0.9);
     }
     .circle-text { font-size: 11px; letter-spacing: 1px; }
