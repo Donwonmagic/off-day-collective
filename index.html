@@ -16,18 +16,21 @@
     <link rel="canonical" href="https://www.offdaycollective.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Off Day Collective">
+    <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://www.offdaycollective.com/">
-    <meta property="og:title" content="Off Day Collective | Volume 01">
-    <meta property="og:description" content="Curated products, guided rituals, and the science behind why real rest works. Volume 01 Waitlist is open.">
+    <meta property="og:title" content="Off Day Collective | Silence is a Luxury">
+    <meta property="og:description" content="Education, community, and physical tools for intentional rest. Each Volume pairs science-backed education with small-batch objects and a members-only community. Volume 01 — Fall 2026.">
     <meta property="og:image" content="https://www.offdaycollective.com/images/social-share.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Off Day Collective — Products, rituals, and education for intentional downtime">
+    <meta property="og:image:alt" content="Off Day Collective — education, community, and physical tools for intentional downtime">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.offdaycollective.com/">
-    <meta name="twitter:title" content="Off Day Collective | Volume 01">
-    <meta name="twitter:description" content="Curated products, guided rituals, and the science behind why real rest works. Volume 01 Waitlist is open.">
+    <meta name="twitter:title" content="Off Day Collective | Silence is a Luxury">
+    <meta name="twitter:description" content="Education, community, and physical tools for intentional rest. Volume 01 — Fall 2026. Waitlist is open.">
     <meta name="twitter:image" content="https://www.offdaycollective.com/images/social-share.png">
+    <meta name="twitter:image:alt" content="Off Day Collective — education, community, and physical tools for intentional downtime">
+    <link rel="apple-touch-icon" href="/images/favicon.png">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Off Day Collective","url":"https://www.offdaycollective.com","description":"Off Day Collective curates small-batch products — bath and body, analog tools, specialty food, textiles — paired with guided rituals and science-backed education on why real rest works. Members access a private community forum. Small-batch, sourced responsibly, ships worldwide.","logo":"https://www.offdaycollective.com/images/logo.png","foundingDate":"2026","contactPoint":{"@type":"ContactPoint","email":"contact@offdaycollective.com","contactType":"customer support"},"sameAs":["https://www.instagram.com/offdaycollective"]}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,13 +105,12 @@
         <div class="ticker-item">INTENTIONAL DOWNTIME <span class="dot">·</span></div><div class="ticker-item">SOURCED RESPONSIBLY <span class="dot">·</span></div><div class="ticker-item">GUIDED RITUALS <span class="dot">·</span></div><div class="ticker-item">SMALL BATCH ONLY <span class="dot">·</span></div><div class="ticker-item">DESIGNED FOR THE PAUSE <span class="dot">·</span></div><div class="ticker-item">REST IS PRODUCTIVE <span class="dot">·</span></div><div class="ticker-item">SHIPS WORLDWIDE <span class="dot">·</span></div>
     </div></div>
 
-    <section id="philosophy" class="manifesto-section">
+    <section id="philosophy" class="manifesto-section" data-nav-theme="light">
         <div class="manifesto-visual hover-trigger">
             <div class="img-mask"><img src="https://images.pexels.com/photos/29579812/pexels-photo-29579812.jpeg?auto=compress&cs=tinysrgb&w=2674" alt="Misty forest pathway in early morning light" class="parallax-img" loading="lazy" data-speed="0.05"></div>
-            <div class="visual-stamp hover-trigger"><div class="stamp-ring spin-slow"><svg viewBox="-10 -10 120 120" width="100%" height="100%"><path id="curve" d="M 50 50 m -45 0 a 45 45 0 1 1 90 0 a 45 45 0 1 1 -90 0" fill="transparent"/><text width="100%"><textPath xlink:href="#curve" class="circle-text">OFF DAY COLLECTIVE • EST. 2026</textPath></text></svg></div><div class="stamp-center"><svg viewBox="0 0 200 200" width="38" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg></div></div>
         </div>
         <div class="manifesto-content">
-            <h2 class="fade-in-up">The modern world is weightless. <br>We curate <span class="gold-text italic">gravity.</span></h2>
+            <h2 class="fade-in-up">The modern <span id="world-word">world</span> is weightless. <br>We curate <span class="gold-text italic">gravity.</span></h2>
             <div class="divider-line fade-in-up"></div>
             <p class="body-text fade-in-up">Every Volume is organized around three tempos of the day. Inside you'll find carefully chosen objects — things that slow you down on purpose — each paired with a guided ritual and a short piece of education on why it actually works. Not vibes. Science you can feel.</p>
             <div class="tempo-list fade-in-up"><span class="highlight">I. The Morning Stillness.</span><span class="highlight">II. The Day's Journey.</span><span class="highlight">III. The Evening Release.</span></div>
@@ -116,6 +118,9 @@
             <p class="body-text-source fade-in-up">Every product is traceable to its maker. We publish the name, location, and story behind every item we source — because the objects in your quietest moments should carry the same intentionality as the moments themselves.</p>
             <a href="#collection" class="text-link hover-trigger fade-in-up">Explore the Volumes <span class="arrow">↓</span></a>
         </div>
+        <!-- Badge is a direct child of the section so it escapes the image column's stacking context.
+             JS in app.js positions it precisely over the 'l' in "world" above. -->
+        <div class="visual-stamp" aria-hidden="true"><div class="stamp-ring spin-slow"><svg viewBox="-10 -10 120 120" width="100%" height="100%"><path id="curve" d="M 50 50 m -45 0 a 45 45 0 1 1 90 0 a 45 45 0 1 1 -90 0" fill="transparent"/><text width="100%"><textPath xlink:href="#curve" class="circle-text">OFF DAY COLLECTIVE • EST. 2026</textPath></text></svg></div><div class="stamp-center"><svg viewBox="0 0 200 200" width="55" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg></div></div>
     </section>
 
     <section id="collection" class="phases-section">
@@ -196,7 +201,7 @@
 
     <div class="section-breather" aria-hidden="true"><svg viewBox="0 0 200 200" width="28" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.45"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.45"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.55"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.55"/></svg></div>
 
-    <section id="products" class="products-section">
+    <section id="products" class="products-section" data-nav-theme="light">
         <div class="products-header"><span class="gold-text sm-caps fade-in-up">Coming Fall 2026</span><h2 class="fade-in-up">A preview of what's forming.</h2><p class="products-sub fade-in-up">Drag to explore</p></div>
         <div class="products-track" id="products-track">
             <div class="product-card fade-in-up"><div class="product-img-wrap hover-trigger"><img src="https://images.pexels.com/photos/28584802/pexels-photo-28584802.jpeg?auto=compress&cs=tinysrgb&w=800" alt="A coffee cup in soft morning sunlight by a window" loading="lazy"><span class="product-phase-tag">Morning</span></div><h4 class="product-name">For the Morning Ritual</h4><p class="product-material">Objects that hold warmth and reward slowness</p><p class="product-ritual">Anchors your Clarity practice</p><p class="product-why">The first 90 minutes of your day set the tone for the next 12 hours. Everything in this category is selected to keep your hands busy, your eyes off glass, and your nervous system in its natural waking rhythm.</p></div>
@@ -207,7 +212,7 @@
     </section>
 
     <!-- THE LIBRARY: Free education preview (Goop/Aesop/MUD\WTR approach) -->
-    <section id="library" class="library-section">
+    <section id="library" class="library-section" data-nav-theme="light">
         <div class="library-inner">
             <span class="gold-text sm-caps fade-in-up">From the Library</span>
             <h2 class="fade-in-up">The science of rest. <span class="gold-text italic">Free.</span></h2>
@@ -272,7 +277,7 @@
     </section>
 
     <!-- SECTION 5.5: COMMUNITY TEASER -->
-    <section id="community" class="community-section">
+    <section id="community" class="community-section" data-nav-theme="light">
         <div class="community-inner">
             <div class="community-badge fade-in-up">
                 <span class="community-lock"><svg viewBox="0 0 200 200" width="16" aria-hidden="true" fill="none"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg></span>
