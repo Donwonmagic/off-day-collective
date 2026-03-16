@@ -56,9 +56,9 @@
     <nav class="nav-overlay" role="navigation" aria-label="Main navigation">
         <a href="/" class="logo" aria-label="Off Day Collective home" style="pointer-events:auto;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><svg viewBox="0 0 200 200" width="26" aria-hidden="true" class="nav-mark" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>Off Day Collective</a>
         <div class="nav-pillars" aria-label="Site sections" style="display:flex;align-items:center;gap:20px;pointer-events:auto;mix-blend-mode:normal;isolation:isolate;">
-            <a href="/library" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Library</a>
-            <a href="/shop" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Shop<span class="nav-soon-tag">Fall 2026</span></a>
-            <a href="/forum" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Forum<span class="nav-soon-tag">Fall 2026</span></a>
+            <a href="/library" class="nav-pill" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.85);text-decoration:none;transition:all 0.2s;padding:6px 14px;border:1px solid rgba(255,255,255,0.35);border-radius:3px;" onmouseover="this.style.color='rgba(255,255,255,1)';this.style.borderColor='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderColor='rgba(255,255,255,0.35)'">Library</a>
+            <a href="/shop" class="nav-pill" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.2s;padding:6px 14px;border:1px solid rgba(255,255,255,0.22);border-radius:3px;" onmouseover="this.style.color='rgba(255,255,255,0.9)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.22)'">Shop<span class="nav-soon-tag">Fall 2026</span></a>
+            <a href="/forum" class="nav-pill" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.2s;padding:6px 14px;border:1px solid rgba(255,255,255,0.22);border-radius:3px;" onmouseover="this.style.color='rgba(255,255,255,0.9)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.22)'">Forum<span class="nav-soon-tag">Fall 2026</span></a>
         </div>
         <div class="nav-right">
             <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
@@ -96,6 +96,9 @@
             <p class="hero-eyebrow reveal-on-load" data-delay="0.3">Volume 01 — Fall 2026</p>
             <h2 class="headline-reveal" id="cipher-text">Silence is a luxury.</h2>
             <p class="hero-subhead reveal-on-load" data-delay="0.8">That person standing still while the world moves around them? That's who you are on your best off day. We're building everything you need to get there.</p>
+            <div class="reveal-on-load" data-delay="1.2" style="margin-top:36px;">
+                <a href="#access" class="hero-cta hover-trigger">Apply for Early Access <span style="display:inline-block;transition:transform 0.3s;">↓</span></a>
+            </div>
         </div>
         <div class="scroll-indicator reveal-on-load" data-delay="1.6"><div class="scroll-line"></div><span class="scroll-text">Scroll</span></div>
     </section>
@@ -196,7 +199,7 @@
                 </div>
             </div>
         </div>
-        <div class="stats-bar"><div class="stat-item fade-in-up"><span class="stat-number gold-text">3</span><span class="stat-label">Guided<br>Off-Day Rituals</span></div><div class="stat-item fade-in-up"><span class="stat-number gold-text">12+</span><span class="stat-label">Curated Objects<br>Across Categories</span></div><div class="stat-item fade-in-up"><span class="stat-number gold-text">∞</span><span class="stat-label">Community<br>Forum Access</span></div></div>
+        <div class="stats-bar"><div class="stat-item fade-in-up"><span class="stat-number gold-text">◆</span><span class="stat-label">Science-Backed<br>Education</span></div><div class="stat-item fade-in-up"><span class="stat-number gold-text">◆</span><span class="stat-label">Curated Objects,<br>Each With a Purpose</span></div><div class="stat-item fade-in-up"><span class="stat-number gold-text">∞</span><span class="stat-label">Community<br>Forum Access</span></div></div>
     </section>
 
     <div class="section-breather" aria-hidden="true"><svg viewBox="0 0 200 200" width="28" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.45"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.45"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.55"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.55"/></svg></div>
@@ -255,7 +258,7 @@
     <section id="system" class="system-section">
         <div class="system-inner">
             <span class="gold-text sm-caps fade-in-up">How It Works</span>
-            <h2 class="fade-in-up">Products alone don't change your weekends. <br><span class="gold-text italic">Understanding why does.</span></h2>
+            <h2 class="fade-in-up">Products alone don't change your weekends. <br><span class="gold-text italic">That's why every Volume includes the science.</span></h2>
             <div class="system-steps">
                 <div class="system-step fade-in-up">
                     <span class="step-num gold-text">01</span>
@@ -265,7 +268,8 @@
                 <div class="system-step fade-in-up">
                     <span class="step-num gold-text">02</span>
                     <h4>Learn why it works</h4>
-                    <p>Every item comes with a ritual guide and a short educational piece explaining the mechanism behind it. Not marketing language — real research on why certain sensory inputs change your nervous system, your sleep, and your creativity. Scroll up to read three from our library right now.</p>
+                    <p>Every item comes with a ritual guide and a short educational piece explaining the mechanism behind it. Not marketing language — real research on why certain sensory inputs change your nervous system, your sleep, and your creativity.</p>
+                    <a href="/library" class="text-link" style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;">Read three from the Library <span class="arrow">→</span></a>
                 </div>
                 <div class="system-step fade-in-up">
                     <span class="step-num gold-text">03</span>
