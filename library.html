@@ -98,7 +98,7 @@
             font-size: clamp(4rem, 10vw, 9rem);
             font-weight: 300; line-height: 0.95; letter-spacing: -0.03em; color: #F0EDE6;
         }
-        .lib-typed-static { color: #F0EDE6; }
+        .lib-typed-static { color: #F0EDE6; display: block; }
         .lib-typed-word { color: #C9A84C; font-style: italic; }
         .lib-typed-cursor {
             display: inline;
@@ -316,12 +316,13 @@
         </div>
     </nav>
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
-            <li><a href="library.html" class="nav-link active" aria-current="page">Library</a></li>
-            <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
+            <li><a href="/library" class="nav-link active" aria-current="page">Library</a></li>
+            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
             <li><a href="/#access" class="nav-link">Join</a></li>
         </ul>
     </div>
@@ -359,7 +360,7 @@
             <div class="lib-grid-inner" id="lib-grid">
 
                 <!-- Card 1: Morning -->
-                <a href="library-morning-light.html" class="lib-card" data-time="morning" data-length="short" aria-label="Read: The 90-Minute Window">
+                <a href="/library-morning-light" class="lib-card" data-time="morning" data-length="short" aria-label="Read: The 90-Minute Window">
                     <div class="lib-card-thumb" aria-hidden="true">
                         <!-- Morning thumbnail: gold sunrise rays -->
                         <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -409,7 +410,7 @@
                 </a>
 
                 <!-- Card 2: Midday -->
-                <a href="library-strategic-idling.html" class="lib-card" data-time="midday" data-length="long" aria-label="Read: The Art of Strategic Idling">
+                <a href="/library-strategic-idling" class="lib-card" data-time="midday" data-length="long" aria-label="Read: The Art of Strategic Idling">
                     <div class="lib-card-thumb" aria-hidden="true">
                         <!-- Midday thumbnail: sage BRAC wave -->
                         <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -454,7 +455,7 @@
                 </a>
 
                 <!-- Card 3: Evening -->
-                <a href="library-evening-protocol.html" class="lib-card" data-time="evening" data-length="long" aria-label="Read: The Evening Protocol">
+                <a href="/library-evening-protocol" class="lib-card" data-time="evening" data-length="long" aria-label="Read: The Evening Protocol">
                     <div class="lib-card-thumb" aria-hidden="true">
                         <!-- Evening thumbnail: concentric melatonin rings, lavender -->
                         <svg viewBox="0 0 340 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
@@ -537,6 +538,7 @@
         function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
         if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
+        var navMenuClose = document.getElementById('nav-menu-close'); if (navMenuClose) navMenuClose.addEventListener('click', closeNav);
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
 
         // Hero typing animation — only the word after "the science of" animates

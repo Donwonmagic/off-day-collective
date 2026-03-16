@@ -128,7 +128,8 @@
         .art-citations ol { list-style: decimal; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
         .art-citations li { font-family: 'Inter', sans-serif; font-size: 0.68rem; line-height: 1.75; color: rgba(255,255,255,0.14); font-weight: 300; }
         .art-citations li em { font-style: italic; }
-        .cite-popover { position: fixed; width: min(360px,90vw); background: #0F0F0F; border: 1px solid rgba(255,255,255,0.08); z-index: 9000; padding: 28px 28px 24px; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 24px 64px rgba(0,0,0,0.8); }
+        .cite-popover { position: fixed; width: min(360px,90vw); background: #0F0F0F; border: 1px solid rgba(255,255,255,0.08); z-index: 9000; padding: 28px 28px 24px; opacity: 0; pointer-events: none; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s ease; box-shadow: 0 24px 64px rgba(0,0,0,0.8); max-height: 80dvh; overflow-y: auto; }
+        @media (max-width: 768px) { .cite-popover { bottom: 0 !important; top: auto !important; left: 0 !important; width: 100% !important; max-width: 100%; border-radius: 16px 16px 0 0; } }
         .cite-popover.on { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .cite-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.25); font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1; padding: 4px 8px; cursor: pointer; transition: color 0.2s; }
         .cite-close:hover { color: rgba(255,255,255,0.7); }
@@ -189,19 +190,20 @@
         </div>
     </nav>
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
-            <li><a href="library.html" class="nav-link active" aria-current="page">Library</a></li>
-            <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
+            <li><a href="/library" class="nav-link active" aria-current="page">Library</a></li>
+            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
             <li><a href="/#access" class="nav-link">Join</a></li>
         </ul>
     </div>
 
     <main id="main-content">
         <div class="art-breadcrumb">
-            <a href="library.html" class="art-breadcrumb-back">← The Science of Rest</a>
+            <a href="/library" class="art-breadcrumb-back">← The Science of Rest</a>
             <span class="art-breadcrumb-sep" aria-hidden="true"></span>
             <span class="art-breadcrumb-label">III · Evening Protocol</span>
         </div>
@@ -296,11 +298,11 @@
         </article>
 
         <nav class="art-pagination" aria-label="Article navigation">
-            <a href="library-strategic-idling.html">
+            <a href="/library-strategic-idling">
                 ← Previous Article
                 <span class="art-pagination-label">The Art of Strategic Idling</span>
             </a>
-            <a href="library.html" class="art-pagination-next">
+            <a href="/library" class="art-pagination-next">
                 All Articles →
                 <span class="art-pagination-label">The Science of Rest</span>
             </a>
@@ -334,7 +336,7 @@
         var chartObserver=makeObserver({threshold:0.4},function(e){e.target.classList.add('chart-on');chartObserver.unobserve(e.target);});
         document.querySelectorAll('.art-figure').forEach(function(el){chartObserver.observe(el);});
         var popover=document.getElementById('cite-popover');
-        function openCite(id,trigger,evt){var d=CITES[id];if(!d||!popover)return;document.getElementById('cite-num').textContent=d.num;document.getElementById('cite-title').textContent=d.title;document.getElementById('cite-full').textContent=d.full;document.getElementById('cite-summary').textContent=d.summary;var link=document.getElementById('cite-link');link.href=d.url||'#';link.style.display=d.url?'inline-block':'none';var cx=evt?evt.clientX:trigger.getBoundingClientRect().left;var cy=evt?evt.clientY:trigger.getBoundingClientRect().bottom;var pw=Math.min(360,window.innerWidth*0.9);var margin=12;var left=cx;if(left+pw>window.innerWidth-margin)left=window.innerWidth-pw-margin;if(left<margin)left=margin;var spaceBelow=window.innerHeight-cy-margin;var top=spaceBelow>=200?cy+8:Math.max(margin,cy-296);popover.style.left=left+'px';popover.style.top=top+'px';popover.style.width=pw+'px';popover.classList.add('on');popover.setAttribute('aria-hidden','false');document.getElementById('cite-close').focus({preventScroll:true});}
+        function openCite(id,trigger,evt){var d=CITES[id];if(!d||!popover)return;document.getElementById('cite-num').textContent=d.num;document.getElementById('cite-title').textContent=d.title;document.getElementById('cite-full').textContent=d.full;document.getElementById('cite-summary').textContent=d.summary;var link=document.getElementById('cite-link');link.href=d.url||'#';link.style.display=d.url?'inline-block':'none';if(window.innerWidth<=768){popover.style.left='';popover.style.top='';popover.style.width='';}else{var cx=evt?evt.clientX:trigger.getBoundingClientRect().left;var cy=evt?evt.clientY:trigger.getBoundingClientRect().bottom;var pw=Math.min(360,window.innerWidth*0.9);var margin=12;var left=cx;if(left+pw>window.innerWidth-margin)left=window.innerWidth-pw-margin;if(left<margin)left=margin;var spaceBelow=window.innerHeight-cy-margin;var top=spaceBelow>=200?cy+8:Math.max(margin,cy-296);popover.style.left=left+'px';popover.style.top=top+'px';popover.style.width=pw+'px';}popover.classList.add('on');popover.setAttribute('aria-hidden','false');document.getElementById('cite-close').focus({preventScroll:true});}
         function closeCite(){if(!popover)return;popover.classList.remove('on');popover.setAttribute('aria-hidden','true');}
         document.querySelectorAll('[data-cite]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();var cid=el.getAttribute('data-cite');if(popover.classList.contains('on')&&popover.dataset.open===cid){closeCite();}else{popover.dataset.open=cid;openCite(cid,el,e);}});});
         document.getElementById('cite-close')&&document.getElementById('cite-close').addEventListener('click',closeCite);
@@ -343,7 +345,7 @@
         function openNav(){if(!navMenu||!navToggle)return;navMenu.classList.add('is-open');navToggle.setAttribute('aria-expanded','true');navToggle.setAttribute('aria-label','Close menu');}
         function closeNav(){if(!navMenu||!navToggle)return;navMenu.classList.remove('is-open');navToggle.setAttribute('aria-expanded','false');navToggle.setAttribute('aria-label','Open menu');}
         if(navToggle)navToggle.addEventListener('click',function(){navMenu.classList.contains('is-open')?closeNav():openNav();});
-        if(navMenu)navMenu.addEventListener('click',function(e){if(e.target===navMenu)closeNav();});
+        if(navMenu)navMenu.addEventListener('click',function(e){if(e.target===navMenu)closeNav();});var navMenuClose=document.getElementById('nav-menu-close');if(navMenuClose)navMenuClose.addEventListener('click',closeNav);
         document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeCite();closeNav();return;}if(e.key==='Tab'&&popover&&popover.classList.contains('on')){var focusable=popover.querySelectorAll('button, a[href]');var first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey){if(document.activeElement===first){e.preventDefault();last.focus({preventScroll:true});}}else{if(document.activeElement===last){e.preventDefault();first.focus({preventScroll:true});}}}});
     })();
     </script>

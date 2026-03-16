@@ -279,12 +279,13 @@
         </div>
     </nav>
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
             <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
-            <li><a href="library.html" class="nav-link">Library</a></li>
-            <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="forum.html" class="nav-link active" aria-current="page">Forum</a></li>
+            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
+            <li><a href="/library" class="nav-link">Library</a></li>
+            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/forum" class="nav-link active" aria-current="page">Forum</a></li>
             <li><a href="/#access" class="nav-link">Join</a></li>
         </ul>
     </div>
@@ -350,6 +351,7 @@
         function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
         if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
+        var navMenuClose = document.getElementById('nav-menu-close'); if (navMenuClose) navMenuClose.addEventListener('click', closeNav);
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
     })();
     </script>

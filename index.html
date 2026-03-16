@@ -53,9 +53,9 @@
     <nav class="nav-overlay" role="navigation" aria-label="Main navigation">
         <a href="/" class="logo" aria-label="Off Day Collective home" style="pointer-events:auto;text-decoration:none;color:inherit;display:flex;align-items:center;gap:12px;"><svg viewBox="0 0 200 200" width="26" aria-hidden="true" class="nav-mark" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>Off Day Collective</a>
         <div class="nav-pillars" aria-label="Site sections" style="display:flex;align-items:center;gap:20px;pointer-events:auto;mix-blend-mode:normal;isolation:isolate;">
-            <a href="library.html" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Library</a>
-            <a href="shop.html" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Shop<span class="nav-soon-tag">Fall 2026</span></a>
-            <a href="forum.html" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Forum<span class="nav-soon-tag">Fall 2026</span></a>
+            <a href="/library" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.9)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Library</a>
+            <a href="/shop" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Shop<span class="nav-soon-tag">Fall 2026</span></a>
+            <a href="/forum" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Forum<span class="nav-soon-tag">Fall 2026</span></a>
         </div>
         <div class="nav-right">
             <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
@@ -70,12 +70,13 @@
         </button>
     </nav>
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
             <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-            <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
-            <li><a href="library.html" class="nav-link">Library</a></li>
-            <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
+            <li><a href="/library" class="nav-link">Library</a></li>
+            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
             <li><a href="#access" class="nav-link">Join</a></li>
         </ul>
     </div>
@@ -134,7 +135,7 @@
                 <h3 class="phase-title fade-in-up">Clarity</h3>
                 <div class="phase-divider fade-in-up"></div>
                 <p class="phase-desc fade-in-up">Before the noise begins. The Clarity ritual is a structured morning practice built around slowness — warm drinks made by hand, something for the skin, something for the page. Research shows the first 90 minutes after waking set your cortisol curve for the entire day. We've selected every object in this phase to extend that window: things that hold warmth, require your hands, and reward your patience.</p>
-                <a href="library.html" class="phase-hint fade-in-up"><span>Read the science in our Library →</span></a>
+                <a href="/library" class="phase-hint fade-in-up"><span>Read the science in our Library →</span></a>
                 <div class="phase-voice fade-in-up">
                     <span class="voice-label">From the Collective</span>
                     <p class="voice-quote">"I didn't believe a quiet morning could change a whole week. Then I stopped reaching for my phone first. Three weekends in and I can feel the difference by Tuesday."</p>
@@ -158,7 +159,7 @@
                 <h3 class="phase-title fade-in-up">Momentum</h3>
                 <div class="phase-divider fade-in-up"></div>
                 <p class="phase-desc fade-in-up">The grounded path. Momentum gets you moving without a destination — a walk with nothing in your ears, a meal made slowly, something created with your hands instead of a screen. Studies on creative problem-solving consistently show that unstructured physical movement produces more novel ideas than deliberate brainstorming. Every object in this phase is chosen to get you outside, keep you present, and let your mind wander somewhere useful.</p>
-                <a href="library.html" class="phase-hint fade-in-up"><span>Read the science in our Library →</span></a>
+                <a href="/library" class="phase-hint fade-in-up"><span>Read the science in our Library →</span></a>
                 <div class="phase-voice fade-in-up">
                     <span class="voice-label">From the Collective</span>
                     <p class="voice-quote">"I went for a walk without headphones for the first time in years. Solved a problem at work I'd been stuck on for two weeks. The idea just showed up around mile three."</p>
@@ -182,7 +183,7 @@
                 <h3 class="phase-title fade-in-up">Reflection</h3>
                 <div class="phase-divider fade-in-up"></div>
                 <p class="phase-desc fade-in-up">The deep exhale. Reflection replaces your evening scroll with a wind-down ritual that your body actually recognizes — warmth, weight, low light, and real conversation. Your transition to sleep begins 2–3 hours before you close your eyes, and most people override it with screens. Every object in this phase is chosen to support that transition: things that soothe, things that ground you, and things that invite the kind of presence a phone can't provide.</p>
-                <a href="library.html" class="phase-hint fade-in-up"><span>Read the science in our Library →</span></a>
+                <a href="/library" class="phase-hint fade-in-up"><span>Read the science in our Library →</span></a>
                 <div class="phase-voice fade-in-up">
                     <span class="voice-label">From the Collective</span>
                     <p class="voice-quote">"We replaced our usual Friday night screen time with something analog. Ended up talking for two hours. Hadn't done that in months. It's become our weekly thing."</p>
@@ -213,30 +214,30 @@
             <p class="library-desc fade-in-up">We publish the research behind every ritual we design. Here's a preview of what members read — and what's available to everyone right now.</p>
 
             <div class="library-grid">
-                <article class="library-card fade-in-up" onclick="location.href='library-morning-light.html'" style="cursor:pointer;">
+                <article class="library-card fade-in-up" onclick="location.href='/library-morning-light'" style="cursor:pointer;">
                     <div class="library-card-tag">I · Morning Stillness</div>
                     <h4>The 90-Minute Window: Why Your First Hour Determines Your Entire Day</h4>
                     <p>Research on the cortisol awakening response shows that what you do in the first 90 minutes after waking sets your hormonal baseline for the next 12 hours. Screens spike cortisol prematurely. Slow tactile rituals — handwriting, warm drinks, light before caffeine — extend the natural curve.</p>
-                    <span class="library-read-time">8 min read · <a href="library-morning-light.html" style="color:var(--gold); text-decoration:none;">Read now →</a></span>
+                    <span class="library-read-time">8 min read · <a href="/library-morning-light" style="color:var(--gold); text-decoration:none;">Read now →</a></span>
                 </article>
 
-                <article class="library-card fade-in-up" onclick="location.href='library-strategic-idling.html'" style="cursor:pointer;">
+                <article class="library-card fade-in-up" onclick="location.href='/library-strategic-idling'" style="cursor:pointer;">
                     <div class="library-card-tag">II · The Midday Mind</div>
                     <h4>The Art of Strategic Idling: How Doing Nothing Produces Your Best Work</h4>
                     <p>A Stanford study found that walking increases creative output by an average of 81% — and the effect persists even after sitting back down. The insight doesn't arrive during the walk. It arrives afterward. We explore why the Default Mode Network requires scheduled emptiness.</p>
-                    <span class="library-read-time">10 min read · <a href="library-strategic-idling.html" style="color:var(--gold); text-decoration:none;">Read now →</a></span>
+                    <span class="library-read-time">10 min read · <a href="/library-strategic-idling" style="color:var(--gold); text-decoration:none;">Read now →</a></span>
                 </article>
 
-                <article class="library-card fade-in-up" onclick="location.href='library-evening-protocol.html'" style="cursor:pointer;">
+                <article class="library-card fade-in-up" onclick="location.href='/library-evening-protocol'" style="cursor:pointer;">
                     <div class="library-card-tag">III · Evening Protocol</div>
                     <h4>The Evening Protocol: Engineering the Conditions for Deep Sleep</h4>
                     <p>The glymphatic system flushes beta-amyloid from the brain almost exclusively during sleep — but only during the slow-wave and REM stages that alcohol, blue light, and high room temperature directly compromise. Three evidence-based levers that matter most.</p>
-                    <span class="library-read-time">9 min read · <a href="library-evening-protocol.html" style="color:var(--gold); text-decoration:none;">Read now →</a></span>
+                    <span class="library-read-time">9 min read · <a href="/library-evening-protocol" style="color:var(--gold); text-decoration:none;">Read now →</a></span>
                 </article>
             </div>
 
             <div class="fade-in-up" style="margin-top: 60px; text-align:center;">
-                <a href="library.html" class="text-link" style="display:inline-flex; align-items:center; gap:12px;">
+                <a href="/library" class="text-link" style="display:inline-flex; align-items:center; gap:12px;">
                     Read all three articles in the Library <span class="arrow" style="display:inline-block;">→</span>
                 </a>
             </div>
@@ -254,12 +255,12 @@
                 <div class="system-step fade-in-up">
                     <span class="step-num gold-text">01</span>
                     <h4>Receive your Volume</h4>
-                    <p>A curated box of carefully chosen objects — spanning categories you wouldn't expect — sourced from independent makers around the world and organized around the three tempos of the day.</p>
+                    <p>A considered selection of objects sourced from independent makers — each one chosen for its specific role across the three tempos of the off day. What's included depends on the Volume.</p>
                 </div>
                 <div class="system-step fade-in-up">
                     <span class="step-num gold-text">02</span>
                     <h4>Learn why it works</h4>
-                    <p>Every object comes with a ritual guide and a short educational piece explaining the mechanism behind it. Not marketing language — real research on why certain sensory inputs change your nervous system, your sleep, and your creativity. Scroll up to read three from our library right now.</p>
+                    <p>Every item comes with a ritual guide and a short educational piece explaining the mechanism behind it. Not marketing language — real research on why certain sensory inputs change your nervous system, your sleep, and your creativity. Scroll up to read three from our library right now.</p>
                 </div>
                 <div class="system-step fade-in-up">
                     <span class="step-num gold-text">03</span>
@@ -274,7 +275,7 @@
     <section id="community" class="community-section">
         <div class="community-inner">
             <div class="community-badge fade-in-up">
-                <span class="community-lock"><svg viewBox="0 0 200 220" width="16" aria-hidden="true"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><rect x="80" y="65" width="14" height="62" rx="3" fill="#C9A84C"/><rect x="106" y="65" width="14" height="62" rx="3" fill="#C9A84C"/></svg></span>
+                <span class="community-lock"><svg viewBox="0 0 200 200" width="16" aria-hidden="true" fill="none"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg></span>
                 <span class="community-status">Members Only</span>
             </div>
             <h2 class="fade-in-up">The Off Day Forum</h2>
@@ -310,10 +311,10 @@
     <!-- SECTION 6: CONVERSION -->
     <section id="access" class="dark-bg">
         <div class="access-glow"></div>
-        <div class="access-watermark" aria-hidden="true"><svg viewBox="0 0 200 220" width="100%"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="#F9F7F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="#F9F7F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="88" y="72" width="7" height="54" rx="1.5" fill="#C9A84C"/><rect x="105" y="72" width="7" height="54" rx="1.5" fill="#C9A84C"/></svg></div>
+        <div class="access-watermark" aria-hidden="true"><svg viewBox="0 0 200 200" width="100%"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="#F9F7F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="#F9F7F2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="88" y="72" width="7" height="54" rx="1.5" fill="#C9A84C"/><rect x="105" y="72" width="7" height="54" rx="1.5" fill="#C9A84C"/></svg></div>
         <div class="content-wrapper">
             <div class="access-card" id="form-container">
-                <div class="card-header"><svg viewBox="0 0 200 220" width="22" aria-hidden="true" class="card-mark"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="#E5C155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="#E5C155" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/><rect x="85" y="72" width="9" height="54" rx="2" fill="#C9A84C"/><rect x="106" y="72" width="9" height="54" rx="2" fill="#C9A84C"/></svg><span class="gold-text sm-caps">Membership Application</span><span class="gold-text sm-caps">No. 0913</span></div>
+                <div class="card-header"><svg viewBox="0 0 200 200" width="22" aria-hidden="true" class="card-mark" fill="none"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#E5C155" stroke-width="9" stroke-linejoin="round" opacity="0.8"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#E5C155" stroke-width="9" stroke-linejoin="round" opacity="0.8"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg><span class="gold-text sm-caps">Membership Application</span><span class="gold-text sm-caps">No. 0913</span></div>
                 <div class="card-body">
                     <div class="cohort-container"><div class="cohort-info"><span class="cohort-label">Current Cohort Status</span><span class="cohort-percent gold-text">84% Full</span></div><div class="cohort-bar"><div class="cohort-fill" data-width="84%"></div></div></div>
                     <h2 class="card-title">The first cohort is forming.</h2>
@@ -336,7 +337,7 @@
     </footer>
 
     <button id="atmosphere-float" class="atmo-float" aria-label="Turn off Atmosphere">
-        <span class="atmo-float-ring"><svg viewBox="0 0 200 220" width="14" aria-hidden="true"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="#E5C155" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="#E5C155" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><rect x="78" y="62" width="16" height="66" rx="4" fill="#C9A84C"/><rect x="106" y="62" width="16" height="66" rx="4" fill="#C9A84C"/></svg></span>
+        <span class="atmo-float-ring"><svg viewBox="0 0 200 200" width="14" aria-hidden="true"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="#E5C155" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="#E5C155" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><rect x="78" y="62" width="16" height="66" rx="4" fill="#C9A84C"/><rect x="106" y="62" width="16" height="66" rx="4" fill="#C9A84C"/></svg></span>
         <span class="atmo-float-label">ATMOSPHERE</span>
     </button>
 
@@ -350,6 +351,7 @@
         function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
         if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
+        var navMenuClose = document.getElementById('nav-menu-close'); if (navMenuClose) navMenuClose.addEventListener('click', closeNav);
         document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
     })();
     </script>
