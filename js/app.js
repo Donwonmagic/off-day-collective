@@ -214,36 +214,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run on initial load (handles page-load scroll position)
     updateNavTheme();
 
-    // --- 3.9 BADGE POSITIONING — overlap the 'l' in "world" ---
-    // Move the badge's center to sit on top of the last letter of "world"
-    // in the manifesto h2. Only runs on desktop (badge is CSS-positioned on mobile).
-    function positionStampOnWorld() {
-        const stamp = document.querySelector('.visual-stamp');
-        const worldSpan = document.getElementById('world-word');
+    // --- 3.9 BADGE POSITIONING — attached to the right edge of the image column ---
+    // Desktop: badge center sits on the right edge of the image, 65% down.
+    // Mobile:  badge center sits on the bottom edge of the image, horizontally centred.
+    function positionStampOnImage() {
+        const stamp   = document.querySelector('.visual-stamp');
+        const visual  = document.querySelector('.manifesto-visual');
         const section = document.getElementById('philosophy');
-        if (!stamp || !worldSpan || !section || isMobile) return;
+        if (!stamp || !visual || !section) return;
 
-        const wRect = worldSpan.getBoundingClientRect();
+        const vRect = visual.getBoundingClientRect();
         const sRect = section.getBoundingClientRect();
 
-        // Target: stamp center aligns with the 'l' — approximately the right 20% of the word
-        const targetX = wRect.right - wRect.width * 0.18;
-        const targetY = wRect.top + wRect.height * 0.5;
+        const stampW = stamp.offsetWidth  || (isMobile ? 100 : 140);
+        const stampH = stamp.offsetHeight || (isMobile ? 100 : 140);
 
-        const stampW = stamp.offsetWidth  || 140;
-        const stampH = stamp.offsetHeight || 140;
-
-        // Position relative to the section element (stamp's offsetParent)
-        const left = targetX - sRect.left - stampW / 2;
-        const top  = targetY - sRect.top  - stampH / 2;
+        let left, top;
+        if (isMobile) {
+            // Centre badge horizontally on the image, right at the bottom seam
+            left = (vRect.left - sRect.left) + vRect.width / 2 - stampW / 2;
+            top  = (vRect.top  - sRect.top)  + vRect.height    - stampH / 2;
+        } else {
+            // Right edge of image, 65% down its height
+            left = vRect.right - sRect.left - stampW / 2;
+            top  = (vRect.top  - sRect.top) + vRect.height * 0.65 - stampH / 2;
+        }
 
         stamp.style.left      = left + 'px';
         stamp.style.top       = top  + 'px';
         stamp.style.transform = 'none';
     }
 
-    window.addEventListener('load',   positionStampOnWorld);
-    window.addEventListener('resize', positionStampOnWorld);
+    window.addEventListener('load',   positionStampOnImage);
+    window.addEventListener('resize', positionStampOnImage);
 
     // --- 4. UNIFIED SCROLL HANDLER ---
     const parallaxText = document.querySelectorAll('.parallax-text');
