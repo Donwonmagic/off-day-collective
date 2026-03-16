@@ -354,6 +354,55 @@ section h2 {
     #cursor, #cursor-blur { display: none !important; }
 }
 
+/* ── HAMBURGER NAV (index.html mobile) ─────────────────── */
+.nav-toggle {
+    display: none; background: none; border: none; width: 40px; height: 40px;
+    flex-direction: column; align-items: flex-end; justify-content: center;
+    gap: 6px; padding: 8px; cursor: none;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    pointer-events: auto; mix-blend-mode: normal; isolation: isolate;
+}
+.nav-toggle span {
+    display: block; height: 1px; background: rgba(255,255,255,0.6);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease, width 0.3s ease;
+}
+.nav-toggle span:first-child { width: 22px; }
+.nav-toggle span:last-child  { width: 14px; }
+.nav-toggle[aria-expanded="true"] span:first-child { width: 20px; transform: translateY(3.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:last-child  { width: 20px; transform: translateY(-3.5px) rotate(-45deg); }
+.nav-toggle:focus-visible { outline: 1px solid rgba(201,168,76,0.5); outline-offset: 4px; }
+
+.nav-menu {
+    position: fixed; inset: 0; background: rgba(4,4,4,0.97);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1); z-index: 9700;
+}
+.nav-menu.is-open { opacity: 1; pointer-events: auto; }
+.nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
+.nav-links li { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.nav-menu.is-open .nav-links li:nth-child(1) { opacity:1; transform:none; transition-delay:0.08s; }
+.nav-menu.is-open .nav-links li:nth-child(2) { opacity:1; transform:none; transition-delay:0.13s; }
+.nav-menu.is-open .nav-links li:nth-child(3) { opacity:1; transform:none; transition-delay:0.18s; }
+.nav-menu.is-open .nav-links li:nth-child(4) { opacity:1; transform:none; transition-delay:0.23s; }
+.nav-menu.is-open .nav-links li:nth-child(5) { opacity:1; transform:none; transition-delay:0.28s; }
+.nav-menu.is-open .nav-links li:nth-child(6) { opacity:1; transform:none; transition-delay:0.33s; }
+.nav-link {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300;
+    color: rgba(240,237,230,0.35); text-decoration: none;
+    letter-spacing: -0.02em; display: block; padding: 8px 0;
+    transition: color 0.3s ease;
+}
+.nav-link:hover, .nav-link.active { color: #F0EDE6; }
+.nav-link.active { font-style: italic; color: #C9A84C; }
+
+@media (max-width: 768px) {
+    .nav-toggle { display: flex; }
+    .nav-pillars { display: none !important; }
+}
+
 .logo {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.15rem; letter-spacing: 2px; text-transform: uppercase;

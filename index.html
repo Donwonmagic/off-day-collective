@@ -65,7 +65,20 @@
             <div class="status-indicator"><span class="pulse"></span> FALL 2026</div>
         </div>
         <div id="page-transition"></div>
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <span></span><span></span>
+        </button>
     </nav>
+    <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <ul class="nav-links" role="list">
+            <li><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+            <li><a href="philosophy.html" class="nav-link">Manifesto</a></li>
+            <li><a href="library.html" class="nav-link">Library</a></li>
+            <li><a href="shop.html" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="forum.html" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="#access" class="nav-link">Join</a></li>
+        </ul>
+    </div>
 
     <section id="intro">
         <div class="hero-image-container">
@@ -330,6 +343,16 @@
     <div class="progress-wrap"><div class="dot active" data-target="intro"></div><div class="dot" data-target="philosophy"></div><div class="dot" data-target="collection"></div><div class="dot" data-target="products"></div><div class="dot" data-target="library"></div><div class="dot" data-target="system"></div><div class="dot" data-target="community"></div><div class="dot" data-target="access"></div><div class="dot" data-target="footer"></div></div>
     <audio id="ambient-audio" loop preload="none" crossorigin="anonymous"><source src="audio/atmosphere.mp3" type="audio/mpeg"></audio>
     <script src="js/app.js"></script>
+    <script>
+    (function() {
+        var navToggle = document.getElementById('nav-toggle'), navMenu = document.getElementById('nav-menu');
+        function openNav() { if (!navMenu||!navToggle) return; navMenu.classList.add('is-open'); navToggle.setAttribute('aria-expanded','true'); navToggle.setAttribute('aria-label','Close menu'); }
+        function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
+        if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
+        if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeNav(); });
+    })();
+    </script>
     <!-- Inline fallback: if app.js fails to load, the loader still lifts -->
     <script>
     (function(){
