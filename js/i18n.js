@@ -623,9 +623,15 @@
   /* PICKER INITIALISATION                                                    */
   /* ─────────────────────────────────────────────────────────────────────── */
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Restore saved preference before body.loaded fires (~1500 ms later),
-    // so translated text animates in rather than flashing English first.
+  // Scripts are loaded at the bottom of <body>, so the DOM is already fully
+  // parsed when this IIFE runs — no need to wait for DOMContentLoaded.
+  // The button toggle itself is handled by an inline onclick attribute on
+  // #lang-btn in the HTML, which is unconditionally reliable.
+  // This block wires up: close-on-outside-click, close-on-Escape, and
+  // language selection, plus restores any saved language preference.
+  (function initPicker() {
+    // Restore saved preference early so translated text animates in
+    // rather than flashing English first (body.loaded fires ~1500 ms later).
     var saved = 'en';
     try { saved = localStorage.getItem('odc-lang') || 'en'; } catch (_) {}
     if (saved !== 'en') applyLang(saved);
@@ -634,14 +640,7 @@
     var dropdown = document.getElementById('lang-dropdown');
     if (!btn || !dropdown) return;
 
-    // Toggle open / closed
-    btn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var open = dropdown.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', String(open));
-    });
-
-    // Close when clicking outside
+    // Close when clicking outside the picker
     document.addEventListener('click', function (e) {
       if (!e.target.closest('#lang-picker')) {
         dropdown.classList.remove('is-open');
@@ -666,7 +665,7 @@
         btn.setAttribute('aria-expanded', 'false');
       });
     });
-  });
+  }());
 
   window.ODC_applyLang = applyLang;
 
