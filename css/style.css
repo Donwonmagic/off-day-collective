@@ -702,6 +702,7 @@ body.loaded .headline-reveal {
 .manifesto-content h2 {
     font-size: clamp(2rem, 3.5vw, 3.2rem);
     line-height: 1.15; margin-bottom: 30px;
+    padding-bottom: 0.18em; /* prevent clip-path from cropping italic descenders (g, y) */
 }
 .divider-line {
     width: 60px; height: 1px;
@@ -1579,33 +1580,6 @@ a.phase-hint:hover span {
     50% { transform: translate(-50%,-50%) scale(1.15); opacity: 0.8; }
 }
 
-/* Cohort bar */
-.cohort-container { margin-bottom: 30px; width: 100%; }
-
-.cohort-info {
-    display: flex; justify-content: space-between;
-    font-family: 'Inter', sans-serif; font-size: 0.7rem;
-    letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 10px; opacity: 0.9;
-}
-
-.cohort-percent {
-    font-weight: 600;
-    animation: pulseText 3s infinite;
-}
-
-.cohort-bar {
-    width: 100%; height: 2px;
-    background: rgba(255,255,255,0.1);
-    position: relative; overflow: hidden;
-}
-
-.cohort-fill {
-    height: 100%; background: var(--gold);
-    width: 0%;
-    transition: width 2s cubic-bezier(0.22, 1, 0.36, 1);
-    box-shadow: 0 0 10px var(--gold);
-}
 
 @keyframes pulseText {
     0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; }
@@ -2246,7 +2220,6 @@ body.atmosphere-on .progress-wrap {
     .ticker-track { animation: none !important; opacity: 0.7; }
     .loader-line { animation: none !important; transform: translateX(0) !important; }
     #atmosphere-toggle::after { animation: none !important; opacity: 0; }
-    .cohort-percent { animation: none !important; opacity: 1 !important; }
     .pulse { animation: none !important; opacity: 1 !important; }
     .btn-shimmer { animation: none !important; display: none; }
     #atmosphere-visual { transform: none !important; transition: none !important; }
