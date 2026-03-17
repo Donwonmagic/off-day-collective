@@ -391,6 +391,23 @@
                 <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
                 Off Day Collective
             </a>
+            <div class="nav-right" style="display:flex;align-items:center;gap:12px;isolation:isolate;pointer-events:auto;mix-blend-mode:normal;">
+                <div class="lang-picker" id="lang-picker">
+                    <button class="lang-btn hover-trigger" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span id="lang-code">EN</span>
+                    </button>
+                    <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                        <li role="option" data-lang="en"  class="lang-option active">English</li>
+                        <li role="option" data-lang="es"  class="lang-option">Español</li>
+                        <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                        <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                        <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                        <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                        <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                    </ul>
+                </div>
+            </div>
             <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
                 <span></span><span></span>
             </button>
@@ -399,12 +416,12 @@
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
         <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
-            <li><a href="/library" class="nav-link active" aria-current="page">Library</a></li>
-            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/#access" class="nav-link">Join</a></li>
+            <li><a href="/" class="nav-link" data-i18n="home.nav">Home</a></li>
+            <li><a href="/philosophy" class="nav-link" data-i18n="nav.manifesto">Manifesto</a></li>
+            <li><a href="/library" class="nav-link active" aria-current="page" data-i18n="nav.library">Library</a></li>
+            <li><a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/forum" class="nav-link" data-i18n="nav.forum">Forum</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/#access" class="nav-link" data-i18n="nav.join">Join</a></li>
         </ul>
     </div>
 
@@ -412,9 +429,9 @@
 
         <!-- Breadcrumb -->
         <div class="art-breadcrumb">
-            <a href="/library" class="art-breadcrumb-back">← The Science of Rest</a>
+            <a href="/library" class="art-breadcrumb-back" data-i18n="art.breadcrumb.back">← The Science of Rest</a>
             <span class="art-breadcrumb-sep" aria-hidden="true"></span>
-            <span class="art-breadcrumb-label">I · Morning Stillness</span>
+            <span class="art-breadcrumb-label" data-i18n="morning.breadcrumb.label">I · Morning Stillness</span>
         </div>
 
         <!-- Article -->
@@ -423,16 +440,16 @@
             <div class="art-title-screen">
                 <div class="art-watermark" aria-hidden="true">I</div>
                 <div class="art-title-inner">
-                    <span class="art-roman">I · Morning Stillness</span>
-                    <h1 id="morning-title">The 90-Minute Window: Why Your First Hour Determines Your Entire Day</h1>
+                    <span class="art-roman" data-i18n="morning.breadcrumb.label">I · Morning Stillness</span>
+                    <h1 id="morning-title" data-i18n="morning.h1">The 90-Minute Window: Why Your First Hour Determines Your Entire Day</h1>
                     <div class="art-gold-rule"></div>
-                    <p class="art-sub-on-screen">Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it.</p>
+                    <p class="art-sub-on-screen" data-i18n="morning.subtitle">Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it.</p>
                     <div class="art-byline">
                         <span>Research Desk, Off Day Collective</span>
                         <span class="art-byline-dot" aria-hidden="true"></span>
-                        <span>8 min read</span>
+                        <span data-i18n="morning.byline.time">8 min read</span>
                         <span class="art-byline-dot" aria-hidden="true"></span>
-                        <span>March 2026</span>
+                        <span data-i18n="morning.byline.date">March 2026</span>
                     </div>
                 </div>
             </div>
@@ -475,17 +492,17 @@
 
             <div class="art-body art-body-end">
                 <div class="art-body-inner">
-                    <h3>The Phone Problem</h3>
+                    <h3 data-i18n="morning.h3.phone">The Phone Problem</h3>
                     <p>When you reach for your phone immediately after waking, you are not simply checking messages. You are exposing yourself to novel, emotionally salient information — notifications, news headlines, social updates — during the exact window when your brain is most susceptible to context-setting. The hippocampus and prefrontal cortex are still completing their transition from sleep to wakefulness. Memory consolidation from overnight is finalising. Neuroplasticity is at a daily high. What you feed your attention during this window has outsized influence on the cognitive and emotional scaffolding of the hours ahead.<sup><a href="javascript:void(0)" data-cite="m4" aria-label="View citation 4">[4]</a></sup></p>
 
-                    <h3>Caffeine Timing</h3>
+                    <h3 data-i18n="morning.h3.caffeine">Caffeine Timing</h3>
                     <p>Adenosine — the sleepiness molecule — is at low levels when you first wake, having been cleared during sleep. Cortisol is naturally doing the job caffeine does mechanically. Consuming coffee in the first 90 minutes post-waking does not make you more alert; it simply replaces one stimulant with another while allowing the adrenal system to build tolerance faster. Within weeks, morning cortisol output begins to attenuate in habitual early-coffee drinkers. The practical implication: delay your first coffee until <span class="art-hl">90–120 minutes after waking</span>, and the same cup will do significantly more work.</p>
 
-                    <h3>The Light Anchor</h3>
+                    <h3 data-i18n="morning.h3.light">The Light Anchor</h3>
                     <p><span class="art-hl">Ten to fifteen minutes of outdoor light exposure within 30 minutes of waking</span> is the single highest-leverage morning intervention identified in chronobiology research. Low-angle morning light — even on a cloudy day — activates the retinal ganglion cells that set your suprachiasmatic nucleus (your master circadian clock). This advances your melatonin onset that evening, shortens sleep latency, and strengthens circadian amplitude over time. It works best through actual exposure, not through a window — glass filters the specific wavelengths required.</p>
 
                     <div class="art-pullquote">
-                        <p>"The first 90 minutes of wakefulness are not the beginning of your day. They are the calibration of it."</p>
+                        <p data-i18n="morning.pullquote">The first 90 minutes of wakefulness are not the beginning of your day. They are the calibration of it.</p>
                     </div>
 
                     <p>What this amounts to in practice is a simple set of omissions rather than additions. Do not reach for the phone. Do not immediately open email or begin a task list. Do not drink coffee yet. Instead: get light, move gently, let the CAR do what it evolved to do. The rest of the day benefits from the absence of interference more than from the presence of any particular ritual.</p>
@@ -508,27 +525,28 @@
         <!-- Pagination -->
         <nav class="art-pagination" aria-label="Article navigation">
             <a href="/library">
-                ← All Articles
-                <span class="art-pagination-label">The Science of Rest</span>
+                <span data-i18n="art.pagination.all">← All Articles</span>
+                <span class="art-pagination-label" data-i18n="art.pagination.library">The Science of Rest</span>
             </a>
             <a href="/library-strategic-idling" class="art-pagination-next">
-                Next Article →
-                <span class="art-pagination-label">The Art of Strategic Idling</span>
+                <span data-i18n="art.pagination.next">Next Article →</span>
+                <span class="art-pagination-label" data-i18n="morning.pagination.next.title">The Art of Strategic Idling</span>
             </a>
         </nav>
 
         <!-- CTA -->
-        <section class="lib-cta" aria-labelledby="cta-heading">
+        <section class="lib-cta" aria-labelledby="art-cta-h2">
             <div class="lib-cta-inner">
                 <span class="lib-eyebrow">Off Day Collective</span>
-                <h2 id="cta-heading">Rest is not a<br><em>reward</em>.</h2>
-                <p class="lib-cta-sub">It is the condition under which everything else becomes possible. Join the collective and receive future research directly.</p>
-                <a href="/#access" class="lib-cta-btn">Join the collective →</a>
+                <h2 id="art-cta-h2">Rest is not a<br><em>reward.</em></h2>
+                <p class="lib-cta-sub" data-i18n="lib.page.cta.desc">It is the condition under which everything else becomes possible. Join the collective and receive future research directly.</p>
+                <a href="/#access" class="lib-cta-btn" data-i18n="lib.page.cta.btn">Join the collective →</a>
             </div>
         </section>
 
     </main>
 
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script>
     (function() {

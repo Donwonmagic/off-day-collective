@@ -289,6 +289,23 @@
                 <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
                 Off Day Collective
             </a>
+            <div class="nav-right" style="display:flex;align-items:center;gap:12px;isolation:isolate;pointer-events:auto;mix-blend-mode:normal;">
+                <div class="lang-picker" id="lang-picker">
+                    <button class="lang-btn hover-trigger" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span id="lang-code">EN</span>
+                    </button>
+                    <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                        <li role="option" data-lang="en"  class="lang-option active">English</li>
+                        <li role="option" data-lang="es"  class="lang-option">Español</li>
+                        <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                        <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                        <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                        <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                        <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                    </ul>
+                </div>
+            </div>
             <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
                 <span></span><span></span>
             </button>
@@ -297,12 +314,12 @@
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
         <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
-            <li><a href="/library" class="nav-link">Library</a></li>
-            <li><a href="/shop" class="nav-link active" aria-current="page">Shop</a></li>
-            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/#access" class="nav-link">Join</a></li>
+            <li><a href="/" class="nav-link" data-i18n="home.nav">Home</a></li>
+            <li><a href="/philosophy" class="nav-link" data-i18n="nav.manifesto">Manifesto</a></li>
+            <li><a href="/library" class="nav-link" data-i18n="nav.library">Library</a></li>
+            <li><a href="/shop" class="nav-link active" aria-current="page" data-i18n="nav.shop">Shop</a></li>
+            <li><a href="/forum" class="nav-link" data-i18n="nav.forum">Forum</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/#access" class="nav-link" data-i18n="nav.join">Join</a></li>
         </ul>
     </div>
 
@@ -312,12 +329,12 @@
         <section class="shop-hero" aria-labelledby="shop-title">
             <div class="shop-hero-watermark" aria-hidden="true">SHOP</div>
             <div class="shop-hero-inner">
-                <span class="shop-eyebrow">Off Day Collective · Fall 2026</span>
-                <h1 class="shop-title" id="shop-title">Objects for<br>the <em>off day.</em></h1>
-                <p class="shop-desc">Every ritual needs a physical anchor. Volume I is a small, deliberate collection of tools and objects for making the most out of the off day — each chosen for a specific role in the day's three windows. Limited. Arriving Fall 2026.</p>
+                <span class="shop-eyebrow" data-i18n="shop.eyebrow">Off Day Collective · Fall 2026</span>
+                <h1 class="shop-title" id="shop-title"><span data-i18n="shop.h1line1">Objects for</span><br>the <em data-i18n="shop.h1line2">off day.</em></h1>
+                <p class="shop-desc" data-i18n="shop.desc">Every ritual needs a physical anchor. Volume I is a small, deliberate collection of tools and objects for making the most out of the off day — each chosen for a specific role in the day's three windows. Limited. Arriving Fall 2026.</p>
                 <div class="shop-arrival">
                     <span class="shop-arrival-line"></span>
-                    Arriving Fall 2026
+                    <span data-i18n="shop.arrival">Arriving Fall 2026</span>
                 </div>
             </div>
             <div class="scroll-cue" aria-hidden="true">
@@ -335,21 +352,21 @@
             <div class="shop-grid">
                 <article class="shop-card">
                     <span class="shop-card-num">01</span>
-                    <h2 class="shop-card-title">Something for the morning.</h2>
-                    <p class="shop-card-desc">An object that makes you slower. Something that requires your hands, rewards your patience, and has no screen. The first 90 minutes after waking are the most protected time in the day — this is for that window.</p>
-                    <p class="shop-card-tag">Morning Object · Volume I</p>
+                    <h2 class="shop-card-title" data-i18n="shop.card1.title">Something for the morning.</h2>
+                    <p class="shop-card-desc" data-i18n="shop.card1.desc">An object that makes you slower. Something that requires your hands, rewards your patience, and has no screen. The first 90 minutes after waking are the most protected time in the day — this is for that window.</p>
+                    <p class="shop-card-tag" data-i18n="shop.card1.tag">Morning Object · Volume I</p>
                 </article>
                 <article class="shop-card">
                     <span class="shop-card-num">02</span>
-                    <h2 class="shop-card-title">Something for the day.</h2>
-                    <p class="shop-card-desc">A tool for making, moving, or being present without an agenda. Not productivity — wandering. The kind of object that earns its place in a bag you take somewhere without a plan.</p>
-                    <p class="shop-card-tag">Midday Object · Volume I</p>
+                    <h2 class="shop-card-title" data-i18n="shop.card2.title">Something for the day.</h2>
+                    <p class="shop-card-desc" data-i18n="shop.card2.desc">A tool for making, moving, or being present without an agenda. Not productivity — wandering. The kind of object that earns its place in a bag you take somewhere without a plan.</p>
+                    <p class="shop-card-tag" data-i18n="shop.card2.tag">Midday Object · Volume I</p>
                 </article>
                 <article class="shop-card">
                     <span class="shop-card-num">03</span>
-                    <h2 class="shop-card-title">Something for the evening.</h2>
-                    <p class="shop-card-desc">An object with a presence. Not a product with a function — something you place, notice, and return to. It belongs in the hour before sleep, when the quality of what you do determines the depth of what follows.</p>
-                    <p class="shop-card-tag">Evening Object · Volume I</p>
+                    <h2 class="shop-card-title" data-i18n="shop.card3.title">Something for the evening.</h2>
+                    <p class="shop-card-desc" data-i18n="shop.card3.desc">An object with a presence. Not a product with a function — something you place, notice, and return to. It belongs in the hour before sleep, when the quality of what you do determines the depth of what follows.</p>
+                    <p class="shop-card-tag" data-i18n="shop.card3.tag">Evening Object · Volume I</p>
                 </article>
             </div>
         </div>
@@ -358,14 +375,15 @@
         <section class="shop-cta" aria-labelledby="shop-cta-heading">
             <div class="shop-cta-inner">
                 <span class="shop-eyebrow" style="display:block;margin-bottom:24px;">Off Day Collective</span>
-                <h2 id="shop-cta-heading">First access.<br>Members <em>only.</em></h2>
-                <p class="shop-cta-sub">Volume I objects are available exclusively to collective members before general release. Join now to receive notification the day the shop opens, along with the research that informs each object.</p>
-                <a href="/#access" class="shop-cta-btn">Join the collective →</a>
+                <h2 id="shop-cta-heading" data-i18n="shop.cta.h2">First access.<br>Members <em>only.</em></h2>
+                <p class="shop-cta-sub" data-i18n="shop.cta.desc">Volume I objects are available exclusively to collective members before general release. Join now to receive notification the day the shop opens, along with the research that informs each object.</p>
+                <a href="/#access" class="shop-cta-btn" data-i18n="shop.cta.btn">Join the collective →</a>
             </div>
         </section>
 
     </main>
 
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script>
     (function() {

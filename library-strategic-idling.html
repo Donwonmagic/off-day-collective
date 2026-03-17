@@ -187,6 +187,23 @@
                 <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
                 Off Day Collective
             </a>
+            <div class="nav-right" style="display:flex;align-items:center;gap:12px;isolation:isolate;pointer-events:auto;mix-blend-mode:normal;">
+                <div class="lang-picker" id="lang-picker">
+                    <button class="lang-btn hover-trigger" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span id="lang-code">EN</span>
+                    </button>
+                    <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                        <li role="option" data-lang="en"  class="lang-option active">English</li>
+                        <li role="option" data-lang="es"  class="lang-option">Español</li>
+                        <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                        <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                        <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                        <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                        <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                    </ul>
+                </div>
+            </div>
             <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
                 <span></span><span></span>
             </button>
@@ -195,20 +212,20 @@
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
         <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
-            <li><a href="/library" class="nav-link active" aria-current="page">Library</a></li>
-            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/#access" class="nav-link">Join</a></li>
+            <li><a href="/" class="nav-link" data-i18n="home.nav">Home</a></li>
+            <li><a href="/philosophy" class="nav-link" data-i18n="nav.manifesto">Manifesto</a></li>
+            <li><a href="/library" class="nav-link active" aria-current="page" data-i18n="nav.library">Library</a></li>
+            <li><a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/forum" class="nav-link" data-i18n="nav.forum">Forum</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/#access" class="nav-link" data-i18n="nav.join">Join</a></li>
         </ul>
     </div>
 
     <main id="main-content">
         <div class="art-breadcrumb">
-            <a href="/library" class="art-breadcrumb-back">← The Science of Rest</a>
+            <a href="/library" class="art-breadcrumb-back" data-i18n="art.breadcrumb.back">← The Science of Rest</a>
             <span class="art-breadcrumb-sep" aria-hidden="true"></span>
-            <span class="art-breadcrumb-label">II · The Midday Mind</span>
+            <span class="art-breadcrumb-label" data-i18n="idling.breadcrumb.label">II · The Midday Mind</span>
         </div>
 
         <article class="lib-article" aria-labelledby="journey-title">
@@ -216,16 +233,16 @@
             <div class="art-title-screen">
                 <div class="art-watermark" aria-hidden="true">II</div>
                 <div class="art-title-inner">
-                    <span class="art-roman">II · The Midday Mind</span>
-                    <h1 id="journey-title">The Art of Strategic Idling: How Doing Nothing Produces Your Best Work</h1>
+                    <span class="art-roman" data-i18n="idling.breadcrumb.label">II · The Midday Mind</span>
+                    <h1 id="journey-title" data-i18n="idling.h1">The Art of Strategic Idling: How Doing Nothing Produces Your Best Work</h1>
                     <div class="art-gold-rule"></div>
-                    <p class="art-sub-on-screen">Creativity does not arrive at a desk. It arrives in the shower, on a walk, in the quiet moment between two tasks.</p>
+                    <p class="art-sub-on-screen" data-i18n="idling.subtitle">Creativity does not arrive at a desk. It arrives in the shower, on a walk, in the quiet moment between two tasks.</p>
                     <div class="art-byline">
                         <span>Research Desk, Off Day Collective</span>
                         <span class="art-byline-dot" aria-hidden="true"></span>
-                        <span>10 min read</span>
+                        <span data-i18n="idling.byline.time">10 min read</span>
                         <span class="art-byline-dot" aria-hidden="true"></span>
-                        <span>March 2026</span>
+                        <span data-i18n="idling.byline.date">March 2026</span>
                     </div>
                 </div>
             </div>
@@ -265,16 +282,16 @@
 
             <div class="art-body art-body-end">
                 <div class="art-body-inner">
-                    <h3>The 90-Minute Architecture</h3>
+                    <h3 data-i18n="idling.h3.architecture">The 90-Minute Architecture</h3>
                     <p>Nathaniel Kleitman — the sleep researcher who discovered REM sleep — spent the latter part of his career documenting what he called the Basic Rest-Activity Cycle (BRAC): a biological rhythm of approximately <span class="art-hl">90 minutes</span> that governs not just sleep architecture but waking cognition as well. Every 90 minutes or so, the brain transitions through a trough of reduced alertness, reduced prefrontal dominance, and increased right-hemisphere activity. This is the moment the modern workplace has pathologised as distraction.<sup><a href="javascript:void(0)" data-cite="j2" aria-label="View citation 2">[2]</a></sup></p>
 
                     <p>Peretz Lavie mapped these rhythms with greater precision, identifying what he called "sleep gates" — windows of approximately <span class="art-hl">20–30 minutes</span> during the day where the brain is biologically predisposed to a rest cycle. Fighting these gates through caffeine, urgency, or sheer will creates a debt. Honouring them — with even a 10-minute non-directed break — accelerates recovery and restores working memory capacity for the next ultradian peak.<sup><a href="javascript:void(0)" data-cite="j3" aria-label="View citation 3">[3]</a></sup></p>
 
-                    <h3>How to Use Idleness Strategically</h3>
+                    <h3 data-i18n="idling.h3.howto">How to Use Idleness Strategically</h3>
                     <p>The research points to a counter-intuitive protocol. When approaching the end of a 90-minute work block — when concentration begins to waver and you notice yourself re-reading the same paragraph — the instinct is to push through. The data suggests the opposite: stop deliberately, leave the task slightly unfinished, and go do something physically simple and mentally unconstrained. Walk without a destination. Do dishes. Sit without your phone. Allow the DMN to do what it was built to do.</p>
 
                     <div class="art-pullquote">
-                        <p>"The highest-leverage professional skill of the next decade will be the ability to do nothing productively."</p>
+                        <p data-i18n="idling.pullquote">The highest-leverage professional skill of the next decade will be the ability to do nothing productively.</p>
                     </div>
 
                     <p>Companies that have studied this empirically — through both cognitive testing and creative output measurement — consistently find the same result: <span class="art-hl">2–3 unstructured hours</span> per week produce more novel output than the same hours spent in structured ideation sessions. The brain cannot be instructed into insight. It can only be prepared for it, and then left alone.</p>
@@ -296,25 +313,26 @@
 
         <nav class="art-pagination" aria-label="Article navigation">
             <a href="/library-morning-light">
-                ← Previous Article
-                <span class="art-pagination-label">The 90-Minute Window</span>
+                <span data-i18n="art.pagination.prev">← Previous Article</span>
+                <span class="art-pagination-label" data-i18n="idling.pagination.prev.title">The 90-Minute Window</span>
             </a>
             <a href="/library-evening-protocol" class="art-pagination-next">
-                Next Article →
-                <span class="art-pagination-label">The Evening Protocol</span>
+                <span data-i18n="art.pagination.next">Next Article →</span>
+                <span class="art-pagination-label" data-i18n="idling.pagination.next.title">The Evening Protocol</span>
             </a>
         </nav>
 
-        <section class="lib-cta" aria-labelledby="cta-heading">
+        <section class="lib-cta" aria-labelledby="art-cta-h2">
             <div class="lib-cta-inner">
                 <span class="lib-eyebrow">Off Day Collective</span>
-                <h2 id="cta-heading">Rest is not a<br><em>reward</em>.</h2>
-                <p class="lib-cta-sub">It is the condition under which everything else becomes possible. Join the collective and receive future research directly.</p>
-                <a href="/#access" class="lib-cta-btn">Join the collective →</a>
+                <h2 id="art-cta-h2">Rest is not a<br><em>reward.</em></h2>
+                <p class="lib-cta-sub" data-i18n="lib.page.cta.desc">It is the condition under which everything else becomes possible. Join the collective and receive future research directly.</p>
+                <a href="/#access" class="lib-cta-btn" data-i18n="lib.page.cta.btn">Join the collective →</a>
             </div>
         </section>
     </main>
 
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script>
     (function() {

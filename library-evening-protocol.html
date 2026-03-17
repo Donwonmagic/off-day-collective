@@ -187,6 +187,23 @@
                 <svg width="26" height="26" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
                 Off Day Collective
             </a>
+            <div class="nav-right" style="display:flex;align-items:center;gap:12px;isolation:isolate;pointer-events:auto;mix-blend-mode:normal;">
+                <div class="lang-picker" id="lang-picker">
+                    <button class="lang-btn hover-trigger" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span id="lang-code">EN</span>
+                    </button>
+                    <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                        <li role="option" data-lang="en"  class="lang-option active">English</li>
+                        <li role="option" data-lang="es"  class="lang-option">Español</li>
+                        <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                        <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                        <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                        <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                        <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                    </ul>
+                </div>
+            </div>
             <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
                 <span></span><span></span>
             </button>
@@ -195,20 +212,20 @@
     <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
         <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
         <ul class="nav-links" role="list">
-            <li><a href="/" class="nav-link">Home</a></li>
-            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
-            <li><a href="/library" class="nav-link active" aria-current="page">Library</a></li>
-            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
-            <li><a href="/#access" class="nav-link">Join</a></li>
+            <li><a href="/" class="nav-link" data-i18n="home.nav">Home</a></li>
+            <li><a href="/philosophy" class="nav-link" data-i18n="nav.manifesto">Manifesto</a></li>
+            <li><a href="/library" class="nav-link active" aria-current="page" data-i18n="nav.library">Library</a></li>
+            <li><a href="/shop" class="nav-link" data-i18n="nav.shop">Shop</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/forum" class="nav-link" data-i18n="nav.forum">Forum</a> <span class="nav-soon-tag" data-i18n="nav.soon">Fall 2026</span></li>
+            <li><a href="/#access" class="nav-link" data-i18n="nav.join">Join</a></li>
         </ul>
     </div>
 
     <main id="main-content">
         <div class="art-breadcrumb">
-            <a href="/library" class="art-breadcrumb-back">← The Science of Rest</a>
+            <a href="/library" class="art-breadcrumb-back" data-i18n="art.breadcrumb.back">← The Science of Rest</a>
             <span class="art-breadcrumb-sep" aria-hidden="true"></span>
-            <span class="art-breadcrumb-label">III · Evening Protocol</span>
+            <span class="art-breadcrumb-label" data-i18n="evening.breadcrumb.label">III · Evening Protocol</span>
         </div>
 
         <article class="lib-article" aria-labelledby="evening-title">
@@ -216,16 +233,16 @@
             <div class="art-title-screen">
                 <div class="art-watermark" aria-hidden="true">III</div>
                 <div class="art-title-inner">
-                    <span class="art-roman">III · Evening Protocol</span>
-                    <h1 id="evening-title">The Evening Protocol: Engineering the Conditions for Deep Sleep</h1>
+                    <span class="art-roman" data-i18n="evening.breadcrumb.label">III · Evening Protocol</span>
+                    <h1 id="evening-title" data-i18n="evening.h1">The Evening Protocol: Engineering the Conditions for Deep Sleep</h1>
                     <div class="art-gold-rule"></div>
-                    <p class="art-sub-on-screen">Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised.</p>
+                    <p class="art-sub-on-screen" data-i18n="evening.subtitle">Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised.</p>
                     <div class="art-byline">
                         <span>Research Desk, Off Day Collective</span>
                         <span class="art-byline-dot" aria-hidden="true"></span>
-                        <span>9 min read</span>
+                        <span data-i18n="evening.byline.time">9 min read</span>
                         <span class="art-byline-dot" aria-hidden="true"></span>
-                        <span>March 2026</span>
+                        <span data-i18n="evening.byline.date">March 2026</span>
                     </div>
                 </div>
             </div>
@@ -268,19 +285,19 @@
 
             <div class="art-body art-body-end">
                 <div class="art-body-inner">
-                    <h3>The Melatonin Runway</h3>
+                    <h3 data-i18n="evening.h3.melatonin">The Melatonin Runway</h3>
                     <p>Melatonin — the hormone that signals the body to begin sleep preparation — is synthesised from serotonin in the pineal gland and begins its rise roughly <span class="art-hl">two hours before your natural sleep time</span>. Its production is regulated almost entirely by light: bright, blue-spectrum light suppresses melatonin release; dim, red-spectrum light permits it. The advent of LED screens has made every evening a biological argument between your pineal gland and your phone.<sup><a href="javascript:void(0)" data-cite="e2" aria-label="View citation 2">[2]</a></sup></p>
 
                     <p>The 2001 Brainard study that established the melatonin action spectrum found that exposures as brief as <span class="art-hl">90 minutes or more</span> of blue-rich light in the evening can delay melatonin onset by 1.5–3 hours. The consequence is not merely that sleep comes later — it is that the architecture of sleep is compressed. The slow-wave stages that perform glymphatic clearance, memory consolidation, and cellular repair are concentrated in the first half of the sleep period. Delay sleep onset without delaying the wake time, and you cut directly into the most regenerative portion of the cycle.</p>
 
-                    <h3>Temperature as the Trigger</h3>
+                    <h3 data-i18n="evening.h3.temperature">Temperature as the Trigger</h3>
                     <p>Core body temperature must drop by <span class="art-hl">1–3°F (0.5–1.5°C)</span> before sleep onset can occur. This is why hot baths or showers paradoxically accelerate sleep — not through warmth but through the rapid peripheral vasodilation afterward, which dumps heat to the extremities and drops core temperature faster than passive cooling alone. The same mechanism explains why cool rooms (65–67°F / 18–19°C) consistently improve both sleep onset latency and slow-wave duration.<sup><a href="javascript:void(0)" data-cite="e3" aria-label="View citation 3">[3]</a></sup></p>
 
-                    <h3>Alcohol: The False Sedative</h3>
+                    <h3 data-i18n="evening.h3.alcohol">Alcohol: The False Sedative</h3>
                     <p>Alcohol is the most widely consumed sleep aid in the world, and among the most counterproductive. It reduces sleep onset latency — the time it takes to fall asleep — but suppresses REM sleep architecture in the second half of the night and increases sleep fragmentation. A standard drink consumed within three hours of bedtime reduces REM sleep by approximately 24%. Two drinks reduces it by nearly 40%. The glymphatic system requires REM to clear specific metabolic waste products. Habitual evening alcohol use, even at moderate levels, is one of the most reliable ways to accelerate neurological aging.<sup><a href="javascript:void(0)" data-cite="e4" aria-label="View citation 4">[4]</a></sup></p>
 
                     <div class="art-pullquote">
-                        <p>"Sleep is the single most effective thing we can do to reset our brain and body health each day."</p>
+                        <p data-i18n="evening.pullquote">Sleep is the single most effective thing we can do to reset our brain and body health each day.</p>
                     </div>
 
                     <p>The Off Day Collective's evening framework does not require a 90-minute wind-down ritual or a supplement stack. It requires three things: a gradual dimming of artificial light beginning two hours before bed, a room temperature below 68°F, and the removal of alcohol from the final three hours of the day. These are not wellness aspirations. They are the mechanical prerequisites for the brain to do what it was designed to do every night.</p>
@@ -302,25 +319,26 @@
 
         <nav class="art-pagination" aria-label="Article navigation">
             <a href="/library-strategic-idling">
-                ← Previous Article
-                <span class="art-pagination-label">The Art of Strategic Idling</span>
+                <span data-i18n="art.pagination.prev">← Previous Article</span>
+                <span class="art-pagination-label" data-i18n="evening.pagination.prev.title">The Art of Strategic Idling</span>
             </a>
             <a href="/library" class="art-pagination-next">
-                All Articles →
-                <span class="art-pagination-label">The Science of Rest</span>
+                <span data-i18n="art.pagination.allarticles">All Articles →</span>
+                <span class="art-pagination-label" data-i18n="art.pagination.library">The Science of Rest</span>
             </a>
         </nav>
 
-        <section class="lib-cta" aria-labelledby="cta-heading">
+        <section class="lib-cta" aria-labelledby="art-cta-h2">
             <div class="lib-cta-inner">
                 <span class="lib-eyebrow">Off Day Collective</span>
-                <h2 id="cta-heading">Rest is not a<br><em>reward</em>.</h2>
-                <p class="lib-cta-sub">It is the condition under which everything else becomes possible. Join the collective and receive future research directly.</p>
-                <a href="/#access" class="lib-cta-btn">Join the collective →</a>
+                <h2 id="art-cta-h2">Rest is not a<br><em>reward.</em></h2>
+                <p class="lib-cta-sub" data-i18n="lib.page.cta.desc">It is the condition under which everything else becomes possible. Join the collective and receive future research directly.</p>
+                <a href="/#access" class="lib-cta-btn" data-i18n="lib.page.cta.btn">Join the collective →</a>
             </div>
         </section>
     </main>
 
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script>
     (function() {
