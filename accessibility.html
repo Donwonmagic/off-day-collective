@@ -28,7 +28,7 @@
             <div class="loader-line-mask"><div class="loader-line"></div></div>
         </div>
     </div>
-    
+
     <div id="page-transition"></div>
     <div class="noise-overlay" aria-hidden="true"></div>
     <div id="cursor"></div>
@@ -36,7 +36,22 @@
 
     <nav class="nav-overlay" role="navigation" aria-label="Main navigation">
         <a href="/" class="logo" aria-label="Off Day Collective home" style="pointer-events:auto; text-decoration:none; color:inherit; display:flex; align-items:center; gap:12px;"><svg viewBox="0 0 200 200" width="26" aria-hidden="true" class="nav-mark" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg> Off Day Collective</a>
-        <div class="nav-right">
+        <div class="nav-right" style="display:flex;align-items:center;gap:12px;">
+            <div class="lang-picker" id="lang-picker">
+                <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span id="lang-code">EN</span>
+                </button>
+                <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                    <li role="option" data-lang="en"  class="lang-option active">English</li>
+                    <li role="option" data-lang="es"  class="lang-option">Español</li>
+                    <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                    <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                    <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                    <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                    <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                </ul>
+            </div>
             <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
                 <span class="toggle-track"><span class="toggle-thumb"></span></span>
                 <span class="toggle-label">ATMOSPHERE</span>
@@ -45,21 +60,21 @@
     </nav>
 
     <main id="main-content">
-        
+
         <section class="accessibility-hero subpage-hero">
             <div style="max-width: 800px;">
-                <span class="gold-text sm-caps" style="display:block; margin-bottom: 20px;">The Standard of Silence</span>
-                <h1 style="font-size: clamp(3rem, 8vw, 6rem); color: var(--cream); line-height: 1; margin-bottom: 40px;">
+                <span class="gold-text sm-caps" style="display:block; margin-bottom: 20px;" data-i18n="acc.eyebrow">The Standard of Silence</span>
+                <h1 id="acc-h1" data-i18n-html="acc.h1" style="font-size: clamp(3rem, 8vw, 6rem); color: var(--cream); line-height: 1; margin-bottom: 40px;">
                     Inclusion is <span class="italic">intentional.</span>
                 </h1>
-                
+
                 <div class="divider-line" style="width: 100px; height: 1px; background: var(--gold); margin-bottom: 60px;"></div>
-                
+
                 <div style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #aaa; line-height: 1.8; font-weight: 300;">
-                    <p style="margin-bottom: 30px;">
+                    <p style="margin-bottom: 30px;" data-i18n="acc.p1">
                         At Off Day Collective, we believe that the luxury of stillness and clarity should be available to everyone. A digital "Off Day" is not restorative if the technology itself creates a barrier.
                     </p>
-                    <p style="margin-bottom: 30px;">
+                    <p style="margin-bottom: 30px;" data-i18n-html="acc.p2">
                         We are committed to ensuring our digital experiences are accessible to individuals of all abilities. Our current goal is to meet and exceed <strong>WCAG 2.1 Level AA</strong> standards, focusing on high-contrast readability, screen-reader optimization, and keyboard-only navigation.
                     </p>
                 </div>
@@ -68,24 +83,24 @@
 
         <section style="background: #0a0a0a; padding: 100px 10%; border-top: 1px solid #1a1a1a;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px;">
-                
+
                 <div class="acc-module">
-                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">I. Sensory Control</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;" data-i18n="acc.i.title">I. Sensory Control</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;" data-i18n="acc.i.desc">
                         Our "Atmosphere" layer is entirely optional. We provide a prominent physical toggle to ensure users can choose a silent experience, preventing unexpected audio triggers.
                     </p>
                 </div>
 
                 <div class="acc-module">
-                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">II. Visual Clarity</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;" data-i18n="acc.ii.title">II. Visual Clarity</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;" data-i18n="acc.ii.desc">
                         We utilize a "High-Contrast Charcoal" palette. All text elements are measured against contrast ratios to ensure legibility for users with low vision.
                     </p>
                 </div>
 
                 <div class="acc-module">
-                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;">III. Assistive Tech</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">
+                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;" data-i18n="acc.iii.title">III. Assistive Tech</h4>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;" data-i18n="acc.iii.desc">
                         The site architecture is built with semantic HTML5. Our "Deep Exhale" transitions are designed to be respectful of screen reader focus management.
                     </p>
                 </div>
@@ -94,18 +109,18 @@
         </section>
 
         <section style="padding: 100px 10%; text-align: center;">
-            <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px;">Feedback is a Gift.</h3>
-            <p style="color: #666; max-width: 500px; margin: 0 auto 40px; font-size: 0.9rem;">
+            <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px;" data-i18n="acc.feedback.h3">Feedback is a Gift.</h3>
+            <p style="color: #666; max-width: 500px; margin: 0 auto 40px; font-size: 0.9rem;" data-i18n="acc.feedback.p">
                 If you encounter any difficulty accessing our collective, please let us know immediately. Your perspective helps us build a better sanctuary.
             </p>
-           <a href="mailto:contact@offdaycollective.com?subject=Accessibility%20Inquiry%20—%20Off%20Day%20Collective" 
-   class="gold-btn" 
-   style="display: inline-block; padding: 18px 40px; text-decoration: none;">
+           <a href="mailto:contact@offdaycollective.com?subject=Accessibility%20Inquiry%20—%20Off%20Day%20Collective"
+   class="gold-btn"
+   style="display: inline-block; padding: 18px 40px; text-decoration: none;" data-i18n="acc.feedback.btn">
    Report an Issue
 </a>
-            
+
             <div style="margin-top: 60px;">
-                <a href="/" class="text-link">Return to the Collective</a>
+                <a href="/" class="text-link" data-i18n="acc.feedback.back">Return to the Collective</a>
             </div>
         </section>
 
@@ -116,6 +131,7 @@
         <source src="audio/atmosphere.mp3" type="audio/mpeg">
     </audio>
 
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
     <script>(function(){setTimeout(function(){document.body.classList.add("loaded")},3500)})();</script>
 </body>
