@@ -47,78 +47,94 @@
             <div class="status-indicator">
                 <span class="pulse"></span> FALL 2026
             </div>
+            <div class="lang-picker" id="lang-picker">
+                <button class="lang-btn hover-trigger" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span id="lang-code">EN</span>
+                </button>
+                <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                    <li role="option" data-lang="en"  class="lang-option active">English</li>
+                    <li role="option" data-lang="es"  class="lang-option">Español</li>
+                    <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                    <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                    <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                    <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                    <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <main id="main-content">
         <section class="subpage-hero" style="max-width: 800px; margin: 0 auto;">
-            <span class="gold-text sm-caps">The Manifesto</span>
-            <h1 style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--cream); margin: 20px 0 40px; line-height: 1.1;">
+            <span class="gold-text sm-caps" data-i18n="phil.eyebrow">The Manifesto</span>
+            <h1 id="phil-h1" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--cream); margin: 20px 0 40px; line-height: 1.1;" data-i18n-html="phil.h1">
                 The modern world is weightless.<br>We curate <span class="italic gold-text">gravity.</span>
             </h1>
 
             <div style="font-family: 'Inter', sans-serif; color: #aaa; line-height: 1.9; font-weight: 300; font-size: 1.05rem;">
 
-                <p>There was a time when weekends had texture. The weight of a real object in your hands. The heat of something made slowly. The sound of nothing at all.</p>
+                <p data-i18n="phil.p1">There was a time when weekends had texture. The weight of a real object in your hands. The heat of something made slowly. The sound of nothing at all.</p>
 
-                <p style="margin-top:1.5rem;">Somewhere between push notifications and infinite scroll, we stopped giving our downtime the same respect we give our work. We optimized our mornings, gamified our exercise, and outsourced our meals — then wondered why Sunday night felt the same as Monday morning.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.p2">Somewhere between push notifications and infinite scroll, we stopped giving our downtime the same respect we give our work. We optimized our mornings, gamified our exercise, and outsourced our meals — then wondered why Sunday night felt the same as Monday morning.</p>
 
-                <p style="margin-top:1.5rem;">Off Day Collective exists to reverse that. Not with another app. Not with another subscription you forget about. With real objects, guided rituals, and the science that explains why they work.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.p3">Off Day Collective exists to reverse that. Not with another app. Not with another subscription you forget about. With real objects, guided rituals, and the science that explains why they work.</p>
 
                 <!-- THE THREE TEMPOS -->
-                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;">The Three Tempos</h2>
+                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;" data-i18n="phil.h2.tempos">The Three Tempos</h2>
 
-                <p>Every Volume we produce is organized around three phases of the day — not as a schedule, but as an invitation to move through your off day with intention instead of inertia.</p>
+                <p data-i18n="phil.tempos.intro">Every Volume we produce is organized around three phases of the day — not as a schedule, but as an invitation to move through your off day with intention instead of inertia.</p>
 
-                <p style="margin-top:1.5rem;"><span class="gold-text" style="letter-spacing:1px;">I. THE MORNING STILLNESS.</span><br>Before the noise begins. A structured practice built around slowness — warm things made by hand, something for the skin, something for the page. Research shows the first 90 minutes after waking set your cortisol curve for the entire day. Every object in this phase is chosen to protect that window.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.tempo1">I. THE MORNING STILLNESS. Before the noise begins. A structured practice built around slowness — warm things made by hand, something for the skin, something for the page. Research shows the first 90 minutes after waking set your cortisol curve for the entire day. Every object in this phase is chosen to protect that window.</p>
 
-                <p style="margin-top:1.5rem;"><span class="gold-text" style="letter-spacing:1px;">II. THE DAY'S JOURNEY.</span><br>The grounded path. Movement without a destination, making without a deadline, wandering without earbuds. Studies consistently show that unstructured physical movement produces more novel ideas than deliberate brainstorming. This phase gives you the tools to go outside and stay present.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.tempo2">II. THE DAY'S JOURNEY. The grounded path. Movement without a destination, making without a deadline, wandering without earbuds. Studies consistently show that unstructured physical movement produces more novel ideas than deliberate brainstorming. This phase gives you the tools to go outside and stay present.</p>
 
-                <p style="margin-top:1.5rem;"><span class="gold-text" style="letter-spacing:1px;">III. THE EVENING RELEASE.</span><br>The deep exhale. Your body's transition to sleep begins two hours before you close your eyes — and most people override it with screens. This phase is built around warmth, weight, low light, and the kind of conversation that a phone can't provide.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.tempo3">III. THE EVENING RELEASE. The deep exhale. Your body's transition to sleep begins two hours before you close your eyes — and most people override it with screens. This phase is built around warmth, weight, low light, and the kind of conversation that a phone can't provide.</p>
 
                 <!-- WHY SCIENCE -->
-                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;">Why We Lead with Science</h2>
+                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;" data-i18n="phil.h2.science">Why We Lead with Science</h2>
 
-                <p>The wellness industry is full of beautiful products and empty promises. We decided early on that we wouldn't tell you to "just relax" without explaining the mechanism. Every ritual we design is grounded in real research — cortisol dynamics, sleep architecture, the neuroscience of creative flow, the measurable effects of sensory input on your nervous system.</p>
+                <p data-i18n="phil.science1">The wellness industry is full of beautiful products and empty promises. We decided early on that we wouldn't tell you to "just relax" without explaining the mechanism. Every ritual we design is grounded in real research — cortisol dynamics, sleep architecture, the neuroscience of creative flow, the measurable effects of sensory input on your nervous system.</p>
 
-                <p style="margin-top:1.5rem;">We publish this research for free in our Library because we believe education is the thing that makes an object worth keeping. A candle is just a candle until you understand what low-spectrum light does to your melatonin onset. Then it becomes a tool. That shift — from product to practice — is what we're building.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.science2">We publish this research for free in our Library because we believe education is the thing that makes an object worth keeping. A candle is just a candle until you understand what low-spectrum light does to your melatonin onset. Then it becomes a tool. That shift — from product to practice — is what we're building.</p>
 
                 <!-- SOURCING -->
-                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;">Our Sourcing Principles</h2>
+                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;" data-i18n="phil.h2.sourcing">Our Sourcing Principles</h2>
 
-                <p>Every object in a Volume is sourced directly from independent makers. We work with small studios and family operations across multiple continents, and we do not stock anything mass-produced. We never will.</p>
+                <p data-i18n="phil.sourcing1">Every object in a Volume is sourced directly from independent makers. We work with small studios and family operations across multiple continents, and we do not stock anything mass-produced. We never will.</p>
 
-                <p style="margin-top:1.5rem;">We believe the objects you use in your quietest moments should carry the same intentionality as the moments themselves. That means responsibly sourced materials, fair wages for every maker, and production runs small enough that quality never becomes an afterthought. When we finalize Volume 01, we'll publish the name, location, and story behind every item we include.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.sourcing2">We believe the objects you use in your quietest moments should carry the same intentionality as the moments themselves. That means responsibly sourced materials, fair wages for every maker, and production runs small enough that quality never becomes an afterthought. When we finalize Volume 01, we'll publish the name, location, and story behind every item we include.</p>
 
                 <!-- COMMUNITY -->
-                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;">The Collective</h2>
+                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;" data-i18n="phil.h2.collective">The Collective</h2>
 
-                <p>Off Day Collective isn't just a brand that ships you things. It's a community of people who take their downtime seriously — and who are willing to share what's working.</p>
+                <p data-i18n="phil.collective1">Off Day Collective isn't just a brand that ships you things. It's a community of people who take their downtime seriously — and who are willing to share what's working.</p>
 
-                <p style="margin-top:1.5rem;">Every ritual in our library started with a real conversation. Members contribute their adaptations, ask questions, share what surprised them, and help shape what future Volumes contain. The Off Day Forum is where those conversations live — a private, members-only space with no algorithm, no feed, and no ads. Just people figuring out how to rest well, together.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.collective2">Every ritual in our library started with a real conversation. Members contribute their adaptations, ask questions, share what surprised them, and help shape what future Volumes contain. The Off Day Forum is where those conversations live — a private, members-only space with no algorithm, no feed, and no ads. Just people figuring out how to rest well, together.</p>
 
                 <!-- WHY OFF DAY -->
-                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;">Why "Off Day"?</h2>
+                <h2 style="font-size:1.8rem; color:var(--cream); margin:3rem 0 1rem; font-weight:300;" data-i18n="phil.h2.offday">Why "Off Day"?</h2>
 
-                <p>The phrase "off day" usually means a bad day. A day when things don't go right. We're reclaiming it.</p>
+                <p data-i18n="phil.offday1">The phrase "off day" usually means a bad day. A day when things don't go right. We're reclaiming it.</p>
 
-                <p style="margin-top:1.5rem;">An off day is a day you take off — deliberately, unapologetically. It's the day you were meant to have before someone decided every hour needed to be optimized. It's the day that makes Monday work. Not because you rested passively, but because you rested with intention, with objects worth holding, with rituals worth repeating, and with people who understand why it matters.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.offday2">An off day is a day you take off — deliberately, unapologetically. It's the day you were meant to have before someone decided every hour needed to be optimized. It's the day that makes Monday work. Not because you rested passively, but because you rested with intention, with objects worth holding, with rituals worth repeating, and with people who understand why it matters.</p>
 
-                <p style="margin-top:1.5rem;">Silence is a luxury. We're building everything you need to afford it.</p>
+                <p style="margin-top:1.5rem;" data-i18n="phil.offday3">Silence is a luxury. We're building everything you need to afford it.</p>
             </div>
 
             <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <a href="/#access" class="gold-btn hover-trigger" style="display:inline-block; padding:18px 40px; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase;">
+                <a href="/#access" class="gold-btn hover-trigger" style="display:inline-block; padding:18px 40px; text-decoration:none; font-family:'Inter',sans-serif; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase;" data-i18n="phil.cta.btn">
                     Join the Waitlist
                 </a>
             </div>
 
             <div style="margin-top: 40px; margin-bottom: 80px;">
-                <a href="/" class="text-link">← Return to the Collective</a>
+                <a href="/" class="text-link" data-i18n="phil.back">← Return to the Collective</a>
             </div>
         </section>
     </main>
 
+    <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
