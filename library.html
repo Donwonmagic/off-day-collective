@@ -191,9 +191,10 @@
             border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.3);
             border-radius: 2px;
         }
-        .lib-card-tag.morning { border-color: rgba(201,168,76,0.2); color: rgba(201,168,76,0.5); }
-        .lib-card-tag.midday  { border-color: rgba(143,175,144,0.2); color: rgba(143,175,144,0.5); }
-        .lib-card-tag.evening { border-color: rgba(155,140,200,0.2); color: rgba(155,140,200,0.5); }
+        /* Tempo system colors — must stay in sync with --tempo-* tokens in style.css */
+        .lib-card-tag.morning { border-color: rgba(201,168,76,0.25); color: rgba(201,168,76,0.6); }   /* --tempo-morning */
+        .lib-card-tag.midday  { border-color: rgba(123,175,113,0.25); color: rgba(123,175,113,0.6); } /* --tempo-journey */
+        .lib-card-tag.evening { border-color: rgba(148,144,200,0.25); color: rgba(148,144,200,0.6); } /* --tempo-evening */
         .lib-card-time {
             font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 2px;
             text-transform: uppercase; color: rgba(255,255,255,0.15);
@@ -298,6 +299,12 @@
             .lib-cta { padding: 100px 28px; }
         }
     </style>
+    <noscript><style>
+        *, html, a, button, input, label { cursor: auto !important; }
+        #cursor, #loader { display: none !important; }
+        .fade-in-up, .reveal-on-load { opacity: 1 !important; transform: none !important; transition: none !important; }
+        #lang-picker { display: none !important; }
+    </style></noscript>
 </head>
 <body class="dark-bg loaded">
 

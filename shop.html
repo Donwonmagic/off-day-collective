@@ -222,6 +222,10 @@
             letter-spacing: 3px; text-transform: uppercase;
             color: rgba(201,168,76,0.4);
         }
+        /* Tempo system tag colors — mirrors --tempo-* tokens */
+        [data-tempo="morning"] .shop-card-tag { color: rgba(201,168,76,0.5); }   /* --tempo-morning */
+        [data-tempo="journey"] .shop-card-tag { color: rgba(123,175,113,0.5); }  /* --tempo-journey */
+        [data-tempo="evening"] .shop-card-tag { color: rgba(148,144,200,0.5); }  /* --tempo-evening */
         .shop-card-clinical {
             margin-top: 20px;
             font-family: 'Inter', sans-serif; font-size: 0.62rem;
@@ -282,6 +286,12 @@
             .shop-cta { padding: 100px 28px; }
         }
     </style>
+    <noscript><style>
+        *, html, a, button, input, label { cursor: auto !important; }
+        #cursor, #loader { display: none !important; }
+        .fade-in-up, .reveal-on-load { opacity: 1 !important; transform: none !important; transition: none !important; }
+        #lang-picker { display: none !important; }
+    </style></noscript>
 </head>
 <body class="dark-bg loaded">
 
@@ -359,26 +369,26 @@
         <div class="shop-objects" aria-label="Volume I preview">
             <p class="shop-objects-label">Volume I — Object Preview</p>
             <div class="shop-grid">
-                <article class="shop-card">
+                <article class="shop-card" data-tempo="morning">
                     <span class="shop-card-num">01</span>
                     <h2 class="shop-card-title" data-i18n="shop.card1.title">Something for the morning.</h2>
                     <p class="shop-card-desc" data-i18n="shop.card1.desc">An object that makes you slower. Something that requires your hands, rewards your patience, and has no screen. The first 90 minutes after waking are the most protected time in the day — this is for that window.</p>
                     <p class="shop-card-tag" data-i18n="shop.card1.tag">Morning Object · Volume I</p>
-                    <p class="shop-card-clinical" data-i18n="shop.card1.clinical">Designed to support healthy cortisol response and circadian rhythm. Not intended to treat clinical conditions. Consult your physician for medical management.</p>
+                    <p class="shop-card-clinical" data-i18n="shop.card1.clinical">Designed to support healthy cortisol response and circadian rhythm. Not intended to treat clinical conditions. Consult your provider for medical management.</p>
                 </article>
-                <article class="shop-card">
+                <article class="shop-card" data-tempo="journey">
                     <span class="shop-card-num">02</span>
                     <h2 class="shop-card-title" data-i18n="shop.card2.title">Something for the day.</h2>
                     <p class="shop-card-desc" data-i18n="shop.card2.desc">A tool for making, moving, or being present without an agenda. Not productivity — wandering. The kind of object that earns its place in a bag you take somewhere without a plan.</p>
                     <p class="shop-card-tag" data-i18n="shop.card2.tag">Midday Object · Volume I</p>
-                    <p class="shop-card-clinical" data-i18n="shop.card2.clinical">Designed to support autonomic regulation and ultradian rhythm. Not intended to treat clinical conditions. Consult your physician for medical management.</p>
+                    <p class="shop-card-clinical" data-i18n="shop.card2.clinical">Designed to support autonomic regulation and ultradian rhythm. Not intended to treat clinical conditions. Consult your provider for medical management.</p>
                 </article>
-                <article class="shop-card">
+                <article class="shop-card" data-tempo="evening">
                     <span class="shop-card-num">03</span>
                     <h2 class="shop-card-title" data-i18n="shop.card3.title">Something for the evening.</h2>
                     <p class="shop-card-desc" data-i18n="shop.card3.desc">An object with a presence. Not a product with a function — something you place, notice, and return to. It belongs in the hour before sleep, when the quality of what you do determines the depth of what follows.</p>
                     <p class="shop-card-tag" data-i18n="shop.card3.tag">Evening Object · Volume I</p>
-                    <p class="shop-card-clinical" data-i18n="shop.card3.clinical">Designed to support circadian light environment and melatonin onset. Not intended to treat clinical conditions. Consult your physician for medical management.</p>
+                    <p class="shop-card-clinical" data-i18n="shop.card3.clinical">Designed to support circadian light environment and melatonin onset. Not intended to treat clinical conditions. Consult your provider for medical management.</p>
                 </article>
             </div>
         </div>

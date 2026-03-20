@@ -25,6 +25,50 @@
     --warm-shadow: rgba(45, 30, 15, 0.07); /* warm shadow, replaces cold blacks */
     --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ─── TEMPO SYSTEM ───────────────────────────────────────────
+       Three distinct colors, one per window of the off day.
+       Applied to phase accents, product tags, and future packaging.
+       ─────────────────────────────────────────────────────────── */
+    --tempo-morning: #C9A84C;   /* I  · Morning Stillness — warm gold (dawn light) */
+    --tempo-journey: #7BAF71;   /* II · Day's Journey    — forest sage (canopy green) */
+    --tempo-evening: #9490C8;   /* III · Evening Release  — periwinkle (twilight sky) */
+
+    /* ─── MARK COLORS ────────────────────────────────────────────
+       Colors reserved exclusively for the brand mark.
+       --pause-coral is the pause bars inside the hexagon.
+       --teal-hex   is the hexagonal container outline.
+       Do not use these for general UI elements.
+       ─────────────────────────────────────────────────────────── */
+    --pause-coral: #C05530;     /* The Pause — the two bars in the logo mark */
+    --teal-hex:    #2E6070;     /* The Container — hexagonal mark outline */
+
+    /* ─── TYPOGRAPHIC SCALE ──────────────────────────────────────
+       Two voices. Six levels. No ad-hoc sizes outside this scale.
+
+       Voice I — Cormorant Garamond (The Ritual Voice):
+         emotion, display headings, phase titles, pull quotes.
+         Always weight 300, often italic.
+
+       Voice II — Inter (The Research Voice):
+         body copy, labels, data, navigation, clinical copy.
+         Always weight 300–400.
+
+       Level      Size                    Voice       Tracking
+       ──────     ─────────────────────   ─────────   ────────
+       Display    clamp(4rem,8vw,7rem)    Cormorant   −0.02em
+       H1         clamp(3rem,6vw,5rem)    Cormorant   −0.01em
+       H2         clamp(2rem,4vw,3.2rem)  Cormorant   normal
+       Body       1rem / 1.75             Inter       normal
+       Label      0.65rem uppercase       Inter       4–5px
+       Micro      0.55rem uppercase       Inter       2–3px
+       ─────────────────────────────────────────────────────────── */
+    --fs-display: clamp(4rem, 8vw, 7rem);
+    --fs-h1:      clamp(3rem, 6vw, 5rem);
+    --fs-h2:      clamp(2rem, 4vw, 3.2rem);
+    --fs-body:    1rem;
+    --fs-label:   0.65rem;
+    --fs-micro:   0.55rem;
 }
 
 /* --- RESET & GLOBAL --- */
@@ -107,6 +151,22 @@ body.loaded {
 /* Card header mark */
 .card-mark {
     flex-shrink: 0;
+}
+
+/* ─── PAUSE MARK — STANDALONE ORNAMENT ────────────────────
+   The FULL mark (hexagonal container + pause bars) at small
+   ornamental size. The hexagon is the differentiating element
+   — without it the bars are a generic media icon. The hexagon
+   + bars combination is the brand's own symbol.
+
+   Bars are always var(--pause-coral). Hexagon outlines are
+   always var(--teal-hex) at reduced opacity. Never substitute
+   generic rectangles alone for brand representation.
+   ────────────────────────────────────────────────────────── */
+.pause-mark-ornament {
+    display: block;
+    opacity: 0.5;
+    margin: 18px 0;
 }
 
 /* Success state mark */
@@ -1175,7 +1235,32 @@ body.loaded .headline-reveal {
     font-size: 0.6rem; letter-spacing: 4px;
     color: var(--gold); text-transform: uppercase;
     margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
 }
+
+/* Tempo glyph — the small SVG icon preceding each phase label */
+.tempo-glyph {
+    flex-shrink: 0;
+    opacity: 0.75;
+    transition: opacity 0.4s ease;
+}
+
+/* Tempo-specific accents: each phase inherits its Tempo color
+   for the meta label, divider line, and hint link hover state */
+[data-phase="morning"] .phase-meta   { color: var(--tempo-morning); }
+[data-phase="morning"] .phase-divider { background: var(--tempo-morning); }
+[data-phase="morning"] a.phase-hint:hover span { color: var(--tempo-morning); }
+[data-phase="morning"] a.phase-hint:hover { border-color: rgba(201,168,76,0.4); }
+
+[data-phase="journey"] .phase-meta   { color: var(--tempo-journey); }
+[data-phase="journey"] .phase-divider { background: var(--tempo-journey); }
+[data-phase="journey"] a.phase-hint:hover span { color: var(--tempo-journey); }
+[data-phase="journey"] a.phase-hint:hover { border-color: rgba(123,175,113,0.4); }
+
+[data-phase="evening"] .phase-meta   { color: var(--tempo-evening); }
+[data-phase="evening"] .phase-divider { background: var(--tempo-evening); }
+[data-phase="evening"] a.phase-hint:hover span { color: var(--tempo-evening); }
+[data-phase="evening"] a.phase-hint:hover { border-color: rgba(148,144,200,0.4); }
 
 .phase-title {
     font-family: 'Cormorant Garamond', serif;
