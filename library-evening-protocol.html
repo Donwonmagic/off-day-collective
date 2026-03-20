@@ -159,6 +159,8 @@
         .lib-cta-btn:hover { border-color: rgba(201,168,76,0.7); background: rgba(201,168,76,0.04); }
         #cursor { z-index: 99999 !important; }
         #cursor-blur { z-index: 99998 !important; }
+        .art-peer-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.46rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,168,76,0.5); border: 1px solid rgba(201,168,76,0.18); padding: 4px 10px; border-radius: 2px; margin-bottom: 20px; }
+        .art-research-note { font-family: 'Inter', sans-serif; font-size: 0.72rem; line-height: 1.9; color: rgba(255,255,255,0.22); border-left: 1px solid rgba(255,255,255,0.1); padding-left: 18px; margin: 64px 0 0; max-width: 560px; font-weight: 300; }
         @media (prefers-reduced-motion: reduce) { .chart-line { transition: none; stroke-dashoffset: 0 !important; } .art-hl::after { transition: none; width: 100%; } }
         @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } .lib-cta { padding: 100px 48px; } }
         @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
@@ -235,6 +237,7 @@
                 <div class="art-watermark" aria-hidden="true">III</div>
                 <div class="art-title-inner">
                     <span class="art-roman" data-i18n="evening.breadcrumb.label">III · Evening Protocol</span>
+                    <span class="art-peer-badge" data-i18n="art.peer.badge">Peer-Reviewed Sources</span>
                     <h1 id="evening-title" data-i18n="evening.h1">The Evening Protocol: Engineering the Conditions for Deep Sleep</h1>
                     <div class="art-gold-rule"></div>
                     <p class="art-sub-on-screen" data-i18n="evening.subtitle">Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised.</p>
@@ -304,6 +307,8 @@
                     <p data-i18n="evening.body.p7">The Off Day Collective's evening framework does not require a 90-minute wind-down ritual or a supplement stack. It requires three things: a gradual dimming of artificial light beginning two hours before bed, a room temperature below 68°F, and the removal of alcohol from the final three hours of the day. These are not wellness aspirations. They are the mechanical prerequisites for the brain to do what it was designed to do every night.</p>
 
                     <p data-i18n="evening.body.p8">Every other optimisation — the morning cold shower, the afternoon walk, the perfect diet — is downstream of sleep quality. The evening protocol is where human performance is ultimately won or lost.</p>
+
+                    <p class="art-research-note" role="note" data-i18n="evening.research.note">The studies cited here reflect current peer-reviewed understanding of sleep architecture, glymphatic function, and circadian biology. Individual variation is significant. These practices are designed to complement — not replace — medical care. If you are managing a sleep disorder, mood condition, or any clinical diagnosis, discuss behavioral sleep interventions with your physician before making changes.</p>
                 </div>
 
                 <div class="art-citations">

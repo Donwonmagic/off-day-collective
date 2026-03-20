@@ -159,6 +159,8 @@
         .lib-cta-btn:hover { border-color: rgba(201,168,76,0.7); background: rgba(201,168,76,0.04); }
         #cursor { z-index: 99999 !important; }
         #cursor-blur { z-index: 99998 !important; }
+        .art-peer-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.46rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,168,76,0.5); border: 1px solid rgba(201,168,76,0.18); padding: 4px 10px; border-radius: 2px; margin-bottom: 20px; }
+        .art-research-note { font-family: 'Inter', sans-serif; font-size: 0.72rem; line-height: 1.9; color: rgba(255,255,255,0.22); border-left: 1px solid rgba(255,255,255,0.1); padding-left: 18px; margin: 64px 0 0; max-width: 560px; font-weight: 300; }
         @media (prefers-reduced-motion: reduce) { .chart-line { transition: none; stroke-dashoffset: 0 !important; } .art-hl::after { transition: none; width: 100%; } }
         @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } .lib-cta { padding: 100px 48px; } }
         @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
@@ -235,6 +237,7 @@
                 <div class="art-watermark" aria-hidden="true">II</div>
                 <div class="art-title-inner">
                     <span class="art-roman" data-i18n="idling.breadcrumb.label">II · The Midday Mind</span>
+                    <span class="art-peer-badge" data-i18n="art.peer.badge">Peer-Reviewed Sources</span>
                     <h1 id="journey-title" data-i18n="idling.h1">The Art of Strategic Idling: How Doing Nothing Produces Your Best Work</h1>
                     <div class="art-gold-rule"></div>
                     <p class="art-sub-on-screen" data-i18n="idling.subtitle">Creativity does not arrive at a desk. It arrives in the shower, on a walk, in the quiet moment between two tasks.</p>
@@ -298,6 +301,8 @@
                     <p data-i18n-html="idling.body.p7">Companies that have studied this empirically — through both cognitive testing and creative output measurement — consistently find the same result: <span class="art-hl">2–3 unstructured hours</span> per week produce more novel output than the same hours spent in structured ideation sessions. The brain cannot be instructed into insight. It can only be prepared for it, and then left alone.</p>
 
                     <p data-i18n="idling.body.p8">The Off Day Collective's framework here is not about doing less. It is about understanding the rhythm of the machine. The highest performers in any creative or analytical field are not those who work the most hours; they are those who have learned to time their effort to the peaks and surrender to the troughs without guilt. Strategic idleness is not a reward for hard work. It is the condition under which hard work becomes possible.</p>
+
+                    <p class="art-research-note" role="note" data-i18n="idling.research.note">The studies cited here reflect current peer-reviewed understanding of ultradian rhythms and default mode network function. Individual variation is significant. These practices are designed to complement — not replace — medical or occupational health care. If you are managing burnout, a sleep disorder, or a related clinical condition, discuss any behavioral interventions with your physician.</p>
                 </div>
 
                 <div class="art-citations">
