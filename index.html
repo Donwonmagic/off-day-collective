@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1A1A1A">
     <meta name="robots" content="index, follow">
-    <style>.seo-text{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--gold,#E5C155);color:#000;padding:12px 24px;z-index:99999;font-family:'Inter',sans-serif;font-size:0.8rem;letter-spacing:1px;text-decoration:none;border-radius:0 0 4px 4px;transition:top 0.3s}.skip-link:focus{top:0}</style>
+    <style>html,body{background:#000}.seo-text{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:var(--gold,#E5C155);color:#000;padding:12px 24px;z-index:99999;font-family:'Inter',sans-serif;font-size:0.8rem;letter-spacing:1px;text-decoration:none;border-radius:0 0 4px 4px;transition:top 0.3s}.skip-link:focus{top:0}</style>
     <noscript><style>#loader{display:none!important}body{overflow-y:scroll!important;height:auto!important}</style></noscript>
     <link rel="preload" as="image" href="https://images.pexels.com/photos/1087735/pexels-photo-1087735.jpeg?auto=compress&cs=tinysrgb&w=2674">
     <link rel="canonical" href="https://www.offdaycollective.com/">
@@ -38,6 +38,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDBPMXWD51"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-LDBPMXWD51');</script>
+    <!-- No-JS fallback: restore scrollability, cursor, and element visibility -->
+    <noscript><style>
+        body { height: auto !important; overflow-y: scroll !important; }
+        *, html, a, button, input, label { cursor: auto !important; }
+        #cursor, #loader { display: none !important; }
+        .fade-in-up, .reveal-on-load { opacity: 1 !important; transform: none !important; transition: none !important; }
+        .phase-img-inner { opacity: 1 !important; margin-top: 0 !important; animation: none !important; }
+        #lang-picker { display: none !important; }
+    </style></noscript>
 </head>
 <body class="loading">
     <a href="#intro" class="skip-link">Skip to content</a>
@@ -109,6 +118,7 @@
         <div class="bg-text parallax-text" data-speed="0.15">SILENCE</div>
         <div class="content-layer">
             <p class="hero-eyebrow reveal-on-load" data-delay="0.3" data-i18n="hero.eyebrow">Volume 01 — Fall 2026</p>
+            <svg class="pause-mark-ornament reveal-on-load" data-delay="0.3" viewBox="0 0 200 200" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.6"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.4"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
             <h2 class="headline-reveal" id="cipher-text" data-i18n="hero.headline">Silence is a luxury.</h2>
             <p class="hero-subhead reveal-on-load" data-delay="0.8" data-i18n="hero.subhead">That person standing still while the world moves around them? That's who you are on your best off day. We're building everything you need to get there.</p>
             <div class="reveal-on-load" data-delay="1.2" style="margin-top:36px;">
@@ -154,7 +164,7 @@
                 <div class="phase-numeral">I</div>
             </div>
             <div class="phase-content">
-                <span class="phase-meta fade-in-up" data-i18n="phase1.meta">Phase I</span>
+                <span class="phase-meta fade-in-up" data-i18n="phase1.meta"><svg class="tempo-glyph" viewBox="0 0 20 14" width="14" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 13 A9 9 0 0 1 19 13"/><circle cx="10" cy="5.5" r="1.5" fill="currentColor" stroke="none"/></svg>Phase I</span>
                 <h3 class="phase-title fade-in-up" data-i18n="phase1.title">Clarity</h3>
                 <div class="phase-divider fade-in-up"></div>
                 <p class="phase-desc fade-in-up" data-i18n="phase1.desc">Before the noise begins. The Clarity ritual is a structured morning practice built around slowness — warm drinks made by hand, something for the skin, something for the page. Research shows the first 90 minutes after waking set your cortisol curve for the entire day. We've selected every object in this phase to extend that window: things that hold warmth, require your hands, and reward your patience.</p>
@@ -178,7 +188,7 @@
                 <div class="phase-numeral">II</div>
             </div>
             <div class="phase-content">
-                <span class="phase-meta fade-in-up" data-i18n="phase2.meta">Phase II</span>
+                <span class="phase-meta fade-in-up" data-i18n="phase2.meta"><svg class="tempo-glyph" viewBox="0 0 14 20" width="10" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="7" y1="18" x2="7" y2="2"/><polyline points="2,7 7,2 12,7"/></svg>Phase II</span>
                 <h3 class="phase-title fade-in-up" data-i18n="phase2.title">Momentum</h3>
                 <div class="phase-divider fade-in-up"></div>
                 <p class="phase-desc fade-in-up" data-i18n="phase2.desc">The grounded path. Momentum gets you moving without a destination — a walk with nothing in your ears, a meal made slowly, something created with your hands instead of a screen. Studies on creative problem-solving consistently show that unstructured physical movement produces more novel ideas than deliberate brainstorming. Every object in this phase is chosen to get you outside, keep you present, and let your mind wander somewhere useful.</p>
@@ -202,7 +212,7 @@
                 <div class="phase-numeral">III</div>
             </div>
             <div class="phase-content">
-                <span class="phase-meta fade-in-up" data-i18n="phase3.meta">Phase III</span>
+                <span class="phase-meta fade-in-up" data-i18n="phase3.meta"><svg class="tempo-glyph" viewBox="0 0 20 14" width="14" height="10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1 A9 9 0 0 0 19 1"/><circle cx="10" cy="8.5" r="1.5" fill="currentColor" stroke="none"/></svg>Phase III</span>
                 <h3 class="phase-title fade-in-up" data-i18n="phase3.title">Reflection</h3>
                 <div class="phase-divider fade-in-up"></div>
                 <p class="phase-desc fade-in-up" data-i18n="phase3.desc">The deep exhale. Reflection replaces your evening scroll with a wind-down ritual that your body actually recognizes — warmth, weight, low light, and real conversation. Your transition to sleep begins 2–3 hours before you close your eyes, and most people override it with screens. Every object in this phase is chosen to support that transition: things that soothe, things that ground you, and things that invite the kind of presence a phone can't provide.</p>
@@ -360,7 +370,7 @@
         <div class="footer-module branding"><div class="footer-logo-lockup"><svg viewBox="0 0 200 200" width="50" aria-hidden="true" class="footer-mark" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="currentColor" stroke-width="9" stroke-linejoin="round" opacity="0.35"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="currentColor" stroke-width="9" stroke-linejoin="round" opacity="0.35"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.5"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.5"/></svg><h2 class="footer-logo">OFF DAY<br>COLLECTIVE</h2></div><span class="status-badge" data-i18n="footer.status">● System Online</span></div>
         <div class="footer-module info"><h4 data-i18n="footer.dir.h4">Studio Directory</h4><ul class="link-stack"><li><a href="mailto:contact@offdaycollective.com" data-i18n="footer.dir.email">Email Studio ↗</a></li><li><a href="/philosophy" data-i18n="footer.dir.philosophy">Our Philosophy ↗</a></li></ul><p class="est" data-i18n="footer.dir.est">Est. 2026 &mdash; Designed for Silence.</p></div>
         <div class="footer-module access"><h4 data-i18n="footer.access.h4">Digital Inclusion</h4><p class="access-text" data-i18n="footer.access.text">We believe clarity and peace of mind should be accessible to everyone, regardless of technology or ability.</p><a href="/accessibility" class="access-cta"><span data-i18n="footer.access.cta">Read Our Commitment</span><span class="arrow">→</span></a><div class="compliance-tag" data-i18n="footer.access.wcag">Target: WCAG 2.1 AA</div></div>
-        <div class="footer-module meta"><h4 data-i18n="footer.meta.h4">System Metadata</h4><div class="meta-stack"><span>&copy; 2026 Off Day Collective.</span><span><a href="/privacy" data-i18n="footer.privacy">Privacy</a> &bull; <a href="/terms" data-i18n="footer.terms">Terms</a></span><span class="tagline" data-i18n="footer.meta.tagline">"Rest is the Point."</span></div></div>
+        <div class="footer-module meta"><h4 data-i18n="footer.meta.h4">System Metadata</h4><div class="meta-stack"><span>&copy; 2026 Off Day Collective.</span><span><a href="/privacy" data-i18n="footer.privacy">Privacy</a> &bull; <a href="/terms" data-i18n="footer.terms">Terms</a></span><span class="tagline" data-i18n="footer.meta.tagline">"Silence is a luxury."</span></div></div>
     </footer>
 
     <button id="atmosphere-float" class="atmo-float" aria-label="Turn off Atmosphere">

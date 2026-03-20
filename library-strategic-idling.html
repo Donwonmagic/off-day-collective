@@ -65,7 +65,7 @@
         .skip-link { position: absolute; top: -100%; left: 50%; transform: translateX(-50%); background: #C9A84C; color: #000; padding: 12px 24px; z-index: 99999; font-family: 'Inter', sans-serif; font-size: 0.8rem; letter-spacing: 1px; text-decoration: none; border-radius: 0 0 4px 4px; transition: top 0.3s; }
         .skip-link:focus { top: 0; }
         html { scroll-padding-top: 80px; scroll-behavior: smooth; }
-        .lib-progress { position: fixed; top: 0; left: 0; height: 1px; background: #C9A84C; z-index: 99998; width: 0%; pointer-events: none; transition: width 0.08s linear; }
+        .lib-progress { position: fixed; top: 0; left: 0; height: 1px; background: #7BAF71; z-index: 99998; width: 0%; pointer-events: none; transition: width 0.08s linear; } /* --tempo-journey */
         nav.nav-overlay { mix-blend-mode: normal; pointer-events: auto; padding: 0; display: block; background: transparent; }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 28px 48px; }
         .nav-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); transition: color 0.3s; }
@@ -100,9 +100,9 @@
         .art-title-screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px; background: #000; position: relative; overflow: hidden; }
         .art-watermark { position: absolute; bottom: -0.12em; left: 0.04em; font-family: 'Cormorant Garamond', serif; font-size: 38vw; font-weight: 300; color: rgba(255,255,255,0.016); line-height: 1; pointer-events: none; user-select: none; }
         .art-title-inner { max-width: 1060px; position: relative; z-index: 2; }
-        .art-roman { font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 6px; text-transform: uppercase; color: #C9A84C; opacity: 0.6; display: block; margin-bottom: 28px; }
+        .art-roman { font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 6px; text-transform: uppercase; color: #7BAF71; opacity: 0.6; display: block; margin-bottom: 28px; } /* --tempo-journey */
         .art-title-screen h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.025em; color: #F0EDE6; margin: 0 0 36px; }
-        .art-gold-rule { width: 48px; height: 1px; background: #C9A84C; opacity: 0.45; margin-bottom: 28px; }
+        .art-gold-rule { width: 48px; height: 1px; background: #7BAF71; opacity: 0.45; margin-bottom: 28px; } /* --tempo-journey */
         .art-sub-on-screen { font-family: 'Inter', sans-serif; font-size: 0.88rem; line-height: 1.85; color: rgba(255,255,255,0.44); max-width: 500px; font-weight: 300; margin-bottom: 32px; }
         .art-byline { font-family: 'Inter', sans-serif; font-size: 0.56rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.12); display: flex; gap: 16px; align-items: center; }
         .art-byline-dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.1); }
@@ -114,9 +114,9 @@
         .art-body p:first-child { font-size: 1.06rem; }
         .art-body h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.75rem, 3.5vw, 2.6rem); font-weight: 300; line-height: 1.1; margin: 4.5rem 0 1.5rem; letter-spacing: -0.015em; color: rgba(240,237,230,0.85); }
         .art-hl { position: relative; display: inline; color: rgba(240,237,230,0.88); }
-        .art-hl::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 1px; background: #C9A84C; transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .art-hl::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 1px; background: #7BAF71; transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1); }
         .art-hl.on::after { width: 100%; }
-        .art-body sup a { font-family: 'Inter', sans-serif; font-size: 0.56rem; vertical-align: super; color: #C9A84C; text-decoration: none; margin-left: 1px; opacity: 0.7; transition: opacity 0.2s; }
+        .art-body sup a { font-family: 'Inter', sans-serif; font-size: 0.56rem; vertical-align: super; color: #7BAF71; text-decoration: none; margin-left: 1px; opacity: 0.7; transition: opacity 0.2s; }
         .art-body sup a:hover { opacity: 1; }
         .art-pullquote { margin: 72px 0; padding: 0 0 0 24px; border-left: 1px solid rgba(201,168,76,0.35); }
         .art-pullquote p { font-family: 'Cormorant Garamond', serif !important; font-size: clamp(1.45rem, 2.8vw, 2.1rem) !important; font-weight: 300 !important; font-style: italic !important; line-height: 1.45 !important; color: rgba(240,237,230,0.62) !important; margin: 0 !important; }
@@ -137,11 +137,11 @@
         .cite-popover.on { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .cite-close { position: absolute; top: 12px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.25); font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1; padding: 4px 8px; cursor: pointer; transition: color 0.2s; }
         .cite-close:hover { color: rgba(255,255,255,0.7); }
-        .cite-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: #C9A84C; opacity: 0.28; display: block; margin-bottom: 4px; line-height: 1; }
+        .cite-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: #7BAF71; opacity: 0.28; display: block; margin-bottom: 4px; line-height: 1; }
         .cite-title { font-family: 'Cormorant Garamond', serif; font-size: 1.48rem; font-weight: 300; color: #F0EDE6; line-height: 1.3; margin-bottom: 22px; }
         .cite-full { font-family: 'Inter', sans-serif; font-size: 0.7rem; line-height: 1.8; color: rgba(255,255,255,0.24); margin-bottom: 24px; font-style: italic; }
         .cite-summary { font-family: 'Inter', sans-serif; font-size: 0.84rem; line-height: 1.9; color: rgba(255,255,255,0.48); border-left: 1px solid rgba(201,168,76,0.22); padding-left: 18px; margin-bottom: 36px; font-weight: 300; }
-        .cite-link { font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: #C9A84C; text-decoration: none; opacity: 0.6; transition: opacity 0.2s; display: inline-block; }
+        .cite-link { font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: #7BAF71; text-decoration: none; opacity: 0.6; transition: opacity 0.2s; display: inline-block; }
         .cite-link:hover { opacity: 1; }
         .art-pagination { display: flex; align-items: center; justify-content: space-between; padding: 60px 80px; background: #000; border-top: 1px solid rgba(255,255,255,0.04); }
         .art-pagination a { font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 12px; }
@@ -153,7 +153,7 @@
         .lib-cta-inner { max-width: 540px; margin: 0 auto; position: relative; z-index: 1; }
         .lib-eyebrow { font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 6px; text-transform: uppercase; color: rgba(255,255,255,0.15); display: block; margin-bottom: 24px; }
         .lib-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem,4.5vw,3.8rem); font-weight: 300; color: #F0EDE6; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 18px; }
-        .lib-cta h2 em { color: #C9A84C; font-style: italic; }
+        .lib-cta h2 em { color: #7BAF71; font-style: italic; }
         .lib-cta-sub { font-family: 'Inter', sans-serif; font-size: 0.85rem; line-height: 1.85; color: rgba(255,255,255,0.25); font-weight: 300; margin-bottom: 44px; }
         .lib-cta-btn { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: #C9A84C; text-decoration: none; border: 1px solid rgba(201,168,76,0.3); padding: 16px 36px; transition: border-color 0.3s, background 0.3s; }
         .lib-cta-btn:hover { border-color: rgba(201,168,76,0.7); background: rgba(201,168,76,0.04); }
@@ -165,6 +165,12 @@
         @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } .lib-cta { padding: 100px 48px; } }
         @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
     </style>
+    <noscript><style>
+        *, html, a, button, input, label { cursor: auto !important; }
+        #cursor, #loader { display: none !important; }
+        .fade-in-up, .reveal-on-load { opacity: 1 !important; transform: none !important; transition: none !important; }
+        #lang-picker { display: none !important; }
+    </style></noscript>
 </head>
 <body class="dark-bg loaded">
 
@@ -302,7 +308,7 @@
 
                     <p data-i18n="idling.body.p8">The Off Day Collective's framework here is not about doing less. It is about understanding the rhythm of the machine. The highest performers in any creative or analytical field are not those who work the most hours; they are those who have learned to time their effort to the peaks and surrender to the troughs without guilt. Strategic idleness is not a reward for hard work. It is the condition under which hard work becomes possible.</p>
 
-                    <p class="art-research-note" role="note" data-i18n="idling.research.note">The studies cited here reflect current peer-reviewed understanding of ultradian rhythms and default mode network function. Individual variation is significant. These practices are designed to complement — not replace — medical or occupational health care. If you are managing burnout, a sleep disorder, or a related clinical condition, discuss any behavioral interventions with your physician.</p>
+                    <p class="art-research-note" role="note" data-i18n="idling.research.note">The studies cited here reflect current peer-reviewed understanding of ultradian rhythms and default mode network function. Individual variation is significant. These practices are designed to complement — not replace — medical or occupational health care. If you are managing burnout, a sleep disorder, or a related clinical condition, discuss any behavioral interventions with your provider.</p>
                 </div>
 
                 <div class="art-citations">
