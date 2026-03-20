@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>html,body{background:#000}</style>
     <title>The 90-Minute Window · The Science of Rest · Off Day Collective</title>
     <meta name="description" content="Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it. A peer-reviewed look at the cortisol awakening response.">
     <link rel="canonical" href="https://www.offdaycollective.com/library-morning-light">
@@ -344,11 +345,14 @@
 
         /* ── RESPONSIVE ──────────────────────────────── */
         @media (max-width: 960px) {
+            .nav-inner { padding: 24px 40px; }
             .art-breadcrumb { padding-left: 48px; padding-right: 48px; }
             .art-title-screen { padding-left: 48px; padding-right: 48px; }
             .art-body { padding-left: 48px; padding-right: 48px; }
+            .art-figure { padding-left: 48px; padding-right: 48px; }
             .art-citations { padding-left: 48px; padding-right: 48px; }
             .art-pagination { padding-left: 48px; padding-right: 48px; }
+            .lib-cta { padding: 100px 48px; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 22px 28px; }
@@ -361,7 +365,6 @@
             .art-citations { padding: 32px 28px 60px; }
             .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; }
             .lib-cta { padding: 100px 28px; }
-           
         }
     </style>
 </head>
@@ -467,7 +470,7 @@
             </div>
 
             <figure class="art-figure" aria-label="Cortisol awakening response chart">
-                <span class="art-figure-label">Fig. 01 — Cortisol awakening response</span>
+                <span class="art-figure-label" data-i18n="morning.fig.label">Fig. 01 — Cortisol awakening response</span>
                 <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line chart showing cortisol levels rising 50-160% above baseline in the first 30-45 minutes after waking, then declining">
                     <defs><linearGradient id="grad-cortisol" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C9A84C" stop-opacity="0.12"/><stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/></linearGradient></defs>
                     <line x1="60" y1="20" x2="60" y2="220" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
@@ -511,7 +514,7 @@
                 </div>
 
                 <div class="art-citations">
-                    <h4>References</h4>
+                    <h4 data-i18n="art.references">References</h4>
                     <ol>
                         <li><em>Clow, A., Thorn, L., Evans, P., &amp; Hucklebridge, F. (2004).</em> The awakening cortisol response: Methodological issues and significance. <em>Stress, 7</em>(1), 29–37.</li>
                         <li><em>Czeisler, C. A., et al. (1999).</em> Stability, precision, and near-24-hour period of the human circadian pacemaker. <em>Science, 284</em>(5423), 2177–2181.</li>

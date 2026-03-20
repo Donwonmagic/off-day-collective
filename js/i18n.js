@@ -326,6 +326,10 @@
       'evening.body.p6':    "El alcohol es el auxiliar del sueño más consumido en el mundo, y uno de los más contraproducentes. Reduce la latencia del inicio del sueño pero suprime la arquitectura del sueño REM en la segunda mitad de la noche. Una bebida estándar reduce el sueño REM en aproximadamente un 24%. Dos bebidas lo reducen en casi un 40%. El uso habitual de alcohol por la noche acelera el envejecimiento neurológico.<sup><a href='javascript:void(0)' data-cite='e4' aria-label='Ver cita 4'>[4]</a></sup>",
       'evening.body.p7':    "El marco vespertino de Off Day Collective requiere tres cosas: una disminución gradual de la luz artificial comenzando dos horas antes de acostarse, una temperatura ambiente por debajo de 68°F y la eliminación del alcohol de las últimas tres horas del día. Son los requisitos mecánicos para que el cerebro haga lo que fue diseñado para hacer cada noche.",
       'evening.body.p8':    "Cada otra optimización — la ducha fría matutina, el paseo vespertino, la dieta perfecta — depende de la calidad del sueño. El protocolo nocturno es donde el rendimiento humano se gana o se pierde finalmente.",
+      'art.references':     "Referencias",
+      'morning.fig.label':  "Fig. 01 — Respuesta de cortisol al despertar",
+      'idling.fig.label':   "Fig. 02 — Ritmo de rendimiento ultradiano durante la jornada",
+      'evening.fig.label':  "Fig. 03 — Curva de inicio de melatonina y supresión de luz azul",
     },
 
     /* ── FRENCH ────────────────────────────────────────────────────────── */
@@ -636,6 +640,10 @@
       'evening.body.p6':    "L'alcool est l'aide au sommeil la plus consommée au monde, et parmi les plus contre-productives. Il réduit la latence de l'endormissement mais supprime l'architecture du sommeil REM dans la seconde moitié de la nuit. Une boisson standard réduit le sommeil REM d'environ 24 %. Deux boissons le réduisent de près de 40 %. L'utilisation habituelle d'alcool le soir, même à des niveaux modérés, accélère le vieillissement neurologique.<sup><a href='javascript:void(0)' data-cite='e4' aria-label='Voir citation 4'>[4]</a></sup>",
       'evening.body.p7':    "Le cadre du soir d'Off Day Collective nécessite trois choses : une diminution progressive de la lumière artificielle commençant deux heures avant le coucher, une température ambiante inférieure à 20°C, et l'élimination de l'alcool des trois dernières heures de la journée. Ce sont les prérequis mécaniques pour que le cerveau fasse ce pour quoi il a été conçu chaque nuit.",
       'evening.body.p8':    "Chaque autre optimisation — la douche froide matinale, la promenade de l'après-midi, le régime parfait — est en aval de la qualité du sommeil. Le protocole du soir est là où la performance humaine est ultimement gagnée ou perdue.",
+      'art.references':     "Références",
+      'morning.fig.label':  "Fig. 01 — Réponse cortisolique au réveil",
+      'idling.fig.label':   "Fig. 02 — Rythme de performance ultradien sur la journée",
+      'evening.fig.label':  "Fig. 03 — Courbe d'apparition de la mélatonine et suppression lumineuse",
     },
 
     /* ── GERMAN ─────────────────────────────────────────────────────────── */
@@ -947,6 +955,10 @@
       'evening.body.p6':    "Alkohol ist das weltweit am häufigsten konsumierte Schlafmittel und eines der kontraproduktivsten. Er reduziert die Einschlaflatenz, unterdrückt aber die REM-Schlafarchitektur in der zweiten Nachthälfte. Ein Standardgetränk innerhalb von drei Stunden vor dem Schlafengehen reduziert den REM-Schlaf um etwa 24 %. Zwei Getränke reduzieren ihn um fast 40 %. Gewohnheitsmäßiger Abendalkohol, selbst in moderaten Mengen, beschleunigt das neurologische Altern.<sup><a href='javascript:void(0)' data-cite='e4' aria-label='Zitat 4 anzeigen'>[4]</a></sup>",
       'evening.body.p7':    "Das Abendrahmen von Off Day Collective erfordert drei Dinge: ein schrittweises Dimmen des künstlichen Lichts, das zwei Stunden vor dem Schlafengehen beginnt, eine Raumtemperatur unter 20°C und die Entfernung von Alkohol aus den letzten drei Stunden des Tages. Dies sind keine Wellness-Aspirationen. Sie sind die mechanischen Voraussetzungen dafür, dass das Gehirn jede Nacht das tut, wofür es entwickelt wurde.",
       'evening.body.p8':    "Jede andere Optimierung — die Kaltwasserdusche am Morgen, der Nachmittagsspaziergang, die perfekte Ernährung — ist nachgelagert der Schlafqualität. Das Abendprotokoll ist der Ort, an dem menschliche Leistung letztendlich gewonnen oder verloren wird.",
+      'art.references':     "Referenzen",
+      'morning.fig.label':  "Abb. 01 — Kortisol-Aufwachreaktion",
+      'idling.fig.label':   "Abb. 02 — Ultradianer Leistungsrhythmus im Tagesverlauf",
+      'evening.fig.label':  "Abb. 03 — Melatonin-Einsatzkurve und Blaulicht-Unterdrückung",
     },
 
     /* ── PORTUGUESE ─────────────────────────────────────────────────────── */
@@ -1258,6 +1270,10 @@
       'evening.body.p6':    "O álcool é o auxiliar de sono mais consumido do mundo, e um dos mais contraproducentes. Reduz a latência do início do sono mas suprime a arquitetura do sono REM na segunda metade da noite. Uma bebida padrão consumida nas três horas antes de deitar reduz o sono REM em aproximadamente 24%. Duas bebidas reduzem-no em quase 40%. O uso habitual de álcool à noite acelera o envelhecimento neurológico.<sup><a href='javascript:void(0)' data-cite='e4' aria-label='Ver citação 4'>[4]</a></sup>",
       'evening.body.p7':    "O quadro noturno do Off Day Collective requer três coisas: uma redução gradual da luz artificial começando duas horas antes de deitar, uma temperatura ambiente abaixo de 20°C, e a eliminação do álcool das últimas três horas do dia. Estes são os pré-requisitos mecânicos para o cérebro fazer o que foi projetado para fazer todas as noites.",
       'evening.body.p8':    "Cada outra otimização — o duche frio matinal, o passeio da tarde, a dieta perfeita — está a jusante da qualidade do sono. O protocolo noturno é onde o desempenho humano é em última análise ganho ou perdido.",
+      'art.references':     "Referências",
+      'morning.fig.label':  "Fig. 01 — Resposta de cortisol ao despertar",
+      'idling.fig.label':   "Fig. 02 — Ritmo de desempenho ultradiano ao longo do dia",
+      'evening.fig.label':  "Fig. 03 — Curva de início de melatonina e supressão de luz azul",
     },
 
     /* ── JAPANESE ───────────────────────────────────────────────────────── */
@@ -1448,6 +1464,10 @@
       'evening.body.p6':    "アルコールは世界で最も広く消費される睡眠補助薬であり、最も逆効果なものの一つです。睡眠開始潜時を短縮しますが、夜の後半のREM睡眠アーキテクチャを抑制し、睡眠の断片化を増加させます。就寝3時間以内に消費した標準的な飲み物はREM睡眠を約24%削減します。2杯はほぼ40%削減します。習慣的な夜のアルコール使用は、中程度のレベルでさえ、神経学的老化を加速させる最も確実な方法の一つです。<sup><a href='javascript:void(0)' data-cite='e4' aria-label='引用4を見る'>[4]</a></sup>",
       'evening.body.p7':    "Off Day Collectiveの夜のフレームワークは3つのことを必要とします：就寝2時間前から人工照明を徐々に暗くすること、20°C以下の室温、そして1日の最後の3時間からアルコールを排除すること。これらはウェルネスの願望ではありません。脳が毎晩するよう設計されたことをするための機械的な前提条件です。",
       'evening.body.p8':    "他のすべての最適化 — 朝の冷水シャワー、午後の散歩、完璧な食事 — は睡眠の質の下流にあります。夜のプロトコルは、人間のパフォーマンスが最終的に勝ち取られるか失われる場所です。",
+      'art.references':     "参考文献",
+      'morning.fig.label':  "図01 — コルチゾール覚醒反応",
+      'idling.fig.label':   "図02 — 一日を通じた超日リズムのパフォーマンス波",
+      'evening.fig.label':  "図03 — メラトニン分泌曲線とブルーライト抑制",
     },
 
     /* ── MANDARIN CHINESE ───────────────────────────────────────────────── */
@@ -1638,6 +1658,10 @@
       'evening.body.p6':    "酒精是世界上消费最广泛的助眠药，也是最适得其反的之一。它减少睡眠开始潜伏期——入睡所需的时间——但在夜晚后半段抑制REM睡眠结构并增加睡眠碎片化。睡前三小时内饮用的标准饮料使REM睡眠减少约24%。两杯减少近40%。即使在适度水平下，习惯性夜间饮酒也是加速神经老化最可靠的方法之一。<sup><a href='javascript:void(0)' data-cite='e4' aria-label='查看引用4'>[4]</a></sup>",
       'evening.body.p7':    "Off Day Collective的夜间框架不需要90分钟的放松仪式或补充剂堆。它需要三件事：从就寝前两小时开始逐渐降低人工光线，室温低于20°C，以及从一天最后三小时中去除酒精。这些不是健康愿望。它们是大脑每晚做它被设计来做的事的机械前提条件。",
       'evening.body.p8':    "其他所有优化——早晨冷水淋浴、下午散步、完美饮食——都在睡眠质量的下游。夜间协议是人类表现最终赢得或失去的地方。",
+      'art.references':     "参考文献",
+      'morning.fig.label':  "图01 — 皮质醇觉醒反应",
+      'idling.fig.label':   "图02 — 工作日超日节律表现波动",
+      'evening.fig.label':  "图03 — 褪黑素分泌曲线与蓝光抑制",
     },
 
   }; // end T

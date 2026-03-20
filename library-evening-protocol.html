@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>html,body{background:#000}</style>
     <title>The Evening Protocol · The Science of Rest · Off Day Collective</title>
     <meta name="description" content="Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised.">
     <link rel="canonical" href="https://www.offdaycollective.com/library-evening-protocol">
@@ -159,7 +160,7 @@
         #cursor { z-index: 99999 !important; }
         #cursor-blur { z-index: 99998 !important; }
         @media (prefers-reduced-motion: reduce) { .chart-line { transition: none; stroke-dashoffset: 0 !important; } .art-hl::after { transition: none; width: 100%; } }
-        @media (max-width: 960px) { .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } }
+        @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } .lib-cta { padding: 100px 48px; } }
         @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
     </style>
 </head>
@@ -256,7 +257,7 @@
             </div>
 
             <figure class="art-figure" aria-label="Melatonin onset timing chart">
-                <span class="art-figure-label">Fig. 03 — Melatonin onset curve and blue-light suppression</span>
+                <span class="art-figure-label" data-i18n="evening.fig.label">Fig. 03 — Melatonin onset curve and blue-light suppression</span>
                 <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chart comparing natural melatonin onset curve versus delayed onset from blue light exposure">
                     <defs>
                         <linearGradient id="grad-mel-nat" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B8CC8" stop-opacity="0.12"/><stop offset="100%" stop-color="#9B8CC8" stop-opacity="0"/></linearGradient>
@@ -306,7 +307,7 @@
                 </div>
 
                 <div class="art-citations">
-                    <h4>References</h4>
+                    <h4 data-i18n="art.references">References</h4>
                     <ol>
                         <li><em>Xie, L., et al. (2013).</em> Sleep drives metabolite clearance from the adult brain. <em>Science, 342</em>(6156), 373–377.</li>
                         <li><em>Brainard, G. C., et al. (2001).</em> Action spectrum for melatonin regulation in humans: Evidence for a novel circadian photoreceptor. <em>Journal of Neuroscience, 21</em>(16), 6405–6412.</li>
