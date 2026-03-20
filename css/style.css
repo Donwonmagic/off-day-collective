@@ -343,6 +343,14 @@ section h2 {
 .nav-overlay.nav-on-light .nav-pillars a.nav-pill:hover {
     border-color: rgba(0, 0, 0, 0.4) !important;
 }
+
+/* Consistent pill sizing whether or not a badge is present */
+.nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
 .nav-overlay.nav-on-light .nav-toggle span {
     background: rgba(0, 0, 0, 0.55) !important;
 }
@@ -447,6 +455,16 @@ section h2 {
     mix-blend-mode: normal;
     isolation: isolate;
     pointer-events: auto;
+}
+
+/* Tablet nav — tighten up before full mobile collapse */
+@media (max-width: 960px) {
+    .nav-overlay { padding: 24px 28px; }
+    .nav-right { gap: 14px; }
+    .nav-pillars { gap: 10px !important; }
+    .status-indicator { display: none; }
+    .toggle-label { display: none; }
+    #atmosphere-toggle { padding: 6px 10px 6px 8px; gap: 8px; }
 }
 
 @media (max-width: 768px) {
@@ -805,15 +823,15 @@ body.loaded .headline-reveal {
 
 .img-mask {
     width: 100%; height: 100%; overflow: hidden;
-    position: relative;
     box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
 }
 
-.img-mask::after {
+.manifesto-visual::after {
     content: '';
     position: absolute; inset: 0;
     background: rgba(0,0,0,0.28);
     pointer-events: none;
+    z-index: 3;
 }
 
 .manifesto-visual img {
@@ -2185,7 +2203,7 @@ body.atmosphere-on .library-inner h2 {
     width: 100%; height: 100%;
     background-color: #050505; z-index: 9998;
     opacity: 0; pointer-events: none;
-    transition: opacity 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+    transition: opacity 0.45s ease-in-out;
 }
 
 body.is-transitioning #page-transition { opacity: 1; pointer-events: all; }
