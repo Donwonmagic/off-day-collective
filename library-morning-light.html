@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>html,body{background:#000}</style>
     <title>The 90-Minute Window · The Science of Rest · Off Day Collective</title>
     <meta name="description" content="Your body already knows how to wake up. Most morning routines spend the first 45 minutes overriding it. A peer-reviewed look at the cortisol awakening response.">
     <link rel="canonical" href="https://www.offdaycollective.com/library-morning-light">
@@ -344,11 +345,14 @@
 
         /* ── RESPONSIVE ──────────────────────────────── */
         @media (max-width: 960px) {
+            .nav-inner { padding: 24px 40px; }
             .art-breadcrumb { padding-left: 48px; padding-right: 48px; }
             .art-title-screen { padding-left: 48px; padding-right: 48px; }
             .art-body { padding-left: 48px; padding-right: 48px; }
+            .art-figure { padding-left: 48px; padding-right: 48px; }
             .art-citations { padding-left: 48px; padding-right: 48px; }
             .art-pagination { padding-left: 48px; padding-right: 48px; }
+            .lib-cta { padding: 100px 48px; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 22px 28px; }
@@ -361,7 +365,6 @@
             .art-citations { padding: 32px 28px 60px; }
             .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; }
             .lib-cta { padding: 100px 28px; }
-           
         }
     </style>
 </head>
@@ -456,18 +459,18 @@
 
             <div class="art-body">
                 <div class="art-body-inner">
-                    <p>The cortisol awakening response (CAR) is one of the most significant and overlooked events in your entire day. Within minutes of waking, your adrenal glands flood your bloodstream with cortisol — not as a stress response, but as a biological alarm clock. Peak levels reach <span class="art-hl">50–160% above their overnight baseline</span>, cresting somewhere between 20 and 40 minutes after your eyes open. This surge is healthy, evolutionarily ancient, and it sets the hormonal tone for everything that follows.<sup><a href="javascript:void(0)" data-cite="m1" aria-label="View citation 1">[1]</a></sup></p>
+                    <p data-i18n-html="morning.body.p1">The cortisol awakening response (CAR) is one of the most significant and overlooked events in your entire day. Within minutes of waking, your adrenal glands flood your bloodstream with cortisol — not as a stress response, but as a biological alarm clock. Peak levels reach <span class="art-hl">50–160% above their overnight baseline</span>, cresting somewhere between 20 and 40 minutes after your eyes open. This surge is healthy, evolutionarily ancient, and it sets the hormonal tone for everything that follows.<sup><a href="javascript:void(0)" data-cite="m1" aria-label="View citation 1">[1]</a></sup></p>
 
-                    <p>The problem is what most people do during it.</p>
+                    <p data-i18n="morning.body.p2">The problem is what most people do during it.</p>
 
-                    <p>The average person reaches for their phone within 90 seconds of waking. Before the CAR has even peaked, they have introduced social comparison, ambient anxiety, and novel stimulation into a neurological system that is still completing its start-up sequence. The phone is not the only culprit — aggressive alarm sounds, loud music, and the instinct to immediately begin "being productive" all create the same disruption. The body gets the signal that it has woken into a crisis, and it responds accordingly: by staying in a heightened stress state for longer than necessary.<sup><a href="javascript:void(0)" data-cite="m2" aria-label="View citation 2">[2]</a></sup></p>
+                    <p data-i18n-html="morning.body.p3">The average person reaches for their phone within 90 seconds of waking. Before the CAR has even peaked, they have introduced social comparison, ambient anxiety, and novel stimulation into a neurological system that is still completing its start-up sequence. The phone is not the only culprit — aggressive alarm sounds, loud music, and the instinct to immediately begin "being productive" all create the same disruption. The body gets the signal that it has woken into a crisis, and it responds accordingly: by staying in a heightened stress state for longer than necessary.<sup><a href="javascript:void(0)" data-cite="m2" aria-label="View citation 2">[2]</a></sup></p>
 
-                    <p>The research is consistent on this point: the quality of your cortisol response in the <span class="art-hl">first 90 minutes post-waking</span> predicts cognitive performance, emotional regulation, and even immune function for the rest of the day. Get it right, and the subsequent hours are built on a stable hormonal foundation. Disrupt it, and you spend the next several hours in a mild but persistent state of dysregulation that no amount of coffee can fully offset.<sup><a href="javascript:void(0)" data-cite="m3" aria-label="View citation 3">[3]</a></sup></p>
+                    <p data-i18n-html="morning.body.p4">The research is consistent on this point: the quality of your cortisol response in the <span class="art-hl">first 90 minutes post-waking</span> predicts cognitive performance, emotional regulation, and even immune function for the rest of the day. Get it right, and the subsequent hours are built on a stable hormonal foundation. Disrupt it, and you spend the next several hours in a mild but persistent state of dysregulation that no amount of coffee can fully offset.<sup><a href="javascript:void(0)" data-cite="m3" aria-label="View citation 3">[3]</a></sup></p>
                 </div>
             </div>
 
             <figure class="art-figure" aria-label="Cortisol awakening response chart">
-                <span class="art-figure-label">Fig. 01 — Cortisol awakening response</span>
+                <span class="art-figure-label" data-i18n="morning.fig.label">Fig. 01 — Cortisol awakening response</span>
                 <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Line chart showing cortisol levels rising 50-160% above baseline in the first 30-45 minutes after waking, then declining">
                     <defs><linearGradient id="grad-cortisol" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C9A84C" stop-opacity="0.12"/><stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/></linearGradient></defs>
                     <line x1="60" y1="20" x2="60" y2="220" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
@@ -487,31 +490,31 @@
                     <text x="700" y="225" font-family="Inter" font-size="9" fill="rgba(255,255,255,0.18)" text-anchor="middle">2 h</text>
                     <text x="14" y="125" font-family="Inter" font-size="9" fill="rgba(255,255,255,0.15)" transform="rotate(-90 14 125)" text-anchor="middle">Cortisol level</text>
                 </svg>
-                <p class="art-figure-caption">Cortisol peaks 20–45 minutes after waking before naturally declining. Disrupting this curve — through alarm snoozing, phone use, or immediate high-stress tasks — prolongs elevation and impairs the day's baseline.</p>
+                <p class="art-figure-caption" data-i18n="morning.fig.caption">Cortisol peaks 20–45 minutes after waking before naturally declining. Disrupting this curve — through alarm snoozing, phone use, or immediate high-stress tasks — prolongs elevation and impairs the day's baseline.</p>
             </figure>
 
             <div class="art-body art-body-end">
                 <div class="art-body-inner">
                     <h3 data-i18n="morning.h3.phone">The Phone Problem</h3>
-                    <p>When you reach for your phone immediately after waking, you are not simply checking messages. You are exposing yourself to novel, emotionally salient information — notifications, news headlines, social updates — during the exact window when your brain is most susceptible to context-setting. The hippocampus and prefrontal cortex are still completing their transition from sleep to wakefulness. Memory consolidation from overnight is finalising. Neuroplasticity is at a daily high. What you feed your attention during this window has outsized influence on the cognitive and emotional scaffolding of the hours ahead.<sup><a href="javascript:void(0)" data-cite="m4" aria-label="View citation 4">[4]</a></sup></p>
+                    <p data-i18n-html="morning.body.p5">When you reach for your phone immediately after waking, you are not simply checking messages. You are exposing yourself to novel, emotionally salient information — notifications, news headlines, social updates — during the exact window when your brain is most susceptible to context-setting. The hippocampus and prefrontal cortex are still completing their transition from sleep to wakefulness. Memory consolidation from overnight is finalising. Neuroplasticity is at a daily high. What you feed your attention during this window has outsized influence on the cognitive and emotional scaffolding of the hours ahead.<sup><a href="javascript:void(0)" data-cite="m4" aria-label="View citation 4">[4]</a></sup></p>
 
                     <h3 data-i18n="morning.h3.caffeine">Caffeine Timing</h3>
-                    <p>Adenosine — the sleepiness molecule — is at low levels when you first wake, having been cleared during sleep. Cortisol is naturally doing the job caffeine does mechanically. Consuming coffee in the first 90 minutes post-waking does not make you more alert; it simply replaces one stimulant with another while allowing the adrenal system to build tolerance faster. Within weeks, morning cortisol output begins to attenuate in habitual early-coffee drinkers. The practical implication: delay your first coffee until <span class="art-hl">90–120 minutes after waking</span>, and the same cup will do significantly more work.</p>
+                    <p data-i18n-html="morning.body.p6">Adenosine — the sleepiness molecule — is at low levels when you first wake, having been cleared during sleep. Cortisol is naturally doing the job caffeine does mechanically. Consuming coffee in the first 90 minutes post-waking does not make you more alert; it simply replaces one stimulant with another while allowing the adrenal system to build tolerance faster. Within weeks, morning cortisol output begins to attenuate in habitual early-coffee drinkers. The practical implication: delay your first coffee until <span class="art-hl">90–120 minutes after waking</span>, and the same cup will do significantly more work.</p>
 
                     <h3 data-i18n="morning.h3.light">The Light Anchor</h3>
-                    <p><span class="art-hl">Ten to fifteen minutes of outdoor light exposure within 30 minutes of waking</span> is the single highest-leverage morning intervention identified in chronobiology research. Low-angle morning light — even on a cloudy day — activates the retinal ganglion cells that set your suprachiasmatic nucleus (your master circadian clock). This advances your melatonin onset that evening, shortens sleep latency, and strengthens circadian amplitude over time. It works best through actual exposure, not through a window — glass filters the specific wavelengths required.</p>
+                    <p data-i18n-html="morning.body.p7"><span class="art-hl">Ten to fifteen minutes of outdoor light exposure within 30 minutes of waking</span> is the single highest-leverage morning intervention identified in chronobiology research. Low-angle morning light — even on a cloudy day — activates the retinal ganglion cells that set your suprachiasmatic nucleus (your master circadian clock). This advances your melatonin onset that evening, shortens sleep latency, and strengthens circadian amplitude over time. It works best through actual exposure, not through a window — glass filters the specific wavelengths required.</p>
 
                     <div class="art-pullquote">
                         <p data-i18n="morning.pullquote">The first 90 minutes of wakefulness are not the beginning of your day. They are the calibration of it.</p>
                     </div>
 
-                    <p>What this amounts to in practice is a simple set of omissions rather than additions. Do not reach for the phone. Do not immediately open email or begin a task list. Do not drink coffee yet. Instead: get light, move gently, let the CAR do what it evolved to do. The rest of the day benefits from the absence of interference more than from the presence of any particular ritual.</p>
+                    <p data-i18n="morning.body.p8">What this amounts to in practice is a simple set of omissions rather than additions. Do not reach for the phone. Do not immediately open email or begin a task list. Do not drink coffee yet. Instead: get light, move gently, let the CAR do what it evolved to do. The rest of the day benefits from the absence of interference more than from the presence of any particular ritual.</p>
 
-                    <p>The Off Day Collective's position is straightforward: the most productive thing most people can do in the morning is protect their nervous system from itself. Every high-performance intervention in the world is less effective if the cortisol foundation is dysregulated from minute one. Rest, in this context, begins before you get out of bed.</p>
+                    <p data-i18n="morning.body.p9">The Off Day Collective's position is straightforward: the most productive thing most people can do in the morning is protect their nervous system from itself. Every high-performance intervention in the world is less effective if the cortisol foundation is dysregulated from minute one. Rest, in this context, begins before you get out of bed.</p>
                 </div>
 
                 <div class="art-citations">
-                    <h4>References</h4>
+                    <h4 data-i18n="art.references">References</h4>
                     <ol>
                         <li><em>Clow, A., Thorn, L., Evans, P., &amp; Hucklebridge, F. (2004).</em> The awakening cortisol response: Methodological issues and significance. <em>Stress, 7</em>(1), 29–37.</li>
                         <li><em>Czeisler, C. A., et al. (1999).</em> Stability, precision, and near-24-hour period of the human circadian pacemaker. <em>Science, 284</em>(5423), 2177–2181.</li>

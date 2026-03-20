@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>html,body{background:#000}</style>
     <title>The Evening Protocol · The Science of Rest · Off Day Collective</title>
     <meta name="description" content="Sleep is not the absence of wakefulness. It is an active biological process — and the evening is where it is either enabled or compromised.">
     <link rel="canonical" href="https://www.offdaycollective.com/library-evening-protocol">
@@ -159,7 +160,7 @@
         #cursor { z-index: 99999 !important; }
         #cursor-blur { z-index: 99998 !important; }
         @media (prefers-reduced-motion: reduce) { .chart-line { transition: none; stroke-dashoffset: 0 !important; } .art-hl::after { transition: none; width: 100%; } }
-        @media (max-width: 960px) { .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } }
+        @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } .lib-cta { padding: 100px 48px; } }
         @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
     </style>
 </head>
@@ -249,14 +250,14 @@
 
             <div class="art-body">
                 <div class="art-body-inner">
-                    <p>In 2013, researchers at the University of Rochester published a paper in Science that quietly changed how neuroscientists understand sleep. Using a newly identified system called the glymphatic network — a brain-wide waste clearance infrastructure — they demonstrated that the brain shrinks by <span class="art-hl">approximately 60%</span> during sleep, opening channels between neurons that allow cerebrospinal fluid to flush out metabolic waste products: beta-amyloid, tau proteins, and other cellular debris associated with neurodegeneration. This process, their data suggested, occurs almost exclusively during sleep, and almost exclusively during slow-wave and REM stages — the stages most compromised by alcohol, late-night blue light, and insufficient sleep duration.<sup><a href="javascript:void(0)" data-cite="e1" aria-label="View citation 1">[1]</a></sup></p>
+                    <p data-i18n-html="evening.body.p1">In 2013, researchers at the University of Rochester published a paper in Science that quietly changed how neuroscientists understand sleep. Using a newly identified system called the glymphatic network — a brain-wide waste clearance infrastructure — they demonstrated that the brain shrinks by <span class="art-hl">approximately 60%</span> during sleep, opening channels between neurons that allow cerebrospinal fluid to flush out metabolic waste products: beta-amyloid, tau proteins, and other cellular debris associated with neurodegeneration. This process, their data suggested, occurs almost exclusively during sleep, and almost exclusively during slow-wave and REM stages — the stages most compromised by alcohol, late-night blue light, and insufficient sleep duration.<sup><a href="javascript:void(0)" data-cite="e1" aria-label="View citation 1">[1]</a></sup></p>
 
-                    <p>Sleep, in other words, is not downtime. It is maintenance. And the evening is where maintenance is either scheduled or skipped.</p>
+                    <p data-i18n="evening.body.p2">Sleep, in other words, is not downtime. It is maintenance. And the evening is where maintenance is either scheduled or skipped.</p>
                 </div>
             </div>
 
             <figure class="art-figure" aria-label="Melatonin onset timing chart">
-                <span class="art-figure-label">Fig. 03 — Melatonin onset curve and blue-light suppression</span>
+                <span class="art-figure-label" data-i18n="evening.fig.label">Fig. 03 — Melatonin onset curve and blue-light suppression</span>
                 <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chart comparing natural melatonin onset curve versus delayed onset from blue light exposure">
                     <defs>
                         <linearGradient id="grad-mel-nat" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9B8CC8" stop-opacity="0.12"/><stop offset="100%" stop-color="#9B8CC8" stop-opacity="0"/></linearGradient>
@@ -280,33 +281,33 @@
                     <text x="720" y="234" font-family="Inter" font-size="9" fill="rgba(255,255,255,0.18)" text-anchor="middle">2am</text>
                     <text x="14" y="125" font-family="Inter" font-size="9" fill="rgba(255,255,255,0.15)" transform="rotate(-90 14 125)" text-anchor="middle">Melatonin level</text>
                 </svg>
-                <p class="art-figure-caption">Blue-light exposure after 8pm can delay melatonin onset by 90 minutes or more, compressing deep sleep architecture even if total sleep time remains constant.</p>
+                <p class="art-figure-caption" data-i18n="evening.fig.caption">Blue-light exposure after 8pm can delay melatonin onset by 90 minutes or more, compressing deep sleep architecture even if total sleep time remains constant.</p>
             </figure>
 
             <div class="art-body art-body-end">
                 <div class="art-body-inner">
                     <h3 data-i18n="evening.h3.melatonin">The Melatonin Runway</h3>
-                    <p>Melatonin — the hormone that signals the body to begin sleep preparation — is synthesised from serotonin in the pineal gland and begins its rise roughly <span class="art-hl">two hours before your natural sleep time</span>. Its production is regulated almost entirely by light: bright, blue-spectrum light suppresses melatonin release; dim, red-spectrum light permits it. The advent of LED screens has made every evening a biological argument between your pineal gland and your phone.<sup><a href="javascript:void(0)" data-cite="e2" aria-label="View citation 2">[2]</a></sup></p>
+                    <p data-i18n-html="evening.body.p3">Melatonin — the hormone that signals the body to begin sleep preparation — is synthesised from serotonin in the pineal gland and begins its rise roughly <span class="art-hl">two hours before your natural sleep time</span>. Its production is regulated almost entirely by light: bright, blue-spectrum light suppresses melatonin release; dim, red-spectrum light permits it. The advent of LED screens has made every evening a biological argument between your pineal gland and your phone.<sup><a href="javascript:void(0)" data-cite="e2" aria-label="View citation 2">[2]</a></sup></p>
 
-                    <p>The 2001 Brainard study that established the melatonin action spectrum found that exposures as brief as <span class="art-hl">90 minutes or more</span> of blue-rich light in the evening can delay melatonin onset by 1.5–3 hours. The consequence is not merely that sleep comes later — it is that the architecture of sleep is compressed. The slow-wave stages that perform glymphatic clearance, memory consolidation, and cellular repair are concentrated in the first half of the sleep period. Delay sleep onset without delaying the wake time, and you cut directly into the most regenerative portion of the cycle.</p>
+                    <p data-i18n-html="evening.body.p4">The 2001 Brainard study that established the melatonin action spectrum found that exposures as brief as <span class="art-hl">90 minutes or more</span> of blue-rich light in the evening can delay melatonin onset by 1.5–3 hours. The consequence is not merely that sleep comes later — it is that the architecture of sleep is compressed. The slow-wave stages that perform glymphatic clearance, memory consolidation, and cellular repair are concentrated in the first half of the sleep period. Delay sleep onset without delaying the wake time, and you cut directly into the most regenerative portion of the cycle.</p>
 
                     <h3 data-i18n="evening.h3.temperature">Temperature as the Trigger</h3>
-                    <p>Core body temperature must drop by <span class="art-hl">1–3°F (0.5–1.5°C)</span> before sleep onset can occur. This is why hot baths or showers paradoxically accelerate sleep — not through warmth but through the rapid peripheral vasodilation afterward, which dumps heat to the extremities and drops core temperature faster than passive cooling alone. The same mechanism explains why cool rooms (65–67°F / 18–19°C) consistently improve both sleep onset latency and slow-wave duration.<sup><a href="javascript:void(0)" data-cite="e3" aria-label="View citation 3">[3]</a></sup></p>
+                    <p data-i18n-html="evening.body.p5">Core body temperature must drop by <span class="art-hl">1–3°F (0.5–1.5°C)</span> before sleep onset can occur. This is why hot baths or showers paradoxically accelerate sleep — not through warmth but through the rapid peripheral vasodilation afterward, which dumps heat to the extremities and drops core temperature faster than passive cooling alone. The same mechanism explains why cool rooms (65–67°F / 18–19°C) consistently improve both sleep onset latency and slow-wave duration.<sup><a href="javascript:void(0)" data-cite="e3" aria-label="View citation 3">[3]</a></sup></p>
 
                     <h3 data-i18n="evening.h3.alcohol">Alcohol: The False Sedative</h3>
-                    <p>Alcohol is the most widely consumed sleep aid in the world, and among the most counterproductive. It reduces sleep onset latency — the time it takes to fall asleep — but suppresses REM sleep architecture in the second half of the night and increases sleep fragmentation. A standard drink consumed within three hours of bedtime reduces REM sleep by approximately 24%. Two drinks reduces it by nearly 40%. The glymphatic system requires REM to clear specific metabolic waste products. Habitual evening alcohol use, even at moderate levels, is one of the most reliable ways to accelerate neurological aging.<sup><a href="javascript:void(0)" data-cite="e4" aria-label="View citation 4">[4]</a></sup></p>
+                    <p data-i18n-html="evening.body.p6">Alcohol is the most widely consumed sleep aid in the world, and among the most counterproductive. It reduces sleep onset latency — the time it takes to fall asleep — but suppresses REM sleep architecture in the second half of the night and increases sleep fragmentation. A standard drink consumed within three hours of bedtime reduces REM sleep by approximately 24%. Two drinks reduces it by nearly 40%. The glymphatic system requires REM to clear specific metabolic waste products. Habitual evening alcohol use, even at moderate levels, is one of the most reliable ways to accelerate neurological aging.<sup><a href="javascript:void(0)" data-cite="e4" aria-label="View citation 4">[4]</a></sup></p>
 
                     <div class="art-pullquote">
                         <p data-i18n="evening.pullquote">Sleep is the single most effective thing we can do to reset our brain and body health each day.</p>
                     </div>
 
-                    <p>The Off Day Collective's evening framework does not require a 90-minute wind-down ritual or a supplement stack. It requires three things: a gradual dimming of artificial light beginning two hours before bed, a room temperature below 68°F, and the removal of alcohol from the final three hours of the day. These are not wellness aspirations. They are the mechanical prerequisites for the brain to do what it was designed to do every night.</p>
+                    <p data-i18n="evening.body.p7">The Off Day Collective's evening framework does not require a 90-minute wind-down ritual or a supplement stack. It requires three things: a gradual dimming of artificial light beginning two hours before bed, a room temperature below 68°F, and the removal of alcohol from the final three hours of the day. These are not wellness aspirations. They are the mechanical prerequisites for the brain to do what it was designed to do every night.</p>
 
-                    <p>Every other optimisation — the morning cold shower, the afternoon walk, the perfect diet — is downstream of sleep quality. The evening protocol is where human performance is ultimately won or lost.</p>
+                    <p data-i18n="evening.body.p8">Every other optimisation — the morning cold shower, the afternoon walk, the perfect diet — is downstream of sleep quality. The evening protocol is where human performance is ultimately won or lost.</p>
                 </div>
 
                 <div class="art-citations">
-                    <h4>References</h4>
+                    <h4 data-i18n="art.references">References</h4>
                     <ol>
                         <li><em>Xie, L., et al. (2013).</em> Sleep drives metabolite clearance from the adult brain. <em>Science, 342</em>(6156), 373–377.</li>
                         <li><em>Brainard, G. C., et al. (2001).</em> Action spectrum for melatonin regulation in humans: Evidence for a novel circadian photoreceptor. <em>Journal of Neuroscience, 21</em>(16), 6405–6412.</li>
