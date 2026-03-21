@@ -1,26 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="icon" type="image/png" href="images/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessibility | Off Day Collective</title>
-    <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://www.offdaycollective.com/accessibility">
-<meta name="description" content="Off Day Collective's commitment to digital inclusion and WCAG 2.1 AA compliance.">
-<meta property="og:title" content="Accessibility | Off Day Collective">
-<meta property="og:description" content="Clarity and peace of mind should be accessible to everyone.">
-<meta property="og:image" content="https://www.offdaycollective.com/images/social-share.png">
-<meta property="og:url" content="https://www.offdaycollective.com/accessibility">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Digital Inclusion · Off Day Collective</title>
+    <meta name="description" content="Off Day Collective's commitment to digital inclusion: seven languages, no-JavaScript fallback, WCAG 2.1 AA, and inclusive clinical language.">
+    <link rel="canonical" href="https://www.offdaycollective.com/accessibility">
+    <meta property="og:title" content="Digital Inclusion · Off Day Collective">
+    <meta property="og:description" content="Clarity and peace of mind should be accessible to everyone.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.offdaycollective.com/accessibility">
+    <meta property="og:site_name" content="Off Day Collective">
+    <meta property="og:image" content="https://www.offdaycollective.com/images/og/social-share.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Inclusion · Off Day Collective">
+    <meta name="twitter:description" content="Clarity and peace of mind should be accessible to everyone.">
+    <link rel="apple-touch-icon" href="/images/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDBPMXWD51"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-LDBPMXWD51");</script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-LDBPMXWD51');</script>
+    <style>html,body{background:#000}</style>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body { perspective: none; background: #000; }
+
+        .skip-link {
+            position: absolute; top: -100%; left: 50%;
+            transform: translateX(-50%);
+            background: #C9A84C; color: #000;
+            padding: 12px 24px; z-index: 99999;
+            font-family: 'Inter', sans-serif; font-size: 0.8rem;
+            letter-spacing: 1px; text-decoration: none;
+            border-radius: 0 0 4px 4px; transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+        html { scroll-padding-top: 80px; scroll-behavior: smooth; }
+
+        /* ── NAV OVERRIDE ───────────────────────── */
+        nav.nav-overlay { mix-blend-mode: normal; pointer-events: auto; padding: 0; display: block; background: transparent; }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 28px 48px; }
+        .nav-logo { display: flex; align-items: center; text-decoration: none; gap: 10px; font-family: 'Inter', sans-serif; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); transition: color 0.3s; }
+        .nav-logo:hover { color: rgba(255,255,255,0.9); }
+        .nav-toggle { background: none; border: none; width: 40px; height: 40px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 6px; padding: 8px; cursor: none; -webkit-tap-highlight-color: transparent; }
+        .nav-toggle span { display: block; height: 1px; background: rgba(255,255,255,0.45); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease, width 0.3s ease; }
+        .nav-toggle span:first-child { width: 22px; }
+        .nav-toggle span:last-child  { width: 14px; }
+        .nav-toggle[aria-expanded="true"] span:first-child { width: 20px; transform: translateY(3.5px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] span:last-child { width: 20px; transform: translateY(-3.5px) rotate(-45deg); }
+        .nav-toggle:hover span { background: rgba(255,255,255,0.8); }
+        .nav-toggle:focus-visible { outline: 1px solid rgba(201,168,76,0.5); outline-offset: 4px; }
+        .nav-menu { position: fixed; inset: 0; background: rgba(4,4,4,0.97); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1); z-index: 9700; }
+        .nav-menu.is-open { opacity: 1; pointer-events: auto; }
+        .nav-links { list-style: none; padding: 0; margin: 0; text-align: center; }
+        .nav-links li { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .nav-menu.is-open .nav-links li:nth-child(1) { opacity:1; transform:none; transition-delay:0.08s; }
+        .nav-menu.is-open .nav-links li:nth-child(2) { opacity:1; transform:none; transition-delay:0.13s; }
+        .nav-menu.is-open .nav-links li:nth-child(3) { opacity:1; transform:none; transition-delay:0.18s; }
+        .nav-menu.is-open .nav-links li:nth-child(4) { opacity:1; transform:none; transition-delay:0.23s; }
+        .nav-menu.is-open .nav-links li:nth-child(5) { opacity:1; transform:none; transition-delay:0.28s; }
+        .nav-menu.is-open .nav-links li:nth-child(6) { opacity:1; transform:none; transition-delay:0.33s; }
+        .nav-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; color: rgba(240,237,230,0.35); text-decoration: none; letter-spacing: -0.02em; display: block; padding: 8px 0; transition: color 0.3s ease; }
+        .nav-link:hover { color: #F0EDE6; }
+        .nav-link.active { font-style: italic; color: #C9A84C; }
+
+        /* ── HERO ───────────────────────────────── */
+        .acc-hero {
+            min-height: 60vh; display: flex; flex-direction: column;
+            justify-content: flex-end; padding: 120px 10% 80px;
+            background: #000; position: relative; overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .acc-hero-inner { max-width: 760px; position: relative; z-index: 2; }
+        .acc-eyebrow {
+            font-family: 'Inter', sans-serif; font-size: 0.58rem;
+            letter-spacing: 5px; text-transform: uppercase;
+            color: rgba(201,168,76,0.7); display: block; margin-bottom: 28px;
+        }
+        .acc-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 300; line-height: 1.05;
+            letter-spacing: -0.025em; color: #F0EDE6;
+            margin: 0 0 36px;
+        }
+        .acc-hero h1 em { font-style: italic; color: #C9A84C; }
+        .acc-rule { width: 60px; height: 1px; background: #C9A84C; opacity: 0.45; margin-bottom: 36px; }
+        .acc-hero-desc {
+            font-family: 'Inter', sans-serif; font-size: 1rem;
+            line-height: 1.85; color: rgba(255,255,255,0.42);
+            font-weight: 300; max-width: 560px;
+        }
+
+        /* ── LANGUAGE SECTION ───────────────────── */
+        .acc-languages {
+            background: #050505;
+            padding: 100px 10%;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .acc-section-label {
+            font-family: 'Inter', sans-serif; font-size: 0.52rem;
+            letter-spacing: 5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.2); display: block; margin-bottom: 20px;
+        }
+        .acc-section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 300; line-height: 1.1;
+            letter-spacing: -0.02em; color: #F0EDE6;
+            margin: 0 0 16px;
+        }
+        .acc-section-heading em { font-style: italic; color: #C9A84C; }
+        .acc-section-body {
+            font-family: 'Inter', sans-serif; font-size: 0.92rem;
+            line-height: 1.85; color: rgba(255,255,255,0.38);
+            font-weight: 300; max-width: 520px; margin-bottom: 56px;
+        }
+
+        /* Language grid */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+            max-width: 700px;
+        }
+        .lang-tile {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 3px;
+            padding: 20px 8px 16px;
+            display: flex; flex-direction: column;
+            align-items: center; gap: 8px;
+            cursor: none; transition: border-color 0.25s, background 0.25s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            font-family: 'Inter', sans-serif;
+        }
+        .lang-tile:hover {
+            border-color: rgba(201,168,76,0.35);
+            background: rgba(201,168,76,0.04);
+        }
+        .lang-tile.active {
+            border-color: rgba(201,168,76,0.6);
+            background: rgba(201,168,76,0.07);
+        }
+        .lang-tile:focus-visible {
+            outline: 1px solid rgba(201,168,76,0.6);
+            outline-offset: 2px;
+        }
+        .lang-tile-native {
+            font-size: 1rem; font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            line-height: 1;
+        }
+        .lang-tile.active .lang-tile-native { color: #C9A84C; }
+        .lang-tile-code {
+            font-size: 0.42rem; letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.2);
+        }
+        .lang-tile.active .lang-tile-code { color: rgba(201,168,76,0.6); }
+        .lang-note {
+            margin-top: 24px;
+            font-family: 'Inter', sans-serif; font-size: 0.65rem;
+            letter-spacing: 0.5px; line-height: 1.7;
+            color: rgba(255,255,255,0.2);
+        }
+
+        /* ── COMMITMENTS GRID ───────────────────── */
+        .acc-commitments {
+            padding: 100px 10%;
+            background: #000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .acc-commitments-header { max-width: 560px; margin-bottom: 72px; }
+        .acc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .acc-card {
+            background: #000;
+            padding: 44px 36px 48px;
+            position: relative;
+        }
+        .acc-card-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.62rem; letter-spacing: 4px;
+            color: rgba(201,168,76,0.35);
+            display: block; margin-bottom: 20px;
+        }
+        .acc-card-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem; letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.65);
+            margin-bottom: 16px; font-weight: 400;
+        }
+        .acc-card-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem; line-height: 1.8;
+            color: rgba(255,255,255,0.3); font-weight: 300;
+        }
+        .acc-card-status {
+            display: inline-block; margin-top: 20px;
+            font-family: 'Inter', sans-serif; font-size: 0.46rem;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 2px;
+        }
+        .acc-card-status.live {
+            color: rgba(123,175,113,0.7);
+            border: 1px solid rgba(123,175,113,0.2);
+        }
+        .acc-card-status.target {
+            color: rgba(201,168,76,0.6);
+            border: 1px solid rgba(201,168,76,0.18);
+        }
+        .acc-card-status.progress {
+            color: rgba(148,144,200,0.7);
+            border: 1px solid rgba(148,144,200,0.2);
+        }
+
+        /* ── HONEST LIMITS SECTION ──────────────── */
+        .acc-limits {
+            background: #050505;
+            padding: 100px 10%;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .acc-limits-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 900px;
+        }
+        .acc-limit-block h3 {
+            font-family: 'Inter', sans-serif; font-size: 0.58rem;
+            letter-spacing: 3.5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 20px; font-weight: 400;
+        }
+        .acc-limit-list {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 14px;
+        }
+        .acc-limit-list li {
+            font-family: 'Inter', sans-serif; font-size: 0.82rem;
+            line-height: 1.7; color: rgba(255,255,255,0.25);
+            font-weight: 300; padding-left: 16px;
+            position: relative;
+        }
+        .acc-limit-list li::before {
+            content: '—';
+            position: absolute; left: 0;
+            color: rgba(255,255,255,0.1);
+        }
+
+        /* ── FEEDBACK SECTION ───────────────────── */
+        .acc-feedback {
+            background: #000;
+            padding: 120px 10%;
+            text-align: center;
+        }
+        .acc-feedback-inner { max-width: 520px; margin: 0 auto; }
+        .acc-feedback h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300; color: #F0EDE6;
+            line-height: 1.1; letter-spacing: -0.02em;
+            margin: 0 0 20px;
+        }
+        .acc-feedback h2 em { font-style: italic; color: #C9A84C; }
+        .acc-feedback p {
+            font-family: 'Inter', sans-serif; font-size: 0.88rem;
+            line-height: 1.85; color: rgba(255,255,255,0.3);
+            font-weight: 300; margin-bottom: 44px;
+        }
+        .acc-feedback-back {
+            display: block; margin-top: 40px;
+            font-family: 'Inter', sans-serif; font-size: 0.6rem;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.2); text-decoration: none;
+            transition: color 0.2s;
+        }
+        .acc-feedback-back:hover { color: rgba(255,255,255,0.55); }
+
+        /* ── RESPONSIVE ─────────────────────────── */
+        @media (max-width: 960px) {
+            .nav-inner { padding: 24px 40px; }
+            .acc-hero { padding: 120px 8% 70px; }
+            .acc-languages, .acc-commitments, .acc-limits, .acc-feedback { padding-left: 8%; padding-right: 8%; }
+            .lang-grid { grid-template-columns: repeat(4, 1fr); max-width: 100%; }
+            .acc-limits-inner { grid-template-columns: 1fr; gap: 48px; }
+        }
+        @media (max-width: 768px) {
+            .nav-inner { padding: 22px 28px; }
+            .acc-hero { padding: 108px 28px 60px; }
+            .acc-languages, .acc-commitments, .acc-limits, .acc-feedback { padding-left: 28px; padding-right: 28px; padding-top: 72px; padding-bottom: 72px; }
+            .lang-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+            .acc-grid { grid-template-columns: 1fr; }
+            .acc-card { padding: 36px 24px 40px; }
+        }
+        @media (max-width: 480px) {
+            .lang-grid { grid-template-columns: repeat(3, 1fr); }
+            .lang-tile { padding: 16px 6px 12px; }
+            .lang-tile-native { font-size: 0.85rem; }
+        }
+    </style>
+    <noscript><style>
+        *, html, a, button, input, label { cursor: auto !important; }
+        #cursor, #loader { display: none !important; }
+        .fade-in-up, .reveal-on-load { opacity: 1 !important; transform: none !important; transition: none !important; }
+        #lang-picker { display: none !important; }
+        .lang-tile { cursor: pointer !important; }
+    </style></noscript>
 </head>
 <body class="dark-bg loaded">
 
-    <a href="#main-content" style="position:absolute;top:-100%;left:50%;transform:translateX(-50%);background:#C9A84C;color:#000;padding:12px 24px;z-index:99999;font-family:'Inter',sans-serif;font-size:0.8rem;letter-spacing:1px;text-decoration:none;border-radius:0 0 4px 4px;transition:top 0.3s" onfocus="this.style.top='0'" onblur="this.style.top='-100%'">Skip to content</a>
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
     <div id="loader">
         <div class="loader-content">
@@ -35,104 +335,255 @@
     <div id="cursor-blur"></div>
 
     <nav class="nav-overlay" role="navigation" aria-label="Main navigation">
-        <a href="/" class="logo" aria-label="Off Day Collective home" style="pointer-events:auto; text-decoration:none; color:inherit; display:flex; align-items:center; gap:12px;"><svg viewBox="0 0 200 200" width="26" aria-hidden="true" class="nav-mark" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg> Off Day Collective</a>
-        <div class="nav-right" style="display:flex;align-items:center;gap:12px;">
-            <div class="lang-picker" id="lang-picker">
-                <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    <span id="lang-code">EN</span>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo" aria-label="Off Day Collective home">
+                <svg viewBox="0 0 200 200" width="26" aria-hidden="true" class="nav-mark" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg>
+                Off Day Collective
+            </a>
+            <div class="nav-right" style="display:flex;align-items:center;gap:12px;">
+                <div class="lang-picker" id="lang-picker">
+                    <button class="lang-btn hover-trigger" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language" onclick="var d=document.getElementById('lang-dropdown'),o=d.classList.toggle('is-open');this.setAttribute('aria-expanded',o)">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span id="lang-code">EN</span>
+                    </button>
+                    <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
+                        <li role="option" data-lang="en"  class="lang-option active">English</li>
+                        <li role="option" data-lang="es"  class="lang-option">Español</li>
+                        <li role="option" data-lang="fr"  class="lang-option">Français</li>
+                        <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
+                        <li role="option" data-lang="pt"  class="lang-option">Português</li>
+                        <li role="option" data-lang="ja"  class="lang-option">日本語</li>
+                        <li role="option" data-lang="zh"  class="lang-option">中文</li>
+                    </ul>
+                </div>
+                <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+                    <span></span><span></span>
                 </button>
-                <ul class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Language options">
-                    <li role="option" data-lang="en"  class="lang-option active">English</li>
-                    <li role="option" data-lang="es"  class="lang-option">Español</li>
-                    <li role="option" data-lang="fr"  class="lang-option">Français</li>
-                    <li role="option" data-lang="de"  class="lang-option">Deutsch</li>
-                    <li role="option" data-lang="pt"  class="lang-option">Português</li>
-                    <li role="option" data-lang="ja"  class="lang-option">日本語</li>
-                    <li role="option" data-lang="zh"  class="lang-option">中文</li>
-                </ul>
             </div>
-            <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
-                <span class="toggle-track"><span class="toggle-thumb"></span></span>
-                <span class="toggle-label">ATMOSPHERE</span>
-            </button>
         </div>
     </nav>
 
+    <div class="nav-menu" id="nav-menu" role="dialog" aria-label="Navigation menu">
+        <button class="nav-menu-close" id="nav-menu-close" aria-label="Close menu">Close &nbsp;✕</button>
+        <ul class="nav-links" role="list">
+            <li><a href="/" class="nav-link">Home</a></li>
+            <li><a href="/philosophy" class="nav-link">Manifesto</a></li>
+            <li><a href="/library" class="nav-link">Library</a></li>
+            <li><a href="/shop" class="nav-link">Shop <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="/forum" class="nav-link">Forum <span class="nav-soon-tag">Fall 2026</span></a></li>
+            <li><a href="#access" class="nav-link">Join</a></li>
+        </ul>
+    </div>
+
     <main id="main-content">
 
-        <section class="accessibility-hero subpage-hero">
-            <div style="max-width: 800px;">
-                <span class="gold-text sm-caps" style="display:block; margin-bottom: 20px;" data-i18n="acc.eyebrow">The Standard of Silence</span>
-                <h1 id="acc-h1" data-i18n-html="acc.h1" style="font-size: clamp(3rem, 8vw, 6rem); color: var(--cream); line-height: 1; margin-bottom: 40px;">
-                    Inclusion is <span class="italic">intentional.</span>
-                </h1>
-
-                <div class="divider-line" style="width: 100px; height: 1px; background: var(--gold); margin-bottom: 60px;"></div>
-
-                <div style="font-family: 'Inter', sans-serif; font-size: 1.1rem; color: #aaa; line-height: 1.8; font-weight: 300;">
-                    <p style="margin-bottom: 30px;" data-i18n="acc.p1">
-                        At Off Day Collective, we believe that the luxury of stillness and clarity should be available to everyone. A digital "Off Day" is not restorative if the technology itself creates a barrier.
-                    </p>
-                    <p style="margin-bottom: 30px;" data-i18n-html="acc.p2">
-                        We are committed to ensuring our digital experiences are accessible to individuals of all abilities. Our current goal is to meet and exceed <strong>WCAG 2.1 Level AA</strong> standards, focusing on high-contrast readability, screen-reader optimization, and keyboard-only navigation.
-                    </p>
-                </div>
+        <!-- HERO -->
+        <section class="acc-hero" aria-labelledby="acc-h1">
+            <div class="acc-hero-inner">
+                <span class="acc-eyebrow">Digital Inclusion</span>
+                <h1 id="acc-h1">Inclusion is <em>intentional.</em></h1>
+                <div class="acc-rule"></div>
+                <p class="acc-hero-desc">
+                    Rest should be available to everyone. This page documents what we've built to lower barriers, what we're working toward, and how to reach us when something isn't working the way it should.
+                </p>
             </div>
         </section>
 
-        <section style="background: #0a0a0a; padding: 100px 10%; border-top: 1px solid #1a1a1a;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px;">
-
-                <div class="acc-module">
-                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;" data-i18n="acc.i.title">I. Sensory Control</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;" data-i18n="acc.i.desc">
-                        Our "Atmosphere" layer is entirely optional. We provide a prominent physical toggle to ensure users can choose a silent experience, preventing unexpected audio triggers.
-                    </p>
-                </div>
-
-                <div class="acc-module">
-                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;" data-i18n="acc.ii.title">II. Visual Clarity</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;" data-i18n="acc.ii.desc">
-                        We utilize a "High-Contrast Charcoal" palette. All text elements are measured against contrast ratios to ensure legibility for users with low vision.
-                    </p>
-                </div>
-
-                <div class="acc-module">
-                    <h4 class="gold-text sm-caps" style="margin-bottom: 15px;" data-i18n="acc.iii.title">III. Assistive Tech</h4>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;" data-i18n="acc.iii.desc">
-                        The site architecture is built with semantic HTML5. Our "Deep Exhale" transitions are designed to be respectful of screen reader focus management.
-                    </p>
-                </div>
-
-            </div>
-        </section>
-
-        <section style="padding: 100px 10%; text-align: center;">
-            <h3 style="color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px;" data-i18n="acc.feedback.h3">Feedback is a Gift.</h3>
-            <p style="color: #666; max-width: 500px; margin: 0 auto 40px; font-size: 0.9rem;" data-i18n="acc.feedback.p">
-                If you encounter any difficulty accessing our collective, please let us know immediately. Your perspective helps us build a better sanctuary.
+        <!-- LANGUAGE ACCESS -->
+        <section class="acc-languages" aria-labelledby="acc-lang-heading">
+            <span class="acc-section-label">01 · Language Access</span>
+            <h2 class="acc-section-heading" id="acc-lang-heading">The site speaks <em>seven languages.</em></h2>
+            <p class="acc-section-body">
+                Translation is built directly into every page — no third-party plugin, no redirect. Select your language below and it applies immediately across the entire site. Your preference is saved for future visits.
             </p>
-           <a href="mailto:contact@offdaycollective.com?subject=Accessibility%20Inquiry%20—%20Off%20Day%20Collective"
-   class="gold-btn"
-   style="display: inline-block; padding: 18px 40px; text-decoration: none;" data-i18n="acc.feedback.btn">
-   Report an Issue
-</a>
 
-            <div style="margin-top: 60px;">
-                <a href="/" class="text-link" data-i18n="acc.feedback.back">Return to the Collective</a>
+            <div class="lang-grid" role="group" aria-label="Select site language">
+                <button class="lang-tile" data-tile-lang="en" aria-label="English" onclick="setLang('en')">
+                    <span class="lang-tile-native">English</span>
+                    <span class="lang-tile-code">EN</span>
+                </button>
+                <button class="lang-tile" data-tile-lang="es" aria-label="Español" onclick="setLang('es')">
+                    <span class="lang-tile-native">Español</span>
+                    <span class="lang-tile-code">ES</span>
+                </button>
+                <button class="lang-tile" data-tile-lang="fr" aria-label="Français" onclick="setLang('fr')">
+                    <span class="lang-tile-native">Français</span>
+                    <span class="lang-tile-code">FR</span>
+                </button>
+                <button class="lang-tile" data-tile-lang="de" aria-label="Deutsch" onclick="setLang('de')">
+                    <span class="lang-tile-native">Deutsch</span>
+                    <span class="lang-tile-code">DE</span>
+                </button>
+                <button class="lang-tile" data-tile-lang="pt" aria-label="Português" onclick="setLang('pt')">
+                    <span class="lang-tile-native">Português</span>
+                    <span class="lang-tile-code">PT</span>
+                </button>
+                <button class="lang-tile" data-tile-lang="ja" aria-label="日本語" onclick="setLang('ja')">
+                    <span class="lang-tile-native">日本語</span>
+                    <span class="lang-tile-code">JA</span>
+                </button>
+                <button class="lang-tile" data-tile-lang="zh" aria-label="中文" onclick="setLang('zh')">
+                    <span class="lang-tile-native">中文</span>
+                    <span class="lang-tile-code">ZH</span>
+                </button>
+            </div>
+
+            <p class="lang-note">
+                Translation is applied site-wide in real time. No page reload required. Your selection is stored locally — it persists across sessions until you change it.
+            </p>
+        </section>
+
+        <!-- COMMITMENTS -->
+        <section class="acc-commitments" aria-labelledby="acc-commit-heading">
+            <div class="acc-commitments-header">
+                <span class="acc-section-label">02 · What We've Built</span>
+                <h2 class="acc-section-heading" id="acc-commit-heading">Specific commitments.<br><em>Not aspirations.</em></h2>
+                <p class="acc-section-body" style="margin-bottom:0;">Each item below is either live in the current build or in active development. We note which is which.</p>
+            </div>
+
+            <div class="acc-grid">
+
+                <div class="acc-card">
+                    <span class="acc-card-num">01</span>
+                    <h3 class="acc-card-title">Motion Control</h3>
+                    <p class="acc-card-body">The Atmosphere layer — ambient audio, particle effects, and enhanced animations — is off by default. A clearly labelled toggle in the nav gives full control. The site also respects the browser's <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">prefers-reduced-motion</code> setting: animations are suppressed without any user action required.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">02</span>
+                    <h3 class="acc-card-title">Keyboard Navigation</h3>
+                    <p class="acc-card-body">Every interactive element is reachable and operable with a keyboard alone. Focus indicators are visible and high-contrast. A skip-to-content link appears at the top of every page on first Tab press, allowing keyboard users to bypass repeated navigation.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">03</span>
+                    <h3 class="acc-card-title">Screen Reader Support</h3>
+                    <p class="acc-card-body">Pages are built with semantic HTML5 — headings, landmarks, lists, and buttons are all structurally correct. Decorative images carry <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">aria-hidden="true"</code>. All interactive SVG icons have accessible labels. Navigation regions are labelled with <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">aria-label</code>.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">04</span>
+                    <h3 class="acc-card-title">No-Script Fallback</h3>
+                    <p class="acc-card-body">All content and navigation are accessible without JavaScript enabled. A <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">&lt;noscript&gt;</code> stylesheet on every page restores scrollability, native cursor, and element visibility — so the site is readable in restricted browser environments.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">05</span>
+                    <h3 class="acc-card-title">Inclusive Clinical Language</h3>
+                    <p class="acc-card-body">All clinical disclaimers use "provider" rather than "physician." This reflects the full spectrum of licensed care — physicians, nurse practitioners, physician assistants, and other clinicians — without implying a particular type of clinical relationship.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">06</span>
+                    <h3 class="acc-card-title">Colour &amp; Contrast</h3>
+                    <p class="acc-card-body">Our target is WCAG 2.1 Level AA — a minimum 4.5:1 contrast ratio for body text and 3:1 for large text and UI components. All gold-on-black and cream-on-black pairings have been tested. Interactive elements have visible hover and focus states.</p>
+                    <span class="acc-card-status target">Target: WCAG 2.1 AA</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">07</span>
+                    <h3 class="acc-card-title">Custom Cursor Fallback</h3>
+                    <p class="acc-card-body">The site uses a custom cursor for aesthetic cohesion. If JavaScript is unavailable or disabled, the custom cursor element is hidden and the native browser cursor is restored in full. No user is left without a visible pointer.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+                <div class="acc-card">
+                    <span class="acc-card-num">08</span>
+                    <h3 class="acc-card-title">Touch &amp; Mobile</h3>
+                    <p class="acc-card-body">Interactive elements have a minimum tap target size of 44×44px. Tap highlights are suppressed in favour of visible border and background feedback. The horizontal product gallery responds to both touch swipe and mouse drag. The site is fully tested at 375px viewport width.</p>
+                    <span class="acc-card-status live">Live</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HONEST LIMITS -->
+        <section class="acc-limits" aria-labelledby="acc-limits-heading">
+            <span class="acc-section-label">03 · Honest Accounting</span>
+            <h2 class="acc-section-heading" id="acc-limits-heading" style="margin-bottom:48px;">What we know we haven't<br><em>finished yet.</em></h2>
+
+            <div class="acc-limits-inner">
+                <div class="acc-limit-block">
+                    <h3>In Progress</h3>
+                    <ul class="acc-limit-list">
+                        <li>Audio content has no transcript yet. Atmosphere audio is ambient and non-verbal, but any future spoken content will include a full text alternative.</li>
+                        <li>The language translations cover site interface copy. Research articles and longer-form content are currently in English only — translation of articles is planned for Volume 01.</li>
+                        <li>Automated contrast testing is in place; manual testing with assistive technology users is planned before launch.</li>
+                        <li>The custom cursor visibility is high-contrast on dark backgrounds. On light backgrounds (cream sections), contrast may be reduced — this is being reviewed.</li>
+                    </ul>
+                </div>
+                <div class="acc-limit-block">
+                    <h3>On the Roadmap</h3>
+                    <ul class="acc-limit-list">
+                        <li>WCAG 2.2 review — several new criteria added in 2023 are not yet fully audited, including focus appearance and dragging alternatives.</li>
+                        <li>Right-to-left language support for Arabic and Hebrew — not available in the current translation system.</li>
+                        <li>Protocol Summary PDFs (the one-page provider-ready documents) will be made screen-reader compatible before Forum launch.</li>
+                        <li>An independent WCAG audit by a third-party accessibility firm before public launch of Volume 01.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEEDBACK -->
+        <section class="acc-feedback" aria-labelledby="acc-feedback-heading">
+            <div class="acc-feedback-inner">
+                <span class="acc-section-label" style="display:block;margin-bottom:20px;">04 · Contact</span>
+                <h2 id="acc-feedback-heading">Feedback is a <em>gift.</em></h2>
+                <p>If something on this site creates a barrier — a contrast issue, a focus trap, a translation error, anything at all — we want to know immediately. Your report is the fastest path to a fix.</p>
+                <a href="mailto:contact@offdaycollective.com?subject=Accessibility%20%E2%80%94%20Off%20Day%20Collective" class="gold-btn hover-trigger" style="display:inline-block; padding:18px 44px; text-decoration:none;">
+                    Report an Issue
+                </a>
+                <a href="/" class="acc-feedback-back">← Return to the Collective</a>
             </div>
         </section>
 
     </main>
 
     <div id="atmosphere-visual"></div>
-        <audio id="ambient-audio" loop preload="auto" crossorigin="anonymous">
+    <audio id="ambient-audio" loop preload="none" crossorigin="anonymous">
         <source src="audio/atmosphere.mp3" type="audio/mpeg">
     </audio>
 
     <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
-    <script>(function(){setTimeout(function(){document.body.classList.add("loaded")},3500)})();</script>
+    <script>
+    // In-page language switcher — syncs with the nav picker
+    function setLang(lang) {
+        if (window.ODC_applyLang) window.ODC_applyLang(lang);
+        updateTileState(lang);
+        // Sync the nav dropdown active state
+        document.querySelectorAll('#lang-dropdown .lang-option').forEach(function(li) {
+            li.classList.toggle('active', li.dataset.lang === lang);
+        });
+        var code = document.getElementById('lang-code');
+        if (code) code.textContent = lang.toUpperCase();
+    }
+
+    function updateTileState(lang) {
+        document.querySelectorAll('.lang-tile').forEach(function(tile) {
+            tile.classList.toggle('active', tile.dataset.tileLang === lang);
+            tile.setAttribute('aria-pressed', tile.dataset.tileLang === lang ? 'true' : 'false');
+        });
+    }
+
+    // Reflect the current saved language on page load
+    (function() {
+        var saved = 'en';
+        try { saved = localStorage.getItem('odc-lang') || 'en'; } catch(_) {}
+        updateTileState(saved);
+    })();
+
+    // Keep tiles in sync if the nav picker is used instead
+    document.querySelectorAll('#lang-dropdown .lang-option').forEach(function(li) {
+        li.addEventListener('click', function() {
+            updateTileState(li.dataset.lang);
+        });
+    });
+    </script>
 </body>
 </html>
