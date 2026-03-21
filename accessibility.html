@@ -94,88 +94,12 @@
             font-weight: 300; max-width: 560px;
         }
 
-        /* ── LANGUAGE SECTION ───────────────────── */
-        .acc-languages {
-            background: #050505;
+        /* ── FEATURES GRID ──────────────────────── */
+        .acc-features {
+            background: #0a0a0a;
             padding: 100px 10%;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .acc-section-label {
-            font-family: 'Inter', sans-serif; font-size: 0.52rem;
-            letter-spacing: 5px; text-transform: uppercase;
-            color: rgba(255,255,255,0.2); display: block; margin-bottom: 20px;
-        }
-        .acc-section-heading {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 300; line-height: 1.1;
-            letter-spacing: -0.02em; color: #F0EDE6;
-            margin: 0 0 16px;
-        }
-        .acc-section-heading em { font-style: italic; color: #C9A84C; }
-        .acc-section-body {
-            font-family: 'Inter', sans-serif; font-size: 0.92rem;
-            line-height: 1.85; color: rgba(255,255,255,0.38);
-            font-weight: 300; max-width: 520px; margin-bottom: 56px;
-        }
-
-        /* Language grid */
-        .lang-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 12px;
-            max-width: 700px;
-        }
-        .lang-tile {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 3px;
-            padding: 20px 8px 16px;
-            display: flex; flex-direction: column;
-            align-items: center; gap: 8px;
-            cursor: none; transition: border-color 0.25s, background 0.25s;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-            font-family: 'Inter', sans-serif;
-        }
-        .lang-tile:hover {
-            border-color: rgba(201,168,76,0.35);
-            background: rgba(201,168,76,0.04);
-        }
-        .lang-tile.active {
-            border-color: rgba(201,168,76,0.6);
-            background: rgba(201,168,76,0.07);
-        }
-        .lang-tile:focus-visible {
-            outline: 1px solid rgba(201,168,76,0.6);
-            outline-offset: 2px;
-        }
-        .lang-tile-native {
-            font-size: 1rem; font-weight: 300;
-            color: rgba(255,255,255,0.7);
-            line-height: 1;
-        }
-        .lang-tile.active .lang-tile-native { color: #C9A84C; }
-        .lang-tile-code {
-            font-size: 0.42rem; letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.2);
-        }
-        .lang-tile.active .lang-tile-code { color: rgba(201,168,76,0.6); }
-        .lang-note {
-            margin-top: 24px;
-            font-family: 'Inter', sans-serif; font-size: 0.65rem;
-            letter-spacing: 0.5px; line-height: 1.7;
-            color: rgba(255,255,255,0.2);
-        }
-
-        /* ── COMMITMENTS GRID ───────────────────── */
-        .acc-commitments {
-            padding: 100px 10%;
-            background: #000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .acc-commitments-header { max-width: 560px; margin-bottom: 72px; }
         .acc-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -183,80 +107,34 @@
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.05);
         }
-        .acc-card {
-            background: #000;
+        .acc-module {
+            background: #0a0a0a;
             padding: 44px 36px 48px;
-            position: relative;
         }
-        .acc-card-num {
+        .acc-module-num {
             font-family: 'Cormorant Garamond', serif;
             font-size: 0.62rem; letter-spacing: 4px;
             color: rgba(201,168,76,0.35);
             display: block; margin-bottom: 20px;
         }
-        .acc-card-title {
+        .acc-module h2 {
             font-family: 'Inter', sans-serif;
             font-size: 0.6rem; letter-spacing: 3.5px;
             text-transform: uppercase;
             color: rgba(255,255,255,0.65);
-            margin-bottom: 16px; font-weight: 400;
+            margin: 0 0 16px; font-weight: 400;
         }
-        .acc-card-body {
+        .acc-module p {
             font-family: 'Inter', sans-serif;
             font-size: 0.82rem; line-height: 1.8;
             color: rgba(255,255,255,0.3); font-weight: 300;
+            margin: 0;
         }
-        .acc-card-status {
-            display: inline-block; margin-top: 20px;
-            font-family: 'Inter', sans-serif; font-size: 0.46rem;
+        .acc-lang-codes {
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif; font-size: 0.52rem;
             letter-spacing: 2.5px; text-transform: uppercase;
-            padding: 4px 10px; border-radius: 2px;
-        }
-        .acc-card-status.live {
-            color: rgba(123,175,113,0.7);
-            border: 1px solid rgba(123,175,113,0.2);
-        }
-        .acc-card-status.target {
-            color: rgba(201,168,76,0.6);
-            border: 1px solid rgba(201,168,76,0.18);
-        }
-        .acc-card-status.progress {
-            color: rgba(148,144,200,0.7);
-            border: 1px solid rgba(148,144,200,0.2);
-        }
-
-        /* ── HONEST LIMITS SECTION ──────────────── */
-        .acc-limits {
-            background: #050505;
-            padding: 100px 10%;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .acc-limits-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            max-width: 900px;
-        }
-        .acc-limit-block h3 {
-            font-family: 'Inter', sans-serif; font-size: 0.58rem;
-            letter-spacing: 3.5px; text-transform: uppercase;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 20px; font-weight: 400;
-        }
-        .acc-limit-list {
-            list-style: none; padding: 0; margin: 0;
-            display: flex; flex-direction: column; gap: 14px;
-        }
-        .acc-limit-list li {
-            font-family: 'Inter', sans-serif; font-size: 0.82rem;
-            line-height: 1.7; color: rgba(255,255,255,0.25);
-            font-weight: 300; padding-left: 16px;
-            position: relative;
-        }
-        .acc-limit-list li::before {
-            content: '—';
-            position: absolute; left: 0;
-            color: rgba(255,255,255,0.1);
+            color: rgba(201,168,76,0.4);
         }
 
         /* ── FEEDBACK SECTION ───────────────────── */
@@ -292,22 +170,14 @@
         @media (max-width: 960px) {
             .nav-inner { padding: 24px 40px; }
             .acc-hero { padding: 120px 8% 70px; }
-            .acc-languages, .acc-commitments, .acc-limits, .acc-feedback { padding-left: 8%; padding-right: 8%; }
-            .lang-grid { grid-template-columns: repeat(4, 1fr); max-width: 100%; }
-            .acc-limits-inner { grid-template-columns: 1fr; gap: 48px; }
+            .acc-features, .acc-feedback { padding-left: 8%; padding-right: 8%; }
         }
         @media (max-width: 768px) {
             .nav-inner { padding: 22px 28px; }
             .acc-hero { padding: 108px 28px 60px; }
-            .acc-languages, .acc-commitments, .acc-limits, .acc-feedback { padding-left: 28px; padding-right: 28px; padding-top: 72px; padding-bottom: 72px; }
-            .lang-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+            .acc-features, .acc-feedback { padding-left: 28px; padding-right: 28px; padding-top: 72px; padding-bottom: 72px; }
             .acc-grid { grid-template-columns: 1fr; }
-            .acc-card { padding: 36px 24px 40px; }
-        }
-        @media (max-width: 480px) {
-            .lang-grid { grid-template-columns: repeat(3, 1fr); }
-            .lang-tile { padding: 16px 6px 12px; }
-            .lang-tile-native { font-size: 0.85rem; }
+            .acc-module { padding: 36px 24px 40px; }
         }
     </style>
     <noscript><style>
@@ -315,7 +185,6 @@
         #cursor, #loader { display: none !important; }
         .fade-in-up, .reveal-on-load { opacity: 1 !important; transform: none !important; transition: none !important; }
         #lang-picker { display: none !important; }
-        .lang-tile { cursor: pointer !important; }
     </style></noscript>
 </head>
 <body class="dark-bg loaded">
@@ -384,155 +253,55 @@
                 <h1 id="acc-h1">Inclusion is <em>intentional.</em></h1>
                 <div class="acc-rule"></div>
                 <p class="acc-hero-desc">
-                    Rest should be available to everyone. This page documents what we've built to lower barriers, what we're working toward, and how to reach us when something isn't working the way it should.
+                    Rest should be available to everyone — regardless of ability, language, or device. Below is a plain account of how this site is built to lower barriers.
+                </p>
+                <p class="acc-hero-desc" style="margin-top: 20px;">
+                    If something isn't working for you, the contact at the bottom of this page goes directly to the people who can fix it.
                 </p>
             </div>
         </section>
 
-        <!-- LANGUAGE ACCESS -->
-        <section class="acc-languages" aria-labelledby="acc-lang-heading">
-            <span class="acc-section-label">01 · Language Access</span>
-            <h2 class="acc-section-heading" id="acc-lang-heading">The site speaks <em>seven languages.</em></h2>
-            <p class="acc-section-body">
-                Translation is built directly into every page — no third-party plugin, no redirect. Select your language below and it applies immediately across the entire site. Your preference is saved for future visits.
-            </p>
-
-            <div class="lang-grid" role="group" aria-label="Select site language">
-                <button class="lang-tile" data-tile-lang="en" aria-label="English" onclick="setLang('en')">
-                    <span class="lang-tile-native">English</span>
-                    <span class="lang-tile-code">EN</span>
-                </button>
-                <button class="lang-tile" data-tile-lang="es" aria-label="Español" onclick="setLang('es')">
-                    <span class="lang-tile-native">Español</span>
-                    <span class="lang-tile-code">ES</span>
-                </button>
-                <button class="lang-tile" data-tile-lang="fr" aria-label="Français" onclick="setLang('fr')">
-                    <span class="lang-tile-native">Français</span>
-                    <span class="lang-tile-code">FR</span>
-                </button>
-                <button class="lang-tile" data-tile-lang="de" aria-label="Deutsch" onclick="setLang('de')">
-                    <span class="lang-tile-native">Deutsch</span>
-                    <span class="lang-tile-code">DE</span>
-                </button>
-                <button class="lang-tile" data-tile-lang="pt" aria-label="Português" onclick="setLang('pt')">
-                    <span class="lang-tile-native">Português</span>
-                    <span class="lang-tile-code">PT</span>
-                </button>
-                <button class="lang-tile" data-tile-lang="ja" aria-label="日本語" onclick="setLang('ja')">
-                    <span class="lang-tile-native">日本語</span>
-                    <span class="lang-tile-code">JA</span>
-                </button>
-                <button class="lang-tile" data-tile-lang="zh" aria-label="中文" onclick="setLang('zh')">
-                    <span class="lang-tile-native">中文</span>
-                    <span class="lang-tile-code">ZH</span>
-                </button>
-            </div>
-
-            <p class="lang-note">
-                Translation is applied site-wide in real time. No page reload required. Your selection is stored locally — it persists across sessions until you change it.
-            </p>
-        </section>
-
-        <!-- COMMITMENTS -->
-        <section class="acc-commitments" aria-labelledby="acc-commit-heading">
-            <div class="acc-commitments-header">
-                <span class="acc-section-label">02 · What We've Built</span>
-                <h2 class="acc-section-heading" id="acc-commit-heading">Specific commitments.<br><em>Not aspirations.</em></h2>
-                <p class="acc-section-body" style="margin-bottom:0;">Each item below is either live in the current build or in active development. We note which is which.</p>
-            </div>
-
+        <!-- FEATURES GRID -->
+        <section class="acc-features" aria-label="Accessibility features">
             <div class="acc-grid">
 
-                <div class="acc-card">
-                    <span class="acc-card-num">01</span>
-                    <h3 class="acc-card-title">Motion Control</h3>
-                    <p class="acc-card-body">The Atmosphere layer — ambient audio, particle effects, and enhanced animations — is off by default. A clearly labelled toggle in the nav gives full control. The site also respects the browser's <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">prefers-reduced-motion</code> setting: animations are suppressed without any user action required.</p>
-                    <span class="acc-card-status live">Live</span>
+                <div class="acc-module">
+                    <span class="acc-module-num">I.</span>
+                    <h2>Language Access</h2>
+                    <p>The site translates into seven languages without a page reload or third-party plugin. Select your language from the globe icon in the top navigation — your preference is saved and applied automatically on every return visit.</p>
+                    <p class="acc-lang-codes">EN &nbsp;·&nbsp; ES &nbsp;·&nbsp; FR &nbsp;·&nbsp; DE &nbsp;·&nbsp; PT &nbsp;·&nbsp; JA &nbsp;·&nbsp; ZH</p>
                 </div>
 
-                <div class="acc-card">
-                    <span class="acc-card-num">02</span>
-                    <h3 class="acc-card-title">Keyboard Navigation</h3>
-                    <p class="acc-card-body">Every interactive element is reachable and operable with a keyboard alone. Focus indicators are visible and high-contrast. A skip-to-content link appears at the top of every page on first Tab press, allowing keyboard users to bypass repeated navigation.</p>
-                    <span class="acc-card-status live">Live</span>
+                <div class="acc-module">
+                    <span class="acc-module-num">II.</span>
+                    <h2>Sensory Control</h2>
+                    <p>The Atmosphere layer — ambient audio, particle effects, and enhanced animation — is off by default. A clearly labelled toggle gives full control at any time. The site also respects the browser's <code style="font-size:0.78em;color:rgba(255,255,255,0.35);">prefers-reduced-motion</code> setting, suppressing motion without any action required from you.</p>
                 </div>
 
-                <div class="acc-card">
-                    <span class="acc-card-num">03</span>
-                    <h3 class="acc-card-title">Screen Reader Support</h3>
-                    <p class="acc-card-body">Pages are built with semantic HTML5 — headings, landmarks, lists, and buttons are all structurally correct. Decorative images carry <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">aria-hidden="true"</code>. All interactive SVG icons have accessible labels. Navigation regions are labelled with <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">aria-label</code>.</p>
-                    <span class="acc-card-status live">Live</span>
+                <div class="acc-module">
+                    <span class="acc-module-num">III.</span>
+                    <h2>Visual Clarity</h2>
+                    <p>Our target is WCAG 2.1 Level AA — a minimum 4.5:1 contrast ratio for body text and 3:1 for large text and UI components. All gold-on-black and cream-on-black pairings have been reviewed. Every interactive element has a visible focus state.</p>
                 </div>
 
-                <div class="acc-card">
-                    <span class="acc-card-num">04</span>
-                    <h3 class="acc-card-title">No-Script Fallback</h3>
-                    <p class="acc-card-body">All content and navigation are accessible without JavaScript enabled. A <code style="font-size:0.78em;color:rgba(255,255,255,0.4);">&lt;noscript&gt;</code> stylesheet on every page restores scrollability, native cursor, and element visibility — so the site is readable in restricted browser environments.</p>
-                    <span class="acc-card-status live">Live</span>
+                <div class="acc-module">
+                    <span class="acc-module-num">IV.</span>
+                    <h2>Assistive Technology</h2>
+                    <p>Pages are structured with semantic HTML5 — headings, landmarks, lists, and buttons are all correct. A skip-to-content link appears on first Tab press. All decorative SVGs carry <code style="font-size:0.78em;color:rgba(255,255,255,0.35);">aria-hidden</code>. If JavaScript is unavailable, a fallback stylesheet restores scroll, native cursor, and full content visibility.</p>
                 </div>
 
-                <div class="acc-card">
-                    <span class="acc-card-num">05</span>
-                    <h3 class="acc-card-title">Inclusive Clinical Language</h3>
-                    <p class="acc-card-body">All clinical disclaimers use "provider" rather than "physician." This reflects the full spectrum of licensed care — physicians, nurse practitioners, physician assistants, and other clinicians — without implying a particular type of clinical relationship.</p>
-                    <span class="acc-card-status live">Live</span>
+                <div class="acc-module">
+                    <span class="acc-module-num">V.</span>
+                    <h2>Inclusive Language</h2>
+                    <p>All clinical copy uses "provider" rather than "physician." This reflects the full spectrum of licensed care — physicians, nurse practitioners, and physician assistants — without implying a particular type of clinical relationship.</p>
                 </div>
 
-                <div class="acc-card">
-                    <span class="acc-card-num">06</span>
-                    <h3 class="acc-card-title">Colour &amp; Contrast</h3>
-                    <p class="acc-card-body">Our target is WCAG 2.1 Level AA — a minimum 4.5:1 contrast ratio for body text and 3:1 for large text and UI components. All gold-on-black and cream-on-black pairings have been tested. Interactive elements have visible hover and focus states.</p>
-                    <span class="acc-card-status target">Target: WCAG 2.1 AA</span>
-                </div>
-
-                <div class="acc-card">
-                    <span class="acc-card-num">07</span>
-                    <h3 class="acc-card-title">Custom Cursor Fallback</h3>
-                    <p class="acc-card-body">The site uses a custom cursor for aesthetic cohesion. If JavaScript is unavailable or disabled, the custom cursor element is hidden and the native browser cursor is restored in full. No user is left without a visible pointer.</p>
-                    <span class="acc-card-status live">Live</span>
-                </div>
-
-                <div class="acc-card">
-                    <span class="acc-card-num">08</span>
-                    <h3 class="acc-card-title">Touch &amp; Mobile</h3>
-                    <p class="acc-card-body">Interactive elements have a minimum tap target size of 44×44px. Tap highlights are suppressed in favour of visible border and background feedback. The horizontal product gallery responds to both touch swipe and mouse drag. The site is fully tested at 375px viewport width.</p>
-                    <span class="acc-card-status live">Live</span>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- HONEST LIMITS -->
-        <section class="acc-limits" aria-labelledby="acc-limits-heading">
-            <span class="acc-section-label">03 · Honest Accounting</span>
-            <h2 class="acc-section-heading" id="acc-limits-heading" style="margin-bottom:48px;">What we know we haven't<br><em>finished yet.</em></h2>
-
-            <div class="acc-limits-inner">
-                <div class="acc-limit-block">
-                    <h3>In Progress</h3>
-                    <ul class="acc-limit-list">
-                        <li>Audio content has no transcript yet. Atmosphere audio is ambient and non-verbal, but any future spoken content will include a full text alternative.</li>
-                        <li>The language translations cover site interface copy. Research articles and longer-form content are currently in English only — translation of articles is planned for Volume 01.</li>
-                        <li>Automated contrast testing is in place; manual testing with assistive technology users is planned before launch.</li>
-                        <li>The custom cursor visibility is high-contrast on dark backgrounds. On light backgrounds (cream sections), contrast may be reduced — this is being reviewed.</li>
-                    </ul>
-                </div>
-                <div class="acc-limit-block">
-                    <h3>On the Roadmap</h3>
-                    <ul class="acc-limit-list">
-                        <li>WCAG 2.2 review — several new criteria added in 2023 are not yet fully audited, including focus appearance and dragging alternatives.</li>
-                        <li>Right-to-left language support for Arabic and Hebrew — not available in the current translation system.</li>
-                        <li>Protocol Summary PDFs (the one-page provider-ready documents) will be made screen-reader compatible before Forum launch.</li>
-                        <li>An independent WCAG audit by a third-party accessibility firm before public launch of Volume 01.</li>
-                    </ul>
-                </div>
             </div>
         </section>
 
         <!-- FEEDBACK -->
         <section class="acc-feedback" aria-labelledby="acc-feedback-heading">
             <div class="acc-feedback-inner">
-                <span class="acc-section-label" style="display:block;margin-bottom:20px;">04 · Contact</span>
                 <h2 id="acc-feedback-heading">Feedback is a <em>gift.</em></h2>
                 <p>If something on this site creates a barrier — a contrast issue, a focus trap, a translation error, anything at all — we want to know immediately. Your report is the fastest path to a fix.</p>
                 <a href="mailto:contact@offdaycollective.com?subject=Accessibility%20%E2%80%94%20Off%20Day%20Collective" class="gold-btn hover-trigger" style="display:inline-block; padding:18px 44px; text-decoration:none;">
@@ -551,39 +320,5 @@
 
     <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
-    <script>
-    // In-page language switcher — syncs with the nav picker
-    function setLang(lang) {
-        if (window.ODC_applyLang) window.ODC_applyLang(lang);
-        updateTileState(lang);
-        // Sync the nav dropdown active state
-        document.querySelectorAll('#lang-dropdown .lang-option').forEach(function(li) {
-            li.classList.toggle('active', li.dataset.lang === lang);
-        });
-        var code = document.getElementById('lang-code');
-        if (code) code.textContent = lang.toUpperCase();
-    }
-
-    function updateTileState(lang) {
-        document.querySelectorAll('.lang-tile').forEach(function(tile) {
-            tile.classList.toggle('active', tile.dataset.tileLang === lang);
-            tile.setAttribute('aria-pressed', tile.dataset.tileLang === lang ? 'true' : 'false');
-        });
-    }
-
-    // Reflect the current saved language on page load
-    (function() {
-        var saved = 'en';
-        try { saved = localStorage.getItem('odc-lang') || 'en'; } catch(_) {}
-        updateTileState(saved);
-    })();
-
-    // Keep tiles in sync if the nav picker is used instead
-    document.querySelectorAll('#lang-dropdown .lang-option').forEach(function(li) {
-        li.addEventListener('click', function() {
-            updateTileState(li.dataset.lang);
-        });
-    });
-    </script>
 </body>
 </html>
