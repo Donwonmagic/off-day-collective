@@ -610,55 +610,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }, increment);
     }
 
-// --- 10. SPA ROUTER (DESKTOP ONLY — mobile uses standard navigation) ---
-    if (window.matchMedia("(min-width: 768px)").matches) {
+// --- 10. PAGE TRANSITION ROUTER ---
+// Closes the nav menu, fades to black, then navigates normally.
+// Full page loads ensure page-specific styles and scripts always run correctly.
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
-        
-        if (link && link.href && link.href.startsWith(window.location.origin) && link.target !== '_blank' && !link.hasAttribute('download')) {
-            if (link.href.split('#')[0] === window.location.href.split('#')[0]) return;
-
-            e.preventDefault(); 
-            const url = link.href;
-            
-            document.body.classList.add('is-transitioning');
-            
-            setTimeout(() => {
-                fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error('Page not found');
-                    return response.text();
-                })
-                .then(html => {
-                    const parser = new DOMParser();
-                    const newDoc = parser.parseFromString(html, 'text/html');
-                    const newContent = newDoc.getElementById('main-content');
-                    
-                    if (newContent) {
-                        document.getElementById('main-content').innerHTML = newContent.innerHTML;
-                        document.title = newDoc.title;
-                        history.pushState(null, '', url);
-                        window.scrollTo(0, 0);
-                        
-                        setTimeout(() => {
-                            document.body.classList.remove('is-transitioning');
-                        }, 100); 
-                    } else {
-                        window.location.href = url;
-                    }
-                })
-                .catch(err => {
-                    console.error("SPA Router Error:", err);
-                    window.location.href = url;
-                });
-            }, 800);
+        if (!link || !link.href) return;
+        if (!link.href.startsWith(window.location.origin)) return;
+        if (link.target === '_blank' || link.hasAttribute('download')) return;
+        // Same-page anchor links — close menu but don't intercept navigation
+        if (link.href.split('#')[0] === window.location.href.split('#')[0]) {
+            closeNav();
+            return;
         }
+        e.preventDefault();
+        closeNav();
+        const url = link.href;
+        document.body.classList.add('is-transitioning');
+        setTimeout(() => { window.location.href = url; }, 500);
     });
-
-    window.addEventListener('popstate', () => {
-        location.reload();
-    });
-    } // end desktop-only SPA router
 
 // --- 11. CEREBRAL PARTICLE FIELD ---
 // Floating golden motes that respond to audio

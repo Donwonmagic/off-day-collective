@@ -897,6 +897,7 @@ body.loaded .headline-reveal {
 .manifesto-visual img {
     width: 100%; height: 120%;
     object-fit: cover; filter: contrast(108%) brightness(0.87) saturate(0.70);
+    margin-top: -10%; /* offset so extra height is split above & below — prevents parallax revealing grey at top */
 }
 
 .manifesto-content {
