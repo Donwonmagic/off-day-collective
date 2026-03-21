@@ -664,6 +664,7 @@
         var navToggle = document.getElementById('nav-toggle'), navMenu = document.getElementById('nav-menu');
         function openNav() { if (!navMenu||!navToggle) return; navMenu.classList.add('is-open'); navToggle.setAttribute('aria-expanded','true'); navToggle.setAttribute('aria-label','Close menu'); }
         function closeNav() { if (!navMenu||!navToggle) return; navMenu.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); navToggle.setAttribute('aria-label','Open menu'); }
+        window.closeNav = closeNav;
         if (navToggle) navToggle.addEventListener('click', function() { navMenu.classList.contains('is-open') ? closeNav() : openNav(); });
         if (navMenu) navMenu.addEventListener('click', function(e) { if (e.target === navMenu) closeNav(); });
         var navMenuClose = document.getElementById('nav-menu-close'); if (navMenuClose) navMenuClose.addEventListener('click', closeNav);
