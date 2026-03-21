@@ -610,9 +610,59 @@ document.addEventListener('DOMContentLoaded', () => {
         }, increment);
     }
 
+// --- 9.5 NAV TOGGLE SETUP ---
+// Handles pages that don't define closeNav/openNav in their inline scripts
+// (e.g. accessibility, philosophy, privacy, terms, 404).
+// Guard prevents duplicate listeners on pages that already wire up the nav inline.
+    (function setupNav() {
+        // Skip pages that already wire up the nav via their own inline script
+        // (those scripts define closeNav as a global function on window).
+        if (typeof window.closeNav === 'function') return;
+        var navToggle = document.getElementById('nav-toggle');
+        var navMenu   = document.getElementById('nav-menu');
+        if (!navToggle || !navMenu) return;
+
+        function openNav() {
+            navMenu.classList.add('is-open');
+            navToggle.setAttribute('aria-expanded', 'true');
+            navToggle.setAttribute('aria-label', 'Close menu');
+        }
+        function closeNavLocal() {
+            navMenu.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.setAttribute('aria-label', 'Open menu');
+        }
+
+        navToggle.addEventListener('click', function () {
+            navMenu.classList.contains('is-open') ? closeNavLocal() : openNav();
+        });
+        navMenu.addEventListener('click', function (e) {
+            if (e.target === navMenu) closeNavLocal();
+        });
+        var navMenuClose = document.getElementById('nav-menu-close');
+        if (navMenuClose) navMenuClose.addEventListener('click', closeNavLocal);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeNavLocal();
+        });
+    }());
+
 // --- 10. PAGE TRANSITION ROUTER ---
 // Closes the nav menu, fades to black, then navigates normally.
 // Full page loads ensure page-specific styles and scripts always run correctly.
+
+    // closeNav: safe fallback for pages without inline nav script.
+    // If a page's inline script already defined closeNav globally, this
+    // local definition shadows it within this DOMContentLoaded scope —
+    // both implementations are identical in behaviour.
+    function closeNav() {
+        var navMenu   = document.getElementById('nav-menu');
+        var navToggle = document.getElementById('nav-toggle');
+        if (!navMenu || !navToggle) return;
+        navMenu.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+    }
+
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         if (!link || !link.href) return;
