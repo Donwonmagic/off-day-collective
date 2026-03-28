@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.offdaycollective.com/">
     <meta name="twitter:title" content="Off Day Collective | Silence is a Luxury">
-    <meta name="twitter:description" content="Education, community, and physical tools for intentional rest. Volume 01 — Fall 2026. Waitlist is open.">
+    <meta name="twitter:description" content="Education, community, and physical tools for intentional rest. Volume 01 — Fall 2026. Join the Collective.">
     <meta name="twitter:image" content="https://www.offdaycollective.com/images/social-share.png">
     <meta name="twitter:image:alt" content="Off Day Collective — education, community, and physical tools for intentional downtime">
     <link rel="apple-touch-icon" href="/images/favicon.png">
@@ -68,6 +68,7 @@
             <a href="/library" class="nav-pill" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.85);text-decoration:none;transition:all 0.2s;padding:6px 14px;border:1px solid rgba(255,255,255,0.35);border-radius:3px;" onmouseover="this.style.color='rgba(255,255,255,1)';this.style.borderColor='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.85)';this.style.borderColor='rgba(255,255,255,0.35)'"><span data-i18n="nav.library">Library</span></a>
             <a href="/shop" class="nav-pill" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.2s;padding:6px 14px;border:1px solid rgba(255,255,255,0.22);border-radius:3px;" onmouseover="this.style.color='rgba(255,255,255,0.9)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.22)'"><span data-i18n="nav.shop">Shop</span><span class="nav-soon-tag">Fall 2026</span></a>
             <a href="/forum" class="nav-pill" style="font-family:'Inter',sans-serif;font-size:0.58rem;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;transition:all 0.2s;padding:6px 14px;border:1px solid rgba(255,255,255,0.22);border-radius:3px;" onmouseover="this.style.color='rgba(255,255,255,0.9)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.22)'"><span data-i18n="nav.forum">Forum</span><span class="nav-soon-tag">Fall 2026</span></a>
+            <a href="#access" class="nav-cta-pill hover-trigger">Join the Collective</a>
         </div>
         <div class="nav-right">
             <button id="atmosphere-toggle" aria-label="Toggle Audio Atmosphere">
@@ -281,6 +282,22 @@
         </div>
     </section>
 
+    <!-- MID-PAGE INLINE CAPTURE -->
+    <div class="mid-capture" data-nav-theme="light">
+        <div class="mid-capture-inner fade-in-up">
+            <p class="mid-capture-label">Volume 01 · Fall 2026</p>
+            <p class="mid-capture-copy">Get research and ritual guides direct to your inbox.</p>
+            <form class="mid-capture-form" id="mid-capture-form" action="https://formspree.io/f/mjgeggpo" method="POST">
+                <div class="mid-capture-field">
+                    <input type="email" name="email" placeholder="Your email address" required autocomplete="email" class="mid-capture-input">
+                    <button type="submit" class="mid-capture-btn">Join the Collective</button>
+                </div>
+                <p class="mid-capture-note">No spam. No noise. Just the signal.</p>
+            </form>
+            <p class="mid-capture-success hidden">Welcome to the Collective.</p>
+        </div>
+    </div>
+
     <div class="section-breather" aria-hidden="true"><svg viewBox="0 0 200 200" width="28" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.45"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round" opacity="0.45"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.55"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530" opacity="0.55"/></svg></div>
 
     <!-- SECTION 5: THE SYSTEM -->
@@ -372,6 +389,23 @@
         <div class="footer-module access"><h4 data-i18n="footer.access.h4">Digital Inclusion</h4><p class="access-text" data-i18n="footer.access.text">We believe clarity and peace of mind should be accessible to everyone, regardless of technology or ability.</p><a href="/accessibility" class="access-cta"><span data-i18n="footer.access.cta">Read Our Commitment</span><span class="arrow">→</span></a><div class="compliance-tag" data-i18n="footer.access.wcag">Target: WCAG 2.1 AA</div></div>
         <div class="footer-module meta"><h4 data-i18n="footer.meta.h4">System Metadata</h4><div class="meta-stack"><span>&copy; 2026 Off Day Collective.</span><span><a href="/privacy" data-i18n="footer.privacy">Privacy</a> &bull; <a href="/terms" data-i18n="footer.terms">Terms</a></span><span class="tagline" data-i18n="footer.meta.tagline">"Silence is a luxury."</span></div></div>
     </footer>
+
+    <!-- EXIT-INTENT POPUP -->
+    <div id="exit-popup" class="exit-popup" role="dialog" aria-modal="true" aria-labelledby="exit-popup-title" aria-hidden="true">
+        <div class="exit-popup-overlay"></div>
+        <div class="exit-popup-card">
+            <button class="exit-popup-close" id="exit-popup-close" aria-label="Close">✕</button>
+            <div class="exit-popup-mark" aria-hidden="true"><svg viewBox="0 0 200 200" width="28" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="100,18 171,59 171,141 100,182 29,141 29,59" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><polygon points="131,46 162,100 131,154 69,154 38,100 69,46" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/><rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/><rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/></svg></div>
+            <h3 class="exit-popup-title" id="exit-popup-title">Before you go.</h3>
+            <p class="exit-popup-body">Join the Collective — we'll send research and ritual guides when Volume 01 opens.</p>
+            <form class="exit-popup-form" id="exit-popup-form" action="https://formspree.io/f/mjgeggpo" method="POST">
+                <input type="email" name="email" placeholder="Your email address" required autocomplete="email" class="exit-popup-input">
+                <button type="submit" class="exit-popup-btn">Join the Collective</button>
+            </form>
+            <p class="exit-popup-success hidden">Welcome to the Collective.</p>
+            <p class="exit-popup-note">No spam. One-click unsubscribe, always.</p>
+        </div>
+    </div>
 
     <button id="atmosphere-float" class="atmo-float" aria-label="Turn off Atmosphere">
         <span class="atmo-float-ring"><svg viewBox="0 0 200 200" width="14" aria-hidden="true"><polyline points="100,170 30,135 30,65 80,37" fill="none" stroke="#E5C155" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><polyline points="120,37 170,65 170,135 100,170" fill="none" stroke="#E5C155" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><rect x="78" y="62" width="16" height="66" rx="4" fill="#C9A84C"/><rect x="106" y="62" width="16" height="66" rx="4" fill="#C9A84C"/></svg></span>

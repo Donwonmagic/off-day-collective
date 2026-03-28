@@ -367,6 +367,112 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 6. MID-PAGE CAPTURE FORM ---
+    const midForm = document.getElementById('mid-capture-form');
+    if (midForm) {
+        midForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = midForm.querySelector('.mid-capture-btn');
+            const successEl = document.querySelector('.mid-capture-success');
+            if (btn) { btn.textContent = 'Joining...'; btn.disabled = true; }
+            fetch(midForm.action, {
+                method: 'POST',
+                body: new FormData(midForm),
+                headers: { 'Accept': 'application/json' }
+            }).then(r => {
+                if (r.ok) {
+                    midForm.style.display = 'none';
+                    if (successEl) successEl.classList.remove('hidden');
+                    sessionStorage.setItem('odc_signed_up', '1');
+                } else {
+                    if (btn) { btn.textContent = 'Join the Collective'; btn.disabled = false; }
+                    alert('System busy. Please try again.');
+                }
+            }).catch(() => {
+                if (btn) { btn.textContent = 'Join the Collective'; btn.disabled = false; }
+                alert('Connection error. Please check your network.');
+            });
+        });
+    }
+
+    // --- 6.5 EXIT-INTENT POPUP ---
+    const exitPopup = document.getElementById('exit-popup');
+    const exitPopupClose = document.getElementById('exit-popup-close');
+    const exitForm = document.getElementById('exit-popup-form');
+
+    function openExitPopup() {
+        if (!exitPopup) return;
+        exitPopup.classList.add('is-open');
+        exitPopup.setAttribute('aria-hidden', 'false');
+        const input = exitPopup.querySelector('.exit-popup-input');
+        if (input) input.focus();
+    }
+
+    function closeExitPopup() {
+        if (!exitPopup) return;
+        exitPopup.classList.remove('is-open');
+        exitPopup.setAttribute('aria-hidden', 'true');
+        sessionStorage.setItem('odc_exit_dismissed', '1');
+    }
+
+    if (exitPopup) {
+        // Trigger: mouse leaves viewport toward the top
+        let exitTriggered = false;
+        const readyDelay = 12000; // wait 12s before allowing trigger
+        let pageReadyForExit = false;
+        setTimeout(() => { pageReadyForExit = true; }, readyDelay);
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY > 20) return; // only trigger if heading toward browser chrome
+            if (exitTriggered) return;
+            if (!pageReadyForExit) return;
+            if (sessionStorage.getItem('odc_exit_dismissed')) return;
+            if (sessionStorage.getItem('odc_signed_up')) return;
+            exitTriggered = true;
+            openExitPopup();
+        });
+
+        // Close on overlay click
+        exitPopup.querySelector('.exit-popup-overlay').addEventListener('click', closeExitPopup);
+
+        // Close on X button
+        if (exitPopupClose) exitPopupClose.addEventListener('click', closeExitPopup);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && exitPopup.classList.contains('is-open')) closeExitPopup();
+        });
+
+        // Handle form submission
+        if (exitForm) {
+            exitForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = exitForm.querySelector('.exit-popup-btn');
+                const successEl = exitPopup.querySelector('.exit-popup-success');
+                if (btn) { btn.textContent = 'Joining...'; btn.disabled = true; }
+                fetch(exitForm.action, {
+                    method: 'POST',
+                    body: new FormData(exitForm),
+                    headers: { 'Accept': 'application/json' }
+                }).then(r => {
+                    if (r.ok) {
+                        exitForm.style.display = 'none';
+                        exitPopup.querySelector('.exit-popup-note').style.display = 'none';
+                        if (successEl) successEl.classList.remove('hidden');
+                        sessionStorage.setItem('odc_signed_up', '1');
+                        setTimeout(closeExitPopup, 2500);
+                    } else {
+                        if (btn) { btn.textContent = 'Join the Collective'; btn.disabled = false; }
+                        alert('System busy. Please try again.');
+                    }
+                }).catch(() => {
+                    if (btn) { btn.textContent = 'Join the Collective'; btn.disabled = false; }
+                    alert('Connection error. Please check your network.');
+                });
+            });
+        }
+    }
+
     // --- 7. THE LANTERN EFFECT ---
     const card = document.querySelector('.access-card');
 
