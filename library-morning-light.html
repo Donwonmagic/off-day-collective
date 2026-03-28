@@ -197,24 +197,36 @@
         /* ── ARTICLE BREADCRUMB ───────────────────────── */
         .art-breadcrumb {
             padding: 108px 80px 0;
-            display: flex; align-items: center; gap: 20px;
+            display: flex; align-items: center;
+            justify-content: space-between; gap: 24px;
         }
-        .art-breadcrumb-back {
+        .art-bc-back {
+            display: flex; align-items: center; gap: 10px; flex-shrink: 0;
             font-family: 'Inter', sans-serif;
-            font-size: 0.54rem; letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(255,255,255,0.22); text-decoration: none;
-            transition: color 0.2s; display: flex; align-items: center; gap: 8px;
+            font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.32); text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.13);
+            padding: 9px 18px; border-radius: 2px;
+            transition: color 0.25s, border-color 0.25s, background 0.25s;
         }
-        .art-breadcrumb-back:hover { color: rgba(255,255,255,0.6); }
-        .art-breadcrumb-sep {
-            width: 24px; height: 1px;
-            background: rgba(255,255,255,0.1);
+        .art-bc-back:hover {
+            color: var(--art-accent, #C9A84C);
+            border-color: var(--art-accent, #C9A84C);
+            background: rgba(255,255,255,0.03);
         }
-        .art-breadcrumb-label {
+        .art-bc-arrow { width: 14px; height: 9px; flex-shrink: 0; color: inherit; }
+        .art-bc-series {
             font-family: 'Inter', sans-serif;
-            font-size: 0.54rem; letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(255,255,255,0.1);
+            font-size: 0.52rem; letter-spacing: 4px; text-transform: uppercase;
+            color: rgba(255,255,255,0.18); text-align: center; flex: 1;
         }
+        .art-bc-progress { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .art-bc-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: rgba(255,255,255,0.14);
+            transition: background 0.3s;
+        }
+        .art-bc-dot--active { background: var(--art-accent, #C9A84C); opacity: 0.75; }
 
         /* ── ARTICLE TITLE SCREENS ───────────────────── */
         .art-title-screen {
@@ -492,10 +504,19 @@
     <main id="main-content">
 
         <!-- Breadcrumb -->
-        <div class="art-breadcrumb">
-            <a href="/library" class="art-breadcrumb-back" data-i18n="art.breadcrumb.back">← The Science of Rest</a>
-            <span class="art-breadcrumb-sep" aria-hidden="true"></span>
-            <span class="art-breadcrumb-label" data-i18n="morning.breadcrumb.label">I · Morning Stillness</span>
+        <div class="art-breadcrumb" style="--art-accent:#C9A84C;">
+            <a href="/library" class="art-bc-back">
+                <svg class="art-bc-arrow" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M13 4.5H1M1 4.5L4.5 1M1 4.5L4.5 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                The Library
+            </a>
+            <span class="art-bc-series">The Science of Rest · Vol. I</span>
+            <span class="art-bc-progress" aria-label="Article 1 of 3">
+                <span class="art-bc-dot art-bc-dot--active" aria-hidden="true"></span>
+                <span class="art-bc-dot" aria-hidden="true"></span>
+                <span class="art-bc-dot" aria-hidden="true"></span>
+            </span>
         </div>
 
         <!-- Article -->
