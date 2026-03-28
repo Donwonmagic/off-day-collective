@@ -173,11 +173,25 @@
         .cite-summary { font-family: 'Inter', sans-serif; font-size: 0.84rem; line-height: 1.9; color: rgba(255,255,255,0.48); border-left: 1px solid rgba(201,168,76,0.22); padding-left: 18px; margin-bottom: 36px; font-weight: 300; }
         .cite-link { font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: #7BAF71; text-decoration: none; opacity: 0.6; transition: opacity 0.2s; display: inline-block; }
         .cite-link:hover { opacity: 1; }
-        .art-pagination { display: flex; align-items: center; justify-content: space-between; padding: 60px 80px; background: #000; border-top: 1px solid rgba(255,255,255,0.04); }
-        .art-pagination a { font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.25); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 12px; }
-        .art-pagination a:hover { color: rgba(255,255,255,0.7); }
-        .art-pagination-label { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.35); display: block; margin-top: 4px; }
-        .art-pagination-next { text-align: right; }
+        .art-pagination { display: grid; grid-template-columns: 1fr 1fr; background: #000; border-top: 1px solid rgba(255,255,255,0.06); }
+        .pag-panel { display: block; padding: 64px 80px; text-decoration: none; position: relative; overflow: hidden; transition: background 0.35s ease; }
+        .pag-panel:first-child { border-right: 1px solid rgba(255,255,255,0.06); }
+        .pag-panel:hover { background: rgba(255,255,255,0.025); }
+        .pag-panel::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--pag-accent, #C9A84C); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .pag-panel:hover::after { transform: scaleX(1); }
+        .pag-next::after { transform-origin: right; }
+        .pag-direction { font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.2); margin-bottom: 28px; display: flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .pag-panel:hover .pag-direction { color: rgba(255,255,255,0.45); }
+        .pag-section { font-family: 'Inter', sans-serif; font-size: 0.5rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.18); margin-bottom: 10px; display: block; }
+        .pag-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 2.8vw, 2rem); font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.25; letter-spacing: -0.01em; transition: color 0.3s; display: block; margin-bottom: 18px; }
+        .pag-panel:hover .pag-title { color: rgba(255,255,255,0.92); }
+        .pag-read { font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.15); transition: color 0.3s; }
+        .pag-panel:hover .pag-read { color: rgba(255,255,255,0.35); }
+        .pag-watermark { position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 9rem; font-weight: 300; color: rgba(255,255,255,0.025); line-height: 1; pointer-events: none; user-select: none; top: 20px; }
+        .pag-prev .pag-watermark { right: 36px; }
+        .pag-next { text-align: right; }
+        .pag-next .pag-direction { justify-content: flex-end; }
+        .pag-next .pag-watermark { left: 36px; }
         .lib-cta { background: #000; padding: 140px 80px; text-align: center; position: relative; overflow: hidden; }
         .lib-cta::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 120px; background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.22)); }
         .lib-cta-inner { max-width: 540px; margin: 0 auto; position: relative; z-index: 1; }
@@ -192,8 +206,8 @@
         .art-peer-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.46rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(201,168,76,0.5); border: 1px solid rgba(201,168,76,0.18); padding: 4px 10px; border-radius: 2px; margin-bottom: 20px; }
         .art-research-note { font-family: 'Inter', sans-serif; font-size: 0.72rem; line-height: 1.9; color: rgba(255,255,255,0.22); border-left: 1px solid rgba(255,255,255,0.1); padding-left: 18px; margin: 64px 0 0; max-width: 560px; font-weight: 300; }
         @media (prefers-reduced-motion: reduce) { .chart-line { transition: none; stroke-dashoffset: 0 !important; } .art-hl::after { transition: none; width: 100%; } }
-        @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .art-pagination { padding-left: 48px; padding-right: 48px; } .lib-cta { padding: 100px 48px; } }
-        @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { padding: 40px 28px; flex-direction: column; gap: 32px; align-items: flex-start; } .lib-cta { padding: 100px 28px; } }
+        @media (max-width: 960px) { .nav-inner { padding: 24px 40px; } .art-breadcrumb { padding-left: 48px; padding-right: 48px; } .art-title-screen { padding-left: 48px; padding-right: 48px; } .art-body { padding-left: 48px; padding-right: 48px; } .art-figure { padding-left: 48px; padding-right: 48px; } .art-citations { padding-left: 48px; padding-right: 48px; } .pag-panel { padding: 52px 48px; } .lib-cta { padding: 100px 48px; } }
+        @media (max-width: 768px) { .nav-inner { padding: 22px 28px; } .art-breadcrumb { padding: 88px 28px 0; } .art-title-screen { padding: 60px 28px 60px; min-height: 80vh; } .art-watermark { font-size: 52vw; } .art-body { padding: 60px 28px 0; } .art-body-end { padding-bottom: 60px; } .art-figure { padding: 0 28px; margin: 44px 0; } .art-citations { padding: 32px 28px 60px; } .art-pagination { grid-template-columns: 1fr; } .pag-panel { padding: 44px 28px; } .pag-panel:first-child { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); } .pag-watermark { display: none; }.lib-cta { padding: 100px 28px; } }
     </style>
     <noscript><style>
         *, html, a, button, input, label { cursor: auto !important; }
@@ -354,13 +368,19 @@
         </article>
 
         <nav class="art-pagination" aria-label="Article navigation">
-            <a href="/library-morning-light">
-                <span data-i18n="art.pagination.prev">← Previous Article</span>
-                <span class="art-pagination-label" data-i18n="idling.pagination.prev.title">The 90-Minute Window</span>
+            <a href="/library-morning-light" class="pag-panel pag-prev" style="--pag-accent:#C9A84C;">
+                <span class="pag-watermark" aria-hidden="true">←</span>
+                <span class="pag-direction">← Previous Article</span>
+                <span class="pag-section">I · Morning Stillness</span>
+                <span class="pag-title">The 90-Minute Window</span>
+                <span class="pag-read">8 min read</span>
             </a>
-            <a href="/library-evening-protocol" class="art-pagination-next">
-                <span data-i18n="art.pagination.next">Next Article →</span>
-                <span class="art-pagination-label" data-i18n="idling.pagination.next.title">The Evening Protocol</span>
+            <a href="/library-evening-protocol" class="pag-panel pag-next" style="--pag-accent:#9490C8;">
+                <span class="pag-watermark" aria-hidden="true">→</span>
+                <span class="pag-direction">Next Article →</span>
+                <span class="pag-section">III · Evening Release</span>
+                <span class="pag-title">The Evening Protocol</span>
+                <span class="pag-read">9 min read</span>
             </a>
         </nav>
 
