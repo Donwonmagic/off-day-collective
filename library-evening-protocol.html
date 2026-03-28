@@ -122,11 +122,14 @@
         .nav-link { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; color: rgba(240,237,230,0.35); text-decoration: none; letter-spacing: -0.02em; display: block; padding: 8px 0; transition: color 0.3s ease; }
         .nav-link:hover, .nav-link.active { color: #F0EDE6; }
         .nav-link.active { font-style: italic; color: #C9A84C; }
-        .art-breadcrumb { padding: 108px 80px 0; display: flex; align-items: center; gap: 20px; }
-        .art-breadcrumb-back { font-family: 'Inter', sans-serif; font-size: 0.54rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
-        .art-breadcrumb-back:hover { color: rgba(255,255,255,0.6); }
-        .art-breadcrumb-sep { width: 24px; height: 1px; background: rgba(255,255,255,0.1); }
-        .art-breadcrumb-label { font-family: 'Inter', sans-serif; font-size: 0.54rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.1); }
+        .art-breadcrumb { padding: 108px 80px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .art-bc-back { display: flex; align-items: center; gap: 10px; flex-shrink: 0; font-family: 'Inter', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.32); text-decoration: none; border: 1px solid rgba(255,255,255,0.13); padding: 9px 18px; border-radius: 2px; transition: color 0.25s, border-color 0.25s, background 0.25s; }
+        .art-bc-back:hover { color: var(--art-accent, #9490C8); border-color: var(--art-accent, #9490C8); background: rgba(255,255,255,0.03); }
+        .art-bc-arrow { width: 14px; height: 9px; flex-shrink: 0; color: inherit; }
+        .art-bc-series { font-family: 'Inter', sans-serif; font-size: 0.52rem; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.18); text-align: center; flex: 1; }
+        .art-bc-progress { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .art-bc-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.14); transition: background 0.3s; }
+        .art-bc-dot--active { background: var(--art-accent, #9490C8); opacity: 0.75; }
         .art-title-screen { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 80px; background: #000; position: relative; overflow: hidden; }
         .art-watermark { position: absolute; bottom: -0.12em; left: 0.04em; font-family: 'Cormorant Garamond', serif; font-size: 38vw; font-weight: 300; color: rgba(255,255,255,0.016); line-height: 1; pointer-events: none; user-select: none; }
         .art-title-inner { max-width: 1060px; position: relative; z-index: 2; }
@@ -275,10 +278,19 @@
     </div>
 
     <main id="main-content">
-        <div class="art-breadcrumb">
-            <a href="/library" class="art-breadcrumb-back" data-i18n="art.breadcrumb.back">← The Science of Rest</a>
-            <span class="art-breadcrumb-sep" aria-hidden="true"></span>
-            <span class="art-breadcrumb-label" data-i18n="evening.breadcrumb.label">III · Evening Protocol</span>
+        <div class="art-breadcrumb" style="--art-accent:#9490C8;">
+            <a href="/library" class="art-bc-back">
+                <svg class="art-bc-arrow" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M13 4.5H1M1 4.5L4.5 1M1 4.5L4.5 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                The Library
+            </a>
+            <span class="art-bc-series">The Science of Rest · Vol. I</span>
+            <span class="art-bc-progress" aria-label="Article 3 of 3">
+                <span class="art-bc-dot" aria-hidden="true"></span>
+                <span class="art-bc-dot" aria-hidden="true"></span>
+                <span class="art-bc-dot art-bc-dot--active" aria-hidden="true"></span>
+            </span>
         </div>
 
         <article class="lib-article" aria-labelledby="evening-title">
