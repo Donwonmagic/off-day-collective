@@ -2179,7 +2179,17 @@
     // Restore saved preference early so translated text animates in
     // rather than flashing English first (body.loaded fires ~1500 ms later).
     var saved = 'en';
-    try { saved = localStorage.getItem('odc-lang') || 'en'; } catch (_) {}
+    try {
+      var stored = localStorage.getItem('odc-lang');
+      if (stored) {
+        // User has an explicit preference — honour it
+        saved = stored;
+      } else {
+        // First visit: detect from browser language, fall back to English
+        var bl = ((navigator.language || navigator.userLanguage || '').split('-')[0]).toLowerCase();
+        if (['es','fr','de','pt','ja','zh'].indexOf(bl) !== -1) saved = bl;
+      }
+    } catch (_) {}
     if (saved !== 'en') applyLang(saved);
 
     var btn      = document.getElementById('lang-btn');

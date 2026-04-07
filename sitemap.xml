@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- ── English (default) ─────────────────────────────────────────────── -->
   <url>
     <loc>https://www.offdaycollective.com/</loc>
     <lastmod>2026-04-07</lastmod>
@@ -8,6 +9,50 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- ── Language homepages ─────────────────────────────────────────────── -->
+  <url>
+    <loc>https://www.offdaycollective.com/es/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.offdaycollective.com/fr/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.offdaycollective.com/de/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.offdaycollective.com/pt/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.offdaycollective.com/ja/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.offdaycollective.com/zh/</loc>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ── Library ────────────────────────────────────────────────────────── -->
   <url>
     <loc>https://www.offdaycollective.com/library</loc>
     <lastmod>2026-04-07</lastmod>
@@ -36,6 +81,7 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- ── Core pages ────────────────────────────────────────────────────── -->
   <url>
     <loc>https://www.offdaycollective.com/philosophy</loc>
     <lastmod>2026-04-07</lastmod>
