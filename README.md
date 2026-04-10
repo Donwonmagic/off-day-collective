@@ -4,6 +4,8 @@
 
 This repository contains the source code for the **Off Day Collective** teaser website. It is designed as a single-page, narrative experience to capture early email leads before the official brand launch.
 
+Off Day Collective is part of **Off Day Group**, alongside our sister retail brand, [Off Day Solutions](https://offday.solutions).
+
 ## ⚡️ Technical Overview
 
 The site is built as a lightweight, static web application. It relies on no external frameworks, ensuring maximum performance and distinct visual control.

@@ -2768,3 +2768,28 @@ body.atmosphere-on .progress-wrap {
     color: rgba(255, 255, 255, 0.15);
     margin-top: 16px;
 }
+
+/* -----------------------------------------------------------
+   OFF DAY GROUP FAMILY LINE
+   Footer line noting ODC is part of Off Day Group,
+   with link out to Off Day Solutions (sister retail brand).
+   ----------------------------------------------------------- */
+.family-line {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.5px;
+    opacity: 0.55;
+    margin-top: 2px;
+}
+.family-line a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding-bottom: 1px;
+    transition: border-color 0.3s, color 0.3s;
+}
+.family-line a:hover {
+    color: var(--gold, #C9A84C);
+    border-bottom-color: rgba(201, 168, 76, 0.6);
+}
