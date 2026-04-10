@@ -1,7 +1,6 @@
-<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="200" height="200" rx="20" fill="#0a0a0a"/>
-  <polygon points="100,18 171,59 171,141 100,182 29,141 29,59" fill="none" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/>
-  <polygon points="131,46 162,100 131,154 69,154 38,100 69,46" fill="none" stroke="#2E6070" stroke-width="9" stroke-linejoin="round"/>
-  <rect x="82" y="72" width="12" height="56" rx="2" fill="#C05530"/>
-  <rect x="106" y="72" width="12" height="56" rx="2" fill="#C05530"/>
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="3" fill="#050505"/>
+  <text x="16" y="13" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, serif" font-size="9" font-weight="400" fill="#C9A84C" letter-spacing="1">OD</text>
+  <line x1="7" y1="18" x2="25" y2="18" stroke="#C9A84C" stroke-width="0.6" opacity="0.5"/>
+  <text x="16" y="24" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, serif" font-size="7" font-weight="300" fill="#C9A84C" letter-spacing="2" opacity="0.8">c</text>
 </svg>
